@@ -12,7 +12,9 @@ import { LoginPreviewToolbar } from "./preview-toolbar";
  * Renders the real theme in an isolated iframe (`/preview`).
  */
 export function LoginPreviewIframe() {
-    const { viewport, previewColorScheme, config, assets } = useEditor().login;
+    const { login, locale } = useEditor();
+    const { viewport, previewColorScheme, config, assets } = login;
+
     const width = getViewportWidth(viewport);
 
     const [pageId, setPageId] = useState<PageId>("login.ftl");
@@ -22,7 +24,7 @@ export function LoginPreviewIframe() {
         setPageId(value);
         setStoryId(getPage(value)?.stories[0]?.id ?? "default");
     }
-    usePublishPreview(pageId, storyId, previewColorScheme, config, assets);
+    usePublishPreview(pageId, storyId, previewColorScheme, config, locale, assets);
 
     return (
         <div className="flex h-full flex-col">
@@ -36,7 +38,7 @@ export function LoginPreviewIframe() {
                 <iframe
                     src="/preview"
                     title="Theme preview"
-                    // oxlint-disable-next-line react/iframe-missing-sandbox -- same-origin first-party /preview route; allow-same-origin is required for the BroadcastChannel preview protocol
+                    // oxlint-disable-next-line react/iframe-missing-sandbox
                     sandbox="allow-scripts allow-same-origin allow-forms"
                     className="h-full rounded-lg border bg-background shadow-sm transition-[width] duration-250"
                     style={{ width: width ? `${width}px` : "100%" }}

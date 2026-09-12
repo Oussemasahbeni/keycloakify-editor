@@ -1,9 +1,9 @@
-import type { ParsedTheme } from '#/features/editor/shared/parse-theme-jar';
+import type { ParsedTheme } from "#/features/editor/shared/parse-theme-jar";
 
-const DB_NAME = 'kc-studio';
+const DB_NAME = "kc-studio";
 const DB_VERSION = 1;
-const STORE_NAME = 'drafts';
-const DRAFT_KEY = 'current';
+const STORE_NAME = "drafts";
+const DRAFT_KEY = "current";
 const DRAFT_VERSION = 1;
 
 export type ThemeDraft = ParsedTheme & {
@@ -40,12 +40,7 @@ export async function saveDraft(draft: ParsedTheme): Promise<void> {
             version: DRAFT_VERSION,
             savedAt: Date.now(),
         };
-        await requestToPromise(
-            db
-                .transaction(STORE_NAME, 'readwrite')
-                .objectStore(STORE_NAME)
-                .put(record, DRAFT_KEY),
-        );
+        await requestToPromise(db.transaction(STORE_NAME, "readwrite").objectStore(STORE_NAME).put(record, DRAFT_KEY));
     } finally {
         db.close();
     }
@@ -55,10 +50,7 @@ export async function loadDraft(): Promise<ThemeDraft | undefined> {
     const db = await openDb();
     try {
         const draft = await requestToPromise(
-            db
-                .transaction(STORE_NAME, 'readonly')
-                .objectStore(STORE_NAME)
-                .get(DRAFT_KEY),
+            db.transaction(STORE_NAME, "readonly").objectStore(STORE_NAME).get(DRAFT_KEY),
         );
         if (draft && draft.version !== DRAFT_VERSION) {
             await clearDraft();
@@ -73,12 +65,7 @@ export async function loadDraft(): Promise<ThemeDraft | undefined> {
 export async function clearDraft(): Promise<void> {
     const db = await openDb();
     try {
-        await requestToPromise(
-            db
-                .transaction(STORE_NAME, 'readwrite')
-                .objectStore(STORE_NAME)
-                .delete(DRAFT_KEY),
-        );
+        await requestToPromise(db.transaction(STORE_NAME, "readwrite").objectStore(STORE_NAME).delete(DRAFT_KEY));
     } finally {
         db.close();
     }

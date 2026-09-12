@@ -1,10 +1,6 @@
-import { LogIn, Mail } from 'lucide-react';
+import { LogIn, Mail, User } from "lucide-react";
 
-/**
- * The two editing surfaces of a single theme. Both are baked into the same
- * exported JAR — this only switches which one the editor is viewing/editing.
- */
-export type Surface = 'login' | 'email';
+export type Surface = "login" | "email" | "account";
 
 export type SurfaceOption = {
     value: Surface;
@@ -14,6 +10,7 @@ export type SurfaceOption = {
 };
 
 export const SURFACES = [
-    { value: 'login', to: '/editor/login', label: 'Login', icon: LogIn },
-    { value: 'email', to: '/editor/email', label: 'Email', icon: Mail },
+    { value: "login", to: "/editor/login", label: "Login", icon: LogIn },
+    { value: "email", to: "/editor/email", label: "Email", icon: Mail },
+    { value: "account", to: "/editor/account", label: "Account", icon: User },
 ] as const satisfies ReadonlyArray<SurfaceOption>;

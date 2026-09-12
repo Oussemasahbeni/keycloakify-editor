@@ -14,65 +14,65 @@ export type ThemeName = "shadcn-theme";
 export const themeNames: ThemeName[] = ["shadcn-theme"];
 
 export type KcEnvName =
-  | "SHADCN_THEME_LOGO_URL"
-  | "SHADCN_THEME_LOGO_DARK_URL"
-  | "SHADCN_THEME_LAYOUT"
-  | "SHADCN_THEME_ASIDE_IMAGE_URL"
-  | "SHADCN_THEME_CARD_IMAGE_URL"
-  | "SHADCN_THEME_SIDE_PANEL_IMAGE_URL"
-  | "SHADCN_THEME_SIDE_PANEL_IMAGE_DARK_URL"
-  | "SHADCN_THEME_PRIMARY"
-  | "SHADCN_THEME_BASE"
-  | "SHADCN_THEME_RADIUS"
-  | "SHADCN_THEME_FONT"
-  | "SHADCN_THEME_SHOW_PLACEHOLDER"
-  | "SHADCN_THEME_SHOW_REALM_NAME"
-  | "SHADCN_THEME_SIDE_PANEL_POSITION"
-  | "SHADCN_THEME_WELCOME_MESSAGE"
-  | "SHADCN_EMAIL_PRIMARY_COLOR"
-  | "SHADCN_EMAIL_FOREGROUND_COLOR"
-  | "SHADCN_EMAIL_LOGO_URL";
+    | "SHADCN_THEME_LOGO_URL"
+    | "SHADCN_THEME_LOGO_DARK_URL"
+    | "SHADCN_THEME_LAYOUT"
+    | "SHADCN_THEME_ASIDE_IMAGE_URL"
+    | "SHADCN_THEME_CARD_IMAGE_URL"
+    | "SHADCN_THEME_SIDE_PANEL_IMAGE_URL"
+    | "SHADCN_THEME_SIDE_PANEL_IMAGE_DARK_URL"
+    | "SHADCN_THEME_PRIMARY"
+    | "SHADCN_THEME_BASE"
+    | "SHADCN_THEME_RADIUS"
+    | "SHADCN_THEME_FONT"
+    | "SHADCN_THEME_SHOW_PLACEHOLDER"
+    | "SHADCN_THEME_SHOW_REALM_NAME"
+    | "SHADCN_THEME_SIDE_PANEL_POSITION"
+    | "SHADCN_THEME_WELCOME_MESSAGE"
+    | "SHADCN_EMAIL_PRIMARY_COLOR"
+    | "SHADCN_EMAIL_FOREGROUND_COLOR"
+    | "SHADCN_EMAIL_LOGO_URL";
 
 export const kcEnvNames: KcEnvName[] = [
-  "SHADCN_THEME_LOGO_URL",
-  "SHADCN_THEME_LOGO_DARK_URL",
-  "SHADCN_THEME_LAYOUT",
-  "SHADCN_THEME_ASIDE_IMAGE_URL",
-  "SHADCN_THEME_CARD_IMAGE_URL",
-  "SHADCN_THEME_SIDE_PANEL_IMAGE_URL",
-  "SHADCN_THEME_SIDE_PANEL_IMAGE_DARK_URL",
-  "SHADCN_THEME_PRIMARY",
-  "SHADCN_THEME_BASE",
-  "SHADCN_THEME_RADIUS",
-  "SHADCN_THEME_FONT",
-  "SHADCN_THEME_SHOW_PLACEHOLDER",
-  "SHADCN_THEME_SHOW_REALM_NAME",
-  "SHADCN_THEME_SIDE_PANEL_POSITION",
-  "SHADCN_THEME_WELCOME_MESSAGE",
-  "SHADCN_EMAIL_PRIMARY_COLOR",
-  "SHADCN_EMAIL_FOREGROUND_COLOR",
-  "SHADCN_EMAIL_LOGO_URL",
+    "SHADCN_THEME_LOGO_URL",
+    "SHADCN_THEME_LOGO_DARK_URL",
+    "SHADCN_THEME_LAYOUT",
+    "SHADCN_THEME_ASIDE_IMAGE_URL",
+    "SHADCN_THEME_CARD_IMAGE_URL",
+    "SHADCN_THEME_SIDE_PANEL_IMAGE_URL",
+    "SHADCN_THEME_SIDE_PANEL_IMAGE_DARK_URL",
+    "SHADCN_THEME_PRIMARY",
+    "SHADCN_THEME_BASE",
+    "SHADCN_THEME_RADIUS",
+    "SHADCN_THEME_FONT",
+    "SHADCN_THEME_SHOW_PLACEHOLDER",
+    "SHADCN_THEME_SHOW_REALM_NAME",
+    "SHADCN_THEME_SIDE_PANEL_POSITION",
+    "SHADCN_THEME_WELCOME_MESSAGE",
+    "SHADCN_EMAIL_PRIMARY_COLOR",
+    "SHADCN_EMAIL_FOREGROUND_COLOR",
+    "SHADCN_EMAIL_LOGO_URL",
 ];
 
 export const kcEnvDefaults: Record<KcEnvName, string> = {
-  SHADCN_THEME_LOGO_URL: "",
-  SHADCN_THEME_LOGO_DARK_URL: "",
-  SHADCN_THEME_LAYOUT: "two-column",
-  SHADCN_THEME_ASIDE_IMAGE_URL: "",
-  SHADCN_THEME_CARD_IMAGE_URL: "",
-  SHADCN_THEME_SIDE_PANEL_IMAGE_URL: "",
-  SHADCN_THEME_SIDE_PANEL_IMAGE_DARK_URL: "",
-  SHADCN_THEME_PRIMARY: "neutral",
-  SHADCN_THEME_BASE: "neutral",
-  SHADCN_THEME_RADIUS: "default",
-  SHADCN_THEME_FONT: "geist",
-  SHADCN_THEME_SHOW_PLACEHOLDER: "true",
-  SHADCN_THEME_SHOW_REALM_NAME: "true",
-  SHADCN_THEME_SIDE_PANEL_POSITION: "right",
-  SHADCN_THEME_WELCOME_MESSAGE: "",
-  SHADCN_EMAIL_PRIMARY_COLOR: "#171717",
-  SHADCN_EMAIL_FOREGROUND_COLOR: "#fafafa",
-  SHADCN_EMAIL_LOGO_URL: "",
+    SHADCN_THEME_LOGO_URL: "",
+    SHADCN_THEME_LOGO_DARK_URL: "",
+    SHADCN_THEME_LAYOUT: "two-column",
+    SHADCN_THEME_ASIDE_IMAGE_URL: "",
+    SHADCN_THEME_CARD_IMAGE_URL: "",
+    SHADCN_THEME_SIDE_PANEL_IMAGE_URL: "",
+    SHADCN_THEME_SIDE_PANEL_IMAGE_DARK_URL: "",
+    SHADCN_THEME_PRIMARY: "neutral",
+    SHADCN_THEME_BASE: "neutral",
+    SHADCN_THEME_RADIUS: "default",
+    SHADCN_THEME_FONT: "geist",
+    SHADCN_THEME_SHOW_PLACEHOLDER: "true",
+    SHADCN_THEME_SHOW_REALM_NAME: "true",
+    SHADCN_THEME_SIDE_PANEL_POSITION: "right",
+    SHADCN_THEME_WELCOME_MESSAGE: "",
+    SHADCN_EMAIL_PRIMARY_COLOR: "#171717",
+    SHADCN_EMAIL_FOREGROUND_COLOR: "#fafafa",
+    SHADCN_EMAIL_LOGO_URL: "",
 };
 
 /**
@@ -80,33 +80,31 @@ export const kcEnvDefaults: Record<KcEnvName, string> = {
  * If you need to import the KcContext import it either from src/login/KcContext.ts or src/account/KcContext.ts.
  * Depending on the theme type you are working on.
  */
-export type KcContext =
-  | import("./login/KcContext").KcContext
-  | import("./account/KcContext").KcContext;
+export type KcContext = import("./login/KcContext").KcContext | import("./account/KcContext").KcContext;
 
 declare global {
-  interface Window {
-    kcContext?: KcContext;
-  }
+    interface Window {
+        kcContext?: KcContext;
+    }
 }
 
 export const KcLoginPage = lazy(() => import("./login/KcPage"));
 export const KcAccountPage = lazy(() => import("./account/KcPage"));
 
 export function KcPage(props: { kcContext: KcContext; fallback?: ReactNode }) {
-  const { kcContext, fallback } = props;
-  return (
-    <Suspense fallback={fallback}>
-      {(() => {
-        switch (kcContext.themeType) {
-          case "login":
-            return <KcLoginPage kcContext={kcContext} />;
-          case "account":
-            return <KcAccountPage kcContext={kcContext} />;
-        }
-      })()}
-    </Suspense>
-  );
+    const { kcContext, fallback } = props;
+    return (
+        <Suspense fallback={fallback}>
+            {(() => {
+                switch (kcContext.themeType) {
+                    case "login":
+                        return <KcLoginPage kcContext={kcContext} />;
+                    case "account":
+                        return <KcAccountPage kcContext={kcContext} />;
+                }
+            })()}
+        </Suspense>
+    );
 }
 
 // NOTE: This is exported here only because in Webpack environnement it works differently

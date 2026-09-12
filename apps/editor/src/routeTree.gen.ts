@@ -15,6 +15,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as EditorIndexRouteImport } from './routes/editor.index'
 import { Route as EditorLoginRouteImport } from './routes/editor.login'
 import { Route as EditorEmailRouteImport } from './routes/editor.email'
+import { Route as EditorAccountRouteImport } from './routes/editor.account'
 
 const PreviewRoute = PreviewRouteImport.update({
   id: '/preview',
@@ -46,11 +47,17 @@ const EditorEmailRoute = EditorEmailRouteImport.update({
   path: '/email',
   getParentRoute: () => EditorRoute,
 } as any)
+const EditorAccountRoute = EditorAccountRouteImport.update({
+  id: '/account',
+  path: '/account',
+  getParentRoute: () => EditorRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/editor': typeof EditorRouteWithChildren
   '/preview': typeof PreviewRoute
+  '/editor/account': typeof EditorAccountRoute
   '/editor/email': typeof EditorEmailRoute
   '/editor/login': typeof EditorLoginRoute
   '/editor/': typeof EditorIndexRoute
@@ -58,6 +65,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/preview': typeof PreviewRoute
+  '/editor/account': typeof EditorAccountRoute
   '/editor/email': typeof EditorEmailRoute
   '/editor/login': typeof EditorLoginRoute
   '/editor': typeof EditorIndexRoute
@@ -67,6 +75,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/editor': typeof EditorRouteWithChildren
   '/preview': typeof PreviewRoute
+  '/editor/account': typeof EditorAccountRoute
   '/editor/email': typeof EditorEmailRoute
   '/editor/login': typeof EditorLoginRoute
   '/editor/': typeof EditorIndexRoute
@@ -77,16 +86,24 @@ export interface FileRouteTypes {
     | '/'
     | '/editor'
     | '/preview'
+    | '/editor/account'
     | '/editor/email'
     | '/editor/login'
     | '/editor/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/preview' | '/editor/email' | '/editor/login' | '/editor'
+  to:
+    | '/'
+    | '/preview'
+    | '/editor/account'
+    | '/editor/email'
+    | '/editor/login'
+    | '/editor'
   id:
     | '__root__'
     | '/'
     | '/editor'
     | '/preview'
+    | '/editor/account'
     | '/editor/email'
     | '/editor/login'
     | '/editor/'
@@ -142,16 +159,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof EditorEmailRouteImport
       parentRoute: typeof EditorRoute
     }
+    '/editor/account': {
+      id: '/editor/account'
+      path: '/account'
+      fullPath: '/editor/account'
+      preLoaderRoute: typeof EditorAccountRouteImport
+      parentRoute: typeof EditorRoute
+    }
   }
 }
 
 interface EditorRouteChildren {
+  EditorAccountRoute: typeof EditorAccountRoute
   EditorEmailRoute: typeof EditorEmailRoute
   EditorLoginRoute: typeof EditorLoginRoute
   EditorIndexRoute: typeof EditorIndexRoute
 }
 
 const EditorRouteChildren: EditorRouteChildren = {
+  EditorAccountRoute: EditorAccountRoute,
   EditorEmailRoute: EditorEmailRoute,
   EditorLoginRoute: EditorLoginRoute,
   EditorIndexRoute: EditorIndexRoute,

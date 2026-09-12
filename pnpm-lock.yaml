@@ -110,6 +110,15 @@ catalogs:
     '@tailwindcss/vite':
       specifier: ^4.3.0
       version: 4.3.0
+    oxfmt:
+      specifier: ^0.63.0
+      version: 0.63.0
+    oxlint:
+      specifier: ^1.78.0
+      version: 1.78.0
+    oxlint-tsgolint:
+      specifier: ^7.0.2001
+      version: 7.0.2001
     react:
       specifier: ^19.2.6
       version: 19.2.6
@@ -159,7 +168,17 @@ catalogs:
 
 importers:
 
-  .: {}
+  .:
+    devDependencies:
+      oxfmt:
+        specifier: 'catalog:'
+        version: 0.63.0
+      oxlint:
+        specifier: 'catalog:'
+        version: 1.78.0(oxlint-tsgolint@7.0.2001)
+      oxlint-tsgolint:
+        specifier: 'catalog:'
+        version: 7.0.2001
 
   apps/editor:
     dependencies:
@@ -297,13 +316,13 @@ importers:
         specifier: ^28.1.0
         version: 28.1.0(@noble/hashes@1.8.0)(supports-color@7.2.0)
       oxfmt:
-        specifier: ^0.63.0
+        specifier: 'catalog:'
         version: 0.63.0
       oxlint:
-        specifier: ^1.78.0
+        specifier: 'catalog:'
         version: 1.78.0(oxlint-tsgolint@7.0.2001)
       oxlint-tsgolint:
-        specifier: ^7.0.2001
+        specifier: 'catalog:'
         version: 7.0.2001
       shadcn:
         specifier: ^4.15.0
@@ -478,13 +497,13 @@ importers:
         specifier: 3.4.0
         version: 3.4.0(jsx-email@3.2.1)(react@19.2.6)
       oxfmt:
-        specifier: ^0.63.0
+        specifier: 'catalog:'
         version: 0.63.0
       oxlint:
-        specifier: ^1.78.0
+        specifier: 'catalog:'
         version: 1.78.0(oxlint-tsgolint@7.0.2001)
       oxlint-tsgolint:
-        specifier: ^7.0.2001
+        specifier: 'catalog:'
         version: 7.0.2001
       shadcn:
         specifier: ^4.15.0

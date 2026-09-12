@@ -5,10 +5,6 @@
         "correctness": "error",
         "suspicious": "warn"
     },
-    "options": {
-        "typeAware": true,
-        "typeCheck": true
-    },
     "env": {
         "builtin": true,
         "browser": true

@@ -6,21 +6,12 @@
  * `request()`) and the query's abort signal, so callers only deal with `data` / `isPending`.
  */
 
-import {
-    type QueryKey,
-    type UseQueryResult,
-    useMutation,
-    useQuery,
-    useQueryClient,
-} from '@tanstack/react-query';
+import { type QueryKey, type UseQueryResult, useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
-import type { AccountEnvironment } from '..';
-import {
-    type KeycloakContext,
-    useEnvironment,
-} from '../../shared/keycloak-ui-shared';
-import { fetchPermission, fetchResources } from '../api';
-import fetchContentJson from '../content/fetchContent';
+import type { AccountEnvironment } from "..";
+import { type KeycloakContext, useEnvironment } from "../../shared/keycloak-ui-shared";
+import { fetchPermission, fetchResources } from "../api";
+import fetchContentJson from "../content/fetchContent";
 import {
     type LinkedAccountQueryParams,
     getApplications,
@@ -34,44 +25,34 @@ import {
     getSupportedLocales,
     getUserOrganizations,
     getVerifiableCredentials,
-} from './methods';
-import type { Permission } from './representations';
+} from "./methods";
+import type { Permission } from "./representations";
 
 export const accountKeys = {
-    all: ['account'] as const,
-    content: () => [...accountKeys.all, 'content'] as const,
-    personalInfo: () => [...accountKeys.all, 'personal-info'] as const,
-    supportedLocales: () => [...accountKeys.all, 'supported-locales'] as const,
-    credentials: () => [...accountKeys.all, 'credentials'] as const,
-    devices: () => [...accountKeys.all, 'devices'] as const,
+    all: ["account"] as const,
+    content: () => [...accountKeys.all, "content"] as const,
+    personalInfo: () => [...accountKeys.all, "personal-info"] as const,
+    supportedLocales: () => [...accountKeys.all, "supported-locales"] as const,
+    credentials: () => [...accountKeys.all, "credentials"] as const,
+    devices: () => [...accountKeys.all, "devices"] as const,
     linkedAccounts: (params?: LinkedAccountQueryParams) =>
-        params ?
-            ([...accountKeys.all, 'linked-accounts', params] as const)
-        :   ([...accountKeys.all, 'linked-accounts'] as const),
-    applications: () => [...accountKeys.all, 'applications'] as const,
-    groups: () => [...accountKeys.all, 'groups'] as const,
-    organizations: () => [...accountKeys.all, 'organizations'] as const,
+        params
+            ? ([...accountKeys.all, "linked-accounts", params] as const)
+            : ([...accountKeys.all, "linked-accounts"] as const),
+    applications: () => [...accountKeys.all, "applications"] as const,
+    groups: () => [...accountKeys.all, "groups"] as const,
+    organizations: () => [...accountKeys.all, "organizations"] as const,
     resources: (isShared?: boolean, params?: Record<string, string>) =>
-        isShared === undefined ?
-            ([...accountKeys.all, 'resources'] as const)
-        :   ([
-                ...accountKeys.all,
-                'resources',
-                isShared ? 'shared' : 'own',
-                params ?? {},
-            ] as const),
-    verifiableCredentials: () =>
-        [...accountKeys.all, 'verifiable-credentials'] as const,
-    issuedVerifiableCredentials: () =>
-        [...accountKeys.all, 'issued-verifiable-credentials'] as const,
+        isShared === undefined
+            ? ([...accountKeys.all, "resources"] as const)
+            : ([...accountKeys.all, "resources", isShared ? "shared" : "own", params ?? {}] as const),
+    verifiableCredentials: () => [...accountKeys.all, "verifiable-credentials"] as const,
+    issuedVerifiableCredentials: () => [...accountKeys.all, "issued-verifiable-credentials"] as const,
 };
 
 export type AccountContext = KeycloakContext<AccountEnvironment>;
 
-type Fetcher<T> = (options: {
-    signal: AbortSignal;
-    context: AccountContext;
-}) => Promise<T>;
+type Fetcher<T> = (options: { signal: AbortSignal; context: AccountContext }) => Promise<T>;
 
 type QueryOptions<T, S> = {
     /** Derive the data the component needs; keep the function stable (module level). */
@@ -82,11 +63,7 @@ type QueryOptions<T, S> = {
 };
 
 /** `useQuery` bound to the account API: injects the Keycloak context and the abort signal. */
-export function useAccountQuery<T, S = T>(
-    queryKey: QueryKey,
-    fetcher: Fetcher<T>,
-    options: QueryOptions<T, S> = {},
-) {
+export function useAccountQuery<T, S = T>(queryKey: QueryKey, fetcher: Fetcher<T>, options: QueryOptions<T, S> = {}) {
     const context = useEnvironment<AccountEnvironment>();
     return useQuery({
         queryKey,
@@ -109,23 +86,15 @@ type MutationOptions<TVariables, TData> = {
  */
 export function useAccountMutation<TVariables, TData>(
     mutate: (context: AccountContext, variables: TVariables) => Promise<TData>,
-    {
-        invalidates = [],
-        onSuccess,
-        onError,
-    }: MutationOptions<TVariables, TData> = {},
+    { invalidates = [], onSuccess, onError }: MutationOptions<TVariables, TData> = {},
 ) {
     const context = useEnvironment<AccountEnvironment>();
     const queryClient = useQueryClient();
 
     return useMutation<TData, unknown, TVariables>({
-        mutationFn: (variables) => mutate(context, variables),
+        mutationFn: variables => mutate(context, variables),
         onSuccess: async (data, variables) => {
-            await Promise.all(
-                invalidates.map((queryKey) =>
-                    queryClient.invalidateQueries({ queryKey }),
-                ),
-            );
+            await Promise.all(invalidates.map(queryKey => queryClient.invalidateQueries({ queryKey })));
             await onSuccess?.(data, variables);
         },
         onError: (error, variables) => {
@@ -139,10 +108,7 @@ export function useAccountAction<TData>(
     mutate: (context: AccountContext) => Promise<TData>,
     options: MutationOptions<void, TData> = {},
 ) {
-    return useAccountMutation<void, TData>(
-        (context) => mutate(context),
-        options,
-    );
+    return useAccountMutation<void, TData>(context => mutate(context), options);
 }
 
 // --- reads -------------------------------------------------------------------------------
@@ -165,82 +131,50 @@ export const useSupportedLocales = () =>
         staleTime: Infinity,
     });
 
-export const useCredentials = () =>
-    useAccountQuery(accountKeys.credentials(), getCredentials);
+export const useCredentials = () => useAccountQuery(accountKeys.credentials(), getCredentials);
 
-export const useDevices = <S>(
-    select: (devices: Awaited<ReturnType<typeof getDevices>>) => S,
-): UseQueryResult<S> =>
+export const useDevices = <S>(select: (devices: Awaited<ReturnType<typeof getDevices>>) => S): UseQueryResult<S> =>
     useAccountQuery(accountKeys.devices(), getDevices, { select });
 
 export const useLinkedAccounts = (params: LinkedAccountQueryParams) =>
-    useAccountQuery(accountKeys.linkedAccounts(params), (options) =>
-        getLinkedAccounts(options, params),
-    );
+    useAccountQuery(accountKeys.linkedAccounts(params), options => getLinkedAccounts(options, params));
 
-export const useApplications = () =>
-    useAccountQuery(accountKeys.applications(), getApplications);
+export const useApplications = () => useAccountQuery(accountKeys.applications(), getApplications);
 
-export const useGroups = <S>(
-    select: (groups: Awaited<ReturnType<typeof getGroups>>) => S,
-): UseQueryResult<S> =>
+export const useGroups = <S>(select: (groups: Awaited<ReturnType<typeof getGroups>>) => S): UseQueryResult<S> =>
     useAccountQuery(accountKeys.groups(), getGroups, { select });
 
-export const useOrganizations = () =>
-    useAccountQuery(accountKeys.organizations(), getUserOrganizations);
+export const useOrganizations = () => useAccountQuery(accountKeys.organizations(), getUserOrganizations);
 
 export const useVerifiableCredentials = () =>
-    useAccountQuery(
-        accountKeys.verifiableCredentials(),
-        getVerifiableCredentials,
-    );
+    useAccountQuery(accountKeys.verifiableCredentials(), getVerifiableCredentials);
 
 export const useIssuedVerifiableCredentials = <S>(
-    select: (
-        issued: Awaited<ReturnType<typeof getIssuedVerifiableCredentials>>,
-    ) => S,
+    select: (issued: Awaited<ReturnType<typeof getIssuedVerifiableCredentials>>) => S,
 ): UseQueryResult<S> =>
-    useAccountQuery(
-        accountKeys.issuedVerifiableCredentials(),
-        getIssuedVerifiableCredentials,
-        { select },
-    );
+    useAccountQuery(accountKeys.issuedVerifiableCredentials(), getIssuedVerifiableCredentials, { select });
 
 /** A page of resources; for owned resources also who they are shared with and pending requests. */
-export const useResources = (
-    isShared: boolean,
-    params: Record<string, string>,
-) =>
-    useAccountQuery(
-        accountKeys.resources(isShared, params),
-        async ({ signal, context }) => {
-            const result = await fetchResources(
-                { signal, context },
-                params,
-                isShared,
+export const useResources = (isShared: boolean, params: Record<string, string>) =>
+    useAccountQuery(accountKeys.resources(isShared, params), async ({ signal, context }) => {
+        const result = await fetchResources({ signal, context }, params, isShared);
+        const permissions: Record<string, Permission[]> = {};
+        if (!isShared) {
+            await Promise.all(
+                result.data.map(async resource => {
+                    [resource.shareRequests, permissions[resource._id]] = await Promise.all([
+                        getPermissionRequests(resource._id, {
+                            signal,
+                            context,
+                        }),
+                        fetchPermission({ signal, context }, resource._id),
+                    ]);
+                }),
             );
-            const permissions: Record<string, Permission[]> = {};
-            if (!isShared) {
-                await Promise.all(
-                    result.data.map(async (resource) => {
-                        [resource.shareRequests, permissions[resource._id]] =
-                            await Promise.all([
-                                getPermissionRequests(resource._id, {
-                                    signal,
-                                    context,
-                                }),
-                                fetchPermission(
-                                    { signal, context },
-                                    resource._id,
-                                ),
-                            ]);
-                    }),
-                );
-            }
-            return {
-                resources: result.data,
-                hasNext: !!result.links?.next,
-                permissions,
-            };
-        },
-    );
+        }
+        return {
+            resources: result.data,
+            hasNext: !!result.links?.next,
+            permissions,
+        };
+    });

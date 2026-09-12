@@ -1,6 +1,7 @@
 import { useEffect, useEffectEvent, useRef } from "react";
 
 import type { ThemeAssetKey } from "#/features/editor/shared/model/assets.ts";
+import type { Locale } from "#/lib/locales";
 
 import type { PreviewColorScheme } from "../../shared/model/preview-color-scheme";
 import type { LoginThemeConfig } from "../../shared/model/theme-config";
@@ -26,13 +27,12 @@ export type PreviewState = {
     pageId: PageId;
     storyId: string;
     colorScheme: PreviewColorScheme;
+    locale: Locale;
     config: LoginThemeConfig;
 };
 
-/** Uploaded image assets keyed by asset (favicon included but ignored by previews). */
 export type PreviewAssets = Partial<Record<ThemeAssetKey, File | null>>;
 
-/** Wire protocol. `request` = "consumer joined — send current assets"; `assets` = the payload. */
 type ChannelMessage =
     | { type: "request" }
     | { type: "state"; state: PreviewState }
@@ -47,11 +47,10 @@ export function useReceivePreview(handlers: {
     const onAssets = useEffectEvent(handlers.onAssets);
     useEffect(() => {
         const channel = new BroadcastChannel(CHANNEL_NAME);
-        channel.addEventListener("message", (e: MessageEvent<ChannelMessage>) => {
-            if (e.data.type === "state") onState(e.data.state);
-            else if (e.data.type === "assets") onAssets(e.data.assets);
+        channel.addEventListener("message", (event: MessageEvent<ChannelMessage>) => {
+            if (event.data.type === "state") onState(event.data.state);
+            else if (event.data.type === "assets") onAssets(event.data.assets);
         });
-        // oxlint-disable-next-line unicorn/require-post-message-target-origin -- BroadcastChannel.postMessage has no targetOrigin parameter; the rule pattern-matches window.postMessage
         channel.postMessage({ type: "request" } satisfies ChannelMessage);
         return () => channel.close();
     }, []);
@@ -63,6 +62,7 @@ export function usePublishPreview(
     storyId: string,
     colorScheme: PreviewColorScheme,
     config: LoginThemeConfig,
+    locale: Locale,
     assets: PreviewAssets,
 ) {
     const channelRef = useRef<BroadcastChannel | null>(null);
@@ -70,11 +70,14 @@ export function usePublishPreview(
     const publishState = useEffectEvent(() => {
         channelRef.current?.postMessage({
             type: "state",
-            state: { pageId, storyId, colorScheme, config },
+            state: { pageId, storyId, colorScheme, config, locale },
         } satisfies ChannelMessage);
     });
     const publishAssets = useEffectEvent(() => {
-        channelRef.current?.postMessage({ type: "assets", assets } satisfies ChannelMessage);
+        channelRef.current?.postMessage({
+            type: "assets",
+            assets,
+        } satisfies ChannelMessage);
     });
 
     useEffect(() => {
@@ -92,6 +95,6 @@ export function usePublishPreview(
         };
     }, []);
 
-    useEffect(() => publishState(), [pageId, storyId, colorScheme, config]);
+    useEffect(() => publishState(), [pageId, storyId, colorScheme, config, locale]);
     useEffect(() => publishAssets(), [assets]);
 }

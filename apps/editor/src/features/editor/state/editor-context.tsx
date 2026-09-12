@@ -5,6 +5,7 @@ import type { Layout } from "react-resizable-panels";
 
 import { useTheme } from "#/components/theme-provider";
 import { clearDraft, loadDraft } from "#/lib/draft-storage.ts";
+import { DEFAULT_LOCALE, type Locale } from "#/lib/locales";
 
 import { BASE_THEME_NAME } from "../shared/constants";
 import type { ThemeAssetKey } from "../shared/model/assets";
@@ -23,6 +24,8 @@ type EditorContextValue = {
     setPanelLayout: (layout: Layout) => void;
     readonly resetConfig: () => void;
     readonly importTheme: (state: ParsedTheme) => void;
+    locale: Locale;
+    readonly setLocale: (locale: Locale) => void;
     login: {
         config: LoginThemeConfig;
         updateConfig: (patch: Partial<LoginThemeConfig>) => void;
@@ -59,6 +62,7 @@ export function EditorProvider({ children }: { children: React.ReactNode }) {
     const [assets, setAssets] = useState<Record<ThemeAssetKey, File | null>>(emptyAssets);
     const [emailLogoFile, setEmailLogoFile] = useState<File | null>(null);
     const [panelLayout, setPanelLayout] = useState<Layout>();
+    const [locale, setLocale] = useState<Locale>(DEFAULT_LOCALE);
 
     // Follow the editor chrome theme: it settles to the stored value after
     // mount, and the user can switch it later from the header.
@@ -73,7 +77,7 @@ export function EditorProvider({ children }: { children: React.ReactNode }) {
                 const draft = await loadDraft();
                 if (cancelled || !draft) return;
                 setThemeName(draft.themeName);
-                setLoginThemeConfig(current => ({ ...draft.login, locale: current.locale }));
+                setLoginThemeConfig(() => draft.login);
                 setAssets(draft.assets);
                 setEmailThemeConfig(draft.email);
                 setEmailLogoFile(draft.emailLogoFile);
@@ -92,15 +96,18 @@ export function EditorProvider({ children }: { children: React.ReactNode }) {
         setThemeName,
         panelLayout,
         setPanelLayout,
+        locale,
+        setLocale,
         resetConfig: () => {
             setLoginThemeConfig(defaultLoginThemeConfig);
             setEmailThemeConfig({});
             setAssets(emptyAssets);
             setEmailLogoFile(null);
+            setLocale(DEFAULT_LOCALE);
         },
         importTheme: state => {
             setThemeName(state.themeName);
-            setLoginThemeConfig(current => ({ ...state.login, locale: current.locale }));
+            setLoginThemeConfig(state.login);
             setAssets(state.assets);
             setEmailThemeConfig(state.email);
             setEmailLogoFile(state.emailLogoFile);

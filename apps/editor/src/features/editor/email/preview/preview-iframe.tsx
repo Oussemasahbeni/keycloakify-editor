@@ -4,15 +4,13 @@ import { useEffect, useState } from "react";
 
 import { renderEmailPreviewFn } from "#/features/editor/server/email-render-preview";
 import { useEditor } from "#/features/editor/state/editor-context.tsx";
-import { DEFAULT_LOCALE } from "#/lib/locales.ts";
 
 import { EmailPreviewToolbar } from "./preview-toolbar";
 
 export function EmailPreviewIframe() {
-    const { email, login } = useEditor();
+    const { email, login, locale } = useEditor();
     const renderPreview = useServerFn(renderEmailPreviewFn);
     const templateId = email.template.id;
-    const locale = email.config.locale ?? DEFAULT_LOCALE;
 
     const primaryColor = email.config.primary ?? login.config.primary;
     const logoFile = email.emailLogoFile;
@@ -55,7 +53,7 @@ export function EmailPreviewIframe() {
             <div className="h-full overflow-auto bg-muted/30 p-4">
                 <iframe
                     title="Email preview"
-                    // oxlint-disable-next-line react/iframe-missing-sandbox -- first-party generated email HTML; allow-same-origin is needed for styling and the content is trusted
+                    // oxlint-disable-next-line react/iframe-missing-sandbox
                     sandbox="allow-same-origin allow-scripts"
                     srcDoc={html}
                     className="mx-auto block h-full w-full rounded-lg border shadow-sm"

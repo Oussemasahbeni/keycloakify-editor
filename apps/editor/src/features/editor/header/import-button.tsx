@@ -5,8 +5,8 @@ import { Button } from "#/components/ui/button.tsx";
 import { Spinner } from "#/components/ui/spinner.tsx";
 import { toast } from "@/components/ui/toast";
 
-import { useEditor } from "../state/editor-context";
 import { parseThemeJar } from "../shared/parse-theme-jar";
+import { useEditor } from "../state/editor-context";
 
 export function ImportButton() {
     const { importTheme } = useEditor();

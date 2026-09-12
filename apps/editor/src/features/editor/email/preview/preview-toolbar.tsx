@@ -50,7 +50,7 @@ export function EmailPreviewToolbar() {
         <div className="flex items-center justify-between gap-2 border-b p-2">
             <div className="flex items-center gap-2">
                 <TemplateSelect />
-                <LanguageSelect surface="email"  />
+                <LanguageSelect />
             </div>
 
             <div className="flex items-center gap-2">

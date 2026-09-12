@@ -1,6 +1,6 @@
-import type { ThemePropertyKey } from './property-keys';
-import { THEME_PROPERTY_KEYS } from './property-keys';
-import type { LoginThemeConfig } from './theme-config';
+import type { ThemePropertyKey } from "./property-keys";
+import { THEME_PROPERTY_KEYS } from "./property-keys";
+import type { LoginThemeConfig } from "./theme-config";
 
 type Assets = {
     /** Doubles as the `assets` store key AND the multipart field name on export. */
@@ -10,7 +10,7 @@ type Assets = {
     baseName: string;
     label: string;
     /** When set, the control only applies to this layout. */
-    layout?: LoginThemeConfig['layout'];
+    layout?: LoginThemeConfig["layout"];
 };
 
 /**
@@ -24,44 +24,44 @@ type Assets = {
  */
 export const assetDefinitions = [
     {
-        key: 'logoUrl',
+        key: "logoUrl",
         property: THEME_PROPERTY_KEYS.logoUrl,
-        baseName: 'logo',
-        label: 'Logo',
+        baseName: "logo",
+        label: "Logo",
     },
     {
-        key: 'logoDarkUrl',
+        key: "logoDarkUrl",
         property: THEME_PROPERTY_KEYS.logoDarkUrl,
-        baseName: 'logo-dark',
-        label: 'Dark logo (optional)',
+        baseName: "logo-dark",
+        label: "Dark logo (optional)",
     },
     {
-        key: 'asideImageUrl',
+        key: "asideImageUrl",
         property: THEME_PROPERTY_KEYS.asideImageUrl,
-        baseName: 'aside-image',
-        label: 'Aside image',
-        layout: 'image-aside',
+        baseName: "aside-image",
+        label: "Aside image",
+        layout: "image-aside",
     },
     {
-        key: 'cardImageUrl',
+        key: "cardImageUrl",
         property: THEME_PROPERTY_KEYS.cardImageUrl,
-        baseName: 'card-background',
-        label: 'Card background',
-        layout: 'centered-card',
+        baseName: "card-background",
+        label: "Card background",
+        layout: "centered-card",
     },
     {
-        key: 'sidePanelImageUrl',
+        key: "sidePanelImageUrl",
         property: THEME_PROPERTY_KEYS.sidePanelImageUrl,
-        baseName: 'side-panel-image',
-        label: 'Side panel image',
-        layout: 'two-column',
+        baseName: "side-panel-image",
+        label: "Side panel image",
+        layout: "two-column",
     },
     {
-        key: 'sidePanelImageDarkUrl',
+        key: "sidePanelImageDarkUrl",
         property: THEME_PROPERTY_KEYS.sidePanelImageDarkUrl,
-        baseName: 'side-panel-image-dark',
-        label: 'Side panel dark image (optional)',
-        layout: 'two-column',
+        baseName: "side-panel-image-dark",
+        label: "Side panel dark image (optional)",
+        layout: "two-column",
     },
 ] as const satisfies readonly Assets[];
 
@@ -75,6 +75,6 @@ export const emptyAssets: Record<ThemeAssetKey, File | null> = {
     sidePanelImageDarkUrl: null,
 };
 
-export type AssetKey = (typeof assetDefinitions)[number]['key'];
-export type AssetProperty = (typeof assetDefinitions)[number]['property'];
-export type ThemeAssetKey = AssetKey | 'favicon';
+export type AssetKey = (typeof assetDefinitions)[number]["key"];
+export type AssetProperty = (typeof assetDefinitions)[number]["property"];
+export type ThemeAssetKey = AssetKey | "favicon";

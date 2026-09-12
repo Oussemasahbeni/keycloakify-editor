@@ -9,6 +9,7 @@ import { getStory } from "#/features/editor/login/stories/pages";
 import type { AssetKey } from "#/features/editor/shared/model/assets.ts";
 import { assetDefinitions } from "#/features/editor/shared/model/assets.ts";
 import { defaultLoginThemeConfig, themeConfigToProperties } from "#/features/editor/shared/model/theme-config.ts";
+import { DEFAULT_LOCALE } from "#/lib/locales";
 
 /**
  * Isolated preview document, embedded by `PreviewPane` via an iframe.
@@ -29,10 +30,11 @@ function PreviewRoute() {
         pageId: "login.ftl",
         storyId: "default",
         colorScheme: "light",
+        locale: DEFAULT_LOCALE,
         config: defaultLoginThemeConfig,
     });
 
-    const { pageId, storyId, colorScheme, config, assets } = state;
+    const { pageId, storyId, colorScheme, config, assets, locale } = state;
 
     const [assetUrls, setAssetUrls] = useState<Partial<Record<AssetKey, string>>>({});
 
@@ -77,7 +79,7 @@ function PreviewRoute() {
             ...storyOverrides,
             locale: {
                 ...storyOverrides?.locale,
-                currentLanguageTag: config.locale,
+                currentLanguageTag: locale,
             },
             properties: {
                 ...storyOverrides?.properties,
@@ -87,5 +89,5 @@ function PreviewRoute() {
         },
     });
 
-    return <KcPage key={`${pageId}::${storyId}::${config.locale}`} kcContext={kcContext} />;
+    return <KcPage key={`${pageId}::${storyId}::${locale}`} kcContext={kcContext} />;
 }

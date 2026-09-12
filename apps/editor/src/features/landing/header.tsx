@@ -98,7 +98,10 @@ function MobileMenu() {
                 </nav>
 
                 <div className="border-t p-4">
-                    <Link to="/editor/login" className={cn(buttonVariants({ variant: "default", size: "hero" }), "w-full")}>
+                    <Link
+                        to="/editor/login"
+                        className={cn(buttonVariants({ variant: "default", size: "hero" }), "w-full")}
+                    >
                         Open the editor
                     </Link>
                 </div>

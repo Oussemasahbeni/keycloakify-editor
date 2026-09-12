@@ -1,4 +1,4 @@
-import { resolveEmailTheme } from '@kc-studio/shadcn-theme/email';
+import { resolveEmailTheme } from "@kc-studio/shadcn-theme/email";
 import type {
     BasePalette,
     FontFamily,
@@ -6,7 +6,7 @@ import type {
     PrimaryPreset,
     RadiusPreset,
     SidePanelPosition,
-} from '@kc-studio/shadcn-theme/theme';
+} from "@kc-studio/shadcn-theme/theme";
 import {
     basePaletteOptions,
     fontFamilyOptions,
@@ -15,13 +15,10 @@ import {
     primaryPresetOptions,
     radiusPresetOptions,
     sidePanelPositionOptions,
-} from '@kc-studio/shadcn-theme/theme';
-import { z } from 'zod';
+} from "@kc-studio/shadcn-theme/theme";
+import { z } from "zod";
 
-import type { Locale } from '#/lib/locales.ts';
-import { DEFAULT_LOCALE, LOCALES } from '#/lib/locales.ts';
-
-import { EMAIL_PROPERTY_KEYS, THEME_PROPERTY_KEYS } from './property-keys';
+import { EMAIL_PROPERTY_KEYS, THEME_PROPERTY_KEYS } from "./property-keys";
 
 export type ThemeConfig = {
     __version: 1;
@@ -36,7 +33,6 @@ export type LoginThemeConfig = {
     radius: RadiusPreset;
     font: FontFamily;
     layout: Layout;
-    locale?: Locale;
     showPlaceholder: boolean;
     showRealmName: boolean;
     logoUrl: string;
@@ -52,7 +48,6 @@ export type LoginThemeConfig = {
 export type EmailThemeConfig = {
     primary?: PrimaryPreset;
     logoUrl?: string;
-    locale?: Locale;
 };
 
 export const loginThemeConfigSchema = z.toZod<LoginThemeConfig>()(
@@ -62,7 +57,6 @@ export const loginThemeConfigSchema = z.toZod<LoginThemeConfig>()(
         radius: z.enum(radiusPresetOptions),
         font: z.enum(fontFamilyOptions),
         layout: z.enum(layoutOptions),
-        locale: z.enum(LOCALES).optional(),
         showPlaceholder: z.boolean(),
         showRealmName: z.boolean(),
         logoUrl: z.string(),
@@ -80,7 +74,6 @@ export const emailThemeConfigSchema = z.toZod<EmailThemeConfig>()(
     z.object({
         primary: z.enum(primaryPresetOptions).optional(),
         logoUrl: z.string().optional(),
-        locale: z.enum(LOCALES).optional(),
     }),
 );
 
@@ -103,9 +96,8 @@ export const defaultLoginThemeConfig: LoginThemeConfig = {
     radius: KC_ENV_DEFAULTS.SHADCN_THEME_RADIUS,
     font: KC_ENV_DEFAULTS.SHADCN_THEME_FONT,
     layout: KC_ENV_DEFAULTS.SHADCN_THEME_LAYOUT,
-    locale: DEFAULT_LOCALE,
-    showPlaceholder: KC_ENV_DEFAULTS.SHADCN_THEME_SHOW_PLACEHOLDER === 'true',
-    showRealmName: KC_ENV_DEFAULTS.SHADCN_THEME_SHOW_REALM_NAME === 'true',
+    showPlaceholder: KC_ENV_DEFAULTS.SHADCN_THEME_SHOW_PLACEHOLDER === "true",
+    showRealmName: KC_ENV_DEFAULTS.SHADCN_THEME_SHOW_REALM_NAME === "true",
     logoUrl: KC_ENV_DEFAULTS.SHADCN_THEME_LOGO_URL,
     logoDarkUrl: KC_ENV_DEFAULTS.SHADCN_THEME_LOGO_DARK_URL,
     asideImageUrl: KC_ENV_DEFAULTS.SHADCN_THEME_ASIDE_IMAGE_URL,
@@ -124,26 +116,21 @@ export const defaultLoginThemeConfig: LoginThemeConfig = {
  * them as `theme.properties` defaults). Keep both consumers reading from here so
  * the preview and the downloaded JAR can never drift apart.
  */
-export function themeConfigToProperties(
-    config: LoginThemeConfig,
-): Record<string, string> {
+export function themeConfigToProperties(config: LoginThemeConfig): Record<string, string> {
     return {
         [THEME_PROPERTY_KEYS.layout]: config.layout,
         [THEME_PROPERTY_KEYS.base]: config.base,
         [THEME_PROPERTY_KEYS.primary]: config.primary,
         [THEME_PROPERTY_KEYS.radius]: config.radius,
         [THEME_PROPERTY_KEYS.font]: config.font,
-        [THEME_PROPERTY_KEYS.showPlaceholder]:
-            config.showPlaceholder ? 'true' : 'false',
-        [THEME_PROPERTY_KEYS.showRealmName]:
-            config.showRealmName ? 'true' : 'false',
+        [THEME_PROPERTY_KEYS.showPlaceholder]: config.showPlaceholder ? "true" : "false",
+        [THEME_PROPERTY_KEYS.showRealmName]: config.showRealmName ? "true" : "false",
         [THEME_PROPERTY_KEYS.logoUrl]: config.logoUrl,
         [THEME_PROPERTY_KEYS.logoDarkUrl]: config.logoDarkUrl,
         [THEME_PROPERTY_KEYS.asideImageUrl]: config.asideImageUrl,
         [THEME_PROPERTY_KEYS.cardImageUrl]: config.cardImageUrl,
         [THEME_PROPERTY_KEYS.sidePanelImageUrl]: config.sidePanelImageUrl,
-        [THEME_PROPERTY_KEYS.sidePanelImageDarkUrl]:
-            config.sidePanelImageDarkUrl,
+        [THEME_PROPERTY_KEYS.sidePanelImageDarkUrl]: config.sidePanelImageDarkUrl,
         [THEME_PROPERTY_KEYS.sidePanelPosition]: config.sidePanelPosition,
         [THEME_PROPERTY_KEYS.welcomeMessage]: config.welcomeMessage,
     };
@@ -171,6 +158,6 @@ export function emailConfigToProperties(
     return {
         [EMAIL_PROPERTY_KEYS.primaryColor]: theme.primaryColor,
         [EMAIL_PROPERTY_KEYS.foregroundColor]: theme.foregroundColor,
-        [EMAIL_PROPERTY_KEYS.logoUrl]: theme.logoUrl ?? '',
+        [EMAIL_PROPERTY_KEYS.logoUrl]: theme.logoUrl ?? "",
     };
 }

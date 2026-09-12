@@ -6,10 +6,6 @@
         "correctness": "error",
         "suspicious": "warn"
     },
-    "options": {
-        "typeAware": true,
-        "typeCheck": true
-    },
     "env": {
         "builtin": true,
         "es2020": true,
