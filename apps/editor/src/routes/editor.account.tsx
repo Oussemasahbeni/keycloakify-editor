@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 
-import { LoginPreviewIframe } from "#/features/editor/login/preview/preview-iframe.tsx";
+import { AccountPreviewIframe } from "#/features/editor/account/preview/preview-iframe.tsx";
 import { LoginThemeSidebar } from "#/features/editor/login/sidebar";
 import { EditorSurface } from "#/features/editor/shared/components/editor-surface.tsx";
 
@@ -9,5 +9,5 @@ export const Route = createFileRoute("/editor/account")({
 });
 
 function AccountEditor() {
-    return <EditorSurface Preview={LoginPreviewIframe} Sidebar={LoginThemeSidebar} />;
+    return <EditorSurface Preview={AccountPreviewIframe} Sidebar={LoginThemeSidebar} />;
 }

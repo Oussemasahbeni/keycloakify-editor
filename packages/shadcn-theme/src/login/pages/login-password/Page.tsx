@@ -10,6 +10,7 @@ import { PasswordVisibilityButton } from "#/login/components/PasswordVisibilityB
 import { WebAuthnConditionalUI } from "#/login/components/WebAuthnConditionalUi";
 import { useI18n } from "#/login/i18n";
 import { useKcContext } from "#/login/KcContext";
+import { useKcEnv } from "#/login/useKcEnv";
 
 import { Template } from "../../components/Template";
 
@@ -20,7 +21,7 @@ export function Page() {
     const { msg, msgStr } = useI18n();
 
     const [isLoginButtonDisabled, setIsLoginButtonDisabled] = useState(false);
-    const showPlaceholder = kcContext.properties.SHADCN_THEME_SHOW_PLACEHOLDER === "true";
+    const { SHADCN_THEME_SHOW_PLACEHOLDER: showPlaceholder } = useKcEnv();
 
     return (
         <Template headerNode={msg("doLogIn")} displayMessage={!kcContext.messagesPerField.existsError("password")}>

@@ -34,7 +34,7 @@ export const defaultEmailTheme: EmailTheme = {
  * browser. So the hex must be baked in ahead of time — the editor writes the
  * resolved value into `theme.properties`.
  */
-function ftlProperty<TName extends KcEnvName>(name: TName) {
+function ftlProperty<TName extends Extract<KcEnvName, `SHADCN_EMAIL_${string}`>>(name: TName) {
     return `properties.${name}!'${KC_ENV_DEFAULTS[name]}'` as const;
 }
 

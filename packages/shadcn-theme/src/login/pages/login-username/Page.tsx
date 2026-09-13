@@ -10,6 +10,7 @@ import { Label } from "#/components/ui/label";
 import { WebAuthnConditionalUI } from "#/login/components/WebAuthnConditionalUi";
 import { useI18n } from "#/login/i18n";
 import { useKcContext } from "#/login/KcContext";
+import { useKcEnv } from "#/login/useKcEnv";
 
 import { Template } from "../../components/Template";
 import { SocialProviders } from "../login/SocialProviders";
@@ -32,7 +33,7 @@ export function Page() {
     const { msg, msgStr } = useI18n();
 
     const [isLoginButtonDisabled, setIsLoginButtonDisabled] = useState(false);
-    const showPlaceholder = kcContext.properties.SHADCN_THEME_SHOW_PLACEHOLDER === "true";
+    const { SHADCN_THEME_SHOW_PLACEHOLDER: showPlaceholder } = useKcEnv();
 
     return (
         <Template

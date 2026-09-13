@@ -6,7 +6,7 @@ import { useEffect } from "react";
 import { resolveAssetUrl } from "#/lib/resolveAssetUrl";
 import { useI18n } from "#/login/i18n";
 import { useKcContext } from "#/login/KcContext";
-import type { SidePanelPosition } from "#/login/theme";
+import { useKcEnv } from "#/login/useKcEnv";
 
 import { useApplyThemePreset } from "../../theme/useApplyThemePreset";
 import { CenteredCardLayout } from "../layouts/CenteredCardLayout";
@@ -45,7 +45,7 @@ export function Template(props: TemplateProps) {
         SHADCN_THEME_LAYOUT,
         SHADCN_THEME_SHOW_REALM_NAME,
         SHADCN_THEME_WELCOME_MESSAGE,
-    } = kcContext.properties;
+    } = useKcEnv();
 
     const logoUrl = resolveAssetUrl(SHADCN_THEME_LOGO_URL);
     const logoDarkUrl = resolveAssetUrl(SHADCN_THEME_LOGO_DARK_URL) || logoUrl;
@@ -100,8 +100,8 @@ export function Template(props: TemplateProps) {
                     }
                     sidePanelImageUrl={sidePanelImageUrl}
                     sidePanelImageDarkUrl={sidePanelImageDarkUrl}
-                    sidePanelPosition={SHADCN_THEME_SIDE_PANEL_POSITION as SidePanelPosition}
-                    showRealmName={SHADCN_THEME_SHOW_REALM_NAME !== "false"}
+                    sidePanelPosition={SHADCN_THEME_SIDE_PANEL_POSITION}
+                    showRealmName={SHADCN_THEME_SHOW_REALM_NAME}
                     welcomeMessage={welcomeMessage}
                     // side panel is a dark surface in both modes
                     logoUrl={logoDarkUrl}

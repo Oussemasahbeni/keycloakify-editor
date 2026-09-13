@@ -6,13 +6,14 @@ import { Field, FieldError, FieldLabel } from "#/components/ui/field";
 import { Input } from "#/components/ui/input";
 import { useI18n } from "#/login/i18n";
 import { useKcContext } from "#/login/KcContext";
+import { useKcEnv } from "#/login/useKcEnv";
 
 export function Form() {
     const { kcContext } = useKcContext();
     assert(kcContext.pageId === "login-reset-password.ftl");
 
     const { msg, msgStr } = useI18n();
-    const showPlaceholder = kcContext.properties.SHADCN_THEME_SHOW_PLACEHOLDER === "true";
+    const { SHADCN_THEME_SHOW_PLACEHOLDER: showPlaceholder } = useKcEnv();
 
     return (
         <form

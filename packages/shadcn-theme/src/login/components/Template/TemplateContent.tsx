@@ -9,6 +9,7 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "#/comp
 import { cn } from "#/lib/utils";
 import { useI18n } from "#/login/i18n";
 import { useKcContext } from "#/login/KcContext";
+import { useKcEnv } from "#/login/useKcEnv";
 
 import type { TemplateProps } from "./Template";
 
@@ -43,7 +44,7 @@ export function TemplateContent(props: TemplateContentProps) {
     const { auth, url, message, isAppInitiatedAction, realm } = kcContext;
     const { msg, msgStr } = useI18n();
 
-    const showRealmName = kcContext.properties.SHADCN_THEME_SHOW_REALM_NAME !== "false";
+    const { SHADCN_THEME_SHOW_REALM_NAME: showRealmName } = useKcEnv();
     const logoAlt = realm.displayName || realm.name || "Logo";
 
     const titleNode: ReactNode = !(auth !== undefined && auth.showUsername && !auth.showResetCredentials) ? (

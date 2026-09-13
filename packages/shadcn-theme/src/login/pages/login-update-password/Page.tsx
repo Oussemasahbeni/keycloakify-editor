@@ -8,6 +8,7 @@ import { LogoutOtherSessions } from "#/login/components/LogoutOtherSessions";
 import { PasswordVisibilityButton } from "#/login/components/PasswordVisibilityButton";
 import { useI18n } from "#/login/i18n";
 import { useKcContext } from "#/login/KcContext";
+import { useKcEnv } from "#/login/useKcEnv";
 
 import { Template } from "../../components/Template";
 
@@ -18,7 +19,7 @@ export function Page() {
     const { msg, msgStr } = useI18n();
 
     const { url, messagesPerField, isAppInitiatedAction } = kcContext;
-    const showPlaceholder = kcContext.properties.SHADCN_THEME_SHOW_PLACEHOLDER === "true";
+    const { SHADCN_THEME_SHOW_PLACEHOLDER: showPlaceholder } = useKcEnv();
 
     return (
         <Template

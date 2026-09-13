@@ -11,6 +11,7 @@ import { Label } from "#/components/ui/label";
 import { WebAuthnConditionalUI } from "#/login/components/WebAuthnConditionalUi";
 import { useI18n } from "#/login/i18n";
 import { useKcContext } from "#/login/KcContext";
+import { useKcEnv } from "#/login/useKcEnv";
 
 import { PasswordVisibilityButton } from "../../components/PasswordVisibilityButton";
 
@@ -23,7 +24,7 @@ export function Form() {
 
     const [isLoginButtonDisabled, setIsLoginButtonDisabled] = useState(false);
 
-    const showPlaceholder = kcContext.properties.SHADCN_THEME_SHOW_PLACEHOLDER === "true";
+    const { SHADCN_THEME_SHOW_PLACEHOLDER: showPlaceholder } = useKcEnv();
 
     return (
         <>
