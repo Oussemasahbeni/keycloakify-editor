@@ -91,6 +91,7 @@ export function SelectTag(props: InputFieldByTypeProps) {
 
     return (
         <Select
+            name={attribute.name}
             value={
                 typeof valueOrValues === "string" && valueOrValues !== ""
                     ? valueOrValues
