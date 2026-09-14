@@ -30,7 +30,9 @@ const config = defineConfig({
                 mode: "auto",
             },
         }),
-        viteReact(),
+        // Oxc's native React Compiler pass (no Babel). Experimental integration; drop the
+        // flag to disable. Components that break the rules of React are skipped silently.
+        viteReact({ compiler: true }),
     ],
     ssr: {
         // The theme is source-only, and keycloak-account-ui ships extensionless ESM

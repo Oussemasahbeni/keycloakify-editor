@@ -1,7 +1,7 @@
 import type { ThemePresetProperties } from "@kc-studio/shadcn-theme/account-preview";
 import { LogIn } from "lucide-react";
 import { createKeycloakUtils } from "oidc-spa/keycloak";
-import { useMemo, useRef } from "react";
+import { useRef } from "react";
 
 import { Button } from "#/components/ui/button";
 import { Spinner } from "#/components/ui/spinner";
@@ -29,29 +29,25 @@ export function AccountPreviewIframe() {
 
     // Where the frame logs in and what it renders at mount. The realm and server root
     // only exist inside the issuer URI; oidc-spa parses it.
-    const config = useMemo<AccountPreviewConfig | undefined>(() => {
-        if (!oidc.isUserLoggedIn) return undefined;
+    let config: AccountPreviewConfig | undefined;
+    if (oidc.isUserLoggedIn) {
         const { issuerUriParsed } = createKeycloakUtils({ issuerUri: oidc.issuerUri });
-        return {
+        config = {
             serverBaseUrl: `${issuerUriParsed.origin}${issuerUriParsed.kcHttpRelativePath ?? ""}`,
             realm: issuerUriParsed.realm,
             clientId: oidc.clientId,
             locale,
             properties: themeConfigToProperties(login.config),
         };
-    }, [oidc, locale, login.config]);
+    }
 
     // The four values the console re-applies live, typed straight off the config.
-    const { primary, base, radius, font } = login.config;
-    const presets = useMemo<ThemePresetProperties>(
-        () => ({
-            SHADCN_THEME_PRIMARY: primary,
-            SHADCN_THEME_BASE: base,
-            SHADCN_THEME_RADIUS: radius,
-            SHADCN_THEME_FONT: font,
-        }),
-        [primary, base, radius, font],
-    );
+    const presets: ThemePresetProperties = {
+        SHADCN_THEME_PRIMARY: login.config.primary,
+        SHADCN_THEME_BASE: login.config.base,
+        SHADCN_THEME_RADIUS: login.config.radius,
+        SHADCN_THEME_FONT: login.config.font,
+    };
 
     // A locale change remounts the frame (the console reads it once), hence the key.
     const { isReady } = usePublishAccountPreview(iframeRef, { config, presets, frameKey: locale });

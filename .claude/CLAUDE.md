@@ -172,7 +172,7 @@ The live preview renders the _real_ theme in an isolated iframe and drives it wi
 5. The preview builds the context with `getKcContextMock({ pageId, overrides })`, mapping `ThemeConfig` fields onto `SHADCN_THEME_*` properties.
 6. Color scheme is applied by toggling `dark`/`light` classes **and** writing `localStorage["isDarkMode"]` — the theme's `ThemeProvider` reads that key first on every (re)mount, and a locale change remounts `KcPage`, so persisting it keeps the preview from snapping back to the OS scheme.
 
-Build wiring (`vite.config.ts`): `ssr.noExternal: ["@kc-studio/shadcn-theme"]` forces the theme to be bundled for SSR rather than externalized; the `oidc-spa` Vite plugin automatically switches any route using `enforceLogin` to `ssr: false`.
+Build wiring (`vite.config.ts`): `ssr.noExternal` bundles the theme (source-only) and `@keycloakify/keycloak-account-ui` (extensionless ESM) for SSR rather than externalizing them; the `oidc-spa` Vite plugin automatically switches any route using `enforceLogin` to `ssr: false`; `viteReact({ compiler: true })` runs Oxc's native React Compiler pass (needs the optional `oxc-transform-react` dev dependency, no Babel) — so manual `useMemo`/`useCallback` for identity is unnecessary in app code, but components that break the rules of React are silently skipped.
 
 ## Gotchas
 
