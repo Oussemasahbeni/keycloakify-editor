@@ -1,42 +1,40 @@
 /**
- * Owned entry point of the account console (see `src/.gitignore`).
+ * Preview twin of `../KcAccountUi.tsx`: identical provider tree, except that the
+ * oidc-spa client is not built here. The editor constructs and initialises it
+ * (with `sessionRestorationMethod: "full page redirect"`, the one setting that
+ * makes the console work inside an iframe) using its own copy of oidc-spa, and
+ * hands it over through `setPreviewKeycloak` before this mounts.
  *
- * Unlike the upstream version, this does NOT load PatternFly at all: every page is
- * owned and written with shadcn/ui, and the console shares the login theme's Tailwind
- * entry (`login/index.css`), its `ThemeProvider` (`.dark` class) and its
- * `SHADCN_THEME_*` presets.
+ * `KeycloakProvider` skips its own `init()` when handed a client. Only the editor
+ * imports this file (through the `./account-preview` export); it is not part of
+ * the Keycloak theme build. Keep it in sync with `KcAccountUi`.
  */
 
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { useEffect, useReducer } from "react";
 
-import "./index.css";
+import "../index.css";
 
-import { ThemeProvider } from "#/components/ThemeProvider.tsx";
+import { ThemeProvider } from "#/components/ThemeProvider";
 import { Toaster } from "#/components/ui/toast";
 import { getTheme } from "#/lib/getColorScheme";
 import { useApplyThemePresetFromProperties } from "#/login/theme/applyThemePreset";
 
-import { KeycloakProvider } from "../shared/keycloak-ui-shared";
-import { SessionExpirationWarningOverlay } from "../shared/SessionExpirationWarningOverlay";
-import { environment } from "./environment";
-import { i18n } from "./i18n/i18n";
-import { getKcContext } from "./KcContext";
-import { Root } from "./root/Root";
-
-document.title = "Account Management";
+import { KeycloakProvider } from "../../shared/keycloak-ui-shared";
+import { SessionExpirationWarningOverlay } from "../../shared/SessionExpirationWarningOverlay";
+import { environment } from "../environment";
+import { i18n } from "../i18n/i18n";
+import { getKcContext } from "../KcContext";
+import { Root } from "../root/Root";
+import { getPreviewKeycloak } from "./previewKeycloakSlot";
 
 const prI18nInitialized = i18n.init();
 
-/**
- * Reads stay fresh for 30s (instant back-navigation, background revalidation), never retry
- * (Keycloak errors are not transient), and throw into the router's ErrorPage like before.
- */
 const queryClient = new QueryClient({
     defaultOptions: { queries: { staleTime: 30_000, retry: false, throwOnError: true } },
 });
 
-export default function KcAccountUi() {
+export default function AccountPreviewUi() {
     const { kcContext } = getKcContext();
     const [isI18nInitialized, setI18nInitialized] = useReducer(() => true, false);
 
@@ -67,7 +65,7 @@ export default function KcAccountUi() {
     return (
         <ThemeProvider defaultTheme={getTheme(kcContext.darkMode)}>
             <QueryClientProvider client={queryClient}>
-                <KeycloakProvider environment={environment}>
+                <KeycloakProvider environment={environment} keycloak={getPreviewKeycloak()}>
                     <Root />
                     <SessionExpirationWarningOverlay warnUserSecondsBeforeAutoLogout={45} />
                     <Toaster />

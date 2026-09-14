@@ -112,7 +112,7 @@ export const defaultLoginThemeConfig: LoginThemeConfig = {
 /**
  * Maps a {@link LoginThemeConfig} onto the `SHADCN_THEME_*` Keycloak theme properties.
  *
- * Single source of truth shared by the live preview (`routes/preview.tsx`, which
+ * Single source of truth shared by the live preview (`routes/preview.login.tsx`, which
  * feeds these into `getKcContextMock`) and the JAR export feature (which bakes
  * them as `theme.properties` defaults). Keep both consumers reading from here so
  * the preview and the downloaded JAR can never drift apart.

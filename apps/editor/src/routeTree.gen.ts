@@ -9,19 +9,15 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as PreviewRouteImport } from './routes/preview'
 import { Route as EditorRouteImport } from './routes/editor'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as EditorIndexRouteImport } from './routes/editor.index'
+import { Route as PreviewLoginRouteImport } from './routes/preview.login'
 import { Route as EditorLoginRouteImport } from './routes/editor.login'
 import { Route as EditorEmailRouteImport } from './routes/editor.email'
 import { Route as EditorAccountRouteImport } from './routes/editor.account'
+import { Route as PreviewAccountSplatRouteImport } from './routes/preview.account.$'
 
-const PreviewRoute = PreviewRouteImport.update({
-  id: '/preview',
-  path: '/preview',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const EditorRoute = EditorRouteImport.update({
   id: '/editor',
   path: '/editor',
@@ -36,6 +32,11 @@ const EditorIndexRoute = EditorIndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => EditorRoute,
+} as any)
+const PreviewLoginRoute = PreviewLoginRouteImport.update({
+  id: '/preview/login',
+  path: '/preview/login',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const EditorLoginRoute = EditorLoginRouteImport.update({
   id: '/login',
@@ -52,78 +53,83 @@ const EditorAccountRoute = EditorAccountRouteImport.update({
   path: '/account',
   getParentRoute: () => EditorRoute,
 } as any)
+const PreviewAccountSplatRoute = PreviewAccountSplatRouteImport.update({
+  id: '/preview/account/$',
+  path: '/preview/account/$',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/editor': typeof EditorRouteWithChildren
-  '/preview': typeof PreviewRoute
   '/editor/account': typeof EditorAccountRoute
   '/editor/email': typeof EditorEmailRoute
   '/editor/login': typeof EditorLoginRoute
+  '/preview/login': typeof PreviewLoginRoute
   '/editor/': typeof EditorIndexRoute
+  '/preview/account/$': typeof PreviewAccountSplatRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/preview': typeof PreviewRoute
   '/editor/account': typeof EditorAccountRoute
   '/editor/email': typeof EditorEmailRoute
   '/editor/login': typeof EditorLoginRoute
+  '/preview/login': typeof PreviewLoginRoute
   '/editor': typeof EditorIndexRoute
+  '/preview/account/$': typeof PreviewAccountSplatRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/editor': typeof EditorRouteWithChildren
-  '/preview': typeof PreviewRoute
   '/editor/account': typeof EditorAccountRoute
   '/editor/email': typeof EditorEmailRoute
   '/editor/login': typeof EditorLoginRoute
+  '/preview/login': typeof PreviewLoginRoute
   '/editor/': typeof EditorIndexRoute
+  '/preview/account/$': typeof PreviewAccountSplatRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
     | '/editor'
-    | '/preview'
     | '/editor/account'
     | '/editor/email'
     | '/editor/login'
+    | '/preview/login'
     | '/editor/'
+    | '/preview/account/$'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
-    | '/preview'
     | '/editor/account'
     | '/editor/email'
     | '/editor/login'
+    | '/preview/login'
     | '/editor'
+    | '/preview/account/$'
   id:
     | '__root__'
     | '/'
     | '/editor'
-    | '/preview'
     | '/editor/account'
     | '/editor/email'
     | '/editor/login'
+    | '/preview/login'
     | '/editor/'
+    | '/preview/account/$'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   EditorRoute: typeof EditorRouteWithChildren
-  PreviewRoute: typeof PreviewRoute
+  PreviewLoginRoute: typeof PreviewLoginRoute
+  PreviewAccountSplatRoute: typeof PreviewAccountSplatRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/preview': {
-      id: '/preview'
-      path: '/preview'
-      fullPath: '/preview'
-      preLoaderRoute: typeof PreviewRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/editor': {
       id: '/editor'
       path: '/editor'
@@ -145,6 +151,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof EditorIndexRouteImport
       parentRoute: typeof EditorRoute
     }
+    '/preview/login': {
+      id: '/preview/login'
+      path: '/preview/login'
+      fullPath: '/preview/login'
+      preLoaderRoute: typeof PreviewLoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/editor/login': {
       id: '/editor/login'
       path: '/login'
@@ -165,6 +178,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/editor/account'
       preLoaderRoute: typeof EditorAccountRouteImport
       parentRoute: typeof EditorRoute
+    }
+    '/preview/account/$': {
+      id: '/preview/account/$'
+      path: '/preview/account/$'
+      fullPath: '/preview/account/$'
+      preLoaderRoute: typeof PreviewAccountSplatRouteImport
+      parentRoute: typeof rootRouteImport
     }
   }
 }
@@ -189,7 +209,8 @@ const EditorRouteWithChildren =
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   EditorRoute: EditorRouteWithChildren,
-  PreviewRoute: PreviewRoute,
+  PreviewLoginRoute: PreviewLoginRoute,
+  PreviewAccountSplatRoute: PreviewAccountSplatRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

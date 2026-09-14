@@ -9,7 +9,7 @@ import { usePublishPreview } from "../hooks/use-preview-channel";
 import { LoginPreviewToolbar } from "./preview-toolbar";
 
 /**
- * Renders the real theme in an isolated iframe (`/preview`).
+ * Renders the real theme in an isolated iframe (`/preview/login`).
  */
 export function LoginPreviewIframe() {
     const { login, locale } = useEditor();
@@ -36,7 +36,7 @@ export function LoginPreviewIframe() {
             />
             <div className="grid flex-1 place-items-center overflow-auto bg-muted/30 p-4">
                 <iframe
-                    src="/preview"
+                    src="/preview/login"
                     title="Theme preview"
                     // oxlint-disable-next-line react/iframe-missing-sandbox
                     sandbox="allow-scripts allow-same-origin allow-forms"

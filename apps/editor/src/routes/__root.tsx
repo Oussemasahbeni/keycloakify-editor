@@ -63,15 +63,15 @@ export const Route = createRootRoute({
 });
 
 function RootDocument({ children }: { children: React.ReactNode }) {
-    // `/preview` is an isolated document: it themes itself through KcPage's own
-    // ThemeProvider and drives its scheme from the editor (postMessage) or the
-    // `?scheme` search param. The editor-chrome ThemeProvider below (storageKey
-    // "theme") must NOT wrap it — being the outermost provider its blocking
-    // ScriptOnce + mount effect stamp `.dark` from the editor's chrome scheme
-    // and win, overriding the preview's requested scheme (the standalone tab
-    // would otherwise ignore `?scheme`).
+    // `/preview` and `/preview/account` are isolated documents: they theme
+    // themselves through the theme's own ThemeProvider and drive their scheme
+    // from the editor (postMessage) or the `?scheme` search param. The
+    // editor-chrome ThemeProvider below (storageKey "theme") must NOT wrap them —
+    // being the outermost provider its blocking ScriptOnce + mount effect stamp
+    // `.dark` from the editor's chrome scheme and win, overriding the preview's
+    // requested scheme (the standalone tab would otherwise ignore `?scheme`).
     const isPreview = useRouterState({
-        select: state => state.location.pathname === "/preview",
+        select: state => state.location.pathname.startsWith("/preview"),
     });
 
     return (

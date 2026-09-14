@@ -16,7 +16,7 @@ type Assets = {
 /**
  * The images that can be set by URL **or** an uploaded file. Single source of
  * truth shared by the export client (`export-button`), the server bake
- * (`generate-jar`), the live preview (`routes/preview`), and the sidebar UI
+ * (`generate-jar`), the live preview (`routes/preview.login`), and the sidebar UI
  * (`images-panel`) — so naming and precedence can't drift across them.
  *
  * Favicon is intentionally absent: it's upload-only and has its own multi-file

@@ -14,7 +14,7 @@ import { DEFAULT_LOCALE } from "#/lib/locales";
 /**
  * Isolated preview document, embedded by `PreviewPane` via an iframe.
  */
-export const Route = createFileRoute("/preview")({
+export const Route = createFileRoute("/preview/login")({
     ssr: false,
     component: PreviewRoute,
     pendingComponent: () => (

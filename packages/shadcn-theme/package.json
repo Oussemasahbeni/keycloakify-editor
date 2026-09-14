@@ -21,7 +21,8 @@
         "./preview": "./src/login/preview.tsx",
         "./theme": "./src/login/theme/index.ts",
         "./email": "./src/email/index.ts",
-        "./email-preview": "./src/email/preview.tsx"
+        "./email-preview": "./src/email/preview.tsx",
+        "./account-preview": "./src/account/preview/index.ts"
     },
     "scripts": {
         "postinstall": "keycloakify sync-extensions",

@@ -149,7 +149,7 @@ pnpm db:generate  # drizzle-kit generate (also db:migrate / db:push / db:pull / 
 
 ### Structure
 
-- `src/routes/` — file-based routes: `__root.tsx`, `index.tsx` (landing), `editor.tsx` (the editor, gated by `enforceLogin`), `preview.tsx` (`ssr: false`; the isolated document loaded into the preview iframe).
+- `src/routes/` — file-based routes: `__root.tsx`, `index.tsx` (landing), `editor.tsx` (the editor layout), `editor.login.tsx` / `editor.email.tsx` / `editor.account.tsx` (the three surfaces), `preview.login.tsx` (`ssr: false`; the isolated document loaded into the login preview iframe), `preview.account.$.tsx` (`ssr: false`; the account console rendered from source, splat so its inner react-router paths still match).
 - `src/features/editor/`:
     - `components/` — `editor-header`, `editor-sidebar`, `config-panel` (the theme controls; imports option arrays from `@kc-studio/shadcn-theme/theme-meta` + swatch colors from `/presets`), `preview-pane` (the iframe host).
     - `model/` — `theme-config.ts` (`ThemeConfig` type + `defaultThemeConfig`, built from the theme's `/defaults`), `viewport.ts`, `locales.ts`.
@@ -165,9 +165,9 @@ pnpm db:generate  # drizzle-kit generate (also db:migrate / db:push / db:pull / 
 
 The live preview renders the _real_ theme in an isolated iframe and drives it with `postMessage` — understanding this flow requires reading both sides:
 
-1. `features/editor/components/preview-pane.tsx` embeds `/preview` in an `<iframe>` (never reloaded; its width is clamped by the selected `viewport`).
+1. `features/editor/components/preview-pane.tsx` embeds `/preview/login` in an `<iframe>` (never reloaded; its width is clamped by the selected `viewport`).
 2. On every editor change it posts `{ type: 'kc-preview:state', payload: { pageId, scenarioId, colorScheme, config } }` (origin-checked).
-3. `routes/preview.tsx` listens for that message and, on mount, posts `{ type: 'kc-preview:ready' }` so the parent re-sends current state even if it fired before the listener attached.
+3. `routes/preview.login.tsx` listens for that message and, on mount, posts `{ type: 'kc-preview:ready' }` so the parent re-sends current state even if it fired before the listener attached.
 4. Scenario `overrides` can contain **non-cloneable functions** (e.g. `messagesPerField.get`), which cannot survive `postMessage` — so the preview re-resolves them locally via `getStory(pageId, storyId)` instead of receiving them.
 5. The preview builds the context with `getKcContextMock({ pageId, overrides })`, mapping `ThemeConfig` fields onto `SHADCN_THEME_*` properties.
 6. Color scheme is applied by toggling `dark`/`light` classes **and** writing `localStorage["isDarkMode"]` — the theme's `ThemeProvider` reads that key first on every (re)mount, and a locale change remounts `KcPage`, so persisting it keeps the preview from snapping back to the OS scheme.
@@ -178,4 +178,4 @@ Build wiring (`vite.config.ts`): `ssr.noExternal: ["@kc-studio/shadcn-theme"]` f
 
 - **Auto-generated, never hand-edit:** `packages/shadcn-theme/src/kc.gen.tsx`, `apps/editor/src/routeTree.gen.ts`.
 - The theme's `exports` paths (`/preview`, `/theme-meta`, `/presets`, `/defaults`) are load-bearing for the editor — refactor them in lockstep with the editor's imports.
-- Preview `overrides` containing functions can't cross the iframe `postMessage` boundary; keep their resolution inside `routes/preview.tsx`.
+- Preview `overrides` containing functions can't cross the iframe `postMessage` boundary; keep their resolution inside `routes/preview.login.tsx`.
