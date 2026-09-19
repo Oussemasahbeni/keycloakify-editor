@@ -3,6 +3,7 @@ import {
     KcAccountUiLoader,
     applyThemePreset,
     createAccountKcContext,
+    setBrandOverrides,
     setPreviewKeycloak,
 } from "@kc-studio/shadcn-theme/account-preview";
 import { createFileRoute } from "@tanstack/react-router";
@@ -44,7 +45,10 @@ function AccountPreviewDocument() {
 
     const { isFramed, postReady } = useReceiveAccountPreview({
         onConfig: incoming => setConfig(current => current ?? incoming),
-        onPresets: applyThemePreset,
+        onBranding: ({ presets, logos }) => {
+            applyThemePreset(presets);
+            setBrandOverrides(logos);
+        },
     });
 
     if (!isFramed) {

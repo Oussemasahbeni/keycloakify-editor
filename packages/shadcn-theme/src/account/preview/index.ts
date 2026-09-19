@@ -19,6 +19,7 @@ export {
     type AccountKcContextParams,
     type AccountPreviewKcContext,
 } from "./createAccountKcContext";
+export { setBrandOverrides, type BrandOverrides } from "../root/brandOverrides";
 export { setPreviewKeycloak } from "./previewKeycloakSlot";
 
 export const AccountPreviewUi = lazy(() => import("./AccountPreviewUi"));

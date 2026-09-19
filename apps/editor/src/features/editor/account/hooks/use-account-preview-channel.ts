@@ -1,4 +1,4 @@
-import type { ThemePresetProperties } from "@kc-studio/shadcn-theme/account-preview";
+import type { BrandOverrides, ThemePresetProperties } from "@kc-studio/shadcn-theme/account-preview";
 import type { RefObject } from "react";
 import { useEffect, useEffectEvent, useState } from "react";
 
@@ -20,11 +20,18 @@ export type AccountPreviewConfig = {
     properties: Record<string, string>;
 };
 
+/** What the console can re-apply live: the four presets and the two logos. */
+export type AccountPreviewBranding = {
+    presets: ThemePresetProperties;
+    /** Effective URLs (uploads already turned into blob URLs); empty string = none. */
+    logos: Required<BrandOverrides>;
+};
+
 type ChannelMessage =
     | { type: "kc-account-preview:request-config" }
     | { type: "kc-account-preview:ready" }
     | { type: "kc-account-preview:config"; config: AccountPreviewConfig }
-    | { type: "kc-account-preview:presets"; presets: ThemePresetProperties };
+    | { type: "kc-account-preview:branding"; branding: AccountPreviewBranding };
 
 function isChannelMessage(data: unknown): data is ChannelMessage {
     return (
@@ -35,13 +42,13 @@ function isChannelMessage(data: unknown): data is ChannelMessage {
     );
 }
 
-/** Frame side: request the config on mount, receive config + presets, and announce readiness. */
+/** Frame side: request the config on mount, receive config + branding, and announce readiness. */
 export function useReceiveAccountPreview(handlers: {
     onConfig: (config: AccountPreviewConfig) => void;
-    onPresets: (presets: ThemePresetProperties) => void;
+    onBranding: (branding: AccountPreviewBranding) => void;
 }) {
     const onConfig = useEffectEvent(handlers.onConfig);
-    const onPresets = useEffectEvent(handlers.onPresets);
+    const onBranding = useEffectEvent(handlers.onBranding);
     const isFramed = window.parent !== window;
 
     useEffect(() => {
@@ -54,7 +61,7 @@ export function useReceiveAccountPreview(handlers: {
             if (!isChannelMessage(data)) return;
 
             if (data.type === "kc-account-preview:config") onConfig(data.config);
-            else if (data.type === "kc-account-preview:presets") onPresets(data.presets);
+            else if (data.type === "kc-account-preview:branding") onBranding(data.branding);
         };
 
         window.addEventListener("message", onMessage);
@@ -77,12 +84,12 @@ export function useReceiveAccountPreview(handlers: {
 
 /**
  * Editor side: answer the frame's config request, learn when it is ready, and push
- * presets on every change from then on. `frameKey` mirrors the iframe's `key`: a
+ * branding on every change from then on. `frameKey` mirrors the iframe's `key`: a
  * new key means a new document, so readiness starts over.
  */
 export function usePublishAccountPreview(
     frameRef: RefObject<HTMLIFrameElement | null>,
-    params: { config: AccountPreviewConfig | undefined; presets: ThemePresetProperties; frameKey: string },
+    params: { config: AccountPreviewConfig | undefined; branding: AccountPreviewBranding; frameKey: string },
 ) {
     const [isReady, setIsReady] = useState(false);
 
@@ -92,8 +99,8 @@ export function usePublishAccountPreview(
     const replyConfig = useEffectEvent(() => {
         if (params.config) post({ type: "kc-account-preview:config", config: params.config });
     });
-    const publishPresets = useEffectEvent(() => {
-        post({ type: "kc-account-preview:presets", presets: params.presets });
+    const publishBranding = useEffectEvent(() => {
+        post({ type: "kc-account-preview:branding", branding: params.branding });
     });
 
     useEffect(() => setIsReady(false), [params.frameKey]);
@@ -114,8 +121,8 @@ export function usePublishAccountPreview(
     }, [frameRef]);
 
     useEffect(() => {
-        if (isReady) publishPresets();
-    }, [isReady, params.presets]);
+        if (isReady) publishBranding();
+    }, [isReady, params.branding]);
 
     return { isReady };
 }

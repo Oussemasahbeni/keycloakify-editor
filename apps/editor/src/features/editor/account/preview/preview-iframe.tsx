@@ -1,15 +1,19 @@
-import type { ThemePresetProperties } from "@kc-studio/shadcn-theme/account-preview";
 import { LogIn } from "lucide-react";
 import { createKeycloakUtils } from "oidc-spa/keycloak";
 import { useRef } from "react";
 
 import { Button } from "#/components/ui/button";
 import { Spinner } from "#/components/ui/spinner";
-import type { AccountPreviewConfig } from "#/features/editor/account/hooks/use-account-preview-channel";
+import type {
+    AccountPreviewBranding,
+    AccountPreviewConfig,
+} from "#/features/editor/account/hooks/use-account-preview-channel";
 import { usePublishAccountPreview } from "#/features/editor/account/hooks/use-account-preview-channel";
+import { THEME_PROPERTY_KEYS } from "#/features/editor/shared/model/property-keys.ts";
 import { themeConfigToProperties } from "#/features/editor/shared/model/theme-config.ts";
 import { getViewportWidth } from "#/features/editor/shared/model/viewport.ts";
 import { useEditor } from "#/features/editor/state/editor-context";
+import { useObjectUrl } from "#/hooks/use-object-url";
 import { cn } from "#/lib/utils";
 import { useOidc } from "#/oidc";
 
@@ -27,6 +31,14 @@ export function AccountPreviewIframe() {
 
     const iframeRef = useRef<HTMLIFrameElement>(null);
 
+    // An uploaded logo wins over the URL field, same precedence as the login preview.
+    const uploadedLogo = useObjectUrl(login.assets.logoUrl);
+    const uploadedLogoDark = useObjectUrl(login.assets.logoDarkUrl);
+    const logos: AccountPreviewBranding["logos"] = {
+        logoUrl: uploadedLogo ?? login.config.logoUrl,
+        logoDarkUrl: uploadedLogoDark ?? login.config.logoDarkUrl,
+    };
+
     // Where the frame logs in and what it renders at mount. The realm and server root
     // only exist inside the issuer URI; oidc-spa parses it.
     let config: AccountPreviewConfig | undefined;
@@ -37,20 +49,27 @@ export function AccountPreviewIframe() {
             realm: issuerUriParsed.realm,
             clientId: oidc.clientId,
             locale,
-            properties: themeConfigToProperties(login.config),
+            properties: {
+                ...themeConfigToProperties(login.config),
+                [THEME_PROPERTY_KEYS.logoUrl]: logos.logoUrl,
+                [THEME_PROPERTY_KEYS.logoDarkUrl]: logos.logoDarkUrl,
+            },
         };
     }
 
-    // The four values the console re-applies live, typed straight off the config.
-    const presets: ThemePresetProperties = {
-        SHADCN_THEME_PRIMARY: login.config.primary,
-        SHADCN_THEME_BASE: login.config.base,
-        SHADCN_THEME_RADIUS: login.config.radius,
-        SHADCN_THEME_FONT: login.config.font,
+    // What the console re-applies live: the four presets and the two logos.
+    const branding: AccountPreviewBranding = {
+        presets: {
+            SHADCN_THEME_PRIMARY: login.config.primary,
+            SHADCN_THEME_BASE: login.config.base,
+            SHADCN_THEME_RADIUS: login.config.radius,
+            SHADCN_THEME_FONT: login.config.font,
+        },
+        logos,
     };
 
     // A locale change remounts the frame (the console reads it once), hence the key.
-    const { isReady } = usePublishAccountPreview(iframeRef, { config, presets, frameKey: locale });
+    const { isReady } = usePublishAccountPreview(iframeRef, { config, branding, frameKey: locale });
 
     if (!oidc.isUserLoggedIn) {
         return (

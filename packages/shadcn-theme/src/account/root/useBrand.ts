@@ -5,6 +5,7 @@ import { resolveAssetUrl } from "#/lib/resolveAssetUrl";
 import { useEnvironment } from "../../shared/keycloak-ui-shared";
 import logoSvgUrl from "../assets/logo.svg";
 import { getKcContext } from "../KcContext";
+import { useBrandOverrides } from "./brandOverrides";
 
 /**
  * Brand link + logos for the account console. Same configuration as the login
@@ -21,8 +22,13 @@ export function useBrand() {
     // A URL starting with "/" is internal to the console; anything else is external.
     const href = logoUrl.startsWith("/") ? internalHref : logoUrl;
 
-    const logo = resolveAssetUrl(kcContext.properties.SHADCN_THEME_LOGO_URL) || logoSvgUrl;
-    const logoDark = resolveAssetUrl(kcContext.properties.SHADCN_THEME_LOGO_DARK_URL) || logo;
+    // Runtime overrides win over the (mount-time) properties; see `brandOverrides.ts`.
+    const overrides = useBrandOverrides();
+    const logoProperty = overrides.logoUrl ?? kcContext.properties.SHADCN_THEME_LOGO_URL;
+    const logoDarkProperty = overrides.logoDarkUrl ?? kcContext.properties.SHADCN_THEME_LOGO_DARK_URL;
+
+    const logo = resolveAssetUrl(logoProperty) || logoSvgUrl;
+    const logoDark = resolveAssetUrl(logoDarkProperty) || logo;
 
     return { href, logo, logoDark };
 }

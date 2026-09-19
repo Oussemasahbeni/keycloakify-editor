@@ -1,7 +1,8 @@
 import { Upload, XIcon } from "lucide-react";
-import { useEffect, useId, useRef, useState } from "react";
+import { useId, useRef, useState } from "react";
 
 import { Button } from "#/components/ui/button.tsx";
+import { useObjectUrl } from "#/hooks/use-object-url";
 import { cn } from "#/lib/utils.ts";
 
 import {
@@ -74,17 +75,7 @@ export function FileUpload({
     const inputId = id ?? reactId;
     const inputRef = useRef<HTMLInputElement>(null);
     const [error, setErrorState] = useState<string | null>(null);
-    const [previewUrl, setPreviewUrl] = useState<string | null>(null);
-
-    useEffect(() => {
-        if (!value) {
-            setPreviewUrl(null);
-            return;
-        }
-        const url = URL.createObjectURL(value);
-        setPreviewUrl(url);
-        return () => URL.revokeObjectURL(url);
-    }, [value]);
+    const previewUrl = useObjectUrl(value);
 
     function setError(message: string | null) {
         setErrorState(message);
