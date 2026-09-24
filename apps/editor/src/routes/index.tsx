@@ -16,7 +16,7 @@ import { TechStrip } from "#/features/landing/tech-strip";
 import { ThemeGallery } from "#/features/landing/theme-gallery";
 import { seo } from "#/lib/seo.ts";
 
-const TITLE = "Keycloak Theme Editor — Visually customize Keycloak login themes";
+const TITLE = "Keycloakify Editor — Visually customize Keycloak login themes";
 const DESCRIPTION =
     "A visual editor for Keycloak login themes. Customize colors, fonts, radius, and layout, preview every login and registration page live, and export a deploy-ready Keycloakify theme.";
 
@@ -49,13 +49,13 @@ function structuredData() {
                 "@type": "WebSite",
                 "@id": `${SITE_URL}/#website`,
                 url: `${SITE_URL}/`,
-                name: "Keycloak Theme Editor",
+                name: "Keycloakify Editor",
                 description: DESCRIPTION,
             },
             {
                 "@type": "SoftwareApplication",
                 "@id": `${SITE_URL}/#app`,
-                name: "Keycloak Theme Editor",
+                name: "Keycloakify Editor",
                 description: DESCRIPTION,
                 url: `${SITE_URL}/`,
                 applicationCategory: "DeveloperApplication",

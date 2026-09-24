@@ -1,17 +1,17 @@
 {
-    "name": "@kc-studio/shadcn-theme",
+    "name": "@keycloakify-editor/shadcn-theme",
     "version": "250004.0.23",
     "private": false,
     "description": "Starter for Keycloakify themes using React, Shadcn, TailwindCSS and Keycloakify",
     "keywords": [],
-    "homepage": "https://github.com/Oussemasahbeni/keycloakify-shadcn-starter#readme",
+    "homepage": "https://github.com/Oussemasahbeni/keycloakify-editor#readme",
     "bugs": {
-        "url": "https://github.com/Oussemasahbeni/keycloakify-shadcn-starter/issues"
+        "url": "https://github.com/Oussemasahbeni/keycloakify-editor/issues"
     },
     "license": "MIT",
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/Oussemasahbeni/keycloakify-shadcn-starter.git"
+        "url": "git+https://github.com/Oussemasahbeni/keycloakify-editor.git"
     },
     "type": "module",
     "imports": {

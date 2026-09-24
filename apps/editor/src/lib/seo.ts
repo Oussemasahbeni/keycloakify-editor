@@ -1,6 +1,6 @@
 import { SITE_URL } from "#/config/constants.ts";
 
-const SITE_NAME = "Keycloak Theme Editor";
+const SITE_NAME = "Keycloakify Editor";
 const TWITTER_HANDLE = "@Spike_2002";
 
 /**

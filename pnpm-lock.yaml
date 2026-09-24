@@ -194,7 +194,7 @@ importers:
       '@icons-pack/react-simple-icons':
         specifier: ^13.13.0
         version: 13.13.0(react@19.2.6)
-      '@kc-studio/shadcn-theme':
+      '@keycloakify-editor/shadcn-theme':
         specifier: workspace:*
         version: link:../../packages/shadcn-theme
       '@neondatabase/serverless':

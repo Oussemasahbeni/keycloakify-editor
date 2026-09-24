@@ -1,4 +1,4 @@
-import { resolveEmailTheme } from "@kc-studio/shadcn-theme/email";
+import { resolveEmailTheme } from "@keycloakify-editor/shadcn-theme/email";
 import type {
     BasePalette,
     FontFamily,
@@ -6,7 +6,7 @@ import type {
     PrimaryPreset,
     RadiusPreset,
     SidePanelPosition,
-} from "@kc-studio/shadcn-theme/theme";
+} from "@keycloakify-editor/shadcn-theme/theme";
 import {
     basePaletteOptions,
     fontFamilyOptions,
@@ -16,7 +16,7 @@ import {
     radiusPresetOptions,
     serializeKcEnvValue,
     sidePanelPositionOptions,
-} from "@kc-studio/shadcn-theme/theme";
+} from "@keycloakify-editor/shadcn-theme/theme";
 import { z } from "zod";
 
 import { EMAIL_PROPERTY_KEYS, THEME_PROPERTY_KEYS } from "./property-keys";

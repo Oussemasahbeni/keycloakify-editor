@@ -8,7 +8,7 @@ import { defineConfig } from "vite";
 
 const config = defineConfig({
     resolve: {
-        tsconfigPaths: true
+        tsconfigPaths: true,
     },
     plugins: [
         devtools(),
@@ -37,7 +37,7 @@ const config = defineConfig({
     ssr: {
         // The theme is source-only, and keycloak-account-ui ships extensionless ESM
         // imports that Node can't resolve; bundle both instead of externalizing.
-        noExternal: ["@kc-studio/shadcn-theme", "@keycloakify/keycloak-account-ui"],
+        noExternal: ["@keycloakify-editor/shadcn-theme", "@keycloakify/keycloak-account-ui"],
     },
 });
 

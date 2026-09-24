@@ -1,4 +1,4 @@
-import type { BrandOverrides, ThemePresetProperties } from "@kc-studio/shadcn-theme/account-preview";
+import type { BrandOverrides, ThemePresetProperties } from "@keycloakify-editor/shadcn-theme/account-preview";
 import type { RefObject } from "react";
 import { useEffect, useEffectEvent, useState } from "react";
 

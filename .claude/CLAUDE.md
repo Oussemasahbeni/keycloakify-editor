@@ -6,8 +6,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 A **pnpm workspace monorepo** containing two related projects:
 
-- **`packages/shadcn-theme`** (`@kc-studio/shadcn-theme`) — a Keycloak login theme built with React 19, TypeScript, Tailwind CSS v4, shadcn/ui, and Keycloakify v11. Produces a `.jar` deployed to Keycloak's `providers/` directory. This is the published package and the original project.
-- **`apps/editor`** (`@kc-studio/editor`) — a TanStack Start web app: a visual editor that renders the real theme live in an iframe so users can tweak layout/colors/fonts and preview every login page.
+- **`packages/shadcn-theme`** (`@keycloakify-editor/shadcn-theme`) — a Keycloak login theme built with React 19, TypeScript, Tailwind CSS v4, shadcn/ui, and Keycloakify v11. Produces a `.jar` deployed to Keycloak's `providers/` directory. This is the published package and the original project.
+- **`apps/editor`** (`@keycloakify-editor/app`) — a TanStack Start web app: a visual editor that renders the real theme live in an iframe so users can tweak layout/colors/fonts and preview every login page.
 - **`packages/spartan-theme`** — empty placeholder, nothing implemented yet.
 
 The editor consumes the theme as a workspace dependency (`workspace:*`) and renders it through the theme's package `exports` (see **Editor ↔ theme contract** below).
@@ -30,7 +30,7 @@ pnpm editor:dev                  # Editor dev server (port 3000)
 pnpm fmt                         # oxfmt (write) across the whole repo (fmt:check to verify)
 ```
 
-To run any package-local script directly: `pnpm -F @kc-studio/shadcn-theme <script>` or `pnpm -F @kc-studio/editor <script>`.
+To run any package-local script directly: `pnpm -F @keycloakify-editor/shadcn-theme <script>` or `pnpm -F @keycloakify-editor/app <script>`.
 
 ## Theme Package (`packages/shadcn-theme/`)
 
@@ -53,7 +53,7 @@ pnpm emails:check          # Validate email templates
 After adding Keycloak env vars or pages, regenerate the auto-generated file:
 
 ```bash
-pnpm -F @kc-studio/shadcn-theme exec keycloakify update-kc-gen
+pnpm -F @keycloakify-editor/shadcn-theme exec keycloakify update-kc-gen
 ```
 
 `postinstall` automatically runs `keycloakify sync-extensions` — no manual step after `pnpm install`.
@@ -123,7 +123,7 @@ Valid values (configured in `vite.config.ts` → `environmentVariables`):
 ### Adding a new env var
 
 1. Add it to the `environmentVariables` array in `vite.config.ts`.
-2. Run `pnpm -F @kc-studio/shadcn-theme exec keycloakify update-kc-gen` to regenerate `src/kc.gen.tsx`.
+2. Run `pnpm -F @keycloakify-editor/shadcn-theme exec keycloakify update-kc-gen` to regenerate `src/kc.gen.tsx`.
 3. Access it via `kcContext.properties.YOUR_VAR_NAME` (typed automatically).
 
 ### Adding an email translation key
@@ -151,7 +151,7 @@ pnpm db:generate  # drizzle-kit generate (also db:migrate / db:push / db:pull / 
 
 - `src/routes/` — file-based routes: `__root.tsx`, `index.tsx` (landing), `editor.tsx` (the editor layout), `editor.login.tsx` / `editor.email.tsx` / `editor.account.tsx` (the three surfaces), `preview.login.tsx` (`ssr: false`; the isolated document loaded into the login preview iframe), `preview.account.$.tsx` (`ssr: false`; the account console rendered from source, splat so its inner react-router paths still match).
 - `src/features/editor/`:
-    - `components/` — `editor-header`, `editor-sidebar`, `config-panel` (the theme controls; imports option arrays from `@kc-studio/shadcn-theme/theme-meta` + swatch colors from `/presets`), `preview-pane` (the iframe host).
+    - `components/` — `editor-header`, `editor-sidebar`, `config-panel` (the theme controls; imports option arrays from `@keycloakify-editor/shadcn-theme/theme-meta` + swatch colors from `/presets`), `preview-pane` (the iframe host).
     - `model/` — `theme-config.ts` (`ThemeConfig` type + `defaultThemeConfig`, built from the theme's `/defaults`), `viewport.ts`, `locales.ts`.
     - `state/editor-context.tsx` — React context holding `viewport`, `previewColorScheme`, `config`, `saveStatus`; `useEditor()` hook.
     - `stories/` — the **preview catalog** (the editor's analogue to Storybook): `pages.ts` defines ~40 login pages, each with named scenarios whose `overrides` are deep-merged over the base mock; helpers `definePage`/`simplePage`/`fieldError` in `helpers.ts`; `types.ts` defines `PageId = KcContext['pageId']` and category grouping.

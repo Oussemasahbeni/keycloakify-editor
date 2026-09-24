@@ -1,5 +1,5 @@
-import { emailTemplateIds } from "@kc-studio/shadcn-theme/email";
-import { renderEmailPreview } from "@kc-studio/shadcn-theme/email-preview";
+import { emailTemplateIds } from "@keycloakify-editor/shadcn-theme/email";
+import { renderEmailPreview } from "@keycloakify-editor/shadcn-theme/email-preview";
 import { createServerFn } from "@tanstack/react-start";
 import { z } from "zod";
 

@@ -7,7 +7,7 @@ export async function loadTemplateJar(): Promise<Uint8Array> {
     if (raw == null) {
         throw new Error(
             "Template theme JAR not found. Run `pnpm theme:build-keycloak-theme` " +
-                "then `pnpm -F @kc-studio/editor copy-template-jar`.",
+                "then `pnpm -F @keycloakify-editor/app copy-template-jar`.",
         );
     }
     return raw instanceof Uint8Array ? raw : new Uint8Array(raw as ArrayBufferLike);

@@ -73,7 +73,11 @@ function PreviewInNewTab() {
         <Tooltip>
             <TooltipTrigger
                 render={
-                    <Button variant="outline" size="icon" onClick={() => window.open("/preview/login", "_blank", "noopener")}>
+                    <Button
+                        variant="outline"
+                        size="icon"
+                        onClick={() => window.open("/preview/login", "_blank", "noopener")}
+                    >
                         <ExternalLink />
                     </Button>
                 }

@@ -1,4 +1,4 @@
-import type { KcEnvName } from "@kc-studio/shadcn-theme/theme";
+import type { KcEnvName } from "@keycloakify-editor/shadcn-theme/theme";
 
 /**
  * Config field → `SHADCN_THEME_*` env-var name. it lets `themeConfigToProperties`,

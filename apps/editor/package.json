@@ -1,5 +1,5 @@
 {
-    "name": "@kc-studio/editor",
+    "name": "@keycloakify-editor/app",
     "private": true,
     "type": "module",
     "imports": {
@@ -9,10 +9,10 @@
         "copy-template-jar": "node scripts/copy-template-jar.mjs",
         "predev": "([ ! -f .env ] && cp .env.sample .env || true) && node scripts/copy-template-jar.mjs",
         "dev": "vite dev --port 3000",
-        "prebuild": "pnpm -F @kc-studio/shadcn-theme sync-extensions && node scripts/copy-template-jar.mjs",
+        "prebuild": "pnpm -F @keycloakify-editor/shadcn-theme sync-extensions && node scripts/copy-template-jar.mjs",
         "build": "vite build",
         "preview": "vite preview",
-        "pretest": "pnpm -F @kc-studio/shadcn-theme sync-extensions && node scripts/copy-template-jar.mjs",
+        "pretest": "pnpm -F @keycloakify-editor/shadcn-theme sync-extensions && node scripts/copy-template-jar.mjs",
         "test": "vitest run",
         "lint": "oxlint --type-aware --type-check",
         "lint:fix": "oxlint --type-aware --type-check --fix",
@@ -29,7 +29,7 @@
         "@fontsource-variable/geist": "^5.2.9",
         "@fontsource-variable/geist-mono": "^5.3.0",
         "@icons-pack/react-simple-icons": "^13.13.0",
-        "@kc-studio/shadcn-theme": "workspace:*",
+        "@keycloakify-editor/shadcn-theme": "workspace:*",
         "@neondatabase/serverless": "^1.0.2",
         "@tanstack/react-devtools": "catalog:tanstack",
         "@tanstack/react-form": "catalog:tanstack",

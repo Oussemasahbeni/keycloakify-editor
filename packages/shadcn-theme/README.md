@@ -1,11 +1,11 @@
-# Keycloakify Shadcn Starter
+# Keycloakify Editor — shadcn theme
 
 A modern, production-ready Keycloak login theme built with React, TypeScript, Tailwind CSS v4, shadcn/ui, and Keycloakify v11.
 
 [![CI](https://github.com/keycloakify/keycloakify/actions/workflows/ci.yaml/badge.svg)](https://github.com/keycloakify/keycloakify/actions/workflows/ci.yaml)
 [![npm downloads](https://img.shields.io/npm/dm/@oussemasahbeni/keycloakify-login-shadcn)](https://www.npmjs.com/package/@oussemasahbeni/keycloakify-login-shadcn)
 [![npm version](https://img.shields.io/npm/v/@oussemasahbeni/keycloakify-login-shadcn.svg)](https://www.npmjs.com/package/@oussemasahbeni/keycloakify-login-shadcn)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/Oussemasahbeni/keycloakify-shadcn-starter/blob/main/LICENSE)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/Oussemasahbeni/keycloakify-editor/blob/main/LICENSE)
 
 ---
 
@@ -185,8 +185,8 @@ If you want to clone this repository and develop/customize the theme locally:
 
 ```bash
 # Clone the repository
-git clone https://github.com/Oussemasahbeni/keycloakify-shadcn-starter.git
-cd keycloakify-shadcn-starter
+git clone https://github.com/Oussemasahbeni/keycloakify-editor.git
+cd keycloakify-editor
 
 # Install dependencies
 pnpm install

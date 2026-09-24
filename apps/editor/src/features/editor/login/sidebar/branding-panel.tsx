@@ -5,7 +5,7 @@ import type {
     RadiusPreset,
     SidePanelPosition,
     PrimaryPreset,
-} from "@kc-studio/shadcn-theme/theme";
+} from "@keycloakify-editor/shadcn-theme/theme";
 import {
     basePaletteOptions,
     basePalettes,
@@ -15,7 +15,7 @@ import {
     sidePanelPositionOptions,
     primaryPresetOptions,
     primaryPresets,
-} from "@kc-studio/shadcn-theme/theme";
+} from "@keycloakify-editor/shadcn-theme/theme";
 import type { LucideIcon } from "lucide-react";
 import { Columns2, Image, Info, PanelLeft, PanelRight, Shuffle, Square } from "lucide-react";
 import type { ReactNode } from "react";

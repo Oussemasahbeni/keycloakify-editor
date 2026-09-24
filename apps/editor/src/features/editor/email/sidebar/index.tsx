@@ -1,5 +1,5 @@
-import type { PrimaryPreset } from "@kc-studio/shadcn-theme/theme";
-import { primaryPresetOptions, primaryPresets } from "@kc-studio/shadcn-theme/theme";
+import type { PrimaryPreset } from "@keycloakify-editor/shadcn-theme/theme";
+import { primaryPresetOptions, primaryPresets } from "@keycloakify-editor/shadcn-theme/theme";
 import { Mail } from "lucide-react";
 
 import { ImageAssetField } from "#/components/image-asset-field.tsx";

@@ -1,4 +1,4 @@
-import { KcPage, getKcContextMock } from "@kc-studio/shadcn-theme/preview";
+import { KcPage, getKcContextMock } from "@keycloakify-editor/shadcn-theme/preview";
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 

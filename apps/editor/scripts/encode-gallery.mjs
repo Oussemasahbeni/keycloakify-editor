@@ -10,7 +10,7 @@
  * Re-runnable: each file is read into a buffer before anything is written, so
  * overwriting in place is safe. Run it whenever a capture is added or replaced:
  *
- *     pnpm -F @kc-studio/editor encode-gallery
+ *     pnpm -F @keycloakify-editor/app encode-gallery
  */
 import { readFile, readdir, writeFile } from "node:fs/promises";
 import path from "node:path";

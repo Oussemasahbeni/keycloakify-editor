@@ -5,7 +5,7 @@ import {
     createAccountKcContext,
     setBrandOverrides,
     setPreviewKeycloak,
-} from "@kc-studio/shadcn-theme/account-preview";
+} from "@keycloakify-editor/shadcn-theme/account-preview";
 import { createFileRoute } from "@tanstack/react-router";
 import { Keycloak } from "oidc-spa/keycloak-js";
 import { useEffect, useEffectEvent, useState } from "react";

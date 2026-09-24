@@ -1,4 +1,4 @@
-# Keycloakify shadcn Starter
+# Keycloakify Editor
 
 > A **shadcn/ui + Tailwind v4** Keycloak login theme, plus a **visual editor** that lets you tweak it live and export a ready-to-deploy `.jar` — no FreeMarker required.
 
@@ -20,8 +20,8 @@ This is a **pnpm workspace monorepo** with two projects that share one source of
 
 | Package | Name | What it is |
 | ------- | ---- | ---------- |
-| [`packages/shadcn-theme`](./packages/shadcn-theme) | `@kc-studio/shadcn-theme` | The Keycloak **login + email theme** — React 19, TypeScript, Tailwind CSS v4, shadcn/ui, [Keycloakify](https://www.keycloakify.dev/) v11. Builds to a `.jar` you drop into Keycloak. |
-| [`apps/editor`](./apps/editor) | `@kc-studio/editor` | A [TanStack Start](https://tanstack.com/start) web app: a **visual editor** that renders the *real* theme in an iframe so you can adjust layout, colors, fonts and branding, preview every login page, and **export / import** a themed `.jar`. |
+| [`packages/shadcn-theme`](./packages/shadcn-theme) | `@keycloakify-editor/shadcn-theme` | The Keycloak **login + email theme** — React 19, TypeScript, Tailwind CSS v4, shadcn/ui, [Keycloakify](https://www.keycloakify.dev/) v11. Builds to a `.jar` you drop into Keycloak. |
+| [`apps/editor`](./apps/editor) | `@keycloakify-editor/app` | A [TanStack Start](https://tanstack.com/start) web app: a **visual editor** that renders the *real* theme in an iframe so you can adjust layout, colors, fonts and branding, preview every login page, and **export / import** a themed `.jar`. |
 
 The editor consumes the theme as a `workspace:*` dependency and drives it through a small typed contract (option arrays, defaults, and the `SHADCN_THEME_*` property keys), so the live preview and the downloaded `.jar` can never drift apart.
 
@@ -40,8 +40,8 @@ The editor consumes the theme as a `workspace:*` dependency and drives it throug
 **Prerequisites:** Node `>=20`, [pnpm](https://pnpm.io/) `11`.
 
 ```bash
-git clone https://github.com/Oussemasahbeni/keycloakify-shadcn-starter.git
-cd keycloakify-shadcn-starter
+git clone https://github.com/Oussemasahbeni/keycloakify-editor.git
+cd keycloakify-editor
 pnpm install
 ```
 
@@ -63,9 +63,9 @@ pnpm theme:build-keycloak-theme
 ```
 .
 ├── apps/
-│   └── editor/            # @kc-studio/editor — TanStack Start visual editor
+│   └── editor/            # @keycloakify-editor/app — TanStack Start visual editor
 ├── packages/
-│   ├── shadcn-theme/      # @kc-studio/shadcn-theme — the Keycloak theme (published)
+│   ├── shadcn-theme/      # @keycloakify-editor/shadcn-theme — the Keycloak theme (published)
 │   └── spartan-theme/     # placeholder for a future theme
 ├── package.json           # root workspace scripts
 └── pnpm-workspace.yaml
@@ -73,7 +73,7 @@ pnpm theme:build-keycloak-theme
 
 ## Commands
 
-All root scripts delegate to a package with `pnpm -F`. Run any package-local script directly with `pnpm -F @kc-studio/<pkg> <script>`.
+All root scripts delegate to a package with `pnpm -F`. Run any package-local script directly with `pnpm -F @keycloakify-editor/<pkg> <script>`.
 
 | Command | Description |
 | ------- | ----------- |

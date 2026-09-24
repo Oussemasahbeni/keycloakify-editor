@@ -1,5 +1,5 @@
 {
-    "projectName": "keycloakify-shadcn-theme-editor",
+    "projectName": "keycloakify-editor",
     "mode": "file-router",
     "typescript": true,
     "packageManager": "npm",

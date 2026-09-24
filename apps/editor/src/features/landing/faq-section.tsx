@@ -18,7 +18,7 @@ type FaqItem = {
 export const faqItems: FaqItem[] = [
     {
         value: "item-1",
-        question: "What is the Keycloak Theme Editor?",
+        question: "What is the Keycloakify Editor?",
         answer: "It's a visual editor for Keycloak login themes. Instead of hand-writing FreeMarker templates and CSS, you tweak colors, fonts, radius, and layout in a live editor that renders the real theme, then export a ready-to-deploy theme for your Keycloak instance.",
     },
     {

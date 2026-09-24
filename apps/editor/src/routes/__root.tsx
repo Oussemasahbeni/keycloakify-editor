@@ -23,7 +23,7 @@ export const Route = createRootRoute({
                 content: "width=device-width, initial-scale=1",
             },
             ...seo({
-                title: "Keycloak Theme Editor — Visually customize Keycloak login themes",
+                title: "Keycloakify Editor — Visually customize Keycloak login themes",
                 description:
                     "A visual editor for Keycloak login themes. Customize colors, fonts, radius, and layout, preview every login page live, and export a deploy-ready theme.",
                 keywords:

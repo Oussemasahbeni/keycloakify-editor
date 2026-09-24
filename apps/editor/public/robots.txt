@@ -3,4 +3,4 @@ User-agent: *
 Allow: /
 Disallow: /preview
 
-Sitemap: https://keycloakify-shadcn-starter-editor.vercel.app/sitemap.xml
+Sitemap: https://editor.keycloakify.dev/sitemap.xml

@@ -61,7 +61,7 @@ const TEMPLATES: Record<EmailTemplateId, PreviewTemplate> = {
  * remain as tokens, so we swap them for readable sample data in the preview.
  */
 const MOCK_VARS: Record<string, string> = {
-    realmName: "Shadcn Starter",
+    realmName: "Keycloakify Editor",
     "user.firstName": "Jane",
     "user.username": "jane.doe",
     link: "https://example.com/action",

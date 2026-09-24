@@ -1,6 +1,6 @@
 import type { ParsedTheme } from "#/features/editor/shared/parse-theme-jar";
 
-const DB_NAME = "kc-studio";
+const DB_NAME = "keycloakify-editor";
 const DB_VERSION = 1;
 const STORE_NAME = "drafts";
 const DRAFT_KEY = "current";

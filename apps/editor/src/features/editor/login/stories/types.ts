@@ -1,4 +1,4 @@
-import type { KcContext } from "@kc-studio/shadcn-theme/preview";
+import type { KcContext } from "@keycloakify-editor/shadcn-theme/preview";
 
 type DeepPartial<T> = {
     [P in keyof T]?: DeepPartial<T[P]>;

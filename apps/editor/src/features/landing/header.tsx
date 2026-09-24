@@ -22,7 +22,7 @@ function Brand() {
     return (
         <Link to="/" className="flex items-center gap-2">
             <Logo size={28} />
-            <span className="font-medium tracking-tight">Keycloak Theme Editor</span>
+            <span className="font-medium tracking-tight">Keycloakify Editor</span>
         </Link>
     );
 }

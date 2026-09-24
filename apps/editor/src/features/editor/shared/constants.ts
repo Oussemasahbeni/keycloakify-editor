@@ -6,4 +6,4 @@ export const BASE_THEME_NAME = "shadcn-theme";
  * the (renamable) `theme/<name>/` dir so import can find it without knowing the
  * theme name first, and is inert to Keycloak's theme scanner.
  */
-export const MANIFEST_PATH = "META-INF/kc-studio-theme.json";
+export const MANIFEST_PATH = "META-INF/keycloakify-editor-theme.json";

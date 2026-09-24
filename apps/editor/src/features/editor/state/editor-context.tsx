@@ -1,5 +1,5 @@
-import type { EmailTemplate } from "@kc-studio/shadcn-theme/email";
-import { emailTemplates } from "@kc-studio/shadcn-theme/email";
+import type { EmailTemplate } from "@keycloakify-editor/shadcn-theme/email";
+import { emailTemplates } from "@keycloakify-editor/shadcn-theme/email";
 import { createContext, use, useEffect, useState } from "react";
 import type { Layout } from "react-resizable-panels";
 

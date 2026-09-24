@@ -34,7 +34,7 @@ Keep the title concise and use a conventional-commit style prefix
 Describe what you ran. Examples:
 - pnpm theme:storybook (visual check)
 - pnpm theme:build-keycloak-theme (.jar builds)
-- pnpm -F @kc-studio/editor test
+- pnpm -F @keycloakify-editor/app test
 -->
 
 ## Screenshots / recordings
@@ -46,5 +46,5 @@ Describe what you ran. Examples:
 - [ ] My code follows the project's style (`pnpm format` run)
 - [ ] I regenerated auto-generated files if needed (`keycloakify update-kc-gen`, route tree)
 - [ ] I updated docs where relevant
-- [ ] Tests pass locally (editor: `pnpm -F @kc-studio/editor test`)
+- [ ] Tests pass locally (editor: `pnpm -F @keycloakify-editor/app test`)
 - [ ] No breaking changes to the theme `exports` contract that the editor depends on (or the editor was updated in lockstep)

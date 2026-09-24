@@ -1,4 +1,4 @@
-import type { BasePalette, FontFamily, PrimaryPreset, RadiusPreset } from "@kc-studio/shadcn-theme/theme";
+import type { BasePalette, FontFamily, PrimaryPreset, RadiusPreset } from "@keycloakify-editor/shadcn-theme/theme";
 import {
     basePaletteOptions,
     basePalettes,
@@ -6,7 +6,7 @@ import {
     primaryPresetOptions,
     primaryPresets,
     radiusPresetOptions,
-} from "@kc-studio/shadcn-theme/theme";
+} from "@keycloakify-editor/shadcn-theme/theme";
 import { Shuffle } from "lucide-react";
 
 import { Swatch } from "#/components/swatch.tsx";

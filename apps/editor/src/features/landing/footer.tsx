@@ -67,7 +67,7 @@ export function LandingFooter() {
                 <div className="flex max-w-sm flex-col gap-4">
                     <Link to="/" className="flex w-fit items-center gap-2">
                         <Logo size={28} />
-                        <span className="font-medium tracking-tight">Keycloak Theme Editor</span>
+                        <span className="font-medium tracking-tight">Keycloakify Editor</span>
                     </Link>
                     <p className="text-sm text-pretty text-muted-foreground">
                         A visual editor for Keycloak login themes. Customize colors, type and layout, preview every page
@@ -95,7 +95,7 @@ export function LandingFooter() {
             </Band>
 
             <Band ticks={false} className="px-5 py-5 text-center text-xs text-muted-foreground sm:px-10">
-                © {currentYear} Keycloak Theme Editor. All rights reserved.
+                © {currentYear} Keycloakify Editor. All rights reserved.
             </Band>
         </footer>
     );
