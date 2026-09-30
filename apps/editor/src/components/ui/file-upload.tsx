@@ -1,9 +1,9 @@
 import { Upload, XIcon } from "lucide-react";
 import { useId, useRef, useState } from "react";
 
-import { Button } from "#/components/ui/button.tsx";
+import { Button } from "#/components/ui/button";
 import { useObjectUrl } from "#/hooks/use-object-url";
-import { cn } from "#/lib/utils.ts";
+import { cn } from "#/lib/utils";
 
 import {
     Attachment,

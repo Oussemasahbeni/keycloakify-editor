@@ -4,11 +4,11 @@ import { assert } from "tsafe/assert";
 import { Button } from "#/components/ui/button";
 import { Field, FieldError, FieldLabel } from "#/components/ui/field";
 import { InputGroup, InputGroupAddon, InputGroupInput } from "#/components/ui/input-group";
-import { LogoutOtherSessions } from "#/login/components/LogoutOtherSessions";
-import { PasswordVisibilityButton } from "#/login/components/PasswordVisibilityButton";
-import { useI18n } from "#/login/i18n";
-import { useKcContext } from "#/login/KcContext";
-import { useKcEnv } from "#/login/useKcEnv";
+import { LogoutOtherSessions } from "#/login/components/LogoutOtherSessions.tsx";
+import { PasswordVisibilityButton } from "#/login/components/PasswordVisibilityButton.tsx";
+import { useI18n } from "#/login/i18n.ts";
+import { useKcContext } from "#/login/KcContext.ts";
+import { useKcEnv } from "#/login/useKcEnv.ts";
 
 import { Template } from "../../components/Template";
 

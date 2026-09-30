@@ -28,7 +28,7 @@ import {
 } from "#/components/ui/dropdown-menu";
 import { SidebarTrigger } from "#/components/ui/sidebar";
 import { cn } from "#/lib/utils";
-import { ModeToggle } from "#/login/components/ui/ThemeToggle";
+import { ModeToggle } from "#/login/components/ui/ThemeToggle.tsx";
 
 function loggedInUserName(token: KeycloakTokenParsed | undefined, t: TFunction) {
     if (!token) {

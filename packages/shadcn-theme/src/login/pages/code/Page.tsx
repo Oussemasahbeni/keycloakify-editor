@@ -8,8 +8,8 @@ import { Alert, AlertDescription } from "#/components/ui/alert";
 import { Button } from "#/components/ui/button";
 import { Field, FieldLabel } from "#/components/ui/field";
 import { InputGroup, InputGroupAddon, InputGroupInput } from "#/components/ui/input-group";
-import { useI18n } from "#/login/i18n";
-import { useKcContext } from "#/login/KcContext";
+import { useI18n } from "#/login/i18n.ts";
+import { useKcContext } from "#/login/KcContext.ts";
 
 import { Template } from "../../components/Template";
 

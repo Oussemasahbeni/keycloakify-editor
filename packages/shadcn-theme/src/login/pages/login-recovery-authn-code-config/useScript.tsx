@@ -2,7 +2,7 @@ import { useInsertScriptTags } from "@keycloakify/login-ui/tools/useInsertScript
 import { waitForElementMountedOnDom } from "@keycloakify/login-ui/tools/waitForElementMountedOnDom";
 import { useEffect } from "react";
 
-import { useI18n } from "#/login/i18n";
+import { useI18n } from "#/login/i18n.ts";
 
 export function useScript(params: { olRecoveryCodesListId: string }) {
     const { olRecoveryCodesListId } = params;

@@ -12,10 +12,10 @@ import { useEffect, useReducer } from "react";
 
 import "./index.css";
 
-import { ThemeProvider } from "#/components/ThemeProvider.tsx";
+import { ThemeProvider } from "#/components/ThemeProvider";
 import { Toaster } from "#/components/ui/toast";
 import { getTheme } from "#/lib/getColorScheme";
-import { useApplyThemePresetFromProperties } from "#/login/theme/applyThemePreset";
+import { useApplyThemePresetFromProperties } from "#/login/theme/applyThemePreset.ts";
 
 import { KeycloakProvider } from "../shared/keycloak-ui-shared";
 import { SessionExpirationWarningOverlay } from "../shared/SessionExpirationWarningOverlay";

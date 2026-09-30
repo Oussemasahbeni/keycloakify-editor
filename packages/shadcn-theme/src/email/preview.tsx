@@ -2,7 +2,7 @@ import type { TFunction } from "i18next";
 import { render } from "jsx-email";
 import type { ComponentType } from "react";
 
-import type { PrimaryPreset } from "#/login/theme";
+import type { PrimaryPreset } from "#/login/theme/index.ts";
 
 import i18n from "./i18n";
 import type { EmailTemplateId } from "./templates-meta";

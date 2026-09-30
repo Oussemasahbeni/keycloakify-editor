@@ -9,8 +9,8 @@ import { Field, FieldError } from "#/components/ui/field";
 import { InputOTP, InputOTPGroup, InputOTPSlot } from "#/components/ui/input-otp";
 import { Label } from "#/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "#/components/ui/radio-group";
-import { useI18n } from "#/login/i18n";
-import { useKcContext } from "#/login/KcContext";
+import { useI18n } from "#/login/i18n.ts";
+import { useKcContext } from "#/login/KcContext.ts";
 
 import { Template } from "../../components/Template";
 

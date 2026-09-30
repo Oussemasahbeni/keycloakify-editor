@@ -1,9 +1,9 @@
 import { useState } from "react";
 
-import { getPage } from "#/features/editor/login/stories/pages";
-import type { PageId } from "#/features/editor/login/stories/types";
+import { getPage } from "#/features/editor/login/stories/pages.ts";
+import type { PageId } from "#/features/editor/login/stories/types.ts";
 import { getViewportWidth } from "#/features/editor/shared/model/viewport.ts";
-import { useEditor } from "#/features/editor/state/editor-context";
+import { useEditor } from "#/features/editor/state/editor-context.tsx";
 
 import { usePublishPreview } from "../hooks/use-preview-channel";
 import { LoginPreviewToolbar } from "./preview-toolbar";

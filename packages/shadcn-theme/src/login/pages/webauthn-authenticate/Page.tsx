@@ -5,9 +5,9 @@ import { Fragment } from "react";
 import { assert } from "tsafe/assert";
 
 import { Input } from "#/components/ui/input";
-import { WebAuthnConditionalUI } from "#/login/components/WebAuthnConditionalUi";
-import { useI18n } from "#/login/i18n";
-import { useKcContext } from "#/login/KcContext";
+import { WebAuthnConditionalUI } from "#/login/components/WebAuthnConditionalUi/index.ts";
+import { useI18n } from "#/login/i18n.ts";
+import { useKcContext } from "#/login/KcContext.ts";
 
 import { Template } from "../../components/Template";
 

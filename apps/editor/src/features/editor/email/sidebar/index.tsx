@@ -2,8 +2,8 @@ import type { PrimaryPreset } from "@keycloakify-editor/shadcn-theme/theme";
 import { primaryPresetOptions, primaryPresets } from "@keycloakify-editor/shadcn-theme/theme";
 import { Mail } from "lucide-react";
 
-import { ImageAssetField } from "#/components/image-asset-field.tsx";
-import { Swatch } from "#/components/swatch.tsx";
+import { ImageAssetField } from "#/components/image-asset-field";
+import { Swatch } from "#/components/swatch";
 import { Field, FieldLabel } from "#/components/ui/field";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "#/components/ui/select";
 import { Separator } from "#/components/ui/separator";

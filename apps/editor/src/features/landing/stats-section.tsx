@@ -1,7 +1,7 @@
 import { animate, m, useInView, useReducedMotion } from "motion/react";
 import { useEffect, useRef } from "react";
 
-import { LOCALE_COUNT } from "#/lib/locales.ts";
+import { LOCALE_COUNT } from "#/lib/locales";
 import { cn } from "#/lib/utils";
 
 import { Band, Eyebrow } from "./band";

@@ -23,9 +23,7 @@
         "erasableSyntaxOnly": true,
         "noFallthroughCasesInSwitch": true,
         "noUncheckedSideEffectImports": true,
-        "paths": {
-            "#/*": ["./src/*"]
-        }
+        "resolvePackageJsonImports": true
     },
     "include": ["src"]
 }

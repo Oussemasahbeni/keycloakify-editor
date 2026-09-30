@@ -1,7 +1,7 @@
 import type { Attribute } from "@keycloakify/login-ui/KcContext";
 import { assert } from "tsafe/assert";
 
-import { useI18n } from "#/login/i18n";
+import { useI18n } from "#/login/i18n.ts";
 
 export function GroupLabel(props: {
     attribute: Attribute;

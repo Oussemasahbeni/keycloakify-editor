@@ -5,7 +5,7 @@ import {
 } from "@keycloakify/login-ui/useUserProfileForm";
 
 import { Button } from "#/components/ui/button";
-import { useI18n } from "#/login/i18n";
+import { useI18n } from "#/login/i18n.ts";
 
 export function AddRemoveButtonsMultiValuedAttribute(props: {
     attribute: Attribute;

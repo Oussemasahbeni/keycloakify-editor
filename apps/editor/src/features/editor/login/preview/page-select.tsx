@@ -7,8 +7,8 @@ import {
     SelectTrigger,
     SelectValue,
 } from "#/components/ui/select";
-import { getGroupedPages, getPage } from "#/features/editor/login/stories/pages";
-import type { PageId } from "#/features/editor/login/stories/types";
+import { getGroupedPages, getPage } from "#/features/editor/login/stories/pages.ts";
+import type { PageId } from "#/features/editor/login/stories/types.ts";
 
 type PageSelectProps = {
     pageId: PageId;

@@ -12,7 +12,7 @@ import {
     DropdownMenuTrigger,
 } from "#/components/ui/dropdown-menu";
 import { getInitials } from "#/lib/utils";
-import { useOidc } from "#/oidc";
+import { useOidc } from "#/oidc.ts";
 
 export function UserMenu() {
     const { user, logout, isUserLoggedIn } = useOidc();

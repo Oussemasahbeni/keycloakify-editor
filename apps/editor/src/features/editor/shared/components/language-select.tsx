@@ -1,7 +1,7 @@
 import { Globe } from "lucide-react";
 
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "#/components/ui/select";
-import { supportedLocales, type Locale } from "#/lib/locales.ts";
+import { supportedLocales, type Locale } from "#/lib/locales";
 
 import { useEditor } from "../../state/editor-context";
 

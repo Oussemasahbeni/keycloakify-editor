@@ -1,7 +1,7 @@
 import { assert } from "tsafe/assert";
 
 import { cn } from "#/lib/utils";
-import { useI18n } from "#/login/i18n";
+import { useI18n } from "#/login/i18n.ts";
 
 import type { InputFieldByTypeProps } from "./InputFieldByType";
 

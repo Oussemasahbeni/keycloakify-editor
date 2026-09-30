@@ -3,11 +3,11 @@ import { useServerFn } from "@tanstack/react-start";
 import { Download } from "lucide-react";
 import { useState } from "react";
 
-import { Button } from "#/components/ui/button.tsx";
-import { Spinner } from "#/components/ui/spinner.tsx";
-import { clearDraft, saveDraft } from "#/lib/draft-storage.ts";
-import { useOidc } from "#/oidc";
-import { toast } from "@/components/ui/toast";
+import { Button } from "#/components/ui/button";
+import { Spinner } from "#/components/ui/spinner";
+import { toast } from "#/components/ui/toast";
+import { clearDraft, saveDraft } from "#/lib/draft-storage";
+import { useOidc } from "#/oidc.ts";
 
 import { generateJar } from "../server/generate-jar";
 import { assetDefinitions } from "../shared/model/assets";

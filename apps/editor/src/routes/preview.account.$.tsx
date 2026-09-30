@@ -11,8 +11,8 @@ import { Keycloak } from "oidc-spa/keycloak-js";
 import { useEffect, useEffectEvent, useState } from "react";
 
 import { Spinner } from "#/components/ui/spinner";
-import type { AccountPreviewConfig } from "#/features/editor/account/hooks/use-account-preview-channel";
-import { useReceiveAccountPreview } from "#/features/editor/account/hooks/use-account-preview-channel";
+import type { AccountPreviewConfig } from "#/features/editor/account/hooks/use-account-preview-channel.ts";
+import { useReceiveAccountPreview } from "#/features/editor/account/hooks/use-account-preview-channel.ts";
 
 /**
  * Isolated document embedded by the Account surface. Runs the account console

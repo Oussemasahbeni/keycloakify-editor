@@ -16,7 +16,7 @@ The editor consumes the theme as a workspace dependency (`workspace:*`) and rend
 
 Workspace globs (`pnpm-workspace.yaml`): `apps/*`, `packages/*`. Shared dependency versions are pinned via pnpm `catalog:` (React 19, Tailwind 4, Vite, TypeScript). Package manager: pnpm 11.
 
-Both packages use the `#/*` → `./src/*` import alias (note: the editor uses `#/`, the theme also exposes `#/`; the theme additionally uses `@/` in some shadcn components).
+Both packages use `#/` imports defined by `package.json` `imports` (Node subpath imports, shadcn "package imports" style) — not tsconfig `paths`, which would leak across packages when the editor type-checks theme source. `#/components/*` → `*.tsx`, `#/lib/*` and `#/hooks/*` → `*.ts` are imported **without** an extension; everything else goes through `#/*` → `./src/*` and **must** include it (`#/login/i18n.ts`, `#/features/.../index.ts`). Don't use `@/`.
 
 Root scripts (`package.json`) delegate to a package with `pnpm -F`:
 

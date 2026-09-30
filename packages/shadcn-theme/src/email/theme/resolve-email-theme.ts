@@ -1,7 +1,7 @@
 import { formatHex, parse } from "culori";
 
-import type { PrimaryPreset } from "#/login/theme";
-import { primaryPresets } from "#/login/theme";
+import type { PrimaryPreset } from "#/login/theme/index.ts";
+import { primaryPresets } from "#/login/theme/index.ts";
 
 import type { EmailTheme } from "./theme";
 

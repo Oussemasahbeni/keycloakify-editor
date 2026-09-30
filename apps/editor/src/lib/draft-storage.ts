@@ -1,4 +1,4 @@
-import type { ParsedTheme } from "#/features/editor/shared/parse-theme-jar";
+import type { ParsedTheme } from "#/features/editor/shared/parse-theme-jar.ts";
 
 const DB_NAME = "keycloakify-editor";
 const DB_VERSION = 1;

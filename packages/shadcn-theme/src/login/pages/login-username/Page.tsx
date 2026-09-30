@@ -7,10 +7,10 @@ import { Checkbox } from "#/components/ui/checkbox";
 import { Field, FieldError, FieldLabel } from "#/components/ui/field";
 import { Input } from "#/components/ui/input";
 import { Label } from "#/components/ui/label";
-import { WebAuthnConditionalUI } from "#/login/components/WebAuthnConditionalUi";
-import { useI18n } from "#/login/i18n";
-import { useKcContext } from "#/login/KcContext";
-import { useKcEnv } from "#/login/useKcEnv";
+import { WebAuthnConditionalUI } from "#/login/components/WebAuthnConditionalUi/index.ts";
+import { useI18n } from "#/login/i18n.ts";
+import { useKcContext } from "#/login/KcContext.ts";
+import { useKcEnv } from "#/login/useKcEnv.ts";
 
 import { Template } from "../../components/Template";
 import { SocialProviders } from "../login/SocialProviders";

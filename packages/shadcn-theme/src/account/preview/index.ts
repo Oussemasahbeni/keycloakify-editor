@@ -10,7 +10,7 @@ import { lazy } from "react";
 
 export { KcAccountUiLoader } from "@keycloakify/keycloak-account-ui";
 
-export { applyThemePreset, type ThemePresetProperties } from "#/login/theme/applyThemePreset";
+export { applyThemePreset, type ThemePresetProperties } from "#/login/theme/applyThemePreset.ts";
 
 export {
     createAccountKcContext,

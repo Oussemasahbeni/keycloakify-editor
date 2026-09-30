@@ -5,8 +5,8 @@ import { Mail, RotateCcw } from "lucide-react";
 import { Button } from "#/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "#/components/ui/select";
 import { Tooltip, TooltipContent, TooltipTrigger } from "#/components/ui/tooltip";
-import { LanguageSelect } from "#/features/editor/shared/components/language-select";
-import { useEditor } from "#/features/editor/state/editor-context";
+import { LanguageSelect } from "#/features/editor/shared/components/language-select.tsx";
+import { useEditor } from "#/features/editor/state/editor-context.tsx";
 
 function TemplateSelect() {
     const { template, setTemplate } = useEditor().email;

@@ -5,9 +5,9 @@ import { Button, buttonVariants } from "#/components/ui/button";
 import { Field, FieldError, FieldLabel } from "#/components/ui/field";
 import { Input } from "#/components/ui/input";
 import { cn } from "#/lib/utils";
-import { LogoutOtherSessions } from "#/login/components/LogoutOtherSessions";
-import { useI18n } from "#/login/i18n";
-import { useKcContext } from "#/login/KcContext";
+import { LogoutOtherSessions } from "#/login/components/LogoutOtherSessions.tsx";
+import { useI18n } from "#/login/i18n.ts";
+import { useKcContext } from "#/login/KcContext.ts";
 
 import { Template } from "../../components/Template";
 

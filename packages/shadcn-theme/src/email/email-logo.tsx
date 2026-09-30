@@ -1,7 +1,7 @@
 import { Img, Section } from "jsx-email";
 import { Else, exp, If, Then } from "keycloakify-emails/jsx-email";
 
-import type { KcEnvName } from "#/kc-env";
+import type { KcEnvName } from "#/kc-env.ts";
 
 import type { EmailTheme } from "./theme/theme";
 

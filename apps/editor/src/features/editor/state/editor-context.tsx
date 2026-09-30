@@ -4,7 +4,7 @@ import { createContext, use, useEffect, useState } from "react";
 import type { Layout } from "react-resizable-panels";
 
 import { useTheme } from "#/components/theme-provider";
-import { clearDraft, loadDraft } from "#/lib/draft-storage.ts";
+import { clearDraft, loadDraft } from "#/lib/draft-storage";
 import { DEFAULT_LOCALE, type Locale } from "#/lib/locales";
 
 import { BASE_THEME_NAME } from "../shared/constants";

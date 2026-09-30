@@ -7,9 +7,6 @@ import { oidcSpa } from "oidc-spa/vite-plugin";
 import { defineConfig } from "vite";
 
 const config = defineConfig({
-    resolve: {
-        tsconfigPaths: true,
-    },
     plugins: [
         devtools(),
         tailwindcss(),

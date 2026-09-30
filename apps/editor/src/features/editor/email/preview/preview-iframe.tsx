@@ -2,7 +2,7 @@ import { keepPreviousData, queryOptions, useQuery } from "@tanstack/react-query"
 import { useServerFn } from "@tanstack/react-start";
 import { useEffect, useState } from "react";
 
-import { renderEmailPreviewFn } from "#/features/editor/server/email-render-preview";
+import { renderEmailPreviewFn } from "#/features/editor/server/email-render-preview.ts";
 import { useEditor } from "#/features/editor/state/editor-context.tsx";
 
 import { EmailPreviewToolbar } from "./preview-toolbar";

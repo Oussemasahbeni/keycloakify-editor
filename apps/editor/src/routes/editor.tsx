@@ -1,7 +1,7 @@
 import { createFileRoute, Outlet } from "@tanstack/react-router";
 
 import { EditorHeader } from "#/features/editor/header/editor-header.tsx";
-import { EditorProvider } from "#/features/editor/state/editor-context";
+import { EditorProvider } from "#/features/editor/state/editor-context.tsx";
 
 export const Route = createFileRoute("/editor")({
     component: EditorLayout,

@@ -1,7 +1,7 @@
 import { Moon, Sun } from "lucide-react";
 
 import { ImageAssetField } from "#/components/image-asset-field";
-import { useEditor } from "#/features/editor/state/editor-context";
+import { useEditor } from "#/features/editor/state/editor-context.tsx";
 
 /**
  * The only images the account console shows: the logo and its dark-mode

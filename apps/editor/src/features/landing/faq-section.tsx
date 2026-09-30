@@ -1,6 +1,7 @@
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "#/components/ui/accordion";
 import { buttonVariants } from "#/components/ui/button";
 import { DISCORD_INVITE_URL } from "#/config/constants.ts";
+import { LOCALE_COUNT } from "#/lib/locales";
 import { cn } from "#/lib/utils";
 
 import { Band } from "./band";
@@ -39,7 +40,7 @@ export const faqItems: FaqItem[] = [
     {
         value: "item-5",
         question: "Does it support multiple languages?",
-        answer: "The theme ships with built-in internationalization for 40 languages, including right-to-left locales. You can preview any login page in any supported language directly in the editor.",
+        answer: `The theme ships with built-in internationalization for ${LOCALE_COUNT} languages, including right-to-left locales. You can preview any login page in any supported language directly in the editor.`,
     },
     {
         value: "item-6",

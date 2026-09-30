@@ -11,7 +11,6 @@ import { kcEnvironmentVariables } from "./src/kc-env";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-    resolve: { tsconfigPaths: true },
     plugins: [
         react(),
         tailwindcss(),
@@ -74,7 +73,6 @@ export default defineConfig({
                         "pl",
                         "pt",
                         "pt-BR",
-                        "ro",
                         "ru",
                         "sk",
                         "sv",

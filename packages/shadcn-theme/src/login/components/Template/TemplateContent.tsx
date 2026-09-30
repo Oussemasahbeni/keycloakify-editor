@@ -7,9 +7,9 @@ import { buttonVariants } from "#/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "#/components/ui/card";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "#/components/ui/tooltip";
 import { cn } from "#/lib/utils";
-import { useI18n } from "#/login/i18n";
-import { useKcContext } from "#/login/KcContext";
-import { useKcEnv } from "#/login/useKcEnv";
+import { useI18n } from "#/login/i18n.ts";
+import { useKcContext } from "#/login/KcContext.ts";
+import { useKcEnv } from "#/login/useKcEnv.ts";
 
 import type { TemplateProps } from "./Template";
 

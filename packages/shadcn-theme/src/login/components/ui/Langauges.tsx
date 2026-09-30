@@ -7,7 +7,7 @@ import {
     DropdownMenuItem,
     DropdownMenuTrigger,
 } from "#/components/ui/dropdown-menu";
-import { useI18n } from "#/login/i18n";
+import { useI18n } from "#/login/i18n.ts";
 
 export function Languages() {
     const { msgStr, currentLanguage, enabledLanguages } = useI18n();

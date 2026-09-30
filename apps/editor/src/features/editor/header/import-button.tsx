@@ -1,9 +1,9 @@
 import { Upload } from "lucide-react";
 import { useRef, useState } from "react";
 
-import { Button } from "#/components/ui/button.tsx";
-import { Spinner } from "#/components/ui/spinner.tsx";
-import { toast } from "@/components/ui/toast";
+import { Button } from "#/components/ui/button";
+import { Spinner } from "#/components/ui/spinner";
+import { toast } from "#/components/ui/toast";
 
 import { parseThemeJar } from "../shared/parse-theme-jar";
 import { useEditor } from "../state/editor-context";

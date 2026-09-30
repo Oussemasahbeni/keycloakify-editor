@@ -1,4 +1,4 @@
-import { KC_ENV_DEFAULTS } from "#/kc-env";
+import { KC_ENV_DEFAULTS } from "#/kc-env.ts";
 
 import { basePalettes, radiusPresets, themeFontFamilies, primaryPresets } from "./Presets";
 import {

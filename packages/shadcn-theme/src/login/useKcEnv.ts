@@ -1,4 +1,4 @@
-import { type KcEnv, parseKcEnv } from "#/kc-env";
+import { type KcEnv, parseKcEnv } from "#/kc-env.ts";
 
 import { useKcContext } from "./KcContext";
 

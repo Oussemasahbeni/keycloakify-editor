@@ -2,7 +2,7 @@ import { assert } from "tsafe/assert";
 
 import { Input } from "#/components/ui/input";
 import { InputGroupInput } from "#/components/ui/input-group";
-import { useI18n } from "#/login/i18n";
+import { useI18n } from "#/login/i18n.ts";
 
 import { AddRemoveButtonsMultiValuedAttribute } from "./AddRemoveButtonsMultiValuedAttribute";
 import { FieldErrors } from "./FieldErrors";

@@ -3,8 +3,8 @@ import { kcSanitize } from "@keycloakify/login-ui/kcSanitize";
 import { Checkbox } from "#/components/ui/checkbox";
 import { FieldError } from "#/components/ui/field";
 import { Label } from "#/components/ui/label";
-import { useI18n } from "#/login/i18n";
-import type { KcContext } from "#/login/KcContext";
+import { useI18n } from "#/login/i18n.ts";
+import type { KcContext } from "#/login/KcContext.ts";
 
 export function TermsAcceptance(props: {
     messagesPerField: Pick<KcContext["messagesPerField"], "existsError" | "get">;

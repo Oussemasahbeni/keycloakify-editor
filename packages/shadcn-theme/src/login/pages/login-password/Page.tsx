@@ -6,11 +6,11 @@ import { Button } from "#/components/ui/button";
 import { Field, FieldError, FieldLabel } from "#/components/ui/field";
 import { InputGroup, InputGroupAddon, InputGroupInput } from "#/components/ui/input-group";
 import { Label } from "#/components/ui/label";
-import { PasswordVisibilityButton } from "#/login/components/PasswordVisibilityButton";
-import { WebAuthnConditionalUI } from "#/login/components/WebAuthnConditionalUi";
-import { useI18n } from "#/login/i18n";
-import { useKcContext } from "#/login/KcContext";
-import { useKcEnv } from "#/login/useKcEnv";
+import { PasswordVisibilityButton } from "#/login/components/PasswordVisibilityButton.tsx";
+import { WebAuthnConditionalUI } from "#/login/components/WebAuthnConditionalUi/index.ts";
+import { useI18n } from "#/login/i18n.ts";
+import { useKcContext } from "#/login/KcContext.ts";
+import { useKcEnv } from "#/login/useKcEnv.ts";
 
 import { Template } from "../../components/Template";
 

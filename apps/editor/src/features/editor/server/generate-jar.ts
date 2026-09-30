@@ -3,7 +3,7 @@ import { createServerFn } from "@tanstack/react-start";
 import type { AssetKey } from "#/features/editor/shared/model/assets.ts";
 import { assetDefinitions } from "#/features/editor/shared/model/assets.ts";
 import { faviconFileSchema } from "#/features/editor/shared/validation/favicon.ts";
-import { oidcFnMiddleware } from "#/oidc";
+import { oidcFnMiddleware } from "#/oidc.ts";
 
 import { getImageExtension } from "../shared/files";
 import { themeConfigSchema } from "../shared/model/theme-config";

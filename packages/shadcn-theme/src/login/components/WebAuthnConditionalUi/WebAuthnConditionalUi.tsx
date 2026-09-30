@@ -1,7 +1,7 @@
 import { Fingerprint } from "lucide-react";
 
 import { Button } from "#/components/ui/button";
-import { useI18n } from "#/login/i18n";
+import { useI18n } from "#/login/i18n.ts";
 
 import { useLogic, type UseLogicProps } from "./useLogic";
 

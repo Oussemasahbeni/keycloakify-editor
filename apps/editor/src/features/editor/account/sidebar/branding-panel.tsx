@@ -9,11 +9,11 @@ import {
 } from "@keycloakify-editor/shadcn-theme/theme";
 import { Shuffle } from "lucide-react";
 
-import { Swatch } from "#/components/swatch.tsx";
+import { Swatch } from "#/components/swatch";
 import { Button } from "#/components/ui/button";
 import { Field, FieldLabel } from "#/components/ui/field";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "#/components/ui/select";
-import { useEditor } from "#/features/editor/state/editor-context";
+import { useEditor } from "#/features/editor/state/editor-context.tsx";
 import { pickRandom, prettify } from "#/lib/utils";
 
 /**

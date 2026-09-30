@@ -6,8 +6,8 @@ import { assert } from "tsafe/assert";
 
 import { buttonVariants } from "#/components/ui/button";
 import { cn } from "#/lib/utils";
-import { useI18n } from "#/login/i18n";
-import { useKcContext } from "#/login/KcContext";
+import { useI18n } from "#/login/i18n.ts";
+import { useKcContext } from "#/login/KcContext.ts";
 
 import useProviderLogos from "./useProviderLogos";
 

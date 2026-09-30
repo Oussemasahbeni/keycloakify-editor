@@ -1,6 +1,10 @@
 import { z } from "zod";
 
-import { EMAIL_IMAGE_EXTENSIONS, EMAIL_IMAGE_MIME_TYPES, MAX_IMAGE_SIZE_BYTES } from "#/features/editor/shared/files";
+import {
+    EMAIL_IMAGE_EXTENSIONS,
+    EMAIL_IMAGE_MIME_TYPES,
+    MAX_IMAGE_SIZE_BYTES,
+} from "#/features/editor/shared/files.ts";
 
 /**
  * Validates an uploaded email logo, SVG renders unreliably across mail clients.

@@ -5,9 +5,9 @@ import { Alert, AlertDescription } from "#/components/ui/alert";
 import { Button } from "#/components/ui/button";
 import { Checkbox } from "#/components/ui/checkbox";
 import { Label } from "#/components/ui/label";
-import { LogoutOtherSessions } from "#/login/components/LogoutOtherSessions";
-import { useI18n } from "#/login/i18n";
-import { useKcContext } from "#/login/KcContext";
+import { LogoutOtherSessions } from "#/login/components/LogoutOtherSessions.tsx";
+import { useI18n } from "#/login/i18n.ts";
+import { useKcContext } from "#/login/KcContext.ts";
 
 import { Template } from "../../components/Template";
 import { useScript } from "./useScript";

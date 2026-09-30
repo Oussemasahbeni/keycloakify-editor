@@ -1,4 +1,4 @@
-import { KC_ENV_DEFAULTS, type KcEnvName } from "#/kc-env";
+import { KC_ENV_DEFAULTS, type KcEnvName } from "#/kc-env.ts";
 
 import { resolveColors } from "./resolve-email-theme";
 

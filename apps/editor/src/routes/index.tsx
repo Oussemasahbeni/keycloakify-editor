@@ -1,20 +1,20 @@
 import { createFileRoute } from "@tanstack/react-router";
 
 import { SITE_URL } from "#/config/constants.ts";
-import { SectionHeader } from "#/features/landing/band";
-import { CompareSection } from "#/features/landing/compare-section";
-import { CtaSection } from "#/features/landing/cta-section";
-import { FaqSection, faqItems } from "#/features/landing/faq-section";
-import { FeaturePanels } from "#/features/landing/feature-panels";
-import { LandingFooter } from "#/features/landing/footer";
-import { Header } from "#/features/landing/header";
-import { HeroSection } from "#/features/landing/hero-section";
-import { ProblemSection } from "#/features/landing/problem-section";
-import { MotionProvider } from "#/features/landing/reveal";
-import { StatsSection } from "#/features/landing/stats-section";
-import { TechStrip } from "#/features/landing/tech-strip";
-import { ThemeGallery } from "#/features/landing/theme-gallery";
-import { seo } from "#/lib/seo.ts";
+import { SectionHeader } from "#/features/landing/band.tsx";
+import { CompareSection } from "#/features/landing/compare-section.tsx";
+import { CtaSection } from "#/features/landing/cta-section.tsx";
+import { FaqSection, faqItems } from "#/features/landing/faq-section.tsx";
+import { FeaturePanels } from "#/features/landing/feature-panels.tsx";
+import { LandingFooter } from "#/features/landing/footer.tsx";
+import { Header } from "#/features/landing/header.tsx";
+import { HeroSection } from "#/features/landing/hero-section.tsx";
+import { ProblemSection } from "#/features/landing/problem-section.tsx";
+import { MotionProvider } from "#/features/landing/reveal.tsx";
+import { StatsSection } from "#/features/landing/stats-section.tsx";
+import { TechStrip } from "#/features/landing/tech-strip.tsx";
+import { ThemeGallery } from "#/features/landing/theme-gallery.tsx";
+import { seo } from "#/lib/seo";
 
 const TITLE = "Keycloakify Editor — Visually customize Keycloak login themes";
 const DESCRIPTION =

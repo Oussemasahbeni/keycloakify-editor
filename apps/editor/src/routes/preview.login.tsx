@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { Spinner } from "#/components/ui/spinner";
 import type { PreviewAssets, PreviewState } from "#/features/editor/login/hooks/use-preview-channel.ts";
 import { useReceivePreview } from "#/features/editor/login/hooks/use-preview-channel.ts";
-import { getStory } from "#/features/editor/login/stories/pages";
+import { getStory } from "#/features/editor/login/stories/pages.ts";
 import type { AssetKey } from "#/features/editor/shared/model/assets.ts";
 import { assetDefinitions } from "#/features/editor/shared/model/assets.ts";
 import { defaultLoginThemeConfig, themeConfigToProperties } from "#/features/editor/shared/model/theme-config.ts";

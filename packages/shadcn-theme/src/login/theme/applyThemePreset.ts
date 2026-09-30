@@ -1,6 +1,6 @@
 import { useLayoutEffect } from "react";
 
-import type { KcEnvName } from "#/kc.gen";
+import type { KcEnvName } from "#/kc.gen.tsx";
 
 import { resolveRadiusPreset, resolveThemeFont, resolveThemeTokens } from "./ThemeUtils";
 

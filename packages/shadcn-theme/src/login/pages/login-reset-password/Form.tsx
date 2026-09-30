@@ -4,9 +4,9 @@ import { assert } from "tsafe/assert";
 import { Button, buttonVariants } from "#/components/ui/button";
 import { Field, FieldError, FieldLabel } from "#/components/ui/field";
 import { Input } from "#/components/ui/input";
-import { useI18n } from "#/login/i18n";
-import { useKcContext } from "#/login/KcContext";
-import { useKcEnv } from "#/login/useKcEnv";
+import { useI18n } from "#/login/i18n.ts";
+import { useKcContext } from "#/login/KcContext.ts";
+import { useKcEnv } from "#/login/useKcEnv.ts";
 
 export function Form() {
     const { kcContext } = useKcContext();

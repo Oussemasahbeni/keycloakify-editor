@@ -4,9 +4,9 @@ import { HeadContent, Scripts, createRootRoute, useRouterState } from "@tanstack
 import { DefaultCatchBoundary } from "#/components/DefaultCatchBoundary";
 import { NotFound } from "#/components/not-found";
 import { ThemeProvider } from "#/components/theme-provider";
+import { Toaster } from "#/components/ui/toast";
 import { TooltipProvider } from "#/components/ui/tooltip";
-import { seo } from "#/lib/seo.ts";
-import { Toaster } from "@/components/ui/toast";
+import { seo } from "#/lib/seo";
 
 import appCss from "../styles.css?url";
 

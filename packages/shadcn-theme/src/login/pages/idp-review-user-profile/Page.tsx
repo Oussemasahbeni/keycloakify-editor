@@ -2,8 +2,8 @@ import { useState } from "react";
 import { assert } from "tsafe/assert";
 
 import { Button } from "#/components/ui/button";
-import { useI18n } from "#/login/i18n";
-import { useKcContext } from "#/login/KcContext";
+import { useI18n } from "#/login/i18n.ts";
+import { useKcContext } from "#/login/KcContext.ts";
 
 import { Template } from "../../components/Template";
 import { UserProfileFormFields } from "../../components/UserProfileFormFields";

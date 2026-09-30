@@ -4,12 +4,12 @@ import { fileURLToPath } from "node:url";
 import { strFromU8, unzipSync } from "fflate";
 import { describe, expect, it } from "vitest";
 
-import type { LoginThemeConfig } from "#/features/editor/shared/model/theme-config";
+import type { LoginThemeConfig } from "#/features/editor/shared/model/theme-config.ts";
 import {
     defaultLoginThemeConfig,
     emailConfigToProperties,
     themeConfigToProperties,
-} from "#/features/editor/shared/model/theme-config";
+} from "#/features/editor/shared/model/theme-config.ts";
 
 import { MANIFEST_PATH } from "../../shared/constants";
 import { customizeThemeJar } from "../jar-customizer";

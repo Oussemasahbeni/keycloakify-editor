@@ -4,9 +4,9 @@ import type { ReactNode } from "react";
 import { useEffect } from "react";
 
 import { resolveAssetUrl } from "#/lib/resolveAssetUrl";
-import { useI18n } from "#/login/i18n";
-import { useKcContext } from "#/login/KcContext";
-import { useKcEnv } from "#/login/useKcEnv";
+import { useI18n } from "#/login/i18n.ts";
+import { useKcContext } from "#/login/KcContext.ts";
+import { useKcEnv } from "#/login/useKcEnv.ts";
 
 import { useApplyThemePreset } from "../../theme/useApplyThemePreset";
 import { CenteredCardLayout } from "../layouts/CenteredCardLayout";

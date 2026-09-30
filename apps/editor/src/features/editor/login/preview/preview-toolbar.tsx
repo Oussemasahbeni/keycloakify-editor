@@ -3,10 +3,10 @@ import { ExternalLink, RotateCcw } from "lucide-react";
 import { Button } from "#/components/ui/button";
 import { ButtonGroup } from "#/components/ui/button-group";
 import { Tooltip, TooltipContent, TooltipTrigger } from "#/components/ui/tooltip";
-import type { PageId } from "#/features/editor/login/stories/types";
-import { LanguageSelect } from "#/features/editor/shared/components/language-select";
+import type { PageId } from "#/features/editor/login/stories/types.ts";
+import { LanguageSelect } from "#/features/editor/shared/components/language-select.tsx";
 import { VIEWPORTS } from "#/features/editor/shared/model/viewport.ts";
-import { useEditor } from "#/features/editor/state/editor-context";
+import { useEditor } from "#/features/editor/state/editor-context.tsx";
 
 import { SCHEMES } from "../../shared/model/preview-color-scheme";
 import { PageSelect } from "./page-select";

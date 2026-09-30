@@ -2,8 +2,8 @@ import { kcSanitize } from "@keycloakify/login-ui/kcSanitize";
 import type { ReactNode } from "react";
 
 import { cn } from "#/lib/utils";
-import { useKcContext } from "#/login/KcContext";
-import type { SidePanelPosition } from "#/login/theme";
+import { useKcContext } from "#/login/KcContext.ts";
+import type { SidePanelPosition } from "#/login/theme/index.ts";
 
 import shape from "../../assets/img/shape.svg";
 import { TemplateTopBar } from "../Template/TemplateTopBar";

@@ -7,15 +7,15 @@ import { Spinner } from "#/components/ui/spinner";
 import type {
     AccountPreviewBranding,
     AccountPreviewConfig,
-} from "#/features/editor/account/hooks/use-account-preview-channel";
-import { usePublishAccountPreview } from "#/features/editor/account/hooks/use-account-preview-channel";
+} from "#/features/editor/account/hooks/use-account-preview-channel.ts";
+import { usePublishAccountPreview } from "#/features/editor/account/hooks/use-account-preview-channel.ts";
 import { THEME_PROPERTY_KEYS } from "#/features/editor/shared/model/property-keys.ts";
 import { themeConfigToProperties } from "#/features/editor/shared/model/theme-config.ts";
 import { getViewportWidth } from "#/features/editor/shared/model/viewport.ts";
-import { useEditor } from "#/features/editor/state/editor-context";
+import { useEditor } from "#/features/editor/state/editor-context.tsx";
 import { useObjectUrl } from "#/hooks/use-object-url";
 import { cn } from "#/lib/utils";
-import { useOidc } from "#/oidc";
+import { useOidc } from "#/oidc.ts";
 
 const PREVIEW_PATH = "/preview/account/";
 

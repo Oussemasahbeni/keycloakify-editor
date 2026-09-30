@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 
 import { AccountPreviewIframe } from "#/features/editor/account/preview/preview-iframe.tsx";
-import { AccountThemeSidebar } from "#/features/editor/account/sidebar";
+import { AccountThemeSidebar } from "#/features/editor/account/sidebar/index.tsx";
 import { EditorSurface } from "#/features/editor/shared/components/editor-surface.tsx";
 
 export const Route = createFileRoute("/editor/account")({

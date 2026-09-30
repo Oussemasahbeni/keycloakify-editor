@@ -1,7 +1,7 @@
 import type { ComponentType } from "react";
 
-import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from "#/components/ui/resizable.tsx";
-import { useEditor } from "#/features/editor/state/editor-context";
+import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from "#/components/ui/resizable";
+import { useEditor } from "#/features/editor/state/editor-context.tsx";
 
 type EditorSurfaceProps = {
     Preview: ComponentType;

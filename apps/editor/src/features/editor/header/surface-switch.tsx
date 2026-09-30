@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router";
 
+import { buttonVariants } from "#/components/ui/button";
 import { ButtonGroup } from "#/components/ui/button-group";
-import { buttonVariants } from "#/components/ui/button.tsx";
 
 import { SURFACES } from "../shared/model/surface";
 

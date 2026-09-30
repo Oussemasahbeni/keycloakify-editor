@@ -3,7 +3,6 @@ import type { GetMessages } from "keycloakify-emails";
 import { initReactI18next } from "react-i18next";
 
 import arTranslation from "./locales/ar/translation.json";
-import azTranslation from "./locales/az/translation.json";
 import caTranslation from "./locales/ca/translation.json";
 import csTranslation from "./locales/cs/translation.json";
 import daTranslation from "./locales/da/translation.json";
@@ -11,19 +10,13 @@ import deTranslation from "./locales/de/translation.json";
 import elTranslation from "./locales/el/translation.json";
 import enTranslation from "./locales/en/translation.json";
 import esTranslation from "./locales/es/translation.json";
-import euTranslation from "./locales/eu/translation.json";
 import faTranslation from "./locales/fa/translation.json";
 import fiTranslation from "./locales/fi/translation.json";
 import frTranslation from "./locales/fr/translation.json";
-import hrTranslation from "./locales/hr/translation.json";
 import huTranslation from "./locales/hu/translation.json";
-import hyTranslation from "./locales/hy/translation.json";
-import idTranslation from "./locales/id/translation.json";
 import itTranslation from "./locales/it/translation.json";
 import jaTranslation from "./locales/ja/translation.json";
 import kaTranslation from "./locales/ka/translation.json";
-import kkTranslation from "./locales/kk/translation.json";
-import kyTranslation from "./locales/ky/translation.json";
 import ltTranslation from "./locales/lt/translation.json";
 import lvTranslation from "./locales/lv/translation.json";
 import nlTranslation from "./locales/nl/translation.json";
@@ -31,24 +24,18 @@ import noTranslation from "./locales/no/translation.json";
 import plTranslation from "./locales/pl/translation.json";
 import pt_BRTranslation from "./locales/pt-BR/translation.json";
 import ptTranslation from "./locales/pt/translation.json";
-import roTranslation from "./locales/ro/translation.json";
 import ruTranslation from "./locales/ru/translation.json";
 import skTranslation from "./locales/sk/translation.json";
-import slTranslation from "./locales/sl/translation.json";
 import svTranslation from "./locales/sv/translation.json";
 import thTranslation from "./locales/th/translation.json";
 import trTranslation from "./locales/tr/translation.json";
 import ukTranslation from "./locales/uk/translation.json";
-import viTranslation from "./locales/vi/translation.json";
 import zh_CNTranslation from "./locales/zh-CN/translation.json";
 import zh_TWTranslation from "./locales/zh-TW/translation.json";
 
 const resources = {
     ar: {
         translation: arTranslation,
-    },
-    az: {
-        translation: azTranslation,
     },
     ca: {
         translation: caTranslation,
@@ -71,9 +58,6 @@ const resources = {
     es: {
         translation: esTranslation,
     },
-    eu: {
-        translation: euTranslation,
-    },
     fa: {
         translation: faTranslation,
     },
@@ -83,17 +67,8 @@ const resources = {
     fr: {
         translation: frTranslation,
     },
-    hr: {
-        translation: hrTranslation,
-    },
     hu: {
         translation: huTranslation,
-    },
-    hy: {
-        translation: hyTranslation,
-    },
-    id: {
-        translation: idTranslation,
     },
     it: {
         translation: itTranslation,
@@ -103,12 +78,6 @@ const resources = {
     },
     ka: {
         translation: kaTranslation,
-    },
-    kk: {
-        translation: kkTranslation,
-    },
-    ky: {
-        translation: kyTranslation,
     },
     lt: {
         translation: ltTranslation,
@@ -131,17 +100,11 @@ const resources = {
     "pt-BR": {
         translation: pt_BRTranslation,
     },
-    ro: {
-        translation: roTranslation,
-    },
     ru: {
         translation: ruTranslation,
     },
     sk: {
         translation: skTranslation,
-    },
-    sl: {
-        translation: slTranslation,
     },
     sv: {
         translation: svTranslation,
@@ -154,9 +117,6 @@ const resources = {
     },
     uk: {
         translation: ukTranslation,
-    },
-    vi: {
-        translation: viTranslation,
     },
     "zh-CN": {
         translation: zh_CNTranslation,
