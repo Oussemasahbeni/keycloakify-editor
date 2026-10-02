@@ -42,6 +42,8 @@
     --color-accent: var(--accent);
     --color-accent-foreground: var(--accent-foreground);
     --color-destructive: var(--destructive);
+    --color-success: var(--success);
+    --color-warning: var(--warning);
     --color-border: var(--border);
     --color-input: var(--input);
     --color-ring: var(--ring);
@@ -102,6 +104,8 @@
     --accent: var(--keycloakify-shadcn-accent, oklch(0.97 0 0));
     --accent-foreground: var(--keycloakify-shadcn-accent-foreground, oklch(0.205 0 0));
     --destructive: oklch(0.577 0.245 27.325);
+    --success: oklch(0.508 0.118 165.612);
+    --warning: oklch(0.555 0.163 48.998);
     --border: var(--keycloakify-shadcn-border, oklch(0.922 0 0));
     --input: var(--keycloakify-shadcn-input, oklch(0.922 0 0));
     --ring: var(--keycloakify-shadcn-ring, oklch(0.708 0 0));
@@ -134,6 +138,8 @@
     --accent: var(--keycloakify-shadcn-dark-accent, oklch(0.269 0 0));
     --accent-foreground: var(--keycloakify-shadcn-dark-accent-foreground, oklch(0.985 0 0));
     --destructive: oklch(0.704 0.191 22.216);
+    --success: oklch(0.765 0.177 163.223);
+    --warning: oklch(0.828 0.189 84.429);
     --border: var(--keycloakify-shadcn-dark-border, oklch(1 0 0 / 10%));
     --input: var(--keycloakify-shadcn-dark-input, oklch(1 0 0 / 15%));
     --ring: var(--keycloakify-shadcn-dark-ring, oklch(0.556 0 0));

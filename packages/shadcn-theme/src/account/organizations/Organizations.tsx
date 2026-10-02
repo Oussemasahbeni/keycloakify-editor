@@ -49,7 +49,7 @@ function Domains({ organization }: { organization: OrganizationRepresentation })
         <div className="flex flex-wrap gap-1">
             {domains.map(domain => (
                 <Badge key={domain.name} variant="outline">
-                    {domain.verified && <CheckIcon className="text-emerald-600 dark:text-emerald-400" />}
+                    {domain.verified && <CheckIcon className="text-success" />}
                     {domain.name}
                 </Badge>
             ))}

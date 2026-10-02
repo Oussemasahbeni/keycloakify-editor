@@ -131,7 +131,7 @@ export const DeviceActivity = () => {
                                             </span>
                                         </span>
                                         {session.current && (
-                                            <Badge className="bg-green-50 text-green-700 dark:bg-green-950 dark:text-green-300">
+                                            <Badge className="bg-success/10 text-success">
                                                 <CheckIcon />
                                                 {t("currentSession")}
                                             </Badge>

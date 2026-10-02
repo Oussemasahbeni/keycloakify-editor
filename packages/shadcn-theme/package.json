@@ -66,7 +66,7 @@
         "@tailwindcss/vite": "catalog:",
         "@tanstack/react-query": "catalog:tanstack",
         "class-variance-authority": "^0.7.1",
-        "cn": "^0.2.5",
+        "cn": "^0.3.2",
         "culori": "^4.0.2",
         "i18next": "^25.7.3",
         "i18next-fetch-backend": "^7.0.0",

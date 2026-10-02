@@ -134,7 +134,7 @@ function CredentialRow({ container, meta }: CredentialRowProps) {
                             </dl>
                         )}
                         {warningTitle && warningDescription && (
-                            <div className="flex items-start gap-1.5 text-amber-700 dark:text-amber-400">
+                            <div className="flex items-start gap-1.5 text-warning">
                                 <TriangleAlertIcon className="mt-0.5 size-4 shrink-0" />
                                 <div>
                                     <p className="font-medium">{t(warningTitle.key, messageParams(warningTitle))}</p>

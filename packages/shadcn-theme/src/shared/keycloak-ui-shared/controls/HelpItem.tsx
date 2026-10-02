@@ -39,7 +39,7 @@ export const HelpItem = ({ helpText, fieldLabelId, isRecommendation = false }: H
                 aria-label={fieldLabelId}
                 className={cn(
                     "inline-flex size-5 items-center justify-center rounded-full text-muted-foreground outline-none hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring/50",
-                    isRecommendation && "text-amber-600 dark:text-amber-400",
+                    isRecommendation && "text-warning",
                 )}
             >
                 <Icon className="size-4" />

@@ -1,4 +1,3 @@
-import { useKcClsx } from "@keycloakify/login-ui/useKcClsx";
 import { assert } from "tsafe/assert";
 
 import { Button } from "#/components/ui/button";
@@ -15,8 +14,6 @@ export function Page() {
 
     const { msg, msgStr } = useI18n();
 
-    const { kcClsx } = useKcClsx();
-
     return (
         <Template headerNode={msg("oauth2DeviceVerificationTitle")}>
             <form
@@ -27,28 +24,13 @@ export function Page() {
             >
                 <Field>
                     <FieldLabel htmlFor="device-user-code">{msg("verifyOAuth2DeviceUserCode")}</FieldLabel>
-                    <Input
-                        id="device-user-code"
-                        name="device_user_code"
-                        autoComplete="off"
-                        type="text"
-                        className={kcClsx("kcInputClass")}
-                        autoFocus
-                    />
+                    <Input id="device-user-code" name="device_user_code" autoComplete="off" type="text" autoFocus />
                 </Field>
 
-                <div className={kcClsx("kcFormGroupClass")}>
-                    <div id="kc-form-options" className={kcClsx("kcFormOptionsClass")}>
-                        <div className={kcClsx("kcFormOptionsWrapperClass")}></div>
-                    </div>
-
-                    <div id="kc-form-buttons" className={kcClsx("kcFormButtonsClass")}>
-                        <div className={kcClsx("kcFormButtonsWrapperClass")}>
-                            <Button className="w-full" type="submit">
-                                {msgStr("doSubmit")}
-                            </Button>
-                        </div>
-                    </div>
+                <div id="kc-form-buttons">
+                    <Button className="w-full" type="submit">
+                        {msgStr("doSubmit")}
+                    </Button>
                 </div>
             </form>
         </Template>

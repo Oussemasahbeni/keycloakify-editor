@@ -159,7 +159,7 @@ function TerminalDemo() {
                     <span ref={lineRefs[index]}>{line}</span>
                 </div>
             ))}
-            <div ref={checkRef} className="pt-1 text-green-600">
+            <div ref={checkRef} className="pt-1 text-success">
                 ✓ theme available in the admin console
             </div>
         </div>

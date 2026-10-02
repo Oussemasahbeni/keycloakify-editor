@@ -55,7 +55,7 @@ export function Page() {
                                         className="size-4"
                                         aria-label="Copy code to clipboard"
                                     >
-                                        {copied ? <MdCheck className="text-green-500" /> : <MdContentCopy />}
+                                        {copied ? <MdCheck className="text-success" /> : <MdContentCopy />}
                                     </Button>
                                 </InputGroupAddon>
                             </InputGroup>

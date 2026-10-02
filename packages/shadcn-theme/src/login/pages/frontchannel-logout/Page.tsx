@@ -40,7 +40,7 @@ export function Page() {
                                 key={client.name || index}
                                 className="flex items-center gap-3 rounded-lg border bg-muted/30 p-3"
                             >
-                                <FiCheck className="size-4 text-green-600" />
+                                <FiCheck className="size-4 text-success" />
                                 <span className="text-sm font-medium">{client.name || `Application ${index + 1}`}</span>
                                 {/* oxlint-disable-next-line react/iframe-missing-sandbox -- front-channel logout: the client's logout URL must run its own scripts to clear its session */}
                                 <iframe

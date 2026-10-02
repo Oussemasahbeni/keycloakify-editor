@@ -93,6 +93,29 @@
                 "allowConstantExport": true
             }
         ],
+        "shadcn/no-raw-colors": "error",
+        "shadcn/no-unknown-classes": [
+            "error",
+            {
+                "allow": [
+                    "cn-*",
+                    "g-recaptcha",
+                    "clearfix",
+                    "cred-title",
+                    "form-actions",
+                    "form-group",
+                    "instruction",
+                    "link-style",
+                    "oauth",
+                    "session-title",
+                    "signed-in-device-grid",
+                    "signed-in-device-list",
+                    "title-case"
+                ]
+            }
+        ],
+        "shadcn/require-static-classes": "error",
+        "shadcn/no-restyle": ["warn", { "allow": ["layout"] }],
         "react/exhaustive-deps": "off",
         "react/react-in-jsx-scope": "off",
         "jsx-a11y/no-autofocus": "off",
@@ -137,6 +160,13 @@
                 "jsx-a11y/label-has-associated-control": "off",
                 "jsx-a11y/click-events-have-key-events": "off",
                 "jsx-a11y/no-noninteractive-element-interactions": "off"
+            }
+        },
+        {
+            "files": ["src/components/ui/**"],
+            "rules": {
+                "shadcn/no-restyle": "off",
+                "shadcn/require-static-classes": "off"
             }
         },
         {

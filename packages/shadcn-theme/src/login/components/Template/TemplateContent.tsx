@@ -125,7 +125,7 @@ export function TemplateContent(props: TemplateContentProps) {
                             <div>{titleNode}</div>
                             <div>
                                 <span className="text-sm">
-                                    <span className="text-red-500" aria-hidden="true">
+                                    <span className="text-destructive" aria-hidden="true">
                                         *
                                     </span>
                                     {msg("requiredFields")}

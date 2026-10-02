@@ -33,7 +33,9 @@
                 "jsx-a11y/prefer-tag-over-role": "off",
                 "jsx-a11y/label-has-associated-control": "off",
                 "jsx-a11y/click-events-have-key-events": "off",
-                "jsx-a11y/no-noninteractive-element-interactions": "off"
+                "jsx-a11y/no-noninteractive-element-interactions": "off",
+                "shadcn/no-restyle": "off",
+                "shadcn/require-static-classes": "off"
             }
         },
         {
@@ -47,6 +49,12 @@
             "rules": {
                 "unicorn/no-array-sort": "off",
                 "unicorn/consistent-function-scoping": "off"
+            }
+        },
+        {
+            "files": ["src/components/logo.tsx"],
+            "rules": {
+                "shadcn/no-raw-colors": "off"
             }
         }
     ],
@@ -140,6 +148,10 @@
         "typescript/prefer-for-of": "warn",
         "typescript/triple-slash-reference": "error",
         "typescript/no-unsafe-type-assertion": "off",
-        "typescript/consistent-return": "off"
+        "typescript/consistent-return": "off",
+        "shadcn/no-raw-colors": "error",
+        "shadcn/no-unknown-classes": ["error", { "allow": ["g-recaptcha", "cn-*"] }],
+        "shadcn/require-static-classes": "error",
+        "shadcn/no-restyle": ["warn", { "allow": ["layout"] }]
     }
 }

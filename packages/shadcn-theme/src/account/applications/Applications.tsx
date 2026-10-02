@@ -162,7 +162,7 @@ export const Applications = () => {
                                                                         key={scope.id}
                                                                         className="flex items-center gap-1.5"
                                                                     >
-                                                                        <CheckIcon className="size-4 text-emerald-600 dark:text-emerald-400" />
+                                                                        <CheckIcon className="size-4 text-success" />
                                                                         {t(scope.name, scope.displayText)}
                                                                     </li>
                                                                 ))}

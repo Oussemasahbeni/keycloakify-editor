@@ -85,10 +85,7 @@ export const Groups = () => {
                                 <TableCell id={`${index}-group-directMembership`} className=" text-start">
                                     {group.id != null ? (
                                         <>
-                                            <CheckIcon
-                                                aria-hidden="true"
-                                                className="me-auto size-4 text-emerald-600 dark:text-emerald-400"
-                                            />
+                                            <CheckIcon aria-hidden="true" className="me-auto size-4 text-success" />
                                             <span className="sr-only">{t("directMembership")}</span>
                                         </>
                                     ) : (
