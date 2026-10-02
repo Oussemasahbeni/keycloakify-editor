@@ -1,4 +1,4 @@
-import { kcSanitize } from "keycloakify/lib/kcSanitize";
+import { kcSanitize } from "@keycloakify/login-ui/kcSanitize";
 import { XCircle } from "lucide-react";
 import { useState } from "react";
 import { MdCheck, MdContentCopy } from "react-icons/md";

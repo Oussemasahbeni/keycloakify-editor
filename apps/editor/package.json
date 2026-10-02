@@ -10,6 +10,7 @@
     },
     "scripts": {
         "copy-template-jar": "node scripts/copy-template-jar.mjs",
+        "encode-gallery": "node scripts/encode-gallery.mjs",
         "predev": "([ ! -f .env ] && cp .env.sample .env || true) && node scripts/copy-template-jar.mjs",
         "dev": "vite dev --port 3000",
         "prebuild": "pnpm -F @keycloakify-editor/shadcn-theme sync-extensions && node scripts/copy-template-jar.mjs",

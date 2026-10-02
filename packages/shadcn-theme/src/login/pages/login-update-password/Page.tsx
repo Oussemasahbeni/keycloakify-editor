@@ -1,4 +1,4 @@
-import { kcSanitize } from "keycloakify/lib/kcSanitize";
+import { kcSanitize } from "@keycloakify/login-ui/kcSanitize";
 import { assert } from "tsafe/assert";
 
 import { Button } from "#/components/ui/button";

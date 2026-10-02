@@ -37,7 +37,7 @@ The editor consumes the theme as a `workspace:*` dependency and drives it throug
 
 ## Quick start
 
-**Prerequisites:** Node `>=20`, [pnpm](https://pnpm.io/) `11`.
+**Prerequisites:** Node `>=20.19`, [pnpm](https://pnpm.io/) `12`.
 
 ```bash
 git clone https://github.com/Oussemasahbeni/keycloakify-editor.git
@@ -84,10 +84,10 @@ All root scripts delegate to a package with `pnpm -F`. Run any package-local scr
 | `pnpm theme:emails-preview` | Preview the email templates |
 | `pnpm theme:lint` | Lint the theme |
 | `pnpm editor:dev` | Editor dev server (port 3000) |
-| `pnpm editor:build` | Build the editor (self-contained Node server in `dist/`) |
+| `pnpm editor:build` | Build the editor (self-contained Node server in `.output/`) |
 | `pnpm editor:test` | Editor test suite (Vitest) |
 | `pnpm editor:lint` | Lint the editor |
-| `pnpm format` | Prettier across the whole repo |
+| `pnpm fmt` / `pnpm fmt:check` | Format (oxfmt) the whole repo / verify formatting |
 
 ## Deploying the theme to Keycloak
 
@@ -116,28 +116,32 @@ See the [theme README](./packages/shadcn-theme/README.md) for the complete list,
 
 ## Editor configuration
 
-The editor is a full app and needs a few server env vars (zod-validated in `apps/editor/src/config/env.ts`):
+The editor is a full app and needs a few server env vars (see `apps/editor/.env.sample`; `pnpm editor:dev` copies it to `.env` on first run):
 
 | Var | Purpose |
 | --- | ------- |
-| `DATABASE_URL` | Neon Postgres connection string (Drizzle ORM) |
 | `OIDC_ISSUER_URI` | OIDC issuer for login (`oidc-spa`) |
 | `OIDC_CLIENT_ID` | OIDC client id |
+| `OIDC_ACCESS_TOKEN_EXPECTED_AUDIENCE` | Expected `aud` of access tokens validated by the server (`src/oidc.ts`) |
+| `DATABASE_URL` | Neon Postgres connection string — reserved for upcoming features; nothing reads the DB yet |
 
 ## Tech stack
 
 - **Theme:** React 19 · TypeScript · Tailwind CSS v4 · shadcn/ui · Keycloakify v11 · jsx-email · Storybook
 - **Editor:** TanStack Start (Nitro) · React 19 + React Compiler · TanStack Router/Query · Drizzle ORM (Neon) · oidc-spa · Vitest
-- **Tooling:** pnpm workspaces · Vite · Prettier
+- **Tooling:** pnpm workspaces · Vite · oxlint · oxfmt
 
 ## Contributing
 
 ```bash
-pnpm format      # format everything
+pnpm fmt         # format everything (oxfmt)
+pnpm theme:lint  # lint the theme
+pnpm editor:lint # lint the editor
+pnpm typecheck   # type-check both packages
 pnpm editor:test # run the editor tests
 ```
 
-PRs and issues welcome. Please format before submitting.
+PRs and issues welcome. CI runs format, lint, typecheck, tests and build, so please run the above before submitting.
 
 ## License
 

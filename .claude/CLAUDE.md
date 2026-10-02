@@ -10,11 +10,11 @@ A **pnpm workspace monorepo** containing two related projects:
 - **`apps/editor`** (`@keycloakify-editor/app`) — a TanStack Start web app: a visual editor that renders the real theme live in an iframe so users can tweak layout/colors/fonts and preview every login page.
 - **`packages/spartan-theme`** — empty placeholder, nothing implemented yet.
 
-The editor consumes the theme as a workspace dependency (`workspace:*`) and renders it through the theme's package `exports` (see **Editor ↔ theme contract** below).
+The editor consumes the theme as a workspace dependency (`workspace:*`) and renders it through the theme's package `exports` (see **Public exports** below).
 
 ## Monorepo Layout & Commands
 
-Workspace globs (`pnpm-workspace.yaml`): `apps/*`, `packages/*`. Shared dependency versions are pinned via pnpm `catalog:` (React 19, Tailwind 4, Vite, TypeScript). Package manager: pnpm 11.
+Workspace globs (`pnpm-workspace.yaml`): `apps/*`, `packages/*`. Shared dependency versions are pinned via pnpm `catalog:` (React 19, Tailwind 4, Vite, TypeScript). Package manager: pnpm 12.
 
 Both packages use `#/` imports defined by `package.json` `imports` (Node subpath imports, shadcn "package imports" style) — not tsconfig `paths`, which would leak across packages when the editor type-checks theme source. `#/components/*` → `*.tsx`, `#/lib/*` and `#/hooks/*` → `*.ts` are imported **without** an extension; everything else goes through `#/*` → `./src/*` and **must** include it (`#/login/i18n.ts`, `#/features/.../index.ts`). Don't use `@/`.
 
@@ -28,6 +28,7 @@ pnpm theme:build-keycloak-theme  # Full build → outputs .jar in packages/shadc
 pnpm theme:prepare               # prepare-publish script
 pnpm editor:dev                  # Editor dev server (port 3000)
 pnpm fmt                         # oxfmt (write) across the whole repo (fmt:check to verify)
+pnpm typecheck                   # tsc across both packages (CI gate)
 ```
 
 To run any package-local script directly: `pnpm -F @keycloakify-editor/shadcn-theme <script>` or `pnpm -F @keycloakify-editor/app <script>`.
@@ -66,6 +67,9 @@ pnpm -F @keycloakify-editor/shadcn-theme exec keycloakify update-kc-gen
 | ----------- | -------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `./preview` | `src/login/preview.tsx`    | `KcPage`, `getKcContextMock`, `KcContext`                                                                                                                                                                                                                                         |
 | `./theme`   | `src/login/theme/index.ts` | Option arrays + types: `primaryPresetOptions`, `basePaletteOptions`, `radiusPresetOptions`, `fontFamilyOptions`, `layoutOptions` and `PrimaryPreset`/`BasePalette`/`RadiusPreset`/`FontFamily`/`Layout` , `basePalettes`, `primaryPresets` (OKLCH values), and `KC_ENV_DEFAULTS` + `KcEnvName` (re-exported from `src/kc-env.ts`). The field→env-name maps (`THEME_PROPERTY_KEYS`, `EMAIL_PROPERTY_KEYS`) are editor-owned: `apps/editor/src/features/editor/shared/model/property-keys.ts` |
+| `./email`           | `src/email/index.ts`             | Email theme helpers: `resolveEmailTheme`, email theme types, `emailTemplateIds` / template metadata |
+| `./email-preview`   | `src/email/preview.tsx`          | `renderEmailPreview` (server-side HTML render used by the editor's email surface)                   |
+| `./account-preview` | `src/account/preview/index.ts`   | `AccountPreviewUi`, `KcAccountUiLoader`, `applyThemePreset`, `setBrandOverrides`, `setPreviewKeycloak` |
 
 ### Architecture
 
@@ -98,7 +102,7 @@ KcContextProvider → I18nProvider → KcClsxProvider (doUseDefaultCss: false) �
 
 ### Environment variables (`SHADCN_THEME_*`)
 
-Valid values (configured in `vite.config.ts` → `environmentVariables`):
+Valid values (defaults declared in `src/kc-env.ts`; the full list is `KC_ENV_DEFAULTS`):
 
 | Var                           | Valid values                                                                                                                                                                       |
 | ----------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -118,13 +122,13 @@ Valid values (configured in `vite.config.ts` → `environmentVariables`):
 2. Create `src/login/pages/{page-name}/index.ts` re-exporting the page.
 3. Add a lazy import + `case` to `PageIndex.tsx`.
 4. Optionally add `Page.stories.tsx`.
-5. To surface it in the editor preview, also add an entry to `apps/editor/src/features/editor/stories/pages.ts`.
+5. To surface it in the editor preview, also add an entry to `apps/editor/src/features/editor/login/stories/pages.ts`.
 
 ### Adding a new env var
 
-1. Add it to the `environmentVariables` array in `vite.config.ts`.
-2. Run `pnpm -F @keycloakify-editor/shadcn-theme exec keycloakify update-kc-gen` to regenerate `src/kc.gen.tsx`.
-3. Access it via `kcContext.properties.YOUR_VAR_NAME` (typed automatically).
+1. Add it (with its default) to `KC_ENV_DEFAULTS` in `src/kc-env.ts` — the single source; `vite.config.ts` derives `kcEnvironmentVariables` from it.
+2. Start Vite or run `pnpm -F @keycloakify-editor/shadcn-theme exec keycloakify update-kc-gen` to regenerate `src/kc.gen.tsx`.
+3. Access it via `kcContext.properties.YOUR_VAR_NAME` (typed automatically). If the editor should control it, add it to `apps/editor/src/features/editor/shared/model/property-keys.ts` and `theme-config.ts`.
 
 ### Adding an email translation key
 
@@ -138,8 +142,9 @@ Package-local scripts:
 
 ```bash
 pnpm dev          # Vite dev server, port 3000
-pnpm build        # Vite/Nitro build → self-contained Node server in dist/
+pnpm build        # Vite/Nitro build → self-contained Node server in .output/
 pnpm test         # Vitest (run mode)
+pnpm typecheck    # tsc --noEmit
 pnpm lint         # Oxlint (.oxlintrc.json; @tanstack/eslint-plugin-query via jsPlugins)
 pnpm fmt          # oxfmt (write)
 pnpm db:generate  # drizzle-kit generate (also db:migrate / db:push / db:pull / db:studio)
@@ -150,32 +155,32 @@ pnpm db:generate  # drizzle-kit generate (also db:migrate / db:push / db:pull / 
 ### Structure
 
 - `src/routes/` — file-based routes: `__root.tsx`, `index.tsx` (landing), `editor.tsx` (the editor layout), `editor.login.tsx` / `editor.email.tsx` / `editor.account.tsx` (the three surfaces), `preview.login.tsx` (`ssr: false`; the isolated document loaded into the login preview iframe), `preview.account.$.tsx` (`ssr: false`; the account console rendered from source, splat so its inner react-router paths still match).
-- `src/features/editor/`:
-    - `components/` — `editor-header`, `editor-sidebar`, `config-panel` (the theme controls; imports option arrays from `@keycloakify-editor/shadcn-theme/theme-meta` + swatch colors from `/presets`), `preview-pane` (the iframe host).
-    - `model/` — `theme-config.ts` (`ThemeConfig` type + `defaultThemeConfig`, built from the theme's `/defaults`), `viewport.ts`, `locales.ts`.
-    - `state/editor-context.tsx` — React context holding `viewport`, `previewColorScheme`, `config`, `saveStatus`; `useEditor()` hook.
-    - `stories/` — the **preview catalog** (the editor's analogue to Storybook): `pages.ts` defines ~40 login pages, each with named scenarios whose `overrides` are deep-merged over the base mock; helpers `definePage`/`simplePage`/`fieldError` in `helpers.ts`; `types.ts` defines `PageId = KcContext['pageId']` and category grouping.
+- `src/features/editor/` — one folder per editor **surface** plus shared code:
+    - `login/`, `email/`, `account/` — each has `sidebar/` (the controls) and `preview/` (`preview-iframe.tsx` hosts that surface's preview, plus toolbars); `login/` also has `hooks/use-preview-channel.ts` and `stories/` (the **preview catalog**: `pages.ts` defines ~40 login pages with named scenarios whose `overrides` are deep-merged over the base mock; helpers in `helpers.ts`; `types.ts` defines `PageId`); `account/hooks/use-account-preview-channel.ts`.
+    - `header/` — `editor-header`, `surface-switch`, `export-button` (calls the `generateJar` server fn), `import-button` (`parseThemeJar`), `sign-in-dialog`, `user-menu`.
+    - `shared/model/` — `theme-config.ts` (`ThemeConfig`/`LoginThemeConfig`/`EmailThemeConfig`, zod schemas, `defaultLoginThemeConfig` built from the theme's `KC_ENV_DEFAULTS`, and `themeConfigToProperties`/`emailConfigToProperties`), `property-keys.ts`, `assets.ts`, `viewport.ts`, `preview-color-scheme.ts`, `surface.ts`; `shared/validation/` (zod schema + `getXError` per concern); `shared/parse-theme-jar.ts` (JAR import).
+    - `server/` — server functions and pure helpers: `generate-jar.ts` (export; requires login), `jar-customizer.ts` (pure JAR rewrite, unit-tested), `favicon.ts`, `template-jar.ts` (loads `templates/base-theme.jar`, a Nitro server asset), `email-render-preview.ts`; tests in `server/tests/`.
+    - `state/editor-context.tsx` — React context (theme name, locale, panel layout, login/email/account config + uploaded assets, import/reset); `useEditor()` hook. Drafts persist across sign-in via `src/lib/draft-storage.ts` (IndexedDB).
 - `src/features/landing/` — marketing sections for the landing page.
-- `src/config/` — `env.ts` (zod-validated **server** env: `DATABASE_URL`, `OIDC_ISSUER_URI`, `OIDC_CLIENT_ID`), `constants.ts` (`GITHUB_URL`).
+- `src/config/` — `env.ts` (zod-validated **server** env: `OIDC_ISSUER_URI`, `OIDC_CLIENT_ID`, `OIDC_ACCESS_TOKEN_EXPECTED_AUDIENCE`, `DATABASE_URL` — note: `serverEnv` is not imported anywhere yet, so this validation does not currently run), `constants.ts` (`GITHUB_URL`).
 - `src/oidc.ts` — `oidc-spa` utilities (`bootstrapOidc`, `enforceLogin`, `useOidc`, `getOidc`, `fetchWithAuth`).
 - `src/db/` — `index.ts` (Neon client) + `schema.ts` (currently a placeholder `todos` table).
 - `src/routeTree.gen.ts` — **auto-generated** by TanStack Router. Do not edit.
 
 ### Editor ↔ theme preview protocol
 
-The live preview renders the _real_ theme in an isolated iframe and drives it with `postMessage` — understanding this flow requires reading both sides:
+Each surface renders the _real_ theme in an isolated same-origin iframe. Understanding a flow requires reading both sides:
 
-1. `features/editor/components/preview-pane.tsx` embeds `/preview/login` in an `<iframe>` (never reloaded; its width is clamped by the selected `viewport`).
-2. On every editor change it posts `{ type: 'kc-preview:state', payload: { pageId, scenarioId, colorScheme, config } }` (origin-checked).
-3. `routes/preview.login.tsx` listens for that message and, on mount, posts `{ type: 'kc-preview:ready' }` so the parent re-sends current state even if it fired before the listener attached.
-4. Scenario `overrides` can contain **non-cloneable functions** (e.g. `messagesPerField.get`), which cannot survive `postMessage` — so the preview re-resolves them locally via `getStory(pageId, storyId)` instead of receiving them.
-5. The preview builds the context with `getKcContextMock({ pageId, overrides })`, mapping `ThemeConfig` fields onto `SHADCN_THEME_*` properties.
-6. Color scheme is applied by toggling `dark`/`light` classes **and** writing `localStorage["isDarkMode"]` — the theme's `ThemeProvider` reads that key first on every (re)mount, and a locale change remounts `KcPage`, so persisting it keeps the preview from snapping back to the OS scheme.
+- **Login** — `features/editor/login/preview/preview-iframe.tsx` embeds `/preview/login` and calls `usePublishPreview`; `routes/preview.login.tsx` calls `useReceivePreview`. Transport is a same-origin **`BroadcastChannel("kc-preview")`** (`login/hooks/use-preview-channel.ts`), so a preview opened in a new tab also receives updates. Messages: `{ type: "request" }` (sent by the preview on mount; the editor answers with current state + assets, since BroadcastChannel doesn't buffer), `{ type: "state", state: { pageId, storyId, colorScheme, config, locale } }`, `{ type: "assets", assets }` (uploaded `File`s). Known limitation: the channel name is fixed, so two editor tabs share it.
+- Scenario `overrides` can contain **non-cloneable functions** (e.g. `messagesPerField.get`), so they are never sent; the preview re-resolves them locally via `getStory(pageId, storyId)` and builds the context with `getKcContextMock({ pageId, overrides })`, mapping config onto `SHADCN_THEME_*` properties.
+- Color scheme is applied by toggling the `dark` class **and** writing `localStorage["isDarkMode"]` — the theme's `ThemeProvider` reads that key on every (re)mount, and a locale change remounts `KcPage`.
+- **Account** — `features/editor/account/preview/preview-iframe.tsx` ↔ `routes/preview.account.$.tsx` use `window.postMessage` with `kc-account-preview:*` messages (`request-config`, `ready`, `config`, `branding`); both sides check `event.origin === window.location.origin` **and** the exact source window (`account/hooks/use-account-preview-channel.ts`).
+- **Email** — no channel: `email/preview/preview-iframe.tsx` calls the `renderEmailPreviewFn` server function and shows the returned HTML via `srcDoc`.
 
 Build wiring (`vite.config.ts`): `ssr.noExternal` bundles the theme (source-only) and `@keycloakify/keycloak-account-ui` (extensionless ESM) for SSR rather than externalizing them; the `oidc-spa` Vite plugin automatically switches any route using `enforceLogin` to `ssr: false`; `viteReact({ compiler: true })` runs Oxc's native React Compiler pass (needs the optional `oxc-transform-react` dev dependency, no Babel) — so manual `useMemo`/`useCallback` for identity is unnecessary in app code, but components that break the rules of React are silently skipped.
 
 ## Gotchas
 
 - **Auto-generated, never hand-edit:** `packages/shadcn-theme/src/kc.gen.tsx`, `apps/editor/src/routeTree.gen.ts`.
-- The theme's `exports` paths (`/preview`, `/theme-meta`, `/presets`, `/defaults`) are load-bearing for the editor — refactor them in lockstep with the editor's imports.
-- Preview `overrides` containing functions can't cross the iframe `postMessage` boundary; keep their resolution inside `routes/preview.login.tsx`.
+- The theme's `exports` paths (`./preview`, `./theme`, `./email`, `./email-preview`, `./account-preview`) are load-bearing for the editor — refactor them in lockstep with the editor's imports.
+- Preview `overrides` containing functions can't be structured-cloned across the preview channel; keep their resolution inside `routes/preview.login.tsx`.

@@ -88,7 +88,6 @@ export function FileUpload({
             setError("Unsupported file type.");
             return;
         }
-        console.log("file.size", file.size, "maxSizeBytes", maxSizeBytes);
         if (maxSizeBytes != null && file.size > maxSizeBytes) {
             setError(`File is too large (max ${formatFileSize(maxSizeBytes)}).`);
             return;
@@ -136,7 +135,7 @@ export function FileUpload({
                     </AttachmentContent>
                     {!disabled && (
                         <AttachmentActions>
-                            <AttachmentAction aria-label="Remove sales-dashboard.pdf" onClick={clear}>
+                            <AttachmentAction aria-label={`Remove ${value.name}`} onClick={clear}>
                                 <XIcon />
                             </AttachmentAction>
                         </AttachmentActions>
