@@ -36,3 +36,10 @@ catalogs:
 
 minimumReleaseAgeExclude:
   - keycloakify@11.16.1
+
+# Security floor (CVE-2026-102989 / GHSA-qx66-fv34-fjm8, TanStack Start server-function XSS):
+# forces every copy in the workspace past the patched versions — including the one pnpm
+# auto-installs as oidc-spa's optional peer for packages/shadcn-theme.
+overrides:
+    '@tanstack/react-start': ^1.168.60
+    '@tanstack/start-server-core': ^1.169.39

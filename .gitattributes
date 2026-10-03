@@ -1,0 +1,18 @@
+# Store and check out text files with LF on every OS: oxfmt and CI (Linux) expect LF,
+# and this overrides per-machine settings like Windows' `core.autocrlf=true`.
+* text=auto eol=lf
+
+# Binary files: never touch their bytes.
+*.jar binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.webp binary
+*.avif binary
+*.ico binary
+*.woff binary
+*.woff2 binary
+*.ttf binary
+*.otf binary
+*.eot binary
