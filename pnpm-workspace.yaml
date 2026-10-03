@@ -33,3 +33,6 @@ catalogs:
         '@tanstack/react-router-ssr-query': ^1.167.1
         '@tanstack/react-start': ^1.168.60
         '@tanstack/router-plugin': ^1.168.13
+
+minimumReleaseAgeExclude:
+  - keycloakify@11.16.1

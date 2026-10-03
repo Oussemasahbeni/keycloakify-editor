@@ -9,23 +9,23 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as EditorRouteImport } from './routes/editor'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as EditorRouteImport } from './routes/editor'
 import { Route as EditorIndexRouteImport } from './routes/editor.index'
-import { Route as PreviewLoginRouteImport } from './routes/preview.login'
-import { Route as EditorLoginRouteImport } from './routes/editor.login'
-import { Route as EditorEmailRouteImport } from './routes/editor.email'
 import { Route as EditorAccountRouteImport } from './routes/editor.account'
+import { Route as EditorEmailRouteImport } from './routes/editor.email'
+import { Route as EditorLoginRouteImport } from './routes/editor.login'
+import { Route as PreviewLoginRouteImport } from './routes/preview.login'
 import { Route as PreviewAccountSplatRouteImport } from './routes/preview.account.$'
 
-const EditorRoute = EditorRouteImport.update({
-  id: '/editor',
-  path: '/editor',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EditorRoute = EditorRouteImport.update({
+  id: '/editor',
+  path: '/editor',
   getParentRoute: () => rootRouteImport,
 } as any)
 const EditorIndexRoute = EditorIndexRouteImport.update({
@@ -33,14 +33,9 @@ const EditorIndexRoute = EditorIndexRouteImport.update({
   path: '/',
   getParentRoute: () => EditorRoute,
 } as any)
-const PreviewLoginRoute = PreviewLoginRouteImport.update({
-  id: '/preview/login',
-  path: '/preview/login',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const EditorLoginRoute = EditorLoginRouteImport.update({
-  id: '/login',
-  path: '/login',
+const EditorAccountRoute = EditorAccountRouteImport.update({
+  id: '/account',
+  path: '/account',
   getParentRoute: () => EditorRoute,
 } as any)
 const EditorEmailRoute = EditorEmailRouteImport.update({
@@ -48,10 +43,15 @@ const EditorEmailRoute = EditorEmailRouteImport.update({
   path: '/email',
   getParentRoute: () => EditorRoute,
 } as any)
-const EditorAccountRoute = EditorAccountRouteImport.update({
-  id: '/account',
-  path: '/account',
+const EditorLoginRoute = EditorLoginRouteImport.update({
+  id: '/login',
+  path: '/login',
   getParentRoute: () => EditorRoute,
+} as any)
+const PreviewLoginRoute = PreviewLoginRouteImport.update({
+  id: '/preview/login',
+  path: '/preview/login',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const PreviewAccountSplatRoute = PreviewAccountSplatRouteImport.update({
   id: '/preview/account/$',
@@ -130,18 +130,18 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/editor': {
-      id: '/editor'
-      path: '/editor'
-      fullPath: '/editor'
-      preLoaderRoute: typeof EditorRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/': {
       id: '/'
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/editor': {
+      id: '/editor'
+      path: '/editor'
+      fullPath: '/editor'
+      preLoaderRoute: typeof EditorRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/editor/': {
@@ -151,18 +151,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof EditorIndexRouteImport
       parentRoute: typeof EditorRoute
     }
-    '/preview/login': {
-      id: '/preview/login'
-      path: '/preview/login'
-      fullPath: '/preview/login'
-      preLoaderRoute: typeof PreviewLoginRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/editor/login': {
-      id: '/editor/login'
-      path: '/login'
-      fullPath: '/editor/login'
-      preLoaderRoute: typeof EditorLoginRouteImport
+    '/editor/account': {
+      id: '/editor/account'
+      path: '/account'
+      fullPath: '/editor/account'
+      preLoaderRoute: typeof EditorAccountRouteImport
       parentRoute: typeof EditorRoute
     }
     '/editor/email': {
@@ -172,12 +165,19 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof EditorEmailRouteImport
       parentRoute: typeof EditorRoute
     }
-    '/editor/account': {
-      id: '/editor/account'
-      path: '/account'
-      fullPath: '/editor/account'
-      preLoaderRoute: typeof EditorAccountRouteImport
+    '/editor/login': {
+      id: '/editor/login'
+      path: '/login'
+      fullPath: '/editor/login'
+      preLoaderRoute: typeof EditorLoginRouteImport
       parentRoute: typeof EditorRoute
+    }
+    '/preview/login': {
+      id: '/preview/login'
+      path: '/preview/login'
+      fullPath: '/preview/login'
+      preLoaderRoute: typeof PreviewLoginRouteImport
+      parentRoute: typeof rootRouteImport
     }
     '/preview/account/$': {
       id: '/preview/account/$'

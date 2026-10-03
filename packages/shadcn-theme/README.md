@@ -91,7 +91,6 @@ export default defineConfig({
                     name: "SHADCN_THEME_LOGO_DARK_URL",
                     default: "",
                 },
-                { name: "SHADCN_THEME_APP_NAME", default: "Acme Inc." },
                 { name: "SHADCN_THEME_LAYOUT", default: "two-column" },
                 { name: "SHADCN_THEME_ASIDE_IMAGE_URL", default: "" },
                 { name: "SHADCN_THEME_PRIMARY", default: "neutral" },
@@ -216,17 +215,28 @@ The login theme is primarily customized through Keycloakify environment variable
 
 ### Environment Variables
 
-| Variable | Default | Allowed values | Description |
-| ----------------------------- | -------------- | --------------------------------------------- | ------------------------------------------------------------------------------------------------- | ----- |
-| `SHADCN_THEME_LOGO_URL` | `""` | Any image URL or `%BASE_URL%/filename` | Logo used in light mode. Use `%BASE_URL%/logo.svg` to self-host via `public/`. |
-| `SHADCN_THEME_LOGO_DARK_URL` | `""` | Any image URL or `%BASE_URL%/filename` | Logo used in dark mode. Optional; falls back to `SHADCN_THEME_LOGO_URL`. Use `%BASE_URL%/logo.svg` to self-host via `public/`. |
-| `SHADCN_THEME_ASIDE_IMAGE_URL` | `""` | Any image URL or `%BASE_URL%/filename` | `image-aside` panel image. Use `%BASE_URL%/image.jpg` to self-host via `public/`. | mode. |
-| `SHADCN_THEME_LAYOUT` | `"two-column"` | `two-column`, `centered-card`, `image-aside` | Selects the outer page layout used by `Template.tsx`. |
-| `SHADCN_THEME_PRIMARY` | `"neutral"` | See accent preset list below | Selects the shadcn-style accent color family used for primary actions. |
-| `SHADCN_THEME_BASE` | `"neutral"` | See base palette list below | Selects the neutral surface palette used for backgrounds, cards, borders, muted states, and ring. |
-| `SHADCN_THEME_RADIUS` | `"default"` | `default`, `none`, `small`, `medium`, `large` | Controls the global border radius token. |
-| `SHADCN_THEME_FONT` | `"geist"` | See font preset list below | Controls the main theme font family. |
-| `SHADCN_THEME_SHOW_PLACEHOLDER` | `"true"` | `true`, `false` | Shows or hides placeholders on supported auth forms. |
+| Variable                                 | Default        | Allowed values                                              | Description                                                                                                                    |
+| ---------------------------------------- | -------------- | ----------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
+| `SHADCN_THEME_LOGO_URL`                  | `""`           | Any image URL or `%BASE_URL%/filename`                      | Logo used in light mode. Use `%BASE_URL%/logo.svg` to self-host via `public/`.                                                 |
+| `SHADCN_THEME_LOGO_DARK_URL`             | `""`           | Any image URL or `%BASE_URL%/filename`                      | Logo used in dark mode. Optional; falls back to `SHADCN_THEME_LOGO_URL`. Use `%BASE_URL%/logo.svg` to self-host via `public/`. |
+| `SHADCN_THEME_ASIDE_IMAGE_URL`           | `""`           | Any image URL or `%BASE_URL%/filename`                      | `image-aside` panel image. Use `%BASE_URL%/image.jpg` to self-host via `public/`.                                              |
+| `SHADCN_THEME_CARD_IMAGE_URL`            | `""`           | Any image URL or `%BASE_URL%/filename`                      | `centered-card` background image.                                                                                              |
+| `SHADCN_THEME_SIDE_PANEL_IMAGE_URL`      | `""`           | Any image URL or `%BASE_URL%/filename`                      | `two-column` side panel image.                                                                                                 |
+| `SHADCN_THEME_SIDE_PANEL_IMAGE_DARK_URL` | `""`           | Any image URL or `%BASE_URL%/filename`                      | Dark-mode side panel image. Optional; falls back to `SHADCN_THEME_SIDE_PANEL_IMAGE_URL`.                                       |
+| `SHADCN_THEME_SIDE_PANEL_POSITION`       | `"right"`      | `right`, `left`                                             | Which side the `two-column` side panel sits on.                                                                                |
+| `SHADCN_THEME_LAYOUT`                    | `"two-column"` | `two-column`, `centered-card`, `image-aside`                | Selects the outer page layout used by `Template.tsx`.                                                                          |
+| `SHADCN_THEME_PRIMARY`                   | `"neutral"`    | See accent preset list below                                | Selects the shadcn-style accent color family used for primary actions.                                                         |
+| `SHADCN_THEME_BASE`                      | `"neutral"`    | See base palette list below                                 | Selects the neutral surface palette used for backgrounds, cards, borders, muted states, and ring.                              |
+| `SHADCN_THEME_RADIUS`                    | `"default"`    | `default`, `none`, `small`, `medium`, `large`               | Controls the global border radius token.                                                                                       |
+| `SHADCN_THEME_FONT`                      | `"geist"`      | See font preset list below                                  | Controls the main theme font family.                                                                                           |
+| `SHADCN_THEME_SHOW_PLACEHOLDER`          | `"true"`       | `true`, `false`                                             | Shows or hides placeholders on supported auth forms.                                                                           |
+| `SHADCN_THEME_SHOW_REALM_NAME`           | `"true"`       | `true`, `false`                                             | Shows the realm name in the `two-column` side panel.                                                                           |
+| `SHADCN_THEME_WELCOME_MESSAGE`           | `""`           | Any text                                                    | Side panel welcome text. Empty uses the translated `welcomeMessage` message key.                                               |
+| `SHADCN_EMAIL_PRIMARY_COLOR`             | `"#171717"`    | Hex color                                                   | Email button/accent color.                                                                                                     |
+| `SHADCN_EMAIL_FOREGROUND_COLOR`          | `"#fafafa"`    | Hex color                                                   | Text color on the email primary color.                                                                                         |
+| `SHADCN_EMAIL_LOGO_URL`                  | `""`           | Image URL, or a file name in the email theme's `resources/` | Email header logo. Empty shows no logo.                                                                                        |
+
+All defaults are declared once in `src/kc-env.ts` (`KC_ENV_DEFAULTS`).
 
 `SHADCN_THEME_SHOW_PLACEHOLDER` currently applies to the fixed auth forms implemented directly in this theme, such as login, login-username, login-password, reset-password, and update-password.
 
@@ -336,7 +346,7 @@ Available controls:
 
 ### Branding Notes
 
-1. **Logo**: Set `SHADCN_THEME_LOGO_URL` (and optionally `SHADCN_THEME_LOGO_DARK_URL` for a dark-mode variant; it falls back to the light logo), or replace `src/login/assets/img/auth-logo.svg`
+1. **Logo**: Set `SHADCN_THEME_LOGO_URL` (and optionally `SHADCN_THEME_LOGO_DARK_URL` for a dark-mode variant; it falls back to the light logo), or replace `src/login/assets/img/logo.svg`
 2. **Colors**: Use `SHADCN_THEME_PRIMARY`, `SHADCN_THEME_BASE`, and `SHADCN_THEME_RADIUS`
 3. **Fonts**: Use `SHADCN_THEME_FONT`; the project now uses packaged font imports instead of manual asset-only font wiring
 
@@ -382,11 +392,7 @@ pnpm emails:preview
 
 ### Email Locales
 
-Translations are in `src/email/locales/{locale}/translation.json`:
-
-- `en/` - English
-- `fr/` - French
-- `ar/` - Arabic
+Translations are in `src/email/locales/{locale}/translation.json`, one folder per locale (30 locales, e.g. `en/`, `fr/`, `ar/`, `pt-BR/`, `zh-CN/`). The email build's `locales` list in `vite.config.ts` must include every folder.
 
 ---
 

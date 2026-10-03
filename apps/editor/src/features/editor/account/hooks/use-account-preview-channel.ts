@@ -30,6 +30,7 @@ export type AccountPreviewBranding = {
 type ChannelMessage =
     | { type: "kc-account-preview:request-config" }
     | { type: "kc-account-preview:ready" }
+    | { type: "kc-account-preview:error"; message: string }
     | { type: "kc-account-preview:config"; config: AccountPreviewConfig }
     | { type: "kc-account-preview:branding"; branding: AccountPreviewBranding };
 
@@ -72,11 +73,18 @@ export function useReceiveAccountPreview(handlers: {
         return () => window.removeEventListener("message", onMessage);
     }, [isFramed]);
 
-    return { isFramed, postReady };
+    return { isFramed, postReady, postError };
 }
 
 function postReady() {
     window.parent.postMessage({ type: "kc-account-preview:ready" } satisfies ChannelMessage, window.location.origin);
+}
+
+function postError(message: string) {
+    window.parent.postMessage(
+        { type: "kc-account-preview:error", message } satisfies ChannelMessage,
+        window.location.origin,
+    );
 }
 
 /**
@@ -92,14 +100,19 @@ export function usePublishAccountPreview(
     const isReady = readyFrameKey === params.frameKey;
     const markReady = useEffectEvent(() => setReadyFrameKey(params.frameKey));
 
+    // Same per-frame bookkeeping for a failed sign-in: a new frame (new key) starts clean.
+    const [failure, setFailure] = useState<{ frameKey: string; message: string }>();
+    const error = failure?.frameKey === params.frameKey ? failure.message : undefined;
+    const markFailed = useEffectEvent((message: string) => setFailure({ frameKey: params.frameKey, message }));
+
     const post = (message: ChannelMessage) => {
         frameRef.current?.contentWindow?.postMessage(message, window.location.origin);
     };
     const replyConfig = useEffectEvent(() => {
         if (params.config) post({ type: "kc-account-preview:config", config: params.config });
     });
-    const publishBranding = useEffectEvent(() => {
-        post({ type: "kc-account-preview:branding", branding: params.branding });
+    const publishBranding = useEffectEvent((branding: AccountPreviewBranding) => {
+        post({ type: "kc-account-preview:branding", branding });
     });
 
     useEffect(() => {
@@ -111,6 +124,7 @@ export function usePublishAccountPreview(
 
             if (data.type === "kc-account-preview:request-config") replyConfig();
             else if (data.type === "kc-account-preview:ready") markReady();
+            else if (data.type === "kc-account-preview:error") markFailed(data.message);
         };
 
         window.addEventListener("message", onMessage);
@@ -118,8 +132,9 @@ export function usePublishAccountPreview(
     }, [frameRef]);
 
     useEffect(() => {
-        if (isReady) publishBranding();
-    }, [isReady]);
+        // `branding` is passed in (not read inside the event) so it is a real dependency of this effect.
+        if (isReady) publishBranding(params.branding);
+    }, [isReady, params.branding]);
 
-    return { isReady };
+    return { isReady, error };
 }

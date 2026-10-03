@@ -166,7 +166,7 @@ function NavGroup({ menuItem }: { menuItem: MenuItemWithChildren }) {
     const isActive = useIsActive(menuItem);
     const [open, setOpen] = useState(isActive);
     const [wasActive, setWasActive] = useState(isActive);
-    
+
     if (isActive !== wasActive) {
         setWasActive(isActive);
         if (isActive) setOpen(true);

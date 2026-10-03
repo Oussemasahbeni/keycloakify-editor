@@ -35,7 +35,8 @@
                 "jsx-a11y/click-events-have-key-events": "off",
                 "jsx-a11y/no-noninteractive-element-interactions": "off",
                 "shadcn/no-restyle": "off",
-                "shadcn/require-static-classes": "off"
+                "shadcn/require-static-classes": "off",
+                "react/set-state-in-effect": "off"
             }
         },
         {

@@ -67,27 +67,19 @@ export function usePublishPreview(
 ) {
     const channelRef = useRef<BroadcastChannel | null>(null);
 
-    const publishState = useEffectEvent(() => {
-        channelRef.current?.postMessage({
-            type: "state",
-            state: { pageId, storyId, colorScheme, config, locale },
-        } satisfies ChannelMessage);
-    });
-    const publishAssets = useEffectEvent(() => {
-        channelRef.current?.postMessage({
-            type: "assets",
-            assets,
-        } satisfies ChannelMessage);
+    const post = (message: ChannelMessage) => channelRef.current?.postMessage(message);
+
+    // A preview that (re)loaded asks for the current values; reply with the latest ones.
+    const replyToRequest = useEffectEvent(() => {
+        post({ type: "state", state: { pageId, storyId, colorScheme, config, locale } });
+        post({ type: "assets", assets });
     });
 
     useEffect(() => {
         const channel = new BroadcastChannel(CHANNEL_NAME);
         channelRef.current = channel;
         channel.addEventListener("message", (e: MessageEvent<ChannelMessage>) => {
-            if (e.data.type === "request") {
-                publishState();
-                publishAssets();
-            }
+            if (e.data.type === "request") replyToRequest();
         });
         return () => {
             channel.close();
@@ -95,6 +87,15 @@ export function usePublishPreview(
         };
     }, []);
 
-    useEffect(() => publishState(), []);
-    useEffect(() => publishAssets(), []);
+    // Push every change. The values are read inside the effect, so they are its real dependencies.
+    useEffect(() => {
+        channelRef.current?.postMessage({
+            type: "state",
+            state: { pageId, storyId, colorScheme, config, locale },
+        } satisfies ChannelMessage);
+    }, [pageId, storyId, colorScheme, config, locale]);
+
+    useEffect(() => {
+        channelRef.current?.postMessage({ type: "assets", assets } satisfies ChannelMessage);
+    }, [assets]);
 }

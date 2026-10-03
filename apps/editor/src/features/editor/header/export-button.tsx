@@ -63,15 +63,7 @@ export function ExportButton() {
                 type: "success",
             });
         },
-        onError: async error => {
-            if (!isUserLoggedIn) {
-                try {
-                    await saveDraft({ themeName, login: config, assets, email: emailConfig, emailLogoFile });
-                } catch {}
-
-                setOpenSignInDialog(true);
-                return;
-            }
+        onError: error => {
             toast.add({
                 description: error instanceof Error ? error.message : "Export failed.",
                 type: "error",
@@ -86,6 +78,20 @@ export function ExportButton() {
                 description: `Invalid theme name: ${nameError}`,
                 type: "error",
             });
+
+        // Export needs a session: ask for sign-in up front instead of uploading everything
+        // first, and keep the edits in a draft so they survive the sign-in redirect.
+        if (!isUserLoggedIn) {
+            void saveDraft({ themeName, login: config, assets, email: emailConfig, emailLogoFile })
+                .catch(() =>
+                    toast.add({
+                        description: "Couldn't save your edits before signing in; they may be lost after the redirect.",
+                        type: "warning",
+                    }),
+                )
+                .finally(() => setOpenSignInDialog(true));
+            return;
+        }
 
         exportTheme();
     }

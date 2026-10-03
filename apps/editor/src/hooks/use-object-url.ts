@@ -12,11 +12,15 @@ export function useObjectUrl(file: Blob | null | undefined): string | undefined 
     const [url, setUrl] = useState<string>();
 
     useEffect(() => {
+        // Blob URLs are an external resource: create + revoke in the same effect so every URL is
+        // released. (A useMemo version leaks/revokes wrongly under StrictMode's double invocation.)
         if (!file) {
+            // oxlint-disable-next-line react/set-state-in-effect -- see above
             setUrl(undefined);
             return;
         }
         const next = URL.createObjectURL(file);
+        // oxlint-disable-next-line react/set-state-in-effect -- see above
         setUrl(next);
         return () => URL.revokeObjectURL(next);
     }, [file]);

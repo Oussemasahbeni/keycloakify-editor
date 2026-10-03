@@ -42,6 +42,7 @@ export function ThemeProvider({ children, defaultTheme = "system", storageKey = 
 
     useEffect(() => {
         const stored = localStorage.getItem(storageKey);
+        // oxlint-disable-next-line react/set-state-in-effect -- localStorage is only readable after mount (the SSR render has none); reading it during render would cause a hydration mismatch
         setThemeState(stored === "light" || stored === "dark" || stored === "system" ? stored : defaultTheme);
         setMounted(true);
     }, [defaultTheme, storageKey]);

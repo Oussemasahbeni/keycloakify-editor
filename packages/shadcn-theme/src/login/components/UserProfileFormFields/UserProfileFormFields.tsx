@@ -50,14 +50,15 @@ export function UserProfileFormFields(props: UserProfileFormFieldsProps) {
         onIsFormSubmittableValueChange(isFormSubmittable);
     }, [isFormSubmittable]);
 
-    const groupNameRef = { current: "" };
-
     return (
         <>
-            {formFieldStates.map(({ attribute, displayableErrors, valueOrValues }) => {
+            {formFieldStates.map(({ attribute, displayableErrors, valueOrValues }, index) => {
                 return (
                     <Fragment key={attribute.name}>
-                        <GroupLabel attribute={attribute} groupNameRef={groupNameRef} />
+                        <GroupLabel
+                            attribute={attribute}
+                            previousGroupName={formFieldStates[index - 1]?.attribute.group?.name ?? ""}
+                        />
                         {BeforeField !== undefined && (
                             <BeforeField
                                 attribute={attribute}

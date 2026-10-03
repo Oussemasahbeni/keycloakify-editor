@@ -66,7 +66,7 @@ export function EditorProvider({ children }: { children: React.ReactNode }) {
     const [locale, setLocale] = useState<Locale>(DEFAULT_LOCALE);
 
     const [followedTheme, setFollowedTheme] = useState(theme);
-    
+
     if (theme !== followedTheme) {
         setFollowedTheme(theme);
         setPreviewColorScheme(resolvePreviewColorScheme(theme));

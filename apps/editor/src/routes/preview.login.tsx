@@ -44,6 +44,7 @@ function PreviewRoute() {
             const file = assets?.[key];
             if (file) urls[key] = URL.createObjectURL(file);
         }
+        // oxlint-disable-next-line react/set-state-in-effect -- blob URLs are an external resource, created and revoked by this effect
         setAssetUrls(urls);
         return () => {
             for (const url of Object.values(urls)) URL.revokeObjectURL(url);

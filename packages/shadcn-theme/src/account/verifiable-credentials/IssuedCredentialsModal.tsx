@@ -74,7 +74,8 @@ export const IssuedCredentialsModal = ({ credentialScopeName, onClose }: IssuedC
     const { data: issued, refetch } = useIssuedVerifiableCredentials(ofThisType);
     const { page, toolbarProps } = useClientPagination(issued, matches);
 
-    const now = Date.now();
+    // Captured once when the modal opens; good enough for "expired" labels.
+    const [now] = useState(() => Date.now());
     const dateTime = (value?: number) => (value ? formatDate(new Date(value), context.environment.locale) : "—");
 
     const revoke = useAccountMutation(

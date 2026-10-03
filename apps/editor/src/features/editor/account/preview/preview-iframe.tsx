@@ -1,6 +1,6 @@
-import { LogIn } from "lucide-react";
+import { LogIn, RotateCcw, TriangleAlert } from "lucide-react";
 import { createKeycloakUtils } from "oidc-spa/keycloak";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 
 import { Button } from "#/components/ui/button";
 import { Spinner } from "#/components/ui/spinner";
@@ -30,6 +30,8 @@ export function AccountPreviewIframe() {
     const width = getViewportWidth(login.viewport);
 
     const iframeRef = useRef<HTMLIFrameElement>(null);
+    // Bumped by "Retry": part of the frame key, so React mounts a fresh frame.
+    const [attempt, setAttempt] = useState(0);
 
     // An uploaded logo wins over the URL field, same precedence as the login preview.
     const uploadedLogo = useObjectUrl(login.assets.logoUrl);
@@ -68,8 +70,9 @@ export function AccountPreviewIframe() {
         logos,
     };
 
-    // A locale change remounts the frame (the console reads it once), hence the key.
-    const { isReady } = usePublishAccountPreview(iframeRef, { config, branding, frameKey: locale });
+    // A locale change remounts the frame (the console reads it once), hence the key; so does a retry.
+    const frameKey = `${locale}:${attempt}`;
+    const { isReady, error } = usePublishAccountPreview(iframeRef, { config, branding, frameKey });
 
     if (!oidc.isUserLoggedIn) {
         return (
@@ -89,15 +92,26 @@ export function AccountPreviewIframe() {
     return (
         <div className="flex h-full flex-col">
             <div className="relative grid flex-1 place-items-center overflow-auto bg-muted/30 p-4">
-                {!isReady && (
+                {!isReady && !error && (
                     <div className="pointer-events-none absolute inset-0 flex items-center justify-center gap-2 text-sm text-muted-foreground">
                         <Spinner />
                         <span>Loading account console…</span>
                     </div>
                 )}
+                {!isReady && error && (
+                    <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 p-4 text-center">
+                        <TriangleAlert className="size-6 text-destructive" />
+                        <p className="text-sm font-medium">The account console preview couldn't sign in</p>
+                        <p className="max-w-sm text-sm text-muted-foreground">{error}</p>
+                        <Button size="sm" variant="outline" onClick={() => setAttempt(current => current + 1)}>
+                            <RotateCcw />
+                            Retry
+                        </Button>
+                    </div>
+                )}
                 {/* oxlint-disable-next-line react/iframe-missing-sandbox -- same-origin first-party /preview/account route; the frame must navigate to Keycloak and back to log in, which a sandbox would break */}
                 <iframe
-                    key={locale}
+                    key={frameKey}
                     ref={iframeRef}
                     src={PREVIEW_PATH}
                     title="Account console preview"

@@ -30,6 +30,7 @@ type IconMapperProps = {
 /** Brand icon for an identity provider alias (linked accounts). */
 export const IconMapper = ({ icon, className = "size-6" }: IconMapperProps) => {
     const SpecificIcon = getIcon(icon);
+    // oxlint-disable-next-line react/static-components -- getIcon returns one of a fixed set of module-level icon components; nothing is created during render
     return <SpecificIcon aria-label={icon} className={className} />;
 };
 

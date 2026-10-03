@@ -43,7 +43,7 @@ function Loading() {
 function AccountPreviewDocument() {
     const [config, setConfig] = useState<AccountPreviewConfig | null>(null);
 
-    const { isFramed, postReady } = useReceiveAccountPreview({
+    const { isFramed, postReady, postError } = useReceiveAccountPreview({
         onConfig: incoming => setConfig(current => current ?? incoming),
         onBranding: ({ presets, logos }) => {
             applyThemePreset(presets);
@@ -61,12 +61,21 @@ function AccountPreviewDocument() {
 
     if (!config) return <Loading />;
 
-    return <AccountPreviewApp config={config} onReady={postReady} />;
+    return <AccountPreviewApp config={config} onReady={postReady} onError={postError} />;
 }
 
-function AccountPreviewApp({ config, onReady }: { config: AccountPreviewConfig; onReady: () => void }) {
+function AccountPreviewApp({
+    config,
+    onReady,
+    onError,
+}: {
+    config: AccountPreviewConfig;
+    onReady: () => void;
+    onError: (message: string) => void;
+}) {
     const [isAuthReady, setIsAuthReady] = useState(false);
     const notifyReady = useEffectEvent(onReady);
+    const notifyError = useEffectEvent(onError);
 
     // Built exactly once per document: the loader reloads the page on any change.
     const [kcContext] = useState(() =>
@@ -89,7 +98,18 @@ function AccountPreviewApp({ config, onReady }: { config: AccountPreviewConfig; 
         });
 
         void (async () => {
-            await keycloak.init({ onLoad: "login-required", pkceMethod: "S256" });
+            try {
+                await keycloak.init({ onLoad: "login-required", pkceMethod: "S256" });
+            } catch (error) {
+                // Keycloak unreachable, realm/client misconfigured, network error… Tell the
+                // editor (which keeps this frame hidden until `ready`) instead of hanging.
+                notifyError(
+                    error instanceof Error && error.message
+                        ? error.message
+                        : "Couldn't sign in to Keycloak for the account preview.",
+                );
+                return;
+            }
             setPreviewKeycloak(keycloak);
             notifyReady();
             setIsAuthReady(true);

@@ -1,5 +1,6 @@
 import { SiDiscord } from "@icons-pack/react-simple-icons";
 import { Link } from "@tanstack/react-router";
+import { useState } from "react";
 
 import { Logo } from "#/components/logo";
 import { DISCORD_INVITE_URL, KEYCLOAKIFY_URL, SHADCN_URL, TAILWIND_URL } from "#/config/constants.ts";
@@ -59,7 +60,7 @@ function FooterLink({ name, href }: { name: string; href: string }) {
 }
 
 export function LandingFooter() {
-    const currentYear = new Date().getFullYear();
+    const [currentYear] = useState(() => new Date().getFullYear());
 
     return (
         <footer>
