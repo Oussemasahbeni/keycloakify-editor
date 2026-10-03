@@ -72,14 +72,11 @@ export function useReceiveAccountPreview(handlers: {
         return () => window.removeEventListener("message", onMessage);
     }, [isFramed]);
 
-    const postReady = () => {
-        window.parent.postMessage(
-            { type: "kc-account-preview:ready" } satisfies ChannelMessage,
-            window.location.origin,
-        );
-    };
-
     return { isFramed, postReady };
+}
+
+function postReady() {
+    window.parent.postMessage({ type: "kc-account-preview:ready" } satisfies ChannelMessage, window.location.origin);
 }
 
 /**
@@ -91,7 +88,9 @@ export function usePublishAccountPreview(
     frameRef: RefObject<HTMLIFrameElement | null>,
     params: { config: AccountPreviewConfig | undefined; branding: AccountPreviewBranding; frameKey: string },
 ) {
-    const [isReady, setIsReady] = useState(false);
+    const [readyFrameKey, setReadyFrameKey] = useState<string>();
+    const isReady = readyFrameKey === params.frameKey;
+    const markReady = useEffectEvent(() => setReadyFrameKey(params.frameKey));
 
     const post = (message: ChannelMessage) => {
         frameRef.current?.contentWindow?.postMessage(message, window.location.origin);
@@ -103,8 +102,6 @@ export function usePublishAccountPreview(
         post({ type: "kc-account-preview:branding", branding: params.branding });
     });
 
-    useEffect(() => setIsReady(false), [params.frameKey]);
-
     useEffect(() => {
         const onMessage = (event: MessageEvent) => {
             const frame = frameRef.current?.contentWindow;
@@ -113,7 +110,7 @@ export function usePublishAccountPreview(
             if (!isChannelMessage(data)) return;
 
             if (data.type === "kc-account-preview:request-config") replyConfig();
-            else if (data.type === "kc-account-preview:ready") setIsReady(true);
+            else if (data.type === "kc-account-preview:ready") markReady();
         };
 
         window.addEventListener("message", onMessage);
@@ -122,7 +119,7 @@ export function usePublishAccountPreview(
 
     useEffect(() => {
         if (isReady) publishBranding();
-    }, [isReady, params.branding]);
+    }, [isReady]);
 
     return { isReady };
 }

@@ -17,7 +17,7 @@ import {
     UserRoundIcon,
     UsersIcon,
 } from "lucide-react";
-import { type MouseEvent as ReactMouseEvent, useEffect, useMemo, useState } from "react";
+import { type MouseEvent as ReactMouseEvent, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { matchPath, useHref, useLinkClickHandler, useLocation } from "react-router-dom";
 
@@ -165,13 +165,12 @@ function NavGroup({ menuItem }: { menuItem: MenuItemWithChildren }) {
     const { environment } = useEnvironment<AccountEnvironment>();
     const isActive = useIsActive(menuItem);
     const [open, setOpen] = useState(isActive);
-
-    // Expand the group whenever one of its children becomes the current route.
-    useEffect(() => {
-        if (isActive) {
-            setOpen(true);
-        }
-    }, [isActive]);
+    const [wasActive, setWasActive] = useState(isActive);
+    
+    if (isActive !== wasActive) {
+        setWasActive(isActive);
+        if (isActive) setOpen(true);
+    }
 
     return (
         <SidebarMenuItem>

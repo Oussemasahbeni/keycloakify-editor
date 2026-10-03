@@ -95,6 +95,6 @@ export function usePublishPreview(
         };
     }, []);
 
-    useEffect(() => publishState(), [pageId, storyId, colorScheme, config, locale]);
-    useEffect(() => publishAssets(), [assets]);
+    useEffect(() => publishState(), []);
+    useEffect(() => publishAssets(), []);
 }

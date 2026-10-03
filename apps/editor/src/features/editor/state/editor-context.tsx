@@ -5,7 +5,8 @@ import type { Layout } from "react-resizable-panels";
 
 import { useTheme } from "#/components/theme-provider";
 import { clearDraft, loadDraft } from "#/lib/draft-storage";
-import { DEFAULT_LOCALE, type Locale } from "#/lib/locales";
+import type { Locale } from "#/lib/locales";
+import { DEFAULT_LOCALE } from "#/lib/locales";
 
 import { BASE_THEME_NAME } from "../shared/constants";
 import type { ThemeAssetKey } from "../shared/model/assets";
@@ -64,11 +65,12 @@ export function EditorProvider({ children }: { children: React.ReactNode }) {
     const [panelLayout, setPanelLayout] = useState<Layout>();
     const [locale, setLocale] = useState<Locale>(DEFAULT_LOCALE);
 
-    // Follow the editor chrome theme: it settles to the stored value after
-    // mount, and the user can switch it later from the header.
-    useEffect(() => {
+    const [followedTheme, setFollowedTheme] = useState(theme);
+    
+    if (theme !== followedTheme) {
+        setFollowedTheme(theme);
         setPreviewColorScheme(resolvePreviewColorScheme(theme));
-    }, [theme]);
+    }
 
     useEffect(() => {
         let cancelled = false;

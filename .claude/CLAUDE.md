@@ -28,8 +28,9 @@ pnpm theme:build-keycloak-theme  # Full build → outputs .jar in packages/shadc
 pnpm theme:prepare               # prepare-publish script
 pnpm editor:dev                  # Editor dev server (port 3000)
 pnpm fmt                         # oxfmt (write) across the whole repo (fmt:check to verify)
-pnpm typecheck                   # tsc across both packages (CI gate)
 ```
+
+Type checking: Vite never type-checks. The theme's `build` runs `tsc -b` first (the `create-vite` template form — its `tsconfig.json` is references-only, so plain `tsc` would check nothing); the editor's `lint` runs `oxlint --type-aware --type-check`, which reports TypeScript errors.
 
 To run any package-local script directly: `pnpm -F @keycloakify-editor/shadcn-theme <script>` or `pnpm -F @keycloakify-editor/app <script>`.
 
@@ -42,7 +43,7 @@ Package-local scripts:
 ```bash
 pnpm dev                   # Vite dev server (uses mock kcContext)
 pnpm storybook             # Storybook on port 6006
-pnpm build                 # tsc check + Vite build
+pnpm build                 # tsc -b type-check + Vite build
 pnpm build-keycloak-theme  # Full build → .jar in dist_keycloak/
 pnpm build-storybook       # Static Storybook → storybook-static/
 pnpm lint                  # Oxlint (.oxlintrc.json)
@@ -144,8 +145,7 @@ Package-local scripts:
 pnpm dev          # Vite dev server, port 3000
 pnpm build        # Vite/Nitro build → self-contained Node server in .output/
 pnpm test         # Vitest (run mode)
-pnpm typecheck    # tsc --noEmit
-pnpm lint         # Oxlint (.oxlintrc.json; @tanstack/eslint-plugin-query via jsPlugins)
+pnpm lint         # Oxlint, type-aware + type-check (.oxlintrc.json; @tanstack/eslint-plugin-query via jsPlugins)
 pnpm fmt          # oxfmt (write)
 pnpm db:generate  # drizzle-kit generate (also db:migrate / db:push / db:pull / db:studio)
 ```

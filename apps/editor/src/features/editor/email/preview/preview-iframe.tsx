@@ -17,14 +17,13 @@ export function EmailPreviewIframe() {
 
     // An uploaded logo can't be sent as a File to the render server, so inline it as
     // a data: URL — the server embeds it as <img src> and the iframe resolves it.
-    const [logoDataUrl, setLogoDataUrl] = useState<string>();
+    const [loadedLogo, setLoadedLogo] = useState<{ file: File; url: string }>();
+    const logoDataUrl = loadedLogo?.file === logoFile ? loadedLogo.url : undefined;
+
     useEffect(() => {
-        if (!logoFile) {
-            setLogoDataUrl(undefined);
-            return;
-        }
+        if (!logoFile) return;
         const reader = new FileReader();
-        reader.addEventListener("load", () => setLogoDataUrl(reader.result as string));
+        reader.addEventListener("load", () => setLoadedLogo({ file: logoFile, url: reader.result as string }));
         reader.readAsDataURL(logoFile);
         return () => reader.abort();
     }, [logoFile]);

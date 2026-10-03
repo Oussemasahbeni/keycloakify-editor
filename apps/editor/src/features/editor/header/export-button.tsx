@@ -92,7 +92,7 @@ export function ExportButton() {
 
     function handleSignIn() {
         setOpenSignInDialog(false);
-        login?.();
+        login?.().catch(() => toast.add({ description: "Couldn't reach the sign-in server.", type: "error" }));
     }
 
     return (

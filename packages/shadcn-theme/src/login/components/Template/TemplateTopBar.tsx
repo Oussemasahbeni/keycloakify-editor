@@ -13,15 +13,19 @@ export function TemplateTopBar({ align = "start" }: { align?: "start" | "end" })
     const { kcContext } = useKcContext();
     const { enabledLanguages } = useI18n();
 
+    const homeUrl = kcContext.client.baseUrl || redirectUrlOrigin;
+
     return (
         <div className={cn("absolute inset-x-4 top-4 z-20 flex items-center gap-2", align === "end" && "justify-end")}>
-            <a
-                href={kcContext.client.baseUrl || redirectUrlOrigin}
-                aria-label="Home"
-                className={cn(buttonVariants({ variant: "outline", size: "icon" }))}
-            >
-                <FiHome />
-            </a>
+            {homeUrl && (
+                <a
+                    href={homeUrl}
+                    aria-label="Home"
+                    className={cn(buttonVariants({ variant: "outline", size: "icon" }))}
+                >
+                    <FiHome />
+                </a>
+            )}
 
             {kcContext.darkMode && <ModeToggle />}
 

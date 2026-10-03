@@ -1,6 +1,15 @@
 const SESSION_STORAGE_KEY = "redirectUrlOrigin";
 
-export const redirectUrlOrigin = ((): string => {
+function webOriginOf(value: string): string | undefined {
+    try {
+        const { protocol, origin } = new URL(value, window.location.origin);
+        return protocol === "http:" || protocol === "https:" ? origin : undefined;
+    } catch {
+        return undefined;
+    }
+}
+
+export const redirectUrlOrigin = ((): string | undefined => {
     from_url: {
         const url = new URL(window.location.href);
 
@@ -10,7 +19,11 @@ export const redirectUrlOrigin = ((): string => {
             break from_url;
         }
 
-        const origin = new URL(value).origin;
+        const origin = webOriginOf(value);
+
+        if (origin === undefined) {
+            break from_url;
+        }
 
         sessionStorage.setItem(SESSION_STORAGE_KEY, origin);
 
@@ -27,5 +40,5 @@ export const redirectUrlOrigin = ((): string => {
         return storedOrigin;
     }
 
-    return "#";
+    return undefined;
 })();

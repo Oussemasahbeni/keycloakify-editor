@@ -136,12 +136,11 @@ The editor is a full app and needs a few server env vars (see `apps/editor/.env.
 ```bash
 pnpm fmt         # format everything (oxfmt)
 pnpm theme:lint  # lint the theme
-pnpm editor:lint # lint the editor
-pnpm typecheck   # type-check both packages
+pnpm editor:lint # lint + type-check the editor
 pnpm editor:test # run the editor tests
 ```
 
-PRs and issues welcome. CI runs format, lint, typecheck, tests and build, so please run the above before submitting.
+PRs and issues welcome. CI runs format, lint (type-aware), tests and builds (the theme build type-checks with `tsc -b`), so please run the above before submitting.
 
 ## License
 

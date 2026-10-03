@@ -26,6 +26,11 @@ jobs:
 
             - run: pnpm install --frozen-lockfile
             - run: pnpm theme:build-keycloak-theme
+            - run: pnpm fmt:check
+            - run: pnpm theme:lint
+            - run: pnpm editor:lint
+            - run: pnpm editor:test
+            - run: pnpm editor:build
 
     security_scan:
         name: Security Scan (Trivy)
