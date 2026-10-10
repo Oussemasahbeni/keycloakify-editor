@@ -2,7 +2,7 @@ import { afterEach, describe, expect, it, vi } from "vitest";
 
 import { emptyAssets } from "#/features/editor/shared/model/assets.ts";
 import { defaultLoginThemeConfig } from "#/features/editor/shared/model/theme-config.ts";
-import type { ParsedTheme } from "#/features/editor/shared/parse-theme-jar.ts";
+import type { ParsedTheme } from "#/features/editor/shared/theme-document.ts";
 import { isSameThemeDocument } from "#/features/editor/shared/theme-document.ts";
 import {
     buildThemeFormData,

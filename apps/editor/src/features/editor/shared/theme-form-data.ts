@@ -4,7 +4,7 @@ import type { FileMeta } from "./files";
 import type { AssetKey, ThemeAssetKey } from "./model/assets";
 import { assetDefinitions } from "./model/assets";
 import { themeConfigSchema } from "./model/theme-config";
-import type { ParsedTheme } from "./parse-theme-jar";
+import type { ParsedTheme } from "./theme-document";
 import { emailLogoSchema, getEmailLogoMetaError } from "./validation/email-logo";
 import { faviconFileSchema, getFaviconMetaError } from "./validation/favicon";
 import { assetSchema, getImageMetaError } from "./validation/image";

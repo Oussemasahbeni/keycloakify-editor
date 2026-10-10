@@ -8,7 +8,7 @@ import type { SavedThemeRef } from "#/lib/draft-storage";
 import { clearDraft, loadDraft } from "#/lib/draft-storage";
 import { useOidc } from "#/oidc.ts";
 
-import type { ParsedTheme } from "../shared/parse-theme-jar";
+import type { ParsedTheme } from "../shared/theme-document";
 import { isSameThemeDocument } from "../shared/theme-document";
 import type { ThemeFileSlot } from "../shared/theme-form-data";
 import { getThemeFile, themeFileSlots } from "../shared/theme-form-data";

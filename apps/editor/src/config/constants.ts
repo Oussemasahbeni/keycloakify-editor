@@ -5,4 +5,4 @@ export const KEYCLOAKIFY_URL = "https://keycloakify.dev";
 export const TAILWIND_URL = "https://tailwindcss.com";
 export const SHADCN_URL = "https://ui.shadcn.com";
 /** What lifetime access is advertised at. The amount charged is the Stripe price in `STRIPE_PRICE_ID`. */
-export const LIFETIME_ACCESS_PRICE = { amount: "20", currency: "USD", label: "$20" } as const;
+export const LIFETIME_ACCESS_PRICE = { amount: "500", currency: "EUR", label: "€500" } as const;

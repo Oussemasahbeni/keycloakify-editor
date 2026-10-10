@@ -38,16 +38,5 @@ export function mimeFromFilename(name: string): string {
     return (ext && MIME_BY_EXTENSION[ext]) || "application/octet-stream";
 }
 
-const ZIP_SIGNATURES = [
-    [0x50, 0x4b, 0x03, 0x04],
-    [0x50, 0x4b, 0x05, 0x06],
-    [0x50, 0x4b, 0x07, 0x08],
-];
-
-export function isValidJarSignature(bytes: Uint8Array): boolean {
-    if (bytes.length < 4) return false;
-    return ZIP_SIGNATURES.some(sig => sig.every((byte, i) => bytes[i] === byte));
-}
-
 /** What the upload rules look at — a `File`, or the same facts about one held elsewhere. */
 export type FileMeta = Pick<File, "name" | "type" | "size">;

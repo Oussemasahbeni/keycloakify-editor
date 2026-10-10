@@ -5,7 +5,7 @@ import type { ThemeAssetKey } from "../shared/model/assets";
 import { emptyAssets } from "../shared/model/assets";
 import type { EmailThemeConfig, LoginThemeConfig } from "../shared/model/theme-config";
 import { defaultLoginThemeConfig } from "../shared/model/theme-config";
-import type { ParsedTheme } from "../shared/parse-theme-jar";
+import type { ParsedTheme } from "../shared/theme-document";
 
 const blankTheme: ParsedTheme = {
     themeName: BASE_THEME_NAME,

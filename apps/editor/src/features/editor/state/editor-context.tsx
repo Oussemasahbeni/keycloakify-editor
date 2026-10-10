@@ -12,7 +12,7 @@ import type { PreviewColorScheme } from "../shared/model/preview-color-scheme";
 import { resolvePreviewColorScheme } from "../shared/model/preview-color-scheme";
 import type { EmailThemeConfig, LoginThemeConfig } from "../shared/model/theme-config";
 import type { Viewport } from "../shared/model/viewport";
-import type { ParsedTheme } from "../shared/parse-theme-jar";
+import type { ParsedTheme } from "../shared/theme-document";
 import type { ThemePersistence } from "./use-saved-theme";
 import { useSavedTheme } from "./use-saved-theme";
 import { useThemeDocument } from "./use-theme-document";
@@ -23,7 +23,6 @@ type EditorContextValue = {
     panelLayout: Layout | undefined;
     setPanelLayout: (layout: Layout) => void;
     readonly resetConfig: () => void;
-    readonly importTheme: (state: ParsedTheme) => void;
     locale: Locale;
     readonly setLocale: (locale: Locale) => void;
     readonly theme: ParsedTheme;
@@ -99,7 +98,6 @@ export function EditorProvider({ themeId, shareToken, children }: EditorProvider
             themeDocument.resetConfig();
             setLocale(DEFAULT_LOCALE);
         },
-        importTheme: themeDocument.applyTheme,
         login: {
             viewport,
             setViewport,

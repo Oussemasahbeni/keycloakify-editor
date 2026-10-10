@@ -2,7 +2,7 @@ import type { KcEnvName } from "@keycloakify-editor/shadcn-theme/theme";
 
 /**
  * Config field → `SHADCN_THEME_*` env-var name. it lets `themeConfigToProperties`,
- * `assetDefinitions` and the JAR import translate `LoginThemeConfig` fields into
+ * `assetDefinitions` and `themeConfigToProperties` translate `LoginThemeConfig` fields into
  * the theme's properties. `satisfies …KcEnvName` ties every value to the theme's
  * env-var contract (`KC_ENV_DEFAULTS`),
  */

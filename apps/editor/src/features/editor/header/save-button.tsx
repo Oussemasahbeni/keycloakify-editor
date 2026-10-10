@@ -14,7 +14,7 @@ import type { SavedThemeRef } from "#/lib/draft-storage";
 import { saveDraft } from "#/lib/draft-storage";
 import { useOidc } from "#/oidc.ts";
 
-import type { ParsedTheme } from "../shared/parse-theme-jar";
+import type { ParsedTheme } from "../shared/theme-document";
 import type { ThemeFileSlot } from "../shared/theme-form-data";
 import { getThemeNameError } from "../shared/validation/theme-name";
 import { useEditor } from "../state/editor-context";

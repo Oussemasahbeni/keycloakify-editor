@@ -4,7 +4,6 @@ import { Badge } from "#/components/ui/badge";
 
 import { useEditor } from "../state/editor-context";
 import { ExportButton } from "./export-button";
-import { ImportButton } from "./import-button";
 import { SaveButton } from "./save-button";
 import { SurfaceSwitch } from "./surface-switch";
 import { UserMenu } from "./user-menu";
@@ -27,7 +26,6 @@ export function EditorHeader() {
             <SurfaceSwitch />
 
             <div className="flex items-center justify-end gap-2">
-                <ImportButton />
                 <SaveButton />
                 <ExportButton />
                 <ModeToggle />

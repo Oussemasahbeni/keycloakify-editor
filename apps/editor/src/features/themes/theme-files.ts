@@ -1,7 +1,7 @@
 import { mimeFromFilename } from "#/features/editor/shared/files.ts";
 import type { ThemeAssetKey } from "#/features/editor/shared/model/assets.ts";
 import { emptyAssets } from "#/features/editor/shared/model/assets.ts";
-import type { ParsedTheme } from "#/features/editor/shared/parse-theme-jar.ts";
+import type { ParsedTheme } from "#/features/editor/shared/theme-document.ts";
 import type { ThemeFileSlot } from "#/features/editor/shared/theme-form-data.ts";
 import { getThemeFile, themeFileSlots } from "#/features/editor/shared/theme-form-data.ts";
 
