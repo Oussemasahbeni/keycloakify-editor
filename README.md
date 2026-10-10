@@ -123,7 +123,8 @@ The editor is a full app and needs a few server env vars (see `apps/editor/.env.
 | `OIDC_ISSUER_URI` | OIDC issuer for login (`oidc-spa`) |
 | `OIDC_CLIENT_ID` | OIDC client id |
 | `OIDC_ACCESS_TOKEN_EXPECTED_AUDIENCE` | Expected `aud` of access tokens validated by the server (`src/oidc.ts`) |
-| `DATABASE_URL` | Neon Postgres connection string — reserved for upcoming features; nothing reads the DB yet |
+| `DATABASE_URL` | Neon Postgres connection string — stores saved themes (apply the schema with `pnpm -F @keycloakify-editor/app db:migrate`). The editor and export work without it |
+| `AWS_ENDPOINT_URL_S3`, `AWS_REGION`, `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, `THEME_ASSETS_BUCKET` | Neon Object Storage (S3 API) bucket and credential for images uploaded to saved themes. Only needed once a saved theme has an uploaded image |
 
 ## Tech stack
 

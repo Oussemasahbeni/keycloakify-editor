@@ -13,6 +13,8 @@ export function SurfaceSwitch() {
                     <Link
                         key={surface}
                         to={to}
+                        // Keeps `?themeId` / `?share`, which say which theme is open.
+                        search={previous => previous}
                         data-slot="button"
                         activeProps={{ className: buttonVariants({ variant: "default", size: "sm" }) }}
                         inactiveProps={{ className: buttonVariants({ variant: "outline", size: "sm" }) }}

@@ -14,6 +14,12 @@ declare global {
             readonly DATABASE_URL: string;
             readonly OIDC_ISSUER_URI: string;
             readonly OIDC_CLIENT_ID: string;
+            readonly OIDC_ACCESS_TOKEN_EXPECTED_AUDIENCE: string;
+            readonly AWS_ENDPOINT_URL_S3?: string;
+            readonly AWS_REGION?: string;
+            readonly AWS_ACCESS_KEY_ID?: string;
+            readonly AWS_SECRET_ACCESS_KEY?: string;
+            readonly THEME_ASSETS_BUCKET?: string;
         }
     }
 }

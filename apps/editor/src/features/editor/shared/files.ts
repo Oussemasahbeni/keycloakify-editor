@@ -48,3 +48,6 @@ export function isValidJarSignature(bytes: Uint8Array): boolean {
     if (bytes.length < 4) return false;
     return ZIP_SIGNATURES.some(sig => sig.every((byte, i) => bytes[i] === byte));
 }
+
+/** What the upload rules look at — a `File`, or the same facts about one held elsewhere. */
+export type FileMeta = Pick<File, "name" | "type" | "size">;

@@ -1,14 +1,10 @@
 import { createServerFn } from "@tanstack/react-start";
 
-import type { AssetKey } from "#/features/editor/shared/model/assets.ts";
 import { assetDefinitions } from "#/features/editor/shared/model/assets.ts";
-import { faviconFileSchema } from "#/features/editor/shared/validation/favicon.ts";
 import { oidcFnMiddleware } from "#/oidc.ts";
 
 import { getImageExtension } from "../shared/files";
-import { themeConfigSchema } from "../shared/model/theme-config";
-import { emailLogoSchema } from "../shared/validation/email-logo";
-import { assetSchema } from "../shared/validation/image";
+import { parseThemeFormData, themeOptionsSchema } from "../shared/theme-form-data";
 import { generateFaviconSet } from "./favicon";
 import { customizeThemeJar } from "./jar-customizer";
 import { loadTemplateJar } from "./template-jar";
@@ -30,25 +26,9 @@ export const generateJar = createServerFn({ method: "POST" })
             throw new Error("Expected multipart/form-data.");
         }
 
-        const rawOptions = data.get("options");
-        if (typeof rawOptions !== "string") {
-            throw new Error("Missing `options` field.");
-        }
-        const { login, email, themeName } = themeConfigSchema.omit({ __version: true }).parse(JSON.parse(rawOptions));
+        const { options, favicon, assets, emailLogoFile } = parseThemeFormData(data, themeOptionsSchema);
 
-        const rawFavicon = data.get("favicon");
-        const favicon = rawFavicon === null ? null : faviconFileSchema.parse(rawFavicon);
-
-        const assets: Partial<Record<AssetKey, File>> = {};
-        for (const { key } of assetDefinitions) {
-            const raw = data.get(key);
-            if (raw !== null) assets[key] = assetSchema.parse(raw);
-        }
-
-        const rawEmailLogo = data.get("emailLogoFile");
-        const emailLogoFile = rawEmailLogo === null ? null : emailLogoSchema.parse(rawEmailLogo);
-
-        return { login, email, themeName, favicon, assets, emailLogoFile };
+        return { ...options, favicon, assets, emailLogoFile };
     })
     .handler(async ({ data }) => {
         const { email, themeName, favicon, assets, emailLogoFile } = data;

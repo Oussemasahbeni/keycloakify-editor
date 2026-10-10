@@ -13,13 +13,15 @@ import {
 } from "#/components/ui/alert-dialog";
 
 export type SignInDialogProps = {
+    title: string;
+    description: string;
     open: boolean;
     onSignIn: () => void;
     onOpenChange: (open: boolean) => void;
 };
 
 export function SignInDialog(props: SignInDialogProps) {
-    const { open, onSignIn, onOpenChange } = props;
+    const { title, description, open, onSignIn, onOpenChange } = props;
     return (
         <AlertDialog open={open} onOpenChange={onOpenChange}>
             <AlertDialogContent>
@@ -27,11 +29,8 @@ export function SignInDialog(props: SignInDialogProps) {
                     <AlertDialogMedia>
                         <LogIn />
                     </AlertDialogMedia>
-                    <AlertDialogTitle> Sign in to export</AlertDialogTitle>
-                    <AlertDialogDescription>
-                        Exporting a theme requires an account. Your design is kept in this browser while you sign in, so
-                        you'll pick up right where you left off.
-                    </AlertDialogDescription>
+                    <AlertDialogTitle>{title}</AlertDialogTitle>
+                    <AlertDialogDescription>{description}</AlertDialogDescription>
                 </AlertDialogHeader>
                 <AlertDialogFooter>
                     <AlertDialogCancel>Cancel</AlertDialogCancel>

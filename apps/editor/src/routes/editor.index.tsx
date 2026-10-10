@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/editor/")({
-    beforeLoad: () => {
-        throw Route.redirect({ to: "/editor/login", replace: true });
+    beforeLoad: ({ search }) => {
+        throw Route.redirect({ to: "/editor/login", search, replace: true });
     },
 });

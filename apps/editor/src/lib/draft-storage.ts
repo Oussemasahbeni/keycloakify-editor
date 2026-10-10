@@ -6,7 +6,17 @@ const STORE_NAME = "drafts";
 const DRAFT_KEY = "current";
 const DRAFT_VERSION = 1;
 
-export type ThemeDraft = ParsedTheme & {
+/** A saved theme's id and the revision the editor last loaded or wrote. */
+export type SavedThemeRef = { id: string; revision: number };
+
+export type ThemeDraftInput = ParsedTheme & {
+    /** Set when the draft is an edit of a saved theme, so saving after sign-in updates it. */
+    saved?: SavedThemeRef;
+    /** What the user was doing when they were sent to sign in; resumed once they are back. */
+    pendingAction?: "save";
+};
+
+export type ThemeDraft = ThemeDraftInput & {
     version: typeof DRAFT_VERSION;
     savedAt: number;
 };
@@ -32,7 +42,7 @@ function requestToPromise<T>(request: IDBRequest<T>): Promise<T> {
     });
 }
 
-export async function saveDraft(draft: ParsedTheme): Promise<void> {
+export async function saveDraft(draft: ThemeDraftInput): Promise<void> {
     const db = await openDb();
     try {
         const record: ThemeDraft = {

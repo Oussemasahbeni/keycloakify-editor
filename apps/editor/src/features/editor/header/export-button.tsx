@@ -10,7 +10,7 @@ import { clearDraft, saveDraft } from "#/lib/draft-storage";
 import { useOidc } from "#/oidc.ts";
 
 import { generateJar } from "../server/generate-jar";
-import { assetDefinitions } from "../shared/model/assets";
+import { buildThemeFormData } from "../shared/theme-form-data";
 import { getThemeNameError } from "../shared/validation/theme-name";
 import { useEditor } from "../state/editor-context";
 import { SignInDialog } from "./sign-in-dialog";
@@ -18,8 +18,8 @@ import { SignInDialog } from "./sign-in-dialog";
 export function ExportButton() {
     const {
         themeName,
-        login: { config, assets },
-        email: { config: emailConfig, emailLogoFile },
+        theme,
+        persistence: { saved },
     } = useEditor();
 
     const { isUserLoggedIn, login } = useOidc();
@@ -30,22 +30,8 @@ export function ExportButton() {
 
     const { mutate: exportTheme, isPending } = useMutation({
         mutationFn: async () => {
-            const name = themeName.trim();
-            const formData = new FormData();
-
-            formData.append("options", JSON.stringify({ login: config, email: emailConfig, themeName: name }));
-
-            for (const { key } of assetDefinitions) {
-                const file = assets[key];
-                if (file) formData.append(key, file);
-            }
-            // Favicon is upload-only and baked via its own multi-file pipeline.
-            if (assets.favicon) formData.append("favicon", assets.favicon);
-
-            if (emailLogoFile) formData.append("emailLogoFile", emailLogoFile);
-
-            const response = await exportJar({ data: formData });
-            return { blob: await response.blob(), name };
+            const response = await exportJar({ data: buildThemeFormData(theme) });
+            return { blob: await response.blob(), name: themeName.trim() };
         },
         onSuccess: ({ blob, name }) => {
             const url = URL.createObjectURL(blob);
@@ -82,7 +68,7 @@ export function ExportButton() {
         // Export needs a session: ask for sign-in up front instead of uploading everything
         // first, and keep the edits in a draft so they survive the sign-in redirect.
         if (!isUserLoggedIn) {
-            void saveDraft({ themeName, login: config, assets, email: emailConfig, emailLogoFile })
+            void saveDraft({ ...theme, saved: saved ?? undefined })
                 .catch(() =>
                     toast.add({
                         description: "Couldn't save your edits before signing in; they may be lost after the redirect.",
@@ -109,6 +95,8 @@ export function ExportButton() {
             </Button>
 
             <SignInDialog
+                title="Sign in to export"
+                description="Exporting a theme requires an account. Your design is kept in this browser while you sign in, so you'll pick up right where you left off."
                 open={openSignInDialog}
                 onOpenChange={() => setOpenSignInDialog(false)}
                 onSignIn={handleSignIn}

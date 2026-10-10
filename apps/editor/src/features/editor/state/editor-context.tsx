@@ -1,22 +1,21 @@
 import type { EmailTemplate } from "@keycloakify-editor/shadcn-theme/email";
 import { emailTemplates } from "@keycloakify-editor/shadcn-theme/email";
-import { createContext, use, useEffect, useState } from "react";
+import { createContext, use, useState } from "react";
 import type { Layout } from "react-resizable-panels";
 
 import { useTheme } from "#/components/theme-provider";
-import { clearDraft, loadDraft } from "#/lib/draft-storage";
 import type { Locale } from "#/lib/locales";
 import { DEFAULT_LOCALE } from "#/lib/locales";
 
-import { BASE_THEME_NAME } from "../shared/constants";
 import type { ThemeAssetKey } from "../shared/model/assets";
-import { emptyAssets } from "../shared/model/assets";
 import type { PreviewColorScheme } from "../shared/model/preview-color-scheme";
 import { resolvePreviewColorScheme } from "../shared/model/preview-color-scheme";
 import type { EmailThemeConfig, LoginThemeConfig } from "../shared/model/theme-config";
-import { defaultLoginThemeConfig } from "../shared/model/theme-config";
 import type { Viewport } from "../shared/model/viewport";
 import type { ParsedTheme } from "../shared/parse-theme-jar";
+import type { ThemePersistence } from "./use-saved-theme";
+import { useSavedTheme } from "./use-saved-theme";
+import { useThemeDocument } from "./use-theme-document";
 
 type EditorContextValue = {
     themeName: string;
@@ -27,6 +26,8 @@ type EditorContextValue = {
     readonly importTheme: (state: ParsedTheme) => void;
     locale: Locale;
     readonly setLocale: (locale: Locale) => void;
+    readonly theme: ParsedTheme;
+    readonly persistence: ThemePersistence;
     login: {
         config: LoginThemeConfig;
         updateConfig: (patch: Partial<LoginThemeConfig>) => void;
@@ -48,90 +49,75 @@ type EditorContextValue = {
     };
 };
 
+type EditorProviderProps = {
+    /** A saved theme to open (`?themeId=`). */
+    themeId?: string;
+    /** A share link to open as an unsaved copy (`?share=`). */
+    shareToken?: string;
+    children: React.ReactNode;
+};
+
 const EditorContext = createContext<EditorContextValue | null>(null);
 
-export function EditorProvider({ children }: { children: React.ReactNode }) {
-    const { theme } = useTheme();
+/**
+ * Composes the editor's state: the document (`useThemeDocument`), where it
+ * comes from and whether it is saved (`useSavedTheme`), and the view settings
+ * held here, which are never part of what gets saved or exported.
+ */
+export function EditorProvider({ themeId, shareToken, children }: EditorProviderProps) {
+    const { theme: chromeTheme } = useTheme();
+
+    const themeDocument = useThemeDocument();
+    const { theme } = themeDocument;
+    const persistence = useSavedTheme({ themeId, shareToken, theme, applyTheme: themeDocument.applyTheme });
+
     const [viewport, setViewport] = useState<Viewport>("desktop");
-    const [themeName, setThemeName] = useState<string>(BASE_THEME_NAME);
     const [previewColorScheme, setPreviewColorScheme] = useState<PreviewColorScheme>(() =>
-        resolvePreviewColorScheme(theme),
+        resolvePreviewColorScheme(chromeTheme),
     );
-    const [loginThemeConfig, setLoginThemeConfig] = useState<LoginThemeConfig>(defaultLoginThemeConfig);
-    const [emailThemeConfig, setEmailThemeConfig] = useState<EmailThemeConfig>({});
     const [emailTemplate, setEmailTemplate] = useState<EmailTemplate>(emailTemplates[0]);
-    const [assets, setAssets] = useState<Record<ThemeAssetKey, File | null>>(emptyAssets);
-    const [emailLogoFile, setEmailLogoFile] = useState<File | null>(null);
     const [panelLayout, setPanelLayout] = useState<Layout>();
     const [locale, setLocale] = useState<Locale>(DEFAULT_LOCALE);
 
-    const [followedTheme, setFollowedTheme] = useState(theme);
+    const [followedTheme, setFollowedTheme] = useState(chromeTheme);
 
-    if (theme !== followedTheme) {
-        setFollowedTheme(theme);
-        setPreviewColorScheme(resolvePreviewColorScheme(theme));
+    if (chromeTheme !== followedTheme) {
+        setFollowedTheme(chromeTheme);
+        setPreviewColorScheme(resolvePreviewColorScheme(chromeTheme));
     }
 
-    useEffect(() => {
-        let cancelled = false;
-        void (async () => {
-            try {
-                const draft = await loadDraft();
-                if (cancelled || !draft) return;
-                setThemeName(draft.themeName);
-                setLoginThemeConfig(() => draft.login);
-                setAssets(draft.assets);
-                setEmailThemeConfig(draft.email);
-                setEmailLogoFile(draft.emailLogoFile);
-                void clearDraft();
-            } catch {
-                // No draft or storage unavailable — start fresh.
-            }
-        })();
-        return () => {
-            cancelled = true;
-        };
-    }, []);
-
     const value: EditorContextValue = {
-        themeName,
-        setThemeName,
+        themeName: theme.themeName,
+        setThemeName: themeDocument.setThemeName,
         panelLayout,
         setPanelLayout,
         locale,
         setLocale,
+        theme,
+        persistence,
         resetConfig: () => {
-            setLoginThemeConfig(defaultLoginThemeConfig);
-            setEmailThemeConfig({});
-            setAssets(emptyAssets);
-            setEmailLogoFile(null);
+            themeDocument.resetConfig();
             setLocale(DEFAULT_LOCALE);
         },
-        importTheme: state => {
-            setThemeName(state.themeName);
-            setLoginThemeConfig(state.login);
-            setAssets(state.assets);
-            setEmailThemeConfig(state.email);
-            setEmailLogoFile(state.emailLogoFile);
-        },
+        importTheme: themeDocument.applyTheme,
         login: {
             viewport,
             setViewport,
             previewColorScheme,
             setPreviewColorScheme,
-            config: loginThemeConfig,
-            updateConfig: patch => setLoginThemeConfig(current => ({ ...current, ...patch })),
+            config: theme.login,
+            updateConfig: themeDocument.updateLoginConfig,
             togglePreviewColorScheme: () => setPreviewColorScheme(scheme => (scheme === "light" ? "dark" : "light")),
-            assets: assets,
-            setAssets: setAssets,
+            assets: theme.assets,
+            setAssets: themeDocument.setAssets,
         },
         email: {
-            config: emailThemeConfig,
-            updateConfig: patch => setEmailThemeConfig(current => ({ ...current, ...patch })),
+            config: theme.email,
+            updateConfig: themeDocument.updateEmailConfig,
             template: emailTemplate,
             setTemplate: setEmailTemplate,
-            emailLogoFile,
-            setEmailLogoFile,
+            emailLogoFile: theme.emailLogoFile,
+            setEmailLogoFile: themeDocument.setEmailLogoFile,
         },
     };
 

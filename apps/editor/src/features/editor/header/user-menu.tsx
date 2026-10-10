@@ -1,4 +1,5 @@
-import { BadgeCheckIcon, LogOut } from "lucide-react";
+import { Link } from "@tanstack/react-router";
+import { BadgeCheckIcon, LayoutGrid, LogOut } from "lucide-react";
 
 import { Avatar, AvatarFallback, AvatarImage } from "#/components/ui/avatar";
 import { Button } from "#/components/ui/button";
@@ -40,6 +41,10 @@ export function UserMenu() {
                         <span className="truncate text-sm font-medium">{user.name}</span>
                         <span className="truncate text-xs font-normal text-muted-foreground">{user.email}</span>
                     </DropdownMenuLabel>
+                    <DropdownMenuItem render={<Link to="/dashboard" />}>
+                        <LayoutGrid />
+                        My themes
+                    </DropdownMenuItem>
                     <DropdownMenuItem>
                         <a
                             href={user.accountConsoleUrl}

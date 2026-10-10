@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as EditorRouteImport } from './routes/editor'
 import { Route as EditorIndexRouteImport } from './routes/editor.index'
 import { Route as EditorAccountRouteImport } from './routes/editor.account'
@@ -21,6 +22,11 @@ import { Route as PreviewAccountSplatRouteImport } from './routes/preview.accoun
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DashboardRoute = DashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
   getParentRoute: () => rootRouteImport,
 } as any)
 const EditorRoute = EditorRouteImport.update({
@@ -61,6 +67,7 @@ const PreviewAccountSplatRoute = PreviewAccountSplatRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/dashboard': typeof DashboardRoute
   '/editor': typeof EditorRouteWithChildren
   '/editor/account': typeof EditorAccountRoute
   '/editor/email': typeof EditorEmailRoute
@@ -71,6 +78,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/dashboard': typeof DashboardRoute
   '/editor/account': typeof EditorAccountRoute
   '/editor/email': typeof EditorEmailRoute
   '/editor/login': typeof EditorLoginRoute
@@ -81,6 +89,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/dashboard': typeof DashboardRoute
   '/editor': typeof EditorRouteWithChildren
   '/editor/account': typeof EditorAccountRoute
   '/editor/email': typeof EditorEmailRoute
@@ -93,6 +102,7 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/dashboard'
     | '/editor'
     | '/editor/account'
     | '/editor/email'
@@ -103,6 +113,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/dashboard'
     | '/editor/account'
     | '/editor/email'
     | '/editor/login'
@@ -112,6 +123,7 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/dashboard'
     | '/editor'
     | '/editor/account'
     | '/editor/email'
@@ -123,6 +135,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  DashboardRoute: typeof DashboardRoute
   EditorRoute: typeof EditorRouteWithChildren
   PreviewLoginRoute: typeof PreviewLoginRoute
   PreviewAccountSplatRoute: typeof PreviewAccountSplatRoute
@@ -135,6 +148,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dashboard': {
+      id: '/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof DashboardRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/editor': {
@@ -208,6 +228,7 @@ const EditorRouteWithChildren =
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  DashboardRoute: DashboardRoute,
   EditorRoute: EditorRouteWithChildren,
   PreviewLoginRoute: PreviewLoginRoute,
   PreviewAccountSplatRoute: PreviewAccountSplatRoute,
