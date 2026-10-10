@@ -60,6 +60,7 @@
         "react-dom": "catalog:",
         "react-resizable-panels": "^4.11.2",
         "sharp": "^0.35.2",
+        "stripe": "^23.0.0",
         "tailwindcss": "catalog:",
         "tw-animate-css": "^1.3.6",
         "zod": "^4.5.4"

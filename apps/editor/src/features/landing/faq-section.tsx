@@ -1,6 +1,6 @@
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "#/components/ui/accordion";
 import { buttonVariants } from "#/components/ui/button";
-import { DISCORD_INVITE_URL } from "#/config/constants.ts";
+import { DISCORD_INVITE_URL, LIFETIME_ACCESS_PRICE } from "#/config/constants.ts";
 import { LOCALE_COUNT } from "#/lib/locales";
 import { cn } from "#/lib/utils";
 
@@ -25,7 +25,7 @@ export const faqItems: FaqItem[] = [
     {
         value: "item-2",
         question: "What does it cost?",
-        answer: "Designing is free. You can use every control, preview all 38 pages and check your email templates without paying. Exporting a deploy-ready theme requires a paid plan.",
+        answer: `Designing is free. You can use every control, preview all 38 pages and check your email templates without paying. Exporting a deploy-ready theme takes a one-time payment of ${LIFETIME_ACCESS_PRICE.label}, which unlocks every export of every theme for good.`,
     },
     {
         value: "item-3",

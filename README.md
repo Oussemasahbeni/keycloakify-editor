@@ -116,15 +116,16 @@ See the [theme README](./packages/shadcn-theme/README.md) for the complete list,
 
 ## Editor configuration
 
-The editor is a full app and needs a few server env vars (see `apps/editor/.env.sample`; `pnpm editor:dev` copies it to `.env` on first run):
+The editor is a full app and needs these server env vars, all of them required: the server answers every request with an error naming the missing ones (see `apps/editor/.env.sample`; `pnpm editor:dev` copies it to `.env` on first run):
 
 | Var | Purpose |
 | --- | ------- |
 | `OIDC_ISSUER_URI` | OIDC issuer for login (`oidc-spa`) |
 | `OIDC_CLIENT_ID` | OIDC client id |
 | `OIDC_ACCESS_TOKEN_EXPECTED_AUDIENCE` | Expected `aud` of access tokens validated by the server (`src/oidc.ts`) |
-| `DATABASE_URL` | Neon Postgres connection string — stores saved themes (apply the schema with `pnpm -F @keycloakify-editor/app db:migrate`). The editor and export work without it |
-| `AWS_ENDPOINT_URL_S3`, `AWS_REGION`, `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, `THEME_ASSETS_BUCKET` | Neon Object Storage (S3 API) bucket and credential for images uploaded to saved themes. Only needed once a saved theme has an uploaded image |
+| `DATABASE_URL` | Neon Postgres connection string — stores saved themes and purchases (apply the schema with `pnpm -F @keycloakify-editor/app db:migrate`). |
+| `AWS_ENDPOINT_URL_S3`, `AWS_REGION`, `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, `THEME_ASSETS_BUCKET` | Neon Object Storage (S3 API) bucket and credential for images uploaded to saved themes. |
+| `STRIPE_SECRET_KEY`, `STRIPE_PRICE_ID`, `STRIPE_WEBHOOK_SECRET` | Stripe API key, the one-time price that buys lifetime export access, and the signing secret of the webhook at `/api/stripe/webhook` (locally: the one `stripe listen --forward-to localhost:3000/api/stripe/webhook` prints). |
 
 ## Tech stack
 

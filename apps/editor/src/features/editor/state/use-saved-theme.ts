@@ -1,6 +1,6 @@
 import { queryOptions, useQuery } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import { getSharedTheme, getTheme } from "#/features/themes/server/themes.ts";
 import { toParsedTheme } from "#/features/themes/theme-files.ts";
@@ -35,6 +35,8 @@ export type ThemePersistence = {
     /** True when the user asked to save and was sent to sign in first. */
     hasPendingSave: boolean;
     clearPendingSave: () => void;
+    /** Skips the unsaved-edits prompt for a redirect the edits survive, having just been put in a draft. */
+    allowLeave: () => void;
 };
 
 type Options = {
@@ -53,7 +55,7 @@ type DraftState = "checking" | "none" | "restored";
  * Everything about where the document comes from and whether it matches what
  * is stored. In order:
  *
- * 1. A draft left in this browser before a sign-in redirect is restored. It
+ * 1. A draft left in this browser before a sign-in or checkout redirect is restored. It
  *    holds the user's own edits, so it wins over whatever the URL points at.
  * 2. Otherwise the saved or shared theme named in the URL is fetched, once.
  * 3. From then on the document is compared against the last stored version to
@@ -68,6 +70,7 @@ export function useSavedTheme({ themeId, shareToken, theme, applyTheme }: Option
     const [savedSnapshot, setSavedSnapshot] = useState<ParsedTheme | null>(null);
     const [draftState, setDraftState] = useState<DraftState>("checking");
     const [hasPendingSave, setHasPendingSave] = useState(false);
+    const isLeavingAllowed = useRef(false);
 
     // 1. The sign-in draft.
     useEffect(() => {
@@ -147,7 +150,9 @@ export function useSavedTheme({ themeId, shareToken, theme, applyTheme }: Option
 
     useEffect(() => {
         if (!isDirty) return;
-        const warn = (event: BeforeUnloadEvent) => event.preventDefault();
+        const warn = (event: BeforeUnloadEvent) => {
+            if (!isLeavingAllowed.current) event.preventDefault();
+        };
         window.addEventListener("beforeunload", warn);
         return () => window.removeEventListener("beforeunload", warn);
     }, [isDirty]);
@@ -170,5 +175,8 @@ export function useSavedTheme({ themeId, shareToken, theme, applyTheme }: Option
         remote,
         hasPendingSave,
         clearPendingSave: () => setHasPendingSave(false),
+        allowLeave: () => {
+            isLeavingAllowed.current = true;
+        },
     };
 }

@@ -7,6 +7,8 @@ import {
 } from "@aws-sdk/client-s3";
 import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
 
+import { serverEnv } from "#/config/env.ts";
+
 /**
  * Where uploaded theme images live: a bucket in Neon Object Storage, reached
  * through its S3 API. Postgres holds one key per image
@@ -26,12 +28,12 @@ const UPLOAD_URL_TTL_SECONDS = 5 * 60;
 const DOWNLOAD_URL_TTL_SECONDS = 10 * 60;
 
 const client = new S3Client({
-    endpoint: process.env.AWS_ENDPOINT_URL_S3,
-    region: process.env.AWS_REGION,
+    endpoint: serverEnv.AWS_ENDPOINT_URL_S3,
+    region: serverEnv.AWS_REGION,
     forcePathStyle: true,
     requestChecksumCalculation: "WHEN_REQUIRED",
 });
-const bucket = process.env.THEME_ASSETS_BUCKET;
+const bucket = serverEnv.THEME_ASSETS_BUCKET;
 
 /**
  * Keys start with the uploader's `sub`. That prefix is how a save tells that a

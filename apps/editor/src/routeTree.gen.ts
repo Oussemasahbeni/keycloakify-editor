@@ -17,6 +17,7 @@ import { Route as EditorAccountRouteImport } from './routes/editor.account'
 import { Route as EditorEmailRouteImport } from './routes/editor.email'
 import { Route as EditorLoginRouteImport } from './routes/editor.login'
 import { Route as PreviewLoginRouteImport } from './routes/preview.login'
+import { Route as ApiStripeWebhookRouteImport } from './routes/api.stripe.webhook'
 import { Route as PreviewAccountSplatRouteImport } from './routes/preview.account.$'
 
 const IndexRoute = IndexRouteImport.update({
@@ -59,6 +60,11 @@ const PreviewLoginRoute = PreviewLoginRouteImport.update({
   path: '/preview/login',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiStripeWebhookRoute = ApiStripeWebhookRouteImport.update({
+  id: '/api/stripe/webhook',
+  path: '/api/stripe/webhook',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PreviewAccountSplatRoute = PreviewAccountSplatRouteImport.update({
   id: '/preview/account/$',
   path: '/preview/account/$',
@@ -74,6 +80,7 @@ export interface FileRoutesByFullPath {
   '/editor/login': typeof EditorLoginRoute
   '/preview/login': typeof PreviewLoginRoute
   '/editor/': typeof EditorIndexRoute
+  '/api/stripe/webhook': typeof ApiStripeWebhookRoute
   '/preview/account/$': typeof PreviewAccountSplatRoute
 }
 export interface FileRoutesByTo {
@@ -84,6 +91,7 @@ export interface FileRoutesByTo {
   '/editor/login': typeof EditorLoginRoute
   '/preview/login': typeof PreviewLoginRoute
   '/editor': typeof EditorIndexRoute
+  '/api/stripe/webhook': typeof ApiStripeWebhookRoute
   '/preview/account/$': typeof PreviewAccountSplatRoute
 }
 export interface FileRoutesById {
@@ -96,6 +104,7 @@ export interface FileRoutesById {
   '/editor/login': typeof EditorLoginRoute
   '/preview/login': typeof PreviewLoginRoute
   '/editor/': typeof EditorIndexRoute
+  '/api/stripe/webhook': typeof ApiStripeWebhookRoute
   '/preview/account/$': typeof PreviewAccountSplatRoute
 }
 export interface FileRouteTypes {
@@ -109,6 +118,7 @@ export interface FileRouteTypes {
     | '/editor/login'
     | '/preview/login'
     | '/editor/'
+    | '/api/stripe/webhook'
     | '/preview/account/$'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -119,6 +129,7 @@ export interface FileRouteTypes {
     | '/editor/login'
     | '/preview/login'
     | '/editor'
+    | '/api/stripe/webhook'
     | '/preview/account/$'
   id:
     | '__root__'
@@ -130,6 +141,7 @@ export interface FileRouteTypes {
     | '/editor/login'
     | '/preview/login'
     | '/editor/'
+    | '/api/stripe/webhook'
     | '/preview/account/$'
   fileRoutesById: FileRoutesById
 }
@@ -138,6 +150,7 @@ export interface RootRouteChildren {
   DashboardRoute: typeof DashboardRoute
   EditorRoute: typeof EditorRouteWithChildren
   PreviewLoginRoute: typeof PreviewLoginRoute
+  ApiStripeWebhookRoute: typeof ApiStripeWebhookRoute
   PreviewAccountSplatRoute: typeof PreviewAccountSplatRoute
 }
 
@@ -199,6 +212,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PreviewLoginRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/stripe/webhook': {
+      id: '/api/stripe/webhook'
+      path: '/api/stripe/webhook'
+      fullPath: '/api/stripe/webhook'
+      preLoaderRoute: typeof ApiStripeWebhookRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/preview/account/$': {
       id: '/preview/account/$'
       path: '/preview/account/$'
@@ -231,6 +251,7 @@ const rootRouteChildren: RootRouteChildren = {
   DashboardRoute: DashboardRoute,
   EditorRoute: EditorRouteWithChildren,
   PreviewLoginRoute: PreviewLoginRoute,
+  ApiStripeWebhookRoute: ApiStripeWebhookRoute,
   PreviewAccountSplatRoute: PreviewAccountSplatRoute,
 }
 export const routeTree = rootRouteImport

@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 
-import { SITE_URL } from "#/config/constants.ts";
+import { LIFETIME_ACCESS_PRICE, SITE_URL } from "#/config/constants.ts";
 import { SectionHeader } from "#/features/landing/band.tsx";
 import { CompareSection } from "#/features/landing/compare-section.tsx";
 import { CtaSection } from "#/features/landing/cta-section.tsx";
@@ -61,6 +61,12 @@ function structuredData() {
                 applicationCategory: "DeveloperApplication",
                 operatingSystem: "Web",
                 image: `${SITE_URL}/images/editor-preview-white.png`,
+                offers: {
+                    "@type": "Offer",
+                    price: LIFETIME_ACCESS_PRICE.amount,
+                    priceCurrency: LIFETIME_ACCESS_PRICE.currency,
+                    description: "One-time payment for lifetime export access. Designing is free.",
+                },
             },
             {
                 "@type": "FAQPage",

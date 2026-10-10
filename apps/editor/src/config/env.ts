@@ -1,19 +1,36 @@
 import { z } from "zod";
 
+const required = z.string().min(1);
+
 const envSchema = z.object({
     DATABASE_URL: z.url(),
     OIDC_ISSUER_URI: z.url(),
-    OIDC_CLIENT_ID: z.string(),
-    OIDC_ACCESS_TOKEN_EXPECTED_AUDIENCE: z.string(),
+    OIDC_CLIENT_ID: required,
+    OIDC_ACCESS_TOKEN_EXPECTED_AUDIENCE: required,
+    AWS_ENDPOINT_URL_S3: z.url(),
+    AWS_REGION: required,
+    // Not read by this app's code: the AWS SDK picks the credential up from the
+    // environment itself. Listed so a missing one stops the server too.
+    AWS_ACCESS_KEY_ID: required,
+    AWS_SECRET_ACCESS_KEY: required,
+    THEME_ASSETS_BUCKET: required,
+    STRIPE_SECRET_KEY: required,
+    STRIPE_WEBHOOK_SECRET: required,
+    STRIPE_PRICE_ID: required,
 });
 
-// Validate server environment
-// NOTE: Module-level parse runs at module load. Fine for Node.js;
-// on Cloudflare Workers (and other edge runtimes) `process.env` is
-// empty at module load, so wrap this in a function and call it
-// inside `.handler()` instead:
-//
-//   export const getServerEnv = () => envSchema.parse(process.env)
-//
-// Then read `getServerEnv()` per-request from server functions/middleware.
-export const serverEnv = envSchema.parse(process.env);
+const parsed = envSchema.safeParse(process.env);
+
+if (!parsed.success) {
+    const names = [...new Set(parsed.error.issues.map(issue => issue.path.join(".")))];
+    throw new Error(`Missing or invalid environment variables: ${names.join(", ")}. See apps/editor/.env.sample.`);
+}
+
+/**
+ * The server's configuration, checked once when the server entry loads
+ * (`src/server.ts` imports this file): with a variable missing, every request
+ * fails with the error above, so nothing downstream has to handle one that
+ * isn't there. Server only: in the browser `process.env` is empty and this
+ * would throw.
+ */
+export const serverEnv = parsed.data;

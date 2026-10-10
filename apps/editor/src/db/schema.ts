@@ -29,3 +29,24 @@ export const themes = pgTable(
     },
     table => [index("themes_owner_updated_idx").on(table.ownerSub, table.updatedAt.desc())],
 );
+
+export const purchases = pgTable(
+    "purchases",
+    {
+        id: uuid()
+            .primaryKey()
+            .default(sql`uuidv7()`),
+        ownerSub: text("owner_sub").notNull(),
+        /** One row per checkout; a webhook delivered twice inserts nothing the second time. */
+        stripeCheckoutSessionId: text("stripe_checkout_session_id").notNull().unique(),
+        /** What refunds and disputes are looked up by. Null when a promo code made the checkout free. */
+        stripePaymentIntentId: text("stripe_payment_intent_id").unique(),
+        /** What was actually paid, in the currency's smallest unit. */
+        amountTotal: integer("amount_total").notNull(),
+        currency: text().notNull(),
+        /** Set when the payment is refunded or disputed; a revoked purchase no longer grants access. */
+        revokedAt: timestamp("revoked_at", { withTimezone: true }),
+        createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+    },
+    table => [index("purchases_owner_idx").on(table.ownerSub)],
+);
