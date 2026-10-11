@@ -10,5 +10,5 @@
         "functions": ["clsx", "cn", "cva"],
         "preserveWhitespace": true
     },
-    "ignorePatterns": ["src/routeTree.gen.ts"]
+    "ignorePatterns": ["src/routeTree.gen.ts", "drizzle"]
 }

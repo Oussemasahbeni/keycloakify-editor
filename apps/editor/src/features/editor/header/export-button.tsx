@@ -20,7 +20,7 @@ import { useEditor } from "../state/editor-context";
 import { PaywallDialog } from "./paywall-dialog";
 import { SignInDialog } from "./sign-in-dialog";
 
-const editorRoute = getRouteApi("/editor");
+const editorRoute = getRouteApi("/_editor");
 
 /**
  * Exports the theme as a JAR, which takes an account and lifetime access. A

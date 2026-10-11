@@ -77,7 +77,7 @@ export type CheckoutResult = { status: "already-paid" } | { status: "redirect"; 
 
 /** Where Stripe sends the user after checkout: back to the editor surface they left. */
 export function buildReturnUrls(origin: string, { surface, themeId }: ReturnTarget) {
-    const base = `${origin}/editor/${surface}?${themeId ? `themeId=${themeId}&` : ""}`;
+    const base = `${origin}/${surface}?${themeId ? `themeId=${themeId}&` : ""}`;
     return {
         // Stripe substitutes this placeholder itself, so the braces must not be URL-encoded.
         successUrl: `${base}checkout=success&session_id={CHECKOUT_SESSION_ID}`,

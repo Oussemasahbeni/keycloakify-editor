@@ -5,7 +5,7 @@ const TWITTER_HANDLE = "@Spike_2002";
 
 /**
  * Build the meta tags for a page. Pair this with a canonical `<link>` in the
- * route's `head.links` (see `routes/index.tsx`).
+ * route's `head.links`.
  */
 export const seo = ({
     title,

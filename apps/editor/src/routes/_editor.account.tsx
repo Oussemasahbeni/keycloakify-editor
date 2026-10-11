@@ -4,7 +4,7 @@ import { AccountPreviewIframe } from "#/features/editor/account/preview/preview-
 import { AccountThemeSidebar } from "#/features/editor/account/sidebar/index.tsx";
 import { EditorSurface } from "#/features/editor/shared/components/editor-surface.tsx";
 
-export const Route = createFileRoute("/editor/account")({
+export const Route = createFileRoute("/_editor/account")({
     component: AccountEditor,
 });
 

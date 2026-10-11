@@ -40,4 +40,3 @@ export const LOCALES = supportedLocales.map(l => l.value);
 export type Locale = (typeof supportedLocales)[number]["value"];
 
 export const DEFAULT_LOCALE: Locale = "en";
-export const LOCALE_COUNT = supportedLocales.length;

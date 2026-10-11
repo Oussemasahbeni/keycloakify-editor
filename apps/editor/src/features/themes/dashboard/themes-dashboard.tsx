@@ -15,7 +15,7 @@ import { ThemeCard } from "./theme-card";
 
 function NewThemeLink() {
     return (
-        <Link to="/editor/login" className={buttonVariants({ variant: "default" })}>
+        <Link to="/login" className={buttonVariants({ variant: "default" })}>
             <Plus />
             New theme
         </Link>

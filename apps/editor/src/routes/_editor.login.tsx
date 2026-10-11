@@ -4,7 +4,7 @@ import { LoginPreviewIframe } from "#/features/editor/login/preview/preview-ifra
 import { LoginThemeSidebar } from "#/features/editor/login/sidebar/index.tsx";
 import { EditorSurface } from "#/features/editor/shared/components/editor-surface.tsx";
 
-export const Route = createFileRoute("/editor/login")({
+export const Route = createFileRoute("/_editor/login")({
     component: LoginEditor,
 });
 

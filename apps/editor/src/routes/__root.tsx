@@ -28,7 +28,7 @@ export const Route = createRootRoute({
                     "A visual editor for Keycloak login themes. Customize colors, fonts, radius, and layout, preview every login page live, and export a deploy-ready theme.",
                 keywords:
                     "Keycloak, Keycloak theme, Keycloakify, login theme, theme editor, shadcn/ui, Tailwind CSS, OIDC, SSO",
-                image: "/editor-preview-white.png",
+                image: "/images/editor-preview-white.png",
             }),
         ],
         links: [

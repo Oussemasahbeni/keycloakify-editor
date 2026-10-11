@@ -4,7 +4,7 @@ import { EmailPreviewIframe } from "#/features/editor/email/preview/preview-ifra
 import { EmailThemeSidebar } from "#/features/editor/email/sidebar/index.tsx";
 import { EditorSurface } from "#/features/editor/shared/components/editor-surface.tsx";
 
-export const Route = createFileRoute("/editor/email")({
+export const Route = createFileRoute("/_editor/email")({
     component: EmailEditor,
 });
 

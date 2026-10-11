@@ -18,7 +18,7 @@ const editorSearchSchema = z.object({
     session_id: z.string().optional().catch(undefined),
 });
 
-export const Route = createFileRoute("/editor")({
+export const Route = createFileRoute("/_editor")({
     validateSearch: editorSearchSchema,
     component: EditorLayout,
 });
@@ -80,7 +80,7 @@ function ThemeUnavailable(props: { title: string; description: string; children?
             <p className="max-w-md text-sm text-muted-foreground">{description}</p>
             <div className="flex gap-2">
                 {children}
-                <Link to="/editor/login" className={buttonVariants({ variant: "outline" })}>
+                <Link to="/login" className={buttonVariants({ variant: "outline" })}>
                     Start a new theme
                 </Link>
             </div>

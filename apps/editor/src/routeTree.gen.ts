@@ -9,30 +9,23 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as IndexRouteImport } from './routes/index'
+import { Route as EditorRouteImport } from './routes/_editor'
 import { Route as DashboardRouteImport } from './routes/dashboard'
-import { Route as EditorRouteImport } from './routes/editor'
-import { Route as EditorIndexRouteImport } from './routes/editor.index'
-import { Route as EditorAccountRouteImport } from './routes/editor.account'
-import { Route as EditorEmailRouteImport } from './routes/editor.email'
-import { Route as EditorLoginRouteImport } from './routes/editor.login'
+import { Route as EditorIndexRouteImport } from './routes/_editor.index'
+import { Route as EditorAccountRouteImport } from './routes/_editor.account'
+import { Route as EditorEmailRouteImport } from './routes/_editor.email'
+import { Route as EditorLoginRouteImport } from './routes/_editor.login'
 import { Route as PreviewLoginRouteImport } from './routes/preview.login'
 import { Route as ApiStripeWebhookRouteImport } from './routes/api.stripe.webhook'
 import { Route as PreviewAccountSplatRouteImport } from './routes/preview.account.$'
 
-const IndexRoute = IndexRouteImport.update({
-  id: '/',
-  path: '/',
+const EditorRoute = EditorRouteImport.update({
+  id: '/_editor',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DashboardRoute = DashboardRouteImport.update({
   id: '/dashboard',
   path: '/dashboard',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const EditorRoute = EditorRouteImport.update({
-  id: '/editor',
-  path: '/editor',
   getParentRoute: () => rootRouteImport,
 } as any)
 const EditorIndexRoute = EditorIndexRouteImport.update({
@@ -72,38 +65,34 @@ const PreviewAccountSplatRoute = PreviewAccountSplatRouteImport.update({
 } as any)
 
 export interface FileRoutesByFullPath {
-  '/': typeof IndexRoute
+  '/': typeof EditorIndexRoute
   '/dashboard': typeof DashboardRoute
-  '/editor': typeof EditorRouteWithChildren
-  '/editor/account': typeof EditorAccountRoute
-  '/editor/email': typeof EditorEmailRoute
-  '/editor/login': typeof EditorLoginRoute
+  '/account': typeof EditorAccountRoute
+  '/email': typeof EditorEmailRoute
+  '/login': typeof EditorLoginRoute
   '/preview/login': typeof PreviewLoginRoute
-  '/editor/': typeof EditorIndexRoute
   '/api/stripe/webhook': typeof ApiStripeWebhookRoute
   '/preview/account/$': typeof PreviewAccountSplatRoute
 }
 export interface FileRoutesByTo {
-  '/': typeof IndexRoute
   '/dashboard': typeof DashboardRoute
-  '/editor/account': typeof EditorAccountRoute
-  '/editor/email': typeof EditorEmailRoute
-  '/editor/login': typeof EditorLoginRoute
+  '/account': typeof EditorAccountRoute
+  '/email': typeof EditorEmailRoute
+  '/login': typeof EditorLoginRoute
   '/preview/login': typeof PreviewLoginRoute
-  '/editor': typeof EditorIndexRoute
+  '/': typeof EditorIndexRoute
   '/api/stripe/webhook': typeof ApiStripeWebhookRoute
   '/preview/account/$': typeof PreviewAccountSplatRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
-  '/': typeof IndexRoute
+  '/_editor': typeof EditorRouteWithChildren
   '/dashboard': typeof DashboardRoute
-  '/editor': typeof EditorRouteWithChildren
-  '/editor/account': typeof EditorAccountRoute
-  '/editor/email': typeof EditorEmailRoute
-  '/editor/login': typeof EditorLoginRoute
+  '/_editor/account': typeof EditorAccountRoute
+  '/_editor/email': typeof EditorEmailRoute
+  '/_editor/login': typeof EditorLoginRoute
   '/preview/login': typeof PreviewLoginRoute
-  '/editor/': typeof EditorIndexRoute
+  '/_editor/': typeof EditorIndexRoute
   '/api/stripe/webhook': typeof ApiStripeWebhookRoute
   '/preview/account/$': typeof PreviewAccountSplatRoute
 }
@@ -112,43 +101,38 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/dashboard'
-    | '/editor'
-    | '/editor/account'
-    | '/editor/email'
-    | '/editor/login'
+    | '/account'
+    | '/email'
+    | '/login'
     | '/preview/login'
-    | '/editor/'
     | '/api/stripe/webhook'
     | '/preview/account/$'
   fileRoutesByTo: FileRoutesByTo
   to:
-    | '/'
     | '/dashboard'
-    | '/editor/account'
-    | '/editor/email'
-    | '/editor/login'
+    | '/account'
+    | '/email'
+    | '/login'
     | '/preview/login'
-    | '/editor'
+    | '/'
     | '/api/stripe/webhook'
     | '/preview/account/$'
   id:
     | '__root__'
-    | '/'
+    | '/_editor'
     | '/dashboard'
-    | '/editor'
-    | '/editor/account'
-    | '/editor/email'
-    | '/editor/login'
+    | '/_editor/account'
+    | '/_editor/email'
+    | '/_editor/login'
     | '/preview/login'
-    | '/editor/'
+    | '/_editor/'
     | '/api/stripe/webhook'
     | '/preview/account/$'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
-  IndexRoute: typeof IndexRoute
-  DashboardRoute: typeof DashboardRoute
   EditorRoute: typeof EditorRouteWithChildren
+  DashboardRoute: typeof DashboardRoute
   PreviewLoginRoute: typeof PreviewLoginRoute
   ApiStripeWebhookRoute: typeof ApiStripeWebhookRoute
   PreviewAccountSplatRoute: typeof PreviewAccountSplatRoute
@@ -156,11 +140,11 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/': {
-      id: '/'
-      path: '/'
+    '/_editor': {
+      id: '/_editor'
+      path: ''
       fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
+      preLoaderRoute: typeof EditorRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/dashboard': {
@@ -170,38 +154,31 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/editor': {
-      id: '/editor'
-      path: '/editor'
-      fullPath: '/editor'
-      preLoaderRoute: typeof EditorRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/editor/': {
-      id: '/editor/'
+    '/_editor/': {
+      id: '/_editor/'
       path: '/'
-      fullPath: '/editor/'
+      fullPath: '/'
       preLoaderRoute: typeof EditorIndexRouteImport
       parentRoute: typeof EditorRoute
     }
-    '/editor/account': {
-      id: '/editor/account'
+    '/_editor/account': {
+      id: '/_editor/account'
       path: '/account'
-      fullPath: '/editor/account'
+      fullPath: '/account'
       preLoaderRoute: typeof EditorAccountRouteImport
       parentRoute: typeof EditorRoute
     }
-    '/editor/email': {
-      id: '/editor/email'
+    '/_editor/email': {
+      id: '/_editor/email'
       path: '/email'
-      fullPath: '/editor/email'
+      fullPath: '/email'
       preLoaderRoute: typeof EditorEmailRouteImport
       parentRoute: typeof EditorRoute
     }
-    '/editor/login': {
-      id: '/editor/login'
+    '/_editor/login': {
+      id: '/_editor/login'
       path: '/login'
-      fullPath: '/editor/login'
+      fullPath: '/login'
       preLoaderRoute: typeof EditorLoginRouteImport
       parentRoute: typeof EditorRoute
     }
@@ -247,9 +224,8 @@ const EditorRouteWithChildren =
   EditorRoute._addFileChildren(EditorRouteChildren)
 
 const rootRouteChildren: RootRouteChildren = {
-  IndexRoute: IndexRoute,
-  DashboardRoute: DashboardRoute,
   EditorRoute: EditorRouteWithChildren,
+  DashboardRoute: DashboardRoute,
   PreviewLoginRoute: PreviewLoginRoute,
   ApiStripeWebhookRoute: ApiStripeWebhookRoute,
   PreviewAccountSplatRoute: PreviewAccountSplatRoute,

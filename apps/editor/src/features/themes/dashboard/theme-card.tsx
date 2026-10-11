@@ -33,7 +33,7 @@ import { themesQueryKey } from "../queries";
 import { deleteTheme, duplicateTheme, setThemeSharing } from "../server/themes";
 
 function shareUrl(token: string) {
-    return `${window.location.origin}/editor/login?share=${encodeURIComponent(token)}`;
+    return `${window.location.origin}/login?share=${encodeURIComponent(token)}`;
 }
 
 async function copyShareLink(token: string) {
@@ -92,7 +92,7 @@ export function ThemeCard({ theme }: { theme: ThemeSummary }) {
         <Card>
             <CardHeader>
                 <CardTitle>
-                    <Link to="/editor/login" search={{ themeId: theme.id }} className="block truncate hover:underline">
+                    <Link to="/login" search={{ themeId: theme.id }} className="block truncate hover:underline">
                         {theme.name}
                     </Link>
                 </CardTitle>
@@ -110,7 +110,7 @@ export function ThemeCard({ theme }: { theme: ThemeSummary }) {
                             }
                         />
                         <DropdownMenuContent align="end" className="w-48">
-                            <DropdownMenuItem render={<Link to="/editor/login" search={{ themeId: theme.id }} />}>
+                            <DropdownMenuItem render={<Link to="/login" search={{ themeId: theme.id }} />}>
                                 <Pencil />
                                 Open
                             </DropdownMenuItem>

@@ -15,7 +15,7 @@ export function NotFound() {
                 </div>
                 <div className="flex justify-center gap-4">
                     <Link className={buttonVariants({ variant: "default" })} to="/">
-                        Go to Home
+                        Go to editor
                     </Link>
                     <Button variant="outline" onClick={() => window.history.back()}>
                         Go Back
