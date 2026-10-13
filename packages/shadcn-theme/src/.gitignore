@@ -204,7 +204,7 @@
 
 # === @keycloakify/login-ui v250004.8.0 ===
 
-# === @keycloakify/keycloak-ui-shared v260700.0.2 ===
+# === @keycloakify/keycloak-ui-shared v260700.0.3 ===
 /shared/SessionExpirationWarningOverlay.tsx
 /shared/keycloak-ui-shared/index.ts
 /shared/keycloak-ui-shared/context/environment.ts
@@ -221,7 +221,7 @@
 /shared/keycloak-ui-shared/utils/useStorageItem.ts
 /shared/keycloak-ui-shared/utils/useStoredState.ts
 
-# === @keycloakify/keycloak-account-ui v260700.0.3 ===
+# === @keycloakify/keycloak-account-ui v260700.0.4 ===
 /account/api.ts
 /account/colorScheme.ts
 /account/environment.ts
