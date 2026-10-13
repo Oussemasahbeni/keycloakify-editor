@@ -45,7 +45,7 @@ bootstrapOidc(({ process }) => ({
     implementation: "real",
     issuerUri: process.env.OIDC_ISSUER_URI,
     clientId: process.env.OIDC_CLIENT_ID,
-    debugLogs: import.meta.env.DEV || process.env.NODE_ENV === "development",
+    debugLogs: true,
     // This module also loads in the framed `/preview/account` document, where the
     // silent-iframe flow would nest a frame and oidc-spa refuses to post the response.
     // 10.2.x falls back by itself when framed; the 10.3 rc line this app is on doesn't.
