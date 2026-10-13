@@ -1,11 +1,12 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { HeadContent, Scripts, createRootRoute, useRouterState } from "@tanstack/react-router";
+import { HeadContent, ScriptOnce, Scripts, createRootRoute, useRouterState } from "@tanstack/react-router";
 
 import { DefaultCatchBoundary } from "#/components/DefaultCatchBoundary";
 import { NotFound } from "#/components/not-found";
 import { ThemeProvider } from "#/components/theme-provider";
 import { Toaster } from "#/components/ui/toast";
 import { TooltipProvider } from "#/components/ui/tooltip";
+import { previewColorSchemeScript } from "#/features/editor/shared/model/preview-color-scheme.ts";
 import { seo } from "#/lib/seo";
 
 import appCss from "../styles.css?url";
@@ -63,13 +64,12 @@ export const Route = createRootRoute({
 });
 
 function RootDocument({ children }: { children: React.ReactNode }) {
-    // `/preview` and `/preview/account` are isolated documents: they theme
-    // themselves through the theme's own ThemeProvider and drive their scheme
-    // from the editor (postMessage) or the `?scheme` search param. The
-    // editor-chrome ThemeProvider below (storageKey "theme") must NOT wrap them —
-    // being the outermost provider its blocking ScriptOnce + mount effect stamp
-    // `.dark` from the editor's chrome scheme and win, overriding the preview's
-    // requested scheme (the standalone tab would otherwise ignore `?scheme`).
+    // `/preview/login` and `/preview/account` are isolated documents: they theme
+    // themselves through the theme's own ThemeProvider and take their scheme
+    // from the editor. The editor-chrome ThemeProvider below (storageKey "theme")
+    // must NOT wrap them — being the outermost provider its blocking ScriptOnce +
+    // mount effect stamp `.dark` from the editor's chrome scheme and win,
+    // overriding the preview's scheme. They get `previewColorSchemeScript` instead.
     const isPreview = useRouterState({
         select: state => state.location.pathname.startsWith("/preview"),
     });
@@ -81,7 +81,10 @@ function RootDocument({ children }: { children: React.ReactNode }) {
             </head>
             <body>
                 {isPreview ? (
-                    children
+                    <>
+                        <ScriptOnce>{previewColorSchemeScript}</ScriptOnce>
+                        {children}
+                    </>
                 ) : (
                     <ThemeProvider defaultTheme="system" storageKey="theme">
                         <TooltipProvider>

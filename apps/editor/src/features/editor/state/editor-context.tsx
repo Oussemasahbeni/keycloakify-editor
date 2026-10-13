@@ -1,6 +1,6 @@
 import type { EmailTemplate } from "@keycloakify-editor/shadcn-theme/email";
 import { emailTemplates } from "@keycloakify-editor/shadcn-theme/email";
-import { createContext, use, useState } from "react";
+import { createContext, use, useEffect, useState } from "react";
 import type { Layout } from "react-resizable-panels";
 
 import { useTheme } from "#/components/theme-provider";
@@ -9,7 +9,7 @@ import { DEFAULT_LOCALE } from "#/lib/locales";
 
 import type { ThemeAssetKey } from "../shared/model/assets";
 import type { PreviewColorScheme } from "../shared/model/preview-color-scheme";
-import { resolvePreviewColorScheme } from "../shared/model/preview-color-scheme";
+import { PREVIEW_SCHEME_ATTRIBUTE, resolvePreviewColorScheme } from "../shared/model/preview-color-scheme";
 import type { EmailThemeConfig, LoginThemeConfig } from "../shared/model/theme-config";
 import type { Viewport } from "../shared/model/viewport";
 import type { ParsedTheme } from "../shared/theme-document";
@@ -84,6 +84,13 @@ export function EditorProvider({ themeId, shareToken, children }: EditorProvider
         setFollowedTheme(chromeTheme);
         setPreviewColorScheme(resolvePreviewColorScheme(chromeTheme));
     }
+
+    // Published on `<html>` for the preview frames' blocking script (`previewColorSchemeScript`).
+    useEffect(() => {
+        const root = document.documentElement;
+        root.setAttribute(PREVIEW_SCHEME_ATTRIBUTE, previewColorScheme);
+        return () => root.removeAttribute(PREVIEW_SCHEME_ATTRIBUTE);
+    }, [previewColorScheme]);
 
     const value: EditorContextValue = {
         themeName: theme.themeName,

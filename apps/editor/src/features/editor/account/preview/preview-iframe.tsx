@@ -59,8 +59,9 @@ export function AccountPreviewIframe() {
         };
     }
 
-    // What the console re-applies live: the four presets and the two logos.
+    // What the console re-applies live: the colour scheme, the four presets and the two logos.
     const branding: AccountPreviewBranding = {
+        colorScheme: login.previewColorScheme,
         presets: {
             SHADCN_THEME_PRIMARY: login.config.primary,
             SHADCN_THEME_BASE: login.config.base,

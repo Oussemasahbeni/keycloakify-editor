@@ -2,6 +2,8 @@ import type { BrandOverrides, ThemePresetProperties } from "@keycloakify-editor/
 import type { RefObject } from "react";
 import { useEffect, useEffectEvent, useState } from "react";
 
+import type { PreviewColorScheme } from "#/features/editor/shared/model/preview-color-scheme.ts";
+
 /**
  * Transport between the editor page and the `/preview/account` iframe it embeds
  * (`routes/preview.account.$.tsx`) — the account counterpart of
@@ -20,8 +22,9 @@ export type AccountPreviewConfig = {
     properties: Record<string, string>;
 };
 
-/** What the console can re-apply live: the four presets and the two logos. */
+/** What the console can re-apply live: the colour scheme, the four presets and the two logos. */
 export type AccountPreviewBranding = {
+    colorScheme: PreviewColorScheme;
     presets: ThemePresetProperties;
     /** Effective URLs (uploads already turned into blob URLs); empty string = none. */
     logos: Required<BrandOverrides>;

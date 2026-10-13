@@ -8,6 +8,10 @@ import { useReceivePreview } from "#/features/editor/login/hooks/use-preview-cha
 import { getStory } from "#/features/editor/login/stories/pages.ts";
 import type { AssetKey } from "#/features/editor/shared/model/assets.ts";
 import { assetDefinitions } from "#/features/editor/shared/model/assets.ts";
+import {
+    applyPreviewColorScheme,
+    readPreviewColorScheme,
+} from "#/features/editor/shared/model/preview-color-scheme.ts";
 import { defaultLoginThemeConfig, themeConfigToProperties } from "#/features/editor/shared/model/theme-config.ts";
 import { DEFAULT_LOCALE } from "#/lib/locales";
 
@@ -29,7 +33,8 @@ function PreviewRoute() {
     const [state, setState] = useState<PreviewState & { assets?: PreviewAssets }>({
         pageId: "login.ftl",
         storyId: "default",
-        colorScheme: "light",
+        // What the root's blocking script resolved, so mounting doesn't flip the scheme.
+        colorScheme: readPreviewColorScheme(),
         locale: DEFAULT_LOCALE,
         config: defaultLoginThemeConfig,
     });
@@ -58,10 +63,7 @@ function PreviewRoute() {
 
     // Apply the editor's color scheme to the iframe document.
     useEffect(() => {
-        const root = document.documentElement;
-        root.classList.toggle("dark", colorScheme === "dark");
-
-        localStorage.setItem("isDarkMode", colorScheme);
+        applyPreviewColorScheme(colorScheme);
     }, [colorScheme]);
 
     // Re-resolve the scenario's overrides here (they hold non-cloneable

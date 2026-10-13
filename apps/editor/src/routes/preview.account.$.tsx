@@ -13,6 +13,7 @@ import { useEffect, useEffectEvent, useState } from "react";
 import { Spinner } from "#/components/ui/spinner";
 import type { AccountPreviewConfig } from "#/features/editor/account/hooks/use-account-preview-channel.ts";
 import { useReceiveAccountPreview } from "#/features/editor/account/hooks/use-account-preview-channel.ts";
+import { applyPreviewColorScheme } from "#/features/editor/shared/model/preview-color-scheme.ts";
 
 /**
  * Isolated document embedded by the Account surface. Runs the account console
@@ -45,7 +46,8 @@ function AccountPreviewDocument() {
 
     const { isFramed, postReady, postError } = useReceiveAccountPreview({
         onConfig: incoming => setConfig(current => current ?? incoming),
-        onBranding: ({ presets, logos }) => {
+        onBranding: ({ presets, logos, colorScheme }) => {
+            applyPreviewColorScheme(colorScheme);
             applyThemePreset(presets);
             setBrandOverrides(logos);
         },
@@ -114,7 +116,8 @@ function AccountPreviewApp({
             notifyReady();
             setIsAuthReady(true);
         })();
-    }, [kcContext]);
+        // oxlint-disable-next-line react/exhaustive-effect-dependencies react-hooks/exhaustive-deps
+    }, []);
 
     if (!isAuthReady) return <Loading />;
 
