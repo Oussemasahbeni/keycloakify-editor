@@ -35,8 +35,8 @@ catalogs:
         '@tanstack/router-plugin': ^1.168.13
 
 minimumReleaseAgeExclude:
-  - keycloakify@11.16.1
-
+  - '@keycloakify/keycloak-account-ui@260700.0.4'
+  - '@keycloakify/keycloak-ui-shared@260700.0.3'
 # Security floor (CVE-2026-102989 / GHSA-qx66-fv34-fjm8, TanStack Start server-function XSS):
 # forces every copy in the workspace past the patched versions — including the one pnpm
 # auto-installs as oidc-spa's optional peer for packages/shadcn-theme.
