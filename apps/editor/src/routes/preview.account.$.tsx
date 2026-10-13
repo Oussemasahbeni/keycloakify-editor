@@ -31,6 +31,8 @@ export const Route = createFileRoute("/preview/account/$")({
     pendingComponent: () => <Loading />,
 });
 
+const LOGIN_ATTEMPTED_KEY = "kc-account-preview:login-attempted";
+
 function Loading() {
     return (
         <div className="flex h-svh items-center justify-center gap-2 text-sm text-muted-foreground">
@@ -99,7 +101,23 @@ function AccountPreviewApp({
 
         void (async () => {
             try {
-                await keycloak.init({ onLoad: "login-required", pkceMethod: "S256" });
+                const isAuthenticated = await keycloak.init({ onLoad: "login-required", pkceMethod: "S256" });
+
+                // oidc-spa keeps one client per issuer + client id, and the editor's own
+                // `bootstrapOidc` (no auto login) created it first in this document, so
+                // "login-required" is not enforced: `init` can resolve signed out. Hop to
+                // Keycloak once ourselves; a second miss is reported instead of looping.
+                if (!isAuthenticated) {
+                    if (sessionStorage.getItem(LOGIN_ATTEMPTED_KEY) !== null) {
+                        sessionStorage.removeItem(LOGIN_ATTEMPTED_KEY);
+                        notifyError("Couldn't restore your Keycloak session for the account preview.");
+                        return;
+                    }
+                    sessionStorage.setItem(LOGIN_ATTEMPTED_KEY, "1");
+                    await keycloak.login();
+                    return;
+                }
+                sessionStorage.removeItem(LOGIN_ATTEMPTED_KEY);
             } catch (error) {
                 // Keycloak unreachable, realm/client misconfigured, network error… Tell the
                 // editor (which keeps this frame hidden until `ready`) instead of hanging.
