@@ -5,6 +5,9 @@ import type { LoginThemeConfig } from "#/features/editor/shared/model/theme-conf
 import { getThemeFileMetaError, themeFileSlots, themeOptionsSchema } from "#/features/editor/shared/theme-form-data.ts";
 import { getThemeNameError } from "#/features/editor/shared/validation/theme-name.ts";
 
+/** A saved theme's id and the revision the editor last loaded or wrote. */
+export type SavedThemeRef = { id: string; revision: number };
+
 export const MAX_THEME_NAME_LENGTH = 64;
 /** Also what keeps an inline `data:` image from riding along inside the config. */
 export const MAX_URL_LENGTH = 2048;

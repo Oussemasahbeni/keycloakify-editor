@@ -21,7 +21,7 @@ import { loadTemplateJar } from "./template-jar";
  * content type so the browser saves it.
  */
 export const generateJar = createServerFn({ method: "POST" })
-    .middleware([oidcFnMiddleware({ assert: "user logged in" })])
+    .middleware([oidcFnMiddleware()])
     .validator(data => {
         if (!(data instanceof FormData)) {
             throw new Error("Expected multipart/form-data.");

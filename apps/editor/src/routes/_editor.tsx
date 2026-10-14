@@ -2,11 +2,9 @@ import { createFileRoute, Link, Outlet } from "@tanstack/react-router";
 import { z } from "zod";
 
 import { LoadingScreen } from "#/components/loading-screen";
-import { Button, buttonVariants } from "#/components/ui/button";
-import { toast } from "#/components/ui/toast";
+import { buttonVariants } from "#/components/ui/button";
 import { EditorHeader } from "#/features/editor/header/editor-header.tsx";
 import { EditorProvider, useEditor } from "#/features/editor/state/editor-context.tsx";
-import { useOidc } from "#/oidc.ts";
 
 // A malformed value is dropped rather than turned into an error page: the editor
 // then simply opens on a new theme.
@@ -35,7 +33,6 @@ function EditorLayout() {
 
 function EditorBody() {
     const { remote } = useEditor().persistence;
-    const { login } = useOidc();
 
     if (remote.state === "loading") return <LoadingScreen />;
 
@@ -48,42 +45,20 @@ function EditorBody() {
         );
     }
 
-    if (remote.state === "sign-in-required") {
-        return (
-            <ThemeUnavailable
-                title="Sign in to open this theme"
-                description="Saved themes are only visible to the account that owns them."
-            >
-                <Button
-                    onClick={() =>
-                        login?.().catch(() =>
-                            toast.add({ description: "Couldn't reach the sign-in server.", type: "error" }),
-                        )
-                    }
-                >
-                    Sign in
-                </Button>
-            </ThemeUnavailable>
-        );
-    }
-
     // remote.state === "error"
     return <ThemeUnavailable title="Couldn't open this theme" description={remote.message} />;
 }
 
-function ThemeUnavailable(props: { title: string; description: string; children?: React.ReactNode }) {
-    const { title, description, children } = props;
+function ThemeUnavailable(props: { title: string; description: string }) {
+    const { title, description } = props;
 
     return (
         <div className="flex h-svh flex-col items-center justify-center gap-4 p-6 text-center">
             <h1 className="text-lg font-medium">{title}</h1>
             <p className="max-w-md text-sm text-muted-foreground">{description}</p>
-            <div className="flex gap-2">
-                {children}
-                <Link to="/login" className={buttonVariants({ variant: "outline" })}>
-                    Start a new theme
-                </Link>
-            </div>
+            <Link to="/login" className={buttonVariants({ variant: "outline" })}>
+                Start a new theme
+            </Link>
         </div>
     );
 }

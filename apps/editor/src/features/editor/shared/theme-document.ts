@@ -2,7 +2,7 @@ import type { ThemeAssetKey } from "./model/assets";
 import type { EmailThemeConfig, LoginThemeConfig } from "./model/theme-config";
 import { getThemeFile, themeFileSlots } from "./theme-form-data";
 
-/** The editor document: what gets saved, exported, drafted and compared. */
+/** The editor document: what gets saved, exported and compared. */
 export type ParsedTheme = {
     themeName: string;
     login: LoginThemeConfig;

@@ -17,7 +17,7 @@ import * as store from "./theme-store";
  * them to and from object storage itself, over the URLs handed out here.
  */
 
-const loggedIn = oidcFnMiddleware({ assert: "user logged in" });
+const loggedIn = oidcFnMiddleware();
 const themeIdSchema = z.object({ id: z.uuid() });
 
 export const listThemes = createServerFn({ method: "GET" })

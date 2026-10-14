@@ -64,7 +64,8 @@ export function accessChangeFromEvent(event: Stripe.Event): AccessChange | null 
 
 export const checkoutRequestSchema = z.object({
     surface: z.enum(["login", "email", "account"]),
-    themeId: z.uuid().optional(),
+    /** The theme is saved before checkout, so Stripe can send the user back to it. */
+    themeId: z.uuid(),
 });
 
 export type ReturnTarget = z.infer<typeof checkoutRequestSchema>;
@@ -77,7 +78,7 @@ export type CheckoutResult = { status: "already-paid" } | { status: "redirect"; 
 
 /** Where Stripe sends the user after checkout: back to the editor surface they left. */
 export function buildReturnUrls(origin: string, { surface, themeId }: ReturnTarget) {
-    const base = `${origin}/${surface}?${themeId ? `themeId=${themeId}&` : ""}`;
+    const base = `${origin}/${surface}?themeId=${themeId}&`;
     return {
         // Stripe substitutes this placeholder itself, so the braces must not be URL-encoded.
         successUrl: `${base}checkout=success&session_id={CHECKOUT_SESSION_ID}`,

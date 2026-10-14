@@ -9,23 +9,21 @@ import { Spinner } from "#/components/ui/spinner";
 import { toast } from "#/components/ui/toast";
 import { accessQueryKey } from "#/features/billing/queries.ts";
 import { confirmCheckout, createCheckoutSession, getAccessStatus } from "#/features/billing/server/billing.ts";
-import { clearDraft, saveDraft } from "#/lib/draft-storage";
-import { useOidc } from "#/oidc.ts";
 
 import { generateJar } from "../server/generate-jar";
 import { SURFACES } from "../shared/model/surface";
 import { buildThemeFormData } from "../shared/theme-form-data";
 import { getThemeNameError } from "../shared/validation/theme-name";
 import { useEditor } from "../state/editor-context";
+import { useSaveTheme } from "../state/use-save-theme";
 import { PaywallDialog } from "./paywall-dialog";
-import { SignInDialog } from "./sign-in-dialog";
 
 const editorRoute = getRouteApi("/_editor");
 
 /**
- * Exports the theme as a JAR, which takes an account and lifetime access. A
- * user missing either is sent to sign in or to pay; both leave the page, so the
- * edits wait in a draft and are back when the user is, ready to export.
+ * Exports the theme as a JAR, which takes lifetime access. A user without it is
+ * sent to pay, which leaves the page, so the theme is saved to their account
+ * first and Stripe sends them back to it, ready to export.
  *
  * What is shown here is a convenience: the server refuses an export without
  * access whatever this component believes.
@@ -34,16 +32,15 @@ export function ExportButton() {
     const {
         themeName,
         theme,
-        persistence: { saved, allowLeave },
+        persistence: { saved, isDirty },
     } = useEditor();
+    const { saveTheme, isSaving } = useSaveTheme();
 
-    const { isUserLoggedIn, login } = useOidc();
     const { checkout, session_id: sessionId } = editorRoute.useSearch();
     const navigate = editorRoute.useNavigate();
     const pathname = useLocation({ select: location => location.pathname });
     const queryClient = useQueryClient();
 
-    const [openSignInDialog, setOpenSignInDialog] = useState(false);
     const [openPaywallDialog, setOpenPaywallDialog] = useState(false);
     const [isLeavingForCheckout, setIsLeavingForCheckout] = useState(false);
     const handledCheckoutReturn = useRef(false);
@@ -58,7 +55,7 @@ export function ExportButton() {
         queryFn: () => fetchAccess(),
         // Held back on the way in from a payment: the confirmation below is what
         // records it, and an answer read before that would say "no access".
-        enabled: isUserLoggedIn === true && checkout !== "success",
+        enabled: checkout !== "success",
     });
     const { data: access } = useQuery(accessOptions);
 
@@ -67,7 +64,7 @@ export function ExportButton() {
     const confirmationOptions = queryOptions({
         queryKey: ["billing-checkout", sessionId ?? null, confirmPayment],
         queryFn: () => confirmPayment({ data: { sessionId: sessionId ?? "" } }),
-        enabled: isUserLoggedIn === true && checkout === "success" && sessionId !== undefined,
+        enabled: checkout === "success" && sessionId !== undefined,
         staleTime: Infinity,
         retry: false,
         refetchOnWindowFocus: false,
@@ -90,7 +87,6 @@ export function ExportButton() {
             anchor.remove();
             URL.revokeObjectURL(url);
 
-            void clearDraft();
             toast.add({
                 description: `Downloaded ${name}.jar`,
                 type: "success",
@@ -108,30 +104,19 @@ export function ExportButton() {
     });
 
     const { mutate: startCheckout, isPending: isStartingCheckout } = useMutation({
-        mutationFn: async () => {
-            // Same hand-off as sign-in: the edits wait in a draft while the user is at Stripe.
-            await saveDraft({ ...theme, saved: saved ?? undefined }).catch(() =>
-                toast.add({
-                    description: "Couldn't save your edits before the payment; they may be lost after the redirect.",
-                    type: "warning",
-                }),
-            );
+        mutationFn: async (themeId: string) => {
             const surface = SURFACES.find(option => pathname.startsWith(option.to))?.value ?? "login";
-            return requestCheckout({ data: { surface, themeId: saved?.id } });
+            return requestCheckout({ data: { surface, themeId } });
         },
         onSuccess: result => {
             if (result.status === "already-paid") {
-                void clearDraft();
                 queryClient.setQueryData(accessOptions.queryKey, { hasAccess: true });
                 return exportTheme();
             }
             setIsLeavingForCheckout(true);
-            allowLeave();
             window.location.assign(result.url);
         },
         onError: error => {
-            // Not leaving after all, so the draft must not be restored over a later visit.
-            void clearDraft();
             toast.add({
                 description: error instanceof Error ? error.message : "Couldn't start the checkout.",
                 type: "error",
@@ -147,20 +132,6 @@ export function ExportButton() {
                 type: "error",
             });
 
-        // Export needs a session: ask for sign-in up front instead of uploading everything
-        // first, and keep the edits in a draft so they survive the sign-in redirect.
-        if (!isUserLoggedIn) {
-            void saveDraft({ ...theme, saved: saved ?? undefined })
-                .catch(() =>
-                    toast.add({
-                        description: "Couldn't save your edits before signing in; they may be lost after the redirect.",
-                        type: "warning",
-                    }),
-                )
-                .finally(() => setOpenSignInDialog(true));
-            return;
-        }
-
         // While access is unknown (still loading, or the check failed) the export
         // is simply attempted: the server decides either way.
         if (access?.hasAccess === false) return setOpenPaywallDialog(true);
@@ -168,20 +139,17 @@ export function ExportButton() {
         exportTheme();
     }
 
-    function handleSignIn() {
-        setOpenSignInDialog(false);
-        login?.().catch(() => toast.add({ description: "Couldn't reach the sign-in server.", type: "error" }));
-    }
-
-    function handleContinueToPayment() {
+    async function handleContinueToPayment() {
         setOpenPaywallDialog(false);
-        startCheckout();
+        // Stripe's redirect leaves the page: unsaved edits go to the account first,
+        // and the return URL opens the saved theme. A failed save has been reported.
+        const target = saved !== null && !isDirty ? saved : await saveTheme().catch(() => null);
+        if (target) startCheckout(target.id);
     }
 
     // Back from Stripe: report how it went, then take the checkout parameters out of the URL.
-    const isConfirming = checkout === "success" && sessionId !== undefined && isUserLoggedIn === true;
-    const isCheckoutSettled =
-        checkout !== undefined && isUserLoggedIn !== undefined && !(isConfirming && confirmation.isPending);
+    const isConfirming = checkout === "success" && sessionId !== undefined;
+    const isCheckoutSettled = checkout !== undefined && !(isConfirming && confirmation.isPending);
 
     useEffect(() => {
         if (!isCheckoutSettled || handledCheckoutReturn.current) return;
@@ -208,7 +176,7 @@ export function ExportButton() {
         // oxlint-disable-next-line react-hooks/exhaustive-deps -- fires once per return from checkout, guarded by the ref above
     }, [isCheckoutSettled]);
 
-    const isBusy = isPending || isStartingCheckout || isLeavingForCheckout || isConfirming;
+    const isBusy = isPending || isSaving || isStartingCheckout || isLeavingForCheckout || isConfirming;
 
     return (
         <>
@@ -216,14 +184,6 @@ export function ExportButton() {
                 {isBusy ? <Spinner /> : <Download />}
                 Export
             </Button>
-
-            <SignInDialog
-                title="Sign in to export"
-                description="Exporting a theme requires an account. Your design is kept in this browser while you sign in, so you'll pick up right where you left off."
-                open={openSignInDialog}
-                onOpenChange={() => setOpenSignInDialog(false)}
-                onSignIn={handleSignIn}
-            />
 
             <PaywallDialog
                 open={openPaywallDialog}

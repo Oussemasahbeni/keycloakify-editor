@@ -11,7 +11,7 @@ export type User = {
     accountConsoleUrl: string;
 };
 
-export const { bootstrapOidc, useOidc, enforceLogin, oidcFnMiddleware } = oidcSpa
+export const { bootstrapOidc, useOidc, oidcFnMiddleware } = oidcSpa
     .withUser<User>({
         createUser: async ({ decodedIdToken, issuerUri, clientId, validRedirectUri }) => {
             const { name, email, picture } = z
@@ -39,6 +39,7 @@ export const { bootstrapOidc, useOidc, enforceLogin, oidcFnMiddleware } = oidcSp
         type: "RFC 9068: JSON Web Token (JWT) Profile for OAuth 2.0 Access Tokens",
         expectedAudience: ({ process }) => process.env.OIDC_ACCESS_TOKEN_EXPECTED_AUDIENCE,
     })
+    .withAutoLogin()
     .createUtils();
 
 bootstrapOidc(({ process }) => ({

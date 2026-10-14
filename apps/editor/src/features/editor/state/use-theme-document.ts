@@ -17,7 +17,7 @@ const blankTheme: ParsedTheme = {
 
 /**
  * The theme being edited: name, login and email config, uploaded images. One
- * value, so importing a JAR, restoring a draft and opening a saved theme are
+ * value, so importing a JAR and opening a saved or shared theme are
  * all the same `applyTheme` call.
  */
 export function useThemeDocument() {

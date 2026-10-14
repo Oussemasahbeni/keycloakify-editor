@@ -20,7 +20,7 @@ import { stripe } from "./stripe";
  * functions only read it, start a checkout, or record one that has finished.
  */
 
-const loggedIn = oidcFnMiddleware({ assert: "user logged in" });
+const loggedIn = oidcFnMiddleware();
 
 export const getAccessStatus = createServerFn({ method: "GET" })
     .middleware([loggedIn])

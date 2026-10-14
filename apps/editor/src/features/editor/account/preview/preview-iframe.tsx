@@ -1,4 +1,4 @@
-import { LogIn, RotateCcw, TriangleAlert } from "lucide-react";
+import { RotateCcw, TriangleAlert } from "lucide-react";
 import { createKeycloakUtils } from "oidc-spa/keycloak";
 import { useRef, useState } from "react";
 
@@ -25,7 +25,7 @@ const PREVIEW_PATH = "/preview/account/";
  * tells it which ones, and pushes branding whenever the config changes.
  */
 export function AccountPreviewIframe() {
-    const oidc = useOidc();
+    const oidc = useOidc({ assert: "ready" });
     const { login, locale } = useEditor();
     const width = getViewportWidth(login.viewport);
 
@@ -43,21 +43,18 @@ export function AccountPreviewIframe() {
 
     // Where the frame logs in and what it renders at mount. The realm and server root
     // only exist inside the issuer URI; oidc-spa parses it.
-    let config: AccountPreviewConfig | undefined;
-    if (oidc.isUserLoggedIn) {
-        const { issuerUriParsed } = createKeycloakUtils({ issuerUri: oidc.issuerUri });
-        config = {
-            serverBaseUrl: `${issuerUriParsed.origin}${issuerUriParsed.kcHttpRelativePath ?? ""}`,
-            realm: issuerUriParsed.realm,
-            clientId: oidc.clientId,
-            locale,
-            properties: {
-                ...themeConfigToProperties(login.config),
-                [THEME_PROPERTY_KEYS.logoUrl]: logos.logoUrl,
-                [THEME_PROPERTY_KEYS.logoDarkUrl]: logos.logoDarkUrl,
-            },
-        };
-    }
+    const { issuerUriParsed } = createKeycloakUtils({ issuerUri: oidc.issuerUri });
+    const config: AccountPreviewConfig = {
+        serverBaseUrl: `${issuerUriParsed.origin}${issuerUriParsed.kcHttpRelativePath ?? ""}`,
+        realm: issuerUriParsed.realm,
+        clientId: oidc.clientId,
+        locale,
+        properties: {
+            ...themeConfigToProperties(login.config),
+            [THEME_PROPERTY_KEYS.logoUrl]: logos.logoUrl,
+            [THEME_PROPERTY_KEYS.logoDarkUrl]: logos.logoDarkUrl,
+        },
+    };
 
     // What the console re-applies live: the colour scheme, the four presets and the two logos.
     const branding: AccountPreviewBranding = {
@@ -74,21 +71,6 @@ export function AccountPreviewIframe() {
     // A locale change remounts the frame (the console reads it once), hence the key; so does a retry.
     const frameKey = `${locale}:${attempt}`;
     const { isReady, error } = usePublishAccountPreview(iframeRef, { config, branding, frameKey });
-
-    if (!oidc.isUserLoggedIn) {
-        return (
-            <div className="flex h-full flex-col items-center justify-center gap-3 bg-muted/30 p-4 text-center">
-                <LogIn className="size-6 text-muted-foreground" />
-                <p className="text-sm font-medium">Sign in to preview your account console</p>
-                <p className="max-w-sm text-sm text-muted-foreground">
-                    The preview shows the signed-in user's real account on the connected realm.
-                </p>
-                <Button size="sm" onClick={() => void oidc.login?.()}>
-                    Sign in
-                </Button>
-            </div>
-        );
-    }
 
     return (
         <div className="flex h-full flex-col">

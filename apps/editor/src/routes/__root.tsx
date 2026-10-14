@@ -2,12 +2,14 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { HeadContent, ScriptOnce, Scripts, createRootRoute, useRouterState } from "@tanstack/react-router";
 
 import { DefaultCatchBoundary } from "#/components/DefaultCatchBoundary";
+import { LoadingScreen } from "#/components/loading-screen";
 import { NotFound } from "#/components/not-found";
 import { ThemeProvider } from "#/components/theme-provider";
 import { Toaster } from "#/components/ui/toast";
 import { TooltipProvider } from "#/components/ui/tooltip";
 import { previewColorSchemeScript } from "#/features/editor/shared/model/preview-color-scheme.ts";
 import { seo } from "#/lib/seo";
+import { useOidc } from "#/oidc.ts";
 
 import appCss from "../styles.css?url";
 
@@ -61,6 +63,8 @@ export const Route = createRootRoute({
     errorComponent: DefaultCatchBoundary,
     notFoundComponent: () => <NotFound />,
     shellComponent: RootDocument,
+    // Every page needs the signed-in user, so only the shell is server-rendered.
+    ssr: false,
 });
 
 function RootDocument({ children }: { children: React.ReactNode }) {
@@ -73,6 +77,9 @@ function RootDocument({ children }: { children: React.ReactNode }) {
     const isPreview = useRouterState({
         select: state => state.location.pathname.startsWith("/preview"),
     });
+    // Pages render once oidc-spa has restored the session (auto-login redirects otherwise),
+    // so below this point `useOidc({ assert: "ready" })` always holds.
+    const { isOidcReady } = useOidc();
 
     return (
         <html lang="en" suppressHydrationWarning>
@@ -83,12 +90,14 @@ function RootDocument({ children }: { children: React.ReactNode }) {
                 {isPreview ? (
                     <>
                         <ScriptOnce>{previewColorSchemeScript}</ScriptOnce>
-                        {children}
+                        {isOidcReady && children}
                     </>
                 ) : (
                     <ThemeProvider defaultTheme="system" storageKey="theme">
                         <TooltipProvider>
-                            <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+                            <QueryClientProvider client={queryClient}>
+                                {isOidcReady ? children : <LoadingScreen />}
+                            </QueryClientProvider>
                         </TooltipProvider>
                         <Toaster />
                     </ThemeProvider>

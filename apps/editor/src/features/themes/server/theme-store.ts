@@ -8,9 +8,15 @@ import type { EmailThemeConfig, LoginThemeConfig, ThemeConfig } from "#/features
 import { themeConfigSchema } from "#/features/editor/shared/model/theme-config.ts";
 import type { ThemeFileSlot } from "#/features/editor/shared/theme-form-data.ts";
 import { getThemeFileMetaError, themeFileSlots } from "#/features/editor/shared/theme-form-data.ts";
-import type { SavedThemeRef } from "#/lib/draft-storage";
 
-import type { LoadedTheme, SaveThemeResult, StoredAssets, ThemeFileLink, ThemeSummary } from "../model/saved-theme";
+import type {
+    LoadedTheme,
+    SavedThemeRef,
+    SaveThemeResult,
+    StoredAssets,
+    ThemeFileLink,
+    ThemeSummary,
+} from "../model/saved-theme";
 import { MAX_THEME_NAME_LENGTH, storedAssetsSchema } from "../model/saved-theme";
 import { copyAsset, describeAsset, discardAssets, isAssetKeyOf, newAssetKey, signDownload } from "./asset-storage";
 
