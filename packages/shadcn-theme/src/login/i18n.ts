@@ -40,6 +40,16 @@ const { I18nProvider, useI18n } = i18nBuilder
             magicLinkExpiredTitle: "Link expired",
             magicLinkFailLogin: "Authentication session expired. Please close this tab and restart the login flow.",
             multipleSessionsError: "Multiple login sessions opened on same browser. Please close it and restart login.",
+            magicLinkContinuationWaiting: "Waiting for confirmation… Check your email.",
+            magicLinkContinuationExpired: "Your link has expired. Please request a new one.",
+            magicLinkContinuationExpiresIn: "Expires in {0}s",
+            magicLinkContinuationRedirecting: "Redirecting…",
+            activationSentConfirmation:
+                "If an account exists for this email address and it still needs to be activated, we have sent activation instructions to it. Check your inbox.",
+            loginTokenLabel: "Login token",
+            magicLinkUserSwitchInfo:
+                "You are currently signed in as <strong>{0}</strong> on this device. To continue as <strong>{1}</strong>, you will be signed out of this account. Would you like to continue?",
+            magicLinkLogoutAndContinue: "Sign out and continue",
         },
         ar: {
             welcomeMessage: "بوابتك الآمنة لتجربة سلسة.",
@@ -75,6 +85,16 @@ const { I18nProvider, useI18n } = i18nBuilder
             magicLinkExpiredTitle: "انتهت صلاحية الرابط",
             magicLinkFailLogin: "انتهت صلاحية جلسة المصادقة. يرجى إغلاق علامة التبويب هذه وإعادة بدء عملية تسجيل الدخول.",
             multipleSessionsError: "تم فتح عدة جلسات تسجيل دخول في نفس المتصفح. يرجى إغلاقها وإعادة تسجيل الدخول.",
+            magicLinkContinuationWaiting: "في انتظار التأكيد… تحقق من بريدك الإلكتروني.",
+            magicLinkContinuationExpired: "انتهت صلاحية الرابط. يرجى طلب رابط جديد.",
+            magicLinkContinuationExpiresIn: "تنتهي الصلاحية خلال {0} ث",
+            magicLinkContinuationRedirecting: "جارٍ إعادة التوجيه…",
+            activationSentConfirmation:
+                "إذا كان هناك حساب مرتبط بعنوان البريد الإلكتروني هذا ولا يزال بحاجة إلى التفعيل، فقد أرسلنا إليه تعليمات التفعيل. تحقق من بريدك الوارد.",
+            loginTokenLabel: "رمز تسجيل الدخول",
+            magicLinkUserSwitchInfo:
+                "أنت مسجل الدخول حاليًا باسم <strong>{0}</strong> على هذا الجهاز. للمتابعة باسم <strong>{1}</strong>، سيتم تسجيل خروجك من هذا الحساب. هل تريد المتابعة؟",
+            magicLinkLogoutAndContinue: "تسجيل الخروج والمتابعة",
         },
         ca: {
             welcomeMessage: "La vostra porta d'accés segura a una experiència fluida.",
@@ -113,6 +133,16 @@ const { I18nProvider, useI18n } = i18nBuilder
                 "La sessió d'autenticació ha caducat. Tanqueu aquesta pestanya i reinicieu l'inici de sessió.",
             multipleSessionsError:
                 "Hi ha diverses sessions d'inici de sessió obertes al mateix navegador. Tanqueu-les i torneu a iniciar sessió.",
+            magicLinkContinuationWaiting: "S’està esperant la confirmació… Reviseu el correu electrònic.",
+            magicLinkContinuationExpired: "L’enllaç ha caducat. Sol·liciteu-ne un de nou.",
+            magicLinkContinuationExpiresIn: "Caduca d’aquí a {0} s",
+            magicLinkContinuationRedirecting: "S’està redirigint…",
+            activationSentConfirmation:
+                "Si existeix un compte per a aquesta adreça electrònica i encara cal activar-lo, us hi hem enviat les instruccions d’activació. Reviseu la safata d’entrada.",
+            loginTokenLabel: "Testimoni d’inici de sessió",
+            magicLinkUserSwitchInfo:
+                "Actualment heu iniciat sessió com a <strong>{0}</strong> en aquest dispositiu. Per continuar com a <strong>{1}</strong>, es tancarà la sessió d’aquest compte. Voleu continuar?",
+            magicLinkLogoutAndContinue: "Tanca la sessió i continua",
         },
         cs: {
             welcomeMessage: "Vaše bezpečná brána k bezproblémovému zážitku.",
@@ -151,6 +181,16 @@ const { I18nProvider, useI18n } = i18nBuilder
                 "Platnost ověřovací relace vypršela. Zavřete prosím tuto kartu a zahajte přihlášení znovu.",
             multipleSessionsError:
                 "Ve stejném prohlížeči je otevřeno více přihlašovacích relací. Zavřete je prosím a přihlaste se znovu.",
+            magicLinkContinuationWaiting: "Čeká se na potvrzení… Zkontrolujte svůj e-mail.",
+            magicLinkContinuationExpired: "Platnost odkazu vypršela. Vyžádejte si prosím nový.",
+            magicLinkContinuationExpiresIn: "Vyprší za {0} s",
+            magicLinkContinuationRedirecting: "Přesměrování…",
+            activationSentConfirmation:
+                "Pokud pro tuto e-mailovou adresu existuje účet, který je třeba aktivovat, poslali jsme na ni pokyny k aktivaci. Zkontrolujte svou schránku.",
+            loginTokenLabel: "Přihlašovací token",
+            magicLinkUserSwitchInfo:
+                "Na tomto zařízení jste aktuálně přihlášeni jako <strong>{0}</strong>. Chcete-li pokračovat jako <strong>{1}</strong>, budete z tohoto účtu odhlášeni. Chcete pokračovat?",
+            magicLinkLogoutAndContinue: "Odhlásit se a pokračovat",
         },
         da: {
             welcomeMessage: "Din sikre indgang til en problemfri oplevelse.",
@@ -187,6 +227,16 @@ const { I18nProvider, useI18n } = i18nBuilder
             magicLinkExpiredTitle: "Linket er udløbet",
             magicLinkFailLogin: "Godkendelsessessionen er udløbet. Luk venligst denne fane, og start login forfra.",
             multipleSessionsError: "Flere login-sessioner er åbne i samme browser. Luk dem venligst, og log ind igen.",
+            magicLinkContinuationWaiting: "Venter på bekræftelse… Tjek din e-mail.",
+            magicLinkContinuationExpired: "Dit link er udløbet. Anmod venligst om et nyt.",
+            magicLinkContinuationExpiresIn: "Udløber om {0} s",
+            magicLinkContinuationRedirecting: "Omdirigerer…",
+            activationSentConfirmation:
+                "Hvis der findes en konto for denne e-mailadresse, som stadig skal aktiveres, har vi sendt aktiveringsinstruktioner til den. Tjek din indbakke.",
+            loginTokenLabel: "Login-token",
+            magicLinkUserSwitchInfo:
+                "Du er i øjeblikket logget ind som <strong>{0}</strong> på denne enhed. For at fortsætte som <strong>{1}</strong> bliver du logget ud af denne konto. Vil du fortsætte?",
+            magicLinkLogoutAndContinue: "Log ud og fortsæt",
         },
         de: {
             welcomeMessage: "Ihr sicherer Zugang zu einem nahtlosen Erlebnis.",
@@ -225,6 +275,16 @@ const { I18nProvider, useI18n } = i18nBuilder
                 "Die Authentifizierungssitzung ist abgelaufen. Bitte schließen Sie diesen Tab und starten Sie die Anmeldung neu.",
             multipleSessionsError:
                 "Im selben Browser sind mehrere Anmeldesitzungen geöffnet. Bitte schließen Sie diese und melden Sie sich erneut an.",
+            magicLinkContinuationWaiting: "Warten auf Bestätigung… Überprüfen Sie Ihre E-Mails.",
+            magicLinkContinuationExpired: "Ihr Link ist abgelaufen. Bitte fordern Sie einen neuen an.",
+            magicLinkContinuationExpiresIn: "Läuft in {0} s ab",
+            magicLinkContinuationRedirecting: "Weiterleitung…",
+            activationSentConfirmation:
+                "Falls für diese E-Mail-Adresse ein Konto existiert, das noch aktiviert werden muss, haben wir Aktivierungsanweisungen dorthin gesendet. Überprüfen Sie Ihren Posteingang.",
+            loginTokenLabel: "Anmeldetoken",
+            magicLinkUserSwitchInfo:
+                "Sie sind auf diesem Gerät derzeit als <strong>{0}</strong> angemeldet. Um als <strong>{1}</strong> fortzufahren, werden Sie von diesem Konto abgemeldet. Möchten Sie fortfahren?",
+            magicLinkLogoutAndContinue: "Abmelden und fortfahren",
         },
         el: {
             welcomeMessage: "Η ασφαλής πύλη σας για μια απρόσκοπτη εμπειρία.",
@@ -263,6 +323,16 @@ const { I18nProvider, useI18n } = i18nBuilder
                 "Η συνεδρία ταυτοποίησης έληξε. Κλείστε αυτή την καρτέλα και ξεκινήστε ξανά τη σύνδεση.",
             multipleSessionsError:
                 "Υπάρχουν πολλές ανοιχτές συνεδρίες σύνδεσης στον ίδιο φυλλομετρητή. Κλείστε τις και συνδεθείτε ξανά.",
+            magicLinkContinuationWaiting: "Αναμονή επιβεβαίωσης… Ελέγξτε το email σας.",
+            magicLinkContinuationExpired: "Ο σύνδεσμός σας έληξε. Ζητήστε έναν νέο.",
+            magicLinkContinuationExpiresIn: "Λήγει σε {0} δ",
+            magicLinkContinuationRedirecting: "Ανακατεύθυνση…",
+            activationSentConfirmation:
+                "Εάν υπάρχει λογαριασμός για αυτή τη διεύθυνση email που πρέπει ακόμη να ενεργοποιηθεί, έχουμε στείλει οδηγίες ενεργοποίησης σε αυτήν. Ελέγξτε τα εισερχόμενά σας.",
+            loginTokenLabel: "Διακριτικό σύνδεσης",
+            magicLinkUserSwitchInfo:
+                "Είστε συνδεδεμένοι σε αυτή τη συσκευή ως <strong>{0}</strong>. Για να συνεχίσετε ως <strong>{1}</strong>, θα αποσυνδεθείτε από αυτόν τον λογαριασμό. Θέλετε να συνεχίσετε;",
+            magicLinkLogoutAndContinue: "Αποσύνδεση και συνέχεια",
         },
         es: {
             welcomeMessage: "Su puerta de acceso segura a una experiencia perfecta.",
@@ -301,6 +371,16 @@ const { I18nProvider, useI18n } = i18nBuilder
                 "La sesión de autenticación ha caducado. Cierra esta pestaña y vuelve a iniciar el proceso de inicio de sesión.",
             multipleSessionsError:
                 "Hay varias sesiones de inicio de sesión abiertas en el mismo navegador. Ciérralas y vuelve a iniciar sesión.",
+            magicLinkContinuationWaiting: "Esperando confirmación… Revisa tu correo electrónico.",
+            magicLinkContinuationExpired: "Tu enlace ha caducado. Solicita uno nuevo.",
+            magicLinkContinuationExpiresIn: "Caduca en {0} s",
+            magicLinkContinuationRedirecting: "Redirigiendo…",
+            activationSentConfirmation:
+                "Si existe una cuenta para esta dirección de correo y aún debe activarse, le hemos enviado las instrucciones de activación. Revisa tu bandeja de entrada.",
+            loginTokenLabel: "Token de inicio de sesión",
+            magicLinkUserSwitchInfo:
+                "Has iniciado sesión como <strong>{0}</strong> en este dispositivo. Para continuar como <strong>{1}</strong>, se cerrará la sesión de esta cuenta. ¿Quieres continuar?",
+            magicLinkLogoutAndContinue: "Cerrar sesión y continuar",
         },
         fa: {
             welcomeMessage: "دروازه امن شما برای تجربه‌ای بی‌نقص.",
@@ -337,6 +417,16 @@ const { I18nProvider, useI18n } = i18nBuilder
             magicLinkFailLogin:
                 "نشست احراز هویت منقضی شده است. لطفاً این زبانه را ببندید و فرایند ورود را دوباره آغاز کنید.",
             multipleSessionsError: "چند نشست ورود در یک مرورگر باز است. لطفاً آن‌ها را ببندید و دوباره وارد شوید.",
+            magicLinkContinuationWaiting: "در انتظار تأیید… ایمیل خود را بررسی کنید.",
+            magicLinkContinuationExpired: "پیوند شما منقضی شده است. لطفاً پیوند جدیدی درخواست کنید.",
+            magicLinkContinuationExpiresIn: "انقضا در {0} ثانیه",
+            magicLinkContinuationRedirecting: "در حال هدایت…",
+            activationSentConfirmation:
+                "اگر حسابی برای این نشانی ایمیل وجود داشته باشد که هنوز باید فعال شود، دستورالعمل فعال‌سازی را به آن فرستاده‌ایم. صندوق ورودی خود را بررسی کنید.",
+            loginTokenLabel: "توکن ورود",
+            magicLinkUserSwitchInfo:
+                "شما در حال حاضر در این دستگاه با نام <strong>{0}</strong> وارد شده‌اید. برای ادامه با نام <strong>{1}</strong>، از این حساب خارج می‌شوید. آیا می‌خواهید ادامه دهید؟",
+            magicLinkLogoutAndContinue: "خروج و ادامه",
         },
         fi: {
             welcomeMessage: "Turvallinen porttisi saumattomaan kokemukseen.",
@@ -374,6 +464,16 @@ const { I18nProvider, useI18n } = i18nBuilder
                 "Tunnistautumisistunto on vanhentunut. Sulje tämä välilehti ja aloita kirjautuminen alusta.",
             multipleSessionsError:
                 "Samassa selaimessa on avoinna useita kirjautumisistuntoja. Sulje ne ja kirjaudu uudelleen.",
+            magicLinkContinuationWaiting: "Odotetaan vahvistusta… Tarkista sähköpostisi.",
+            magicLinkContinuationExpired: "Linkkisi on vanhentunut. Pyydä uusi linkki.",
+            magicLinkContinuationExpiresIn: "Vanhenee {0} s kuluttua",
+            magicLinkContinuationRedirecting: "Uudelleenohjataan…",
+            activationSentConfirmation:
+                "Jos tälle sähköpostiosoitteelle on tili, joka on vielä aktivoitava, olemme lähettäneet siihen aktivointiohjeet. Tarkista saapuneet viestisi.",
+            loginTokenLabel: "Kirjautumistunnus",
+            magicLinkUserSwitchInfo:
+                "Olet tällä laitteella kirjautuneena käyttäjänä <strong>{0}</strong>. Jotta voit jatkaa käyttäjänä <strong>{1}</strong>, sinut kirjataan ulos tältä tililtä. Haluatko jatkaa?",
+            magicLinkLogoutAndContinue: "Kirjaudu ulos ja jatka",
         },
         fr: {
             welcomeMessage: "Votre passerelle sécurisée vers une expérience sans faille.",
@@ -412,6 +512,16 @@ const { I18nProvider, useI18n } = i18nBuilder
                 "La session d'authentification a expiré. Veuillez fermer cet onglet et recommencer la connexion.",
             multipleSessionsError:
                 "Plusieurs sessions de connexion sont ouvertes dans le même navigateur. Veuillez les fermer et vous reconnecter.",
+            magicLinkContinuationWaiting: "En attente de confirmation… Consultez vos e-mails.",
+            magicLinkContinuationExpired: "Votre lien a expiré. Veuillez en demander un nouveau.",
+            magicLinkContinuationExpiresIn: "Expire dans {0} s",
+            magicLinkContinuationRedirecting: "Redirection…",
+            activationSentConfirmation:
+                "Si un compte existe pour cette adresse e-mail et doit encore être activé, nous y avons envoyé les instructions d’activation. Consultez votre boîte de réception.",
+            loginTokenLabel: "Jeton de connexion",
+            magicLinkUserSwitchInfo:
+                "Vous êtes actuellement connecté en tant que <strong>{0}</strong> sur cet appareil. Pour continuer en tant que <strong>{1}</strong>, vous serez déconnecté de ce compte. Voulez-vous continuer ?",
+            magicLinkLogoutAndContinue: "Se déconnecter et continuer",
         },
         hu: {
             welcomeMessage: "Az Ön biztonságos kapuja a zökkenőmentes élményhez.",
@@ -450,6 +560,16 @@ const { I18nProvider, useI18n } = i18nBuilder
                 "A hitelesítési munkamenet lejárt. Kérjük, zárja be ezt a lapot, és kezdje újra a bejelentkezést.",
             multipleSessionsError:
                 "Ugyanabban a böngészőben több bejelentkezési munkamenet is nyitva van. Kérjük, zárja be őket, és jelentkezzen be újra.",
+            magicLinkContinuationWaiting: "Várakozás a megerősítésre… Ellenőrizze az e-mailjeit.",
+            magicLinkContinuationExpired: "A hivatkozás lejárt. Kérjen újat.",
+            magicLinkContinuationExpiresIn: "Lejár {0} mp múlva",
+            magicLinkContinuationRedirecting: "Átirányítás…",
+            activationSentConfirmation:
+                "Ha ehhez az e-mail-címhez tartozik még aktiválásra váró fiók, elküldtük rá az aktiválási utasításokat. Ellenőrizze a beérkezett üzeneteit.",
+            loginTokenLabel: "Bejelentkezési token",
+            magicLinkUserSwitchInfo:
+                "Ezen az eszközön jelenleg <strong>{0}</strong> néven van bejelentkezve. Ha <strong>{1}</strong> néven szeretne folytatni, kijelentkeztetjük ebből a fiókból. Folytatja?",
+            magicLinkLogoutAndContinue: "Kijelentkezés és folytatás",
         },
         it: {
             welcomeMessage: "Il tuo accesso sicuro a un'esperienza senza interruzioni.",
@@ -487,6 +607,16 @@ const { I18nProvider, useI18n } = i18nBuilder
             magicLinkFailLogin: "La sessione di autenticazione è scaduta. Chiudi questa scheda e riavvia l'accesso.",
             multipleSessionsError:
                 "Sono aperte più sessioni di accesso nello stesso browser. Chiudile e accedi di nuovo.",
+            magicLinkContinuationWaiting: "In attesa di conferma… Controlla la tua email.",
+            magicLinkContinuationExpired: "Il link è scaduto. Richiedine uno nuovo.",
+            magicLinkContinuationExpiresIn: "Scade tra {0} s",
+            magicLinkContinuationRedirecting: "Reindirizzamento…",
+            activationSentConfirmation:
+                "Se esiste un account per questo indirizzo email che deve ancora essere attivato, vi abbiamo inviato le istruzioni di attivazione. Controlla la posta in arrivo.",
+            loginTokenLabel: "Token di accesso",
+            magicLinkUserSwitchInfo:
+                "Hai effettuato l’accesso su questo dispositivo come <strong>{0}</strong>. Per continuare come <strong>{1}</strong>, verrai disconnesso da questo account. Vuoi continuare?",
+            magicLinkLogoutAndContinue: "Esci e continua",
         },
         ja: {
             welcomeMessage: "シームレスな体験への安全なゲートウェイ。",
@@ -524,6 +654,16 @@ const { I18nProvider, useI18n } = i18nBuilder
                 "認証セッションの有効期限が切れました。このタブを閉じて、ログインをやり直してください。",
             multipleSessionsError:
                 "同じブラウザで複数のログインセッションが開かれています。それらを閉じてから、もう一度ログインしてください。",
+            magicLinkContinuationWaiting: "確認を待っています… メールを確認してください。",
+            magicLinkContinuationExpired: "リンクの有効期限が切れました。新しいリンクをリクエストしてください。",
+            magicLinkContinuationExpiresIn: "残り {0} 秒",
+            magicLinkContinuationRedirecting: "リダイレクトしています…",
+            activationSentConfirmation:
+                "このメールアドレスのアカウントが存在し、まだ有効化が必要な場合は、有効化の手順を送信しました。受信トレイを確認してください。",
+            loginTokenLabel: "ログイントークン",
+            magicLinkUserSwitchInfo:
+                "現在、このデバイスでは <strong>{0}</strong> としてサインインしています。<strong>{1}</strong> として続行するには、このアカウントからサインアウトします。続行しますか？",
+            magicLinkLogoutAndContinue: "サインアウトして続行",
         },
         ka: {
             welcomeMessage: "თქვენი უსაფრთხო კარიბჭე უწყვეტი გამოცდილებისკენ.",
@@ -561,6 +701,16 @@ const { I18nProvider, useI18n } = i18nBuilder
                 "ავთენტიკაციის სესიას ვადა გაუვიდა. გთხოვთ, დახუროთ ეს ჩანართი და თავიდან დაიწყოთ შესვლა.",
             multipleSessionsError:
                 "ერთ ბრაუზერში რამდენიმე შესვლის სესიაა გახსნილი. გთხოვთ, დახუროთ ისინი და ხელახლა შეხვიდეთ.",
+            magicLinkContinuationWaiting: "დადასტურების მოლოდინი… შეამოწმეთ ელფოსტა.",
+            magicLinkContinuationExpired: "ბმულს ვადა გაუვიდა. გთხოვთ, მოითხოვოთ ახალი.",
+            magicLinkContinuationExpiresIn: "ვადა გასდის {0} წამში",
+            magicLinkContinuationRedirecting: "გადამისამართება…",
+            activationSentConfirmation:
+                "თუ ამ ელფოსტის მისამართზე არსებობს ანგარიში, რომელიც ჯერ კიდევ გასააქტიურებელია, მასზე გავაგზავნეთ გააქტიურების ინსტრუქციები. შეამოწმეთ შემოსულები.",
+            loginTokenLabel: "შესვლის ტოკენი",
+            magicLinkUserSwitchInfo:
+                "ამ მოწყობილობაზე ამჟამად შესული ხართ როგორც <strong>{0}</strong>. როგორც <strong>{1}</strong> გასაგრძელებლად, ამ ანგარიშიდან გამოხვალთ. გსურთ გაგრძელება?",
+            magicLinkLogoutAndContinue: "გასვლა და გაგრძელება",
         },
         lt: {
             welcomeMessage: "Jūsų saugūs vartai į sklandžią patirtį.",
@@ -598,6 +748,16 @@ const { I18nProvider, useI18n } = i18nBuilder
                 "Autentifikavimo sesijos galiojimas baigėsi. Uždarykite šį skirtuką ir pradėkite prisijungimą iš naujo.",
             multipleSessionsError:
                 "Toje pačioje naršyklėje atidarytos kelios prisijungimo sesijos. Uždarykite jas ir prisijunkite iš naujo.",
+            magicLinkContinuationWaiting: "Laukiama patvirtinimo… Patikrinkite el. paštą.",
+            magicLinkContinuationExpired: "Jūsų nuorodos galiojimas baigėsi. Paprašykite naujos.",
+            magicLinkContinuationExpiresIn: "Baigs galioti po {0} s",
+            magicLinkContinuationRedirecting: "Nukreipiama…",
+            activationSentConfirmation:
+                "Jei šiuo el. pašto adresu yra paskyra, kurią dar reikia aktyvinti, išsiuntėme į jį aktyvinimo instrukcijas. Patikrinkite gautus laiškus.",
+            loginTokenLabel: "Prisijungimo raktas",
+            magicLinkUserSwitchInfo:
+                "Šiuo metu šiame įrenginyje esate prisijungę kaip <strong>{0}</strong>. Norėdami tęsti kaip <strong>{1}</strong>, būsite atjungti nuo šios paskyros. Ar norite tęsti?",
+            magicLinkLogoutAndContinue: "Atsijungti ir tęsti",
         },
         lv: {
             welcomeMessage: "Jūsu drošā vārteja uz nevainojamu pieredzi.",
@@ -636,6 +796,16 @@ const { I18nProvider, useI18n } = i18nBuilder
                 "Autentifikācijas sesijas derīguma termiņš ir beidzies. Lūdzu, aizveriet šo cilni un sāciet pieteikšanos no jauna.",
             multipleSessionsError:
                 "Vienā pārlūkā ir atvērtas vairākas pieteikšanās sesijas. Lūdzu, aizveriet tās un piesakieties vēlreiz.",
+            magicLinkContinuationWaiting: "Gaida apstiprinājumu… Pārbaudiet savu e-pastu.",
+            magicLinkContinuationExpired: "Jūsu saites derīguma termiņš ir beidzies. Lūdzu, pieprasiet jaunu.",
+            magicLinkContinuationExpiresIn: "Beigsies pēc {0} s",
+            magicLinkContinuationRedirecting: "Novirza…",
+            activationSentConfirmation:
+                "Ja šai e-pasta adresei ir konts, kas vēl jāaktivizē, mēs uz to nosūtījām aktivizēšanas norādījumus. Pārbaudiet iesūtni.",
+            loginTokenLabel: "Pieteikšanās marķieris",
+            magicLinkUserSwitchInfo:
+                "Šajā ierīcē pašlaik esat pieteicies kā <strong>{0}</strong>. Lai turpinātu kā <strong>{1}</strong>, jūs tiksiet izrakstīts no šī konta. Vai vēlaties turpināt?",
+            magicLinkLogoutAndContinue: "Izrakstīties un turpināt",
         },
         nl: {
             welcomeMessage: "Uw veilige toegangspoort tot een naadloze ervaring.",
@@ -672,6 +842,16 @@ const { I18nProvider, useI18n } = i18nBuilder
             magicLinkFailLogin: "De authenticatiesessie is verlopen. Sluit dit tabblad en start het inloggen opnieuw.",
             multipleSessionsError:
                 "Er zijn meerdere inlogsessies geopend in dezelfde browser. Sluit deze en log opnieuw in.",
+            magicLinkContinuationWaiting: "Wachten op bevestiging… Controleer je e-mail.",
+            magicLinkContinuationExpired: "Je link is verlopen. Vraag een nieuwe aan.",
+            magicLinkContinuationExpiresIn: "Verloopt over {0} s",
+            magicLinkContinuationRedirecting: "Doorsturen…",
+            activationSentConfirmation:
+                "Als er voor dit e-mailadres een account bestaat dat nog geactiveerd moet worden, hebben we er activeringsinstructies naartoe gestuurd. Controleer je inbox.",
+            loginTokenLabel: "Inlogtoken",
+            magicLinkUserSwitchInfo:
+                "Je bent op dit apparaat ingelogd als <strong>{0}</strong>. Om verder te gaan als <strong>{1}</strong>, word je uitgelogd bij dit account. Wil je doorgaan?",
+            magicLinkLogoutAndContinue: "Uitloggen en doorgaan",
         },
         no: {
             welcomeMessage: "Din sikre inngangsport til en sømløs opplevelse.",
@@ -707,6 +887,16 @@ const { I18nProvider, useI18n } = i18nBuilder
             magicLinkExpiredTitle: "Lenken er utløpt",
             magicLinkFailLogin: "Autentiseringsøkten er utløpt. Lukk denne fanen og start påloggingen på nytt.",
             multipleSessionsError: "Flere påloggingsøkter er åpne i samme nettleser. Lukk dem og logg inn på nytt.",
+            magicLinkContinuationWaiting: "Venter på bekreftelse… Sjekk e-posten din.",
+            magicLinkContinuationExpired: "Lenken din er utløpt. Be om en ny.",
+            magicLinkContinuationExpiresIn: "Utløper om {0} s",
+            magicLinkContinuationRedirecting: "Videresender…",
+            activationSentConfirmation:
+                "Hvis det finnes en konto for denne e-postadressen som fortsatt må aktiveres, har vi sendt aktiveringsinstruksjoner til den. Sjekk innboksen din.",
+            loginTokenLabel: "Påloggingstoken",
+            magicLinkUserSwitchInfo:
+                "Du er for øyeblikket logget inn som <strong>{0}</strong> på denne enheten. For å fortsette som <strong>{1}</strong> blir du logget ut av denne kontoen. Vil du fortsette?",
+            magicLinkLogoutAndContinue: "Logg ut og fortsett",
         },
         pl: {
             welcomeMessage: "Twoja bezpieczna brama do bezproblemowego korzystania.",
@@ -743,6 +933,16 @@ const { I18nProvider, useI18n } = i18nBuilder
             magicLinkFailLogin: "Sesja uwierzytelniania wygasła. Zamknij tę kartę i rozpocznij logowanie od nowa.",
             multipleSessionsError:
                 "W tej samej przeglądarce otwarto wiele sesji logowania. Zamknij je i zaloguj się ponownie.",
+            magicLinkContinuationWaiting: "Oczekiwanie na potwierdzenie… Sprawdź swoją skrzynkę e-mail.",
+            magicLinkContinuationExpired: "Twój link wygasł. Poproś o nowy.",
+            magicLinkContinuationExpiresIn: "Wygasa za {0} s",
+            magicLinkContinuationRedirecting: "Przekierowywanie…",
+            activationSentConfirmation:
+                "Jeśli dla tego adresu e-mail istnieje konto, które wciąż wymaga aktywacji, wysłaliśmy na nie instrukcje aktywacji. Sprawdź skrzynkę odbiorczą.",
+            loginTokenLabel: "Token logowania",
+            magicLinkUserSwitchInfo:
+                "Na tym urządzeniu jesteś obecnie zalogowany jako <strong>{0}</strong>. Aby kontynuować jako <strong>{1}</strong>, zostaniesz wylogowany z tego konta. Czy chcesz kontynuować?",
+            magicLinkLogoutAndContinue: "Wyloguj się i kontynuuj",
         },
         pt: {
             welcomeMessage: "A sua porta de entrada segura para uma experiência perfeita.",
@@ -780,6 +980,16 @@ const { I18nProvider, useI18n } = i18nBuilder
             magicLinkFailLogin: "A sessão de autenticação expirou. Feche este separador e reinicie o início de sessão.",
             multipleSessionsError:
                 "Existem várias sessões de início de sessão abertas no mesmo navegador. Feche-as e inicie sessão novamente.",
+            magicLinkContinuationWaiting: "A aguardar confirmação… Verifique o seu e-mail.",
+            magicLinkContinuationExpired: "A sua ligação expirou. Peça uma nova.",
+            magicLinkContinuationExpiresIn: "Expira em {0} s",
+            magicLinkContinuationRedirecting: "A redirecionar…",
+            activationSentConfirmation:
+                "Se existir uma conta para este endereço de e-mail que ainda precise de ser ativada, enviámos-lhe as instruções de ativação. Verifique a sua caixa de entrada.",
+            loginTokenLabel: "Token de início de sessão",
+            magicLinkUserSwitchInfo:
+                "Tem sessão iniciada como <strong>{0}</strong> neste dispositivo. Para continuar como <strong>{1}</strong>, a sessão desta conta será terminada. Pretende continuar?",
+            magicLinkLogoutAndContinue: "Terminar sessão e continuar",
         },
         "pt-BR": {
             welcomeMessage: "Seu portal seguro para uma experiência perfeita.",
@@ -815,6 +1025,16 @@ const { I18nProvider, useI18n } = i18nBuilder
             magicLinkFailLogin: "A sessão de autenticação expirou. Feche esta aba e reinicie o login.",
             multipleSessionsError:
                 "Há várias sessões de login abertas no mesmo navegador. Feche-as e faça login novamente.",
+            magicLinkContinuationWaiting: "Aguardando confirmação… Verifique seu e-mail.",
+            magicLinkContinuationExpired: "Seu link expirou. Solicite um novo.",
+            magicLinkContinuationExpiresIn: "Expira em {0} s",
+            magicLinkContinuationRedirecting: "Redirecionando…",
+            activationSentConfirmation:
+                "Se houver uma conta para este endereço de e-mail que ainda precise ser ativada, enviamos as instruções de ativação para ele. Verifique sua caixa de entrada.",
+            loginTokenLabel: "Token de login",
+            magicLinkUserSwitchInfo:
+                "Você está conectado como <strong>{0}</strong> neste dispositivo. Para continuar como <strong>{1}</strong>, você será desconectado desta conta. Deseja continuar?",
+            magicLinkLogoutAndContinue: "Sair e continuar",
         },
         ru: {
             welcomeMessage: "Ваш надёжный доступ к удобному сервису.",
@@ -851,6 +1071,16 @@ const { I18nProvider, useI18n } = i18nBuilder
             magicLinkFailLogin:
                 "Срок действия сеанса аутентификации истёк. Закройте эту вкладку и начните вход заново.",
             multipleSessionsError: "В одном браузере открыто несколько сеансов входа. Закройте их и войдите снова.",
+            magicLinkContinuationWaiting: "Ожидание подтверждения… Проверьте почту.",
+            magicLinkContinuationExpired: "Срок действия ссылки истёк. Запросите новую.",
+            magicLinkContinuationExpiresIn: "Истекает через {0} с",
+            magicLinkContinuationRedirecting: "Перенаправление…",
+            activationSentConfirmation:
+                "Если для этого адреса электронной почты существует учётная запись, которую ещё нужно активировать, мы отправили на него инструкции по активации. Проверьте входящие.",
+            loginTokenLabel: "Токен входа",
+            magicLinkUserSwitchInfo:
+                "Сейчас на этом устройстве вы вошли как <strong>{0}</strong>. Чтобы продолжить как <strong>{1}</strong>, вы выйдете из этой учётной записи. Продолжить?",
+            magicLinkLogoutAndContinue: "Выйти и продолжить",
         },
         sk: {
             welcomeMessage: "Vaša bezpečná brána k bezproblémovému zážitku.",
@@ -889,6 +1119,16 @@ const { I18nProvider, useI18n } = i18nBuilder
                 "Platnosť overovacej relácie vypršala. Zatvorte, prosím, túto kartu a začnite prihlásenie odznova.",
             multipleSessionsError:
                 "V tom istom prehliadači je otvorených viac prihlasovacích relácií. Zatvorte ich, prosím, a prihláste sa znova.",
+            magicLinkContinuationWaiting: "Čaká sa na potvrdenie… Skontrolujte svoj e-mail.",
+            magicLinkContinuationExpired: "Platnosť odkazu vypršala. Vyžiadajte si nový.",
+            magicLinkContinuationExpiresIn: "Vyprší o {0} s",
+            magicLinkContinuationRedirecting: "Presmerovanie…",
+            activationSentConfirmation:
+                "Ak pre túto e-mailovú adresu existuje účet, ktorý ešte treba aktivovať, poslali sme naň pokyny na aktiváciu. Skontrolujte doručenú poštu.",
+            loginTokenLabel: "Prihlasovací token",
+            magicLinkUserSwitchInfo:
+                "Na tomto zariadení ste momentálne prihlásení ako <strong>{0}</strong>. Ak chcete pokračovať ako <strong>{1}</strong>, budete z tohto účtu odhlásení. Chcete pokračovať?",
+            magicLinkLogoutAndContinue: "Odhlásiť sa a pokračovať",
         },
         sv: {
             welcomeMessage: "Din säkra ingång till en sömlös upplevelse.",
@@ -927,6 +1167,16 @@ const { I18nProvider, useI18n } = i18nBuilder
                 "Autentiseringssessionen har gått ut. Stäng den här fliken och starta inloggningen igen.",
             multipleSessionsError:
                 "Flera inloggningssessioner är öppna i samma webbläsare. Stäng dem och logga in igen.",
+            magicLinkContinuationWaiting: "Väntar på bekräftelse… Kontrollera din e-post.",
+            magicLinkContinuationExpired: "Din länk har gått ut. Begär en ny.",
+            magicLinkContinuationExpiresIn: "Går ut om {0} s",
+            magicLinkContinuationRedirecting: "Omdirigerar…",
+            activationSentConfirmation:
+                "Om det finns ett konto för den här e-postadressen som fortfarande behöver aktiveras har vi skickat aktiveringsinstruktioner till den. Kontrollera din inkorg.",
+            loginTokenLabel: "Inloggningstoken",
+            magicLinkUserSwitchInfo:
+                "Du är för närvarande inloggad som <strong>{0}</strong> på den här enheten. För att fortsätta som <strong>{1}</strong> loggas du ut från det här kontot. Vill du fortsätta?",
+            magicLinkLogoutAndContinue: "Logga ut och fortsätt",
         },
         th: {
             welcomeMessage: "ประตูที่ปลอดภัยสู่ประสบการณ์ที่ราบรื่นของคุณ",
@@ -960,6 +1210,16 @@ const { I18nProvider, useI18n } = i18nBuilder
             magicLinkExpiredTitle: "ลิงก์หมดอายุแล้ว",
             magicLinkFailLogin: "เซสชันการยืนยันตัวตนหมดอายุแล้ว โปรดปิดแท็บนี้และเริ่มเข้าสู่ระบบใหม่",
             multipleSessionsError: "มีเซสชันการเข้าสู่ระบบหลายรายการเปิดอยู่ในเบราว์เซอร์เดียวกัน โปรดปิดแล้วเข้าสู่ระบบใหม่",
+            magicLinkContinuationWaiting: "กำลังรอการยืนยัน… ตรวจสอบอีเมลของคุณ",
+            magicLinkContinuationExpired: "ลิงก์ของคุณหมดอายุแล้ว โปรดขอลิงก์ใหม่",
+            magicLinkContinuationExpiresIn: "หมดอายุใน {0} วินาที",
+            magicLinkContinuationRedirecting: "กำลังเปลี่ยนเส้นทาง…",
+            activationSentConfirmation:
+                "หากมีบัญชีสำหรับที่อยู่อีเมลนี้และยังต้องเปิดใช้งาน เราได้ส่งคำแนะนำการเปิดใช้งานไปแล้ว ตรวจสอบกล่องจดหมายของคุณ",
+            loginTokenLabel: "โทเค็นเข้าสู่ระบบ",
+            magicLinkUserSwitchInfo:
+                "ขณะนี้คุณเข้าสู่ระบบในชื่อ <strong>{0}</strong> บนอุปกรณ์นี้ หากต้องการดำเนินการต่อในชื่อ <strong>{1}</strong> คุณจะถูกออกจากระบบบัญชีนี้ ต้องการดำเนินการต่อหรือไม่",
+            magicLinkLogoutAndContinue: "ออกจากระบบและดำเนินการต่อ",
         },
         tr: {
             welcomeMessage: "Kusursuz bir deneyime açılan güvenli kapınız.",
@@ -997,6 +1257,16 @@ const { I18nProvider, useI18n } = i18nBuilder
                 "Kimlik doğrulama oturumunun süresi doldu. Lütfen bu sekmeyi kapatın ve girişi yeniden başlatın.",
             multipleSessionsError:
                 "Aynı tarayıcıda birden fazla giriş oturumu açık. Lütfen bunları kapatın ve yeniden giriş yapın.",
+            magicLinkContinuationWaiting: "Onay bekleniyor… E-postanızı kontrol edin.",
+            magicLinkContinuationExpired: "Bağlantınızın süresi doldu. Lütfen yeni bir tane isteyin.",
+            magicLinkContinuationExpiresIn: "{0} sn içinde sona eriyor",
+            magicLinkContinuationRedirecting: "Yönlendiriliyor…",
+            activationSentConfirmation:
+                "Bu e-posta adresine ait ve hâlâ etkinleştirilmesi gereken bir hesap varsa, etkinleştirme talimatlarını gönderdik. Gelen kutunuzu kontrol edin.",
+            loginTokenLabel: "Giriş belirteci",
+            magicLinkUserSwitchInfo:
+                "Bu cihazda şu anda <strong>{0}</strong> olarak oturum açtınız. <strong>{1}</strong> olarak devam etmek için bu hesaptan çıkış yapılacak. Devam etmek istiyor musunuz?",
+            magicLinkLogoutAndContinue: "Çıkış yap ve devam et",
         },
         uk: {
             welcomeMessage: "Ваш безпечний шлюз до бездоганного досвіду.",
@@ -1032,6 +1302,16 @@ const { I18nProvider, useI18n } = i18nBuilder
             magicLinkExpiredTitle: "Термін дії посилання минув",
             magicLinkFailLogin: "Термін дії сеансу автентифікації минув. Закрийте цю вкладку та почніть вхід заново.",
             multipleSessionsError: "В одному браузері відкрито кілька сеансів входу. Закрийте їх і увійдіть знову.",
+            magicLinkContinuationWaiting: "Очікування підтвердження… Перевірте пошту.",
+            magicLinkContinuationExpired: "Термін дії посилання минув. Запросіть нове.",
+            magicLinkContinuationExpiresIn: "Спливає через {0} с",
+            magicLinkContinuationRedirecting: "Перенаправлення…",
+            activationSentConfirmation:
+                "Якщо для цієї адреси електронної пошти існує обліковий запис, який ще потрібно активувати, ми надіслали на неї інструкції з активації. Перевірте вхідні.",
+            loginTokenLabel: "Токен входу",
+            magicLinkUserSwitchInfo:
+                "Зараз на цьому пристрої ви ввійшли як <strong>{0}</strong>. Щоб продовжити як <strong>{1}</strong>, ви вийдете з цього облікового запису. Продовжити?",
+            magicLinkLogoutAndContinue: "Вийти й продовжити",
         },
         "zh-CN": {
             welcomeMessage: "您通往无缝体验的安全门户。",
@@ -1065,6 +1345,15 @@ const { I18nProvider, useI18n } = i18nBuilder
             magicLinkExpiredTitle: "链接已过期",
             magicLinkFailLogin: "身份验证会话已过期。请关闭此标签页并重新开始登录。",
             multipleSessionsError: "同一浏览器中打开了多个登录会话。请关闭它们并重新登录。",
+            magicLinkContinuationWaiting: "正在等待确认… 请查收邮件。",
+            magicLinkContinuationExpired: "您的链接已过期。请重新申请。",
+            magicLinkContinuationExpiresIn: "{0} 秒后过期",
+            magicLinkContinuationRedirecting: "正在重定向…",
+            activationSentConfirmation: "如果此邮箱地址对应的账户仍需激活，我们已向其发送激活说明。请查看您的收件箱。",
+            loginTokenLabel: "登录令牌",
+            magicLinkUserSwitchInfo:
+                "您当前在此设备上以 <strong>{0}</strong> 身份登录。要以 <strong>{1}</strong> 身份继续，您将退出此账户。是否继续？",
+            magicLinkLogoutAndContinue: "退出并继续",
         },
         "zh-TW": {
             welcomeMessage: "您通往無縫體驗的安全門戶。",
@@ -1098,6 +1387,15 @@ const { I18nProvider, useI18n } = i18nBuilder
             magicLinkExpiredTitle: "連結已過期",
             magicLinkFailLogin: "身分驗證工作階段已過期。請關閉此分頁並重新開始登入。",
             multipleSessionsError: "同一瀏覽器中開啟了多個登入工作階段。請關閉它們並重新登入。",
+            magicLinkContinuationWaiting: "正在等待確認… 請查看電子郵件。",
+            magicLinkContinuationExpired: "您的連結已過期。請重新申請。",
+            magicLinkContinuationExpiresIn: "{0} 秒後過期",
+            magicLinkContinuationRedirecting: "正在重新導向…",
+            activationSentConfirmation: "如果此電子郵件地址對應的帳戶仍需啟用，我們已寄送啟用說明。請查看您的收件匣。",
+            loginTokenLabel: "登入權杖",
+            magicLinkUserSwitchInfo:
+                "您目前在此裝置上以 <strong>{0}</strong> 身分登入。若要以 <strong>{1}</strong> 身分繼續，您將登出此帳戶。是否繼續？",
+            magicLinkLogoutAndContinue: "登出並繼續",
         },
     })
     .build();

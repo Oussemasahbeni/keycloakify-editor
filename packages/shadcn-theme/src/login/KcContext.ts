@@ -18,7 +18,7 @@ export type KcContextExtension = {
  * See: https://docs.keycloakify.dev/features/styling-a-custom-page-not-included-in-base-keycloak
  */
 export type KcContextExtensionPerPage = {
-    // Phase Two magic link / email OTP: https://github.com/p2-inc/keycloak-magic-link
+    // Phase Two magic link extension: https://github.com/p2-inc/keycloak-magic-link
     "otp-form.ftl": {
         auth: {
             attemptedUsername: string;
@@ -45,6 +45,28 @@ export type KcContextExtensionPerPage = {
         auth: {
             attemptedUsername: string;
         };
+        tabId: string;
+        /** Returns `{ state: "pending" | "confirmed" | "expired", expires_in: number }`. */
+        pollingUrl: string;
+    };
+    "view-activation-sent.ftl": {
+        auth: {
+            attemptedUsername: string;
+        };
+    };
+    // eslint-disable-next-line @typescript-eslint/no-empty-object-type
+    "login-token-form.ftl": {};
+    "login-token-user-switch.ftl": {
+        currentUsername: string;
+        targetUsername: string;
+    };
+    "cf-captcha.ftl": {
+        auth: {
+            selectedCredential?: string;
+        };
+        captchaSiteKey: string;
+        captchaAction: string;
+        captchaLanguage: string;
     };
 };
 

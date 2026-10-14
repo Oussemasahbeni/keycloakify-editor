@@ -16,10 +16,8 @@ export const Default: Story = {};
 export const WithInvalidCode: Story = {
     args: {
         kcContext: {
-            messagesPerField: {
-                existsError: (...fieldNames: string[]) => fieldNames.includes("totp"),
-                get: (fieldName: string) => (fieldName === "totp" ? "Invalid access code." : ""),
-            },
+            // The extension reports a wrong code as a form-level error, not on the "totp" field.
+            message: { type: "error", summary: "Invalid access code." },
         },
     },
 };

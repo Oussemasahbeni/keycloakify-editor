@@ -1571,7 +1571,8 @@ export const pages: PagePreview[] = [
             {
                 id: "invalid-code",
                 label: "Invalid code",
-                overrides: { messagesPerField: fieldError("Invalid access code.", "totp") },
+                // The extension reports a wrong code as a form-level error, not on the "totp" field.
+                overrides: { message: { type: "error", summary: "Invalid access code." } },
             },
             {
                 id: "code-resent",
@@ -1598,6 +1599,24 @@ export const pages: PagePreview[] = [
         ],
     }),
     simplePage("email-confirmation-error.ftl", "Magic link expired (Phase Two)", "extensions"),
+    simplePage("view-activation-sent.ftl", "Activation email sent (Phase Two)", "extensions"),
+    definePage({
+        pageId: "login-token-form.ftl",
+        label: "Login token (Phase Two)",
+        category: "extensions",
+        stories: [
+            { id: "default", label: "Default" },
+            {
+                id: "invalid-token",
+                label: "Invalid token",
+                overrides: {
+                    message: { type: "error", summary: "Invalid or expired login token. Please try again." },
+                },
+            },
+        ],
+    }),
+    simplePage("login-token-user-switch.ftl", "Login token, switch user (Phase Two)", "extensions"),
+    simplePage("cf-captcha.ftl", "Cloudflare Turnstile captcha (Phase Two)", "extensions"),
 ];
 
 /** All page ids, in catalog order. */

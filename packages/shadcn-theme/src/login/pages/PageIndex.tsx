@@ -47,6 +47,10 @@ const PageEmailConfirmation = lazy(() => import("./email-confirmation"));
 const PageEmailConfirmationError = lazy(() => import("./email-confirmation-error"));
 const PageViewEmail = lazy(() => import("./view-email"));
 const PageViewEmailContinuation = lazy(() => import("./view-email-continuation"));
+const PageViewActivationSent = lazy(() => import("./view-activation-sent"));
+const PageLoginTokenForm = lazy(() => import("./login-token-form"));
+const PageLoginTokenUserSwitch = lazy(() => import("./login-token-user-switch"));
+const PageCfCaptcha = lazy(() => import("./cf-captcha"));
 
 export function PageIndex() {
     const { kcContext } = useKcContext();
@@ -141,6 +145,14 @@ export function PageIndex() {
                         return <PageViewEmail />;
                     case "view-email-continuation.ftl":
                         return <PageViewEmailContinuation />;
+                    case "view-activation-sent.ftl":
+                        return <PageViewActivationSent />;
+                    case "login-token-form.ftl":
+                        return <PageLoginTokenForm />;
+                    case "login-token-user-switch.ftl":
+                        return <PageLoginTokenUserSwitch />;
+                    case "cf-captcha.ftl":
+                        return <PageCfCaptcha />;
                 }
             })()}
         </Suspense>
