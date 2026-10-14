@@ -41,6 +41,13 @@ const PageLoginPasskeysConditionalAuthenticate = lazy(() => import("./login-pass
 const PageLoginIdpLinkConfirmOverride = lazy(() => import("./login-idp-link-confirm-override"));
 const PageSelectOrganization = lazy(() => import("./select-organization"));
 
+// Extension pages: not part of base Keycloak, rendered by server extensions (Phase Two magic link).
+const PageOtpForm = lazy(() => import("./otp-form"));
+const PageEmailConfirmation = lazy(() => import("./email-confirmation"));
+const PageEmailConfirmationError = lazy(() => import("./email-confirmation-error"));
+const PageViewEmail = lazy(() => import("./view-email"));
+const PageViewEmailContinuation = lazy(() => import("./view-email-continuation"));
+
 export function PageIndex() {
     const { kcContext } = useKcContext();
 
@@ -124,6 +131,16 @@ export function PageIndex() {
                         return <PageLoginIdpLinkConfirmOverride />;
                     case "select-organization.ftl":
                         return <PageSelectOrganization />;
+                    case "otp-form.ftl":
+                        return <PageOtpForm />;
+                    case "email-confirmation.ftl":
+                        return <PageEmailConfirmation />;
+                    case "email-confirmation-error.ftl":
+                        return <PageEmailConfirmationError />;
+                    case "view-email.ftl":
+                        return <PageViewEmail />;
+                    case "view-email-continuation.ftl":
+                        return <PageViewEmailContinuation />;
                 }
             })()}
         </Suspense>

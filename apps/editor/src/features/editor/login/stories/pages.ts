@@ -1562,6 +1562,42 @@ export const pages: PagePreview[] = [
             },
         ],
     }),
+    definePage({
+        pageId: "otp-form.ftl",
+        label: "Email access code (Phase Two)",
+        category: "extensions",
+        stories: [
+            { id: "default", label: "Default" },
+            {
+                id: "invalid-code",
+                label: "Invalid code",
+                overrides: { messagesPerField: fieldError("Invalid access code.", "totp") },
+            },
+            {
+                id: "code-resent",
+                label: "Code resent",
+                overrides: {
+                    message: { type: "info", summary: "A new access code has been sent to your email." },
+                },
+            },
+        ],
+    }),
+    simplePage("view-email.ftl", "Magic link sent (Phase Two)", "extensions"),
+    simplePage("view-email-continuation.ftl", "Magic link sent, waiting (Phase Two)", "extensions"),
+    definePage({
+        pageId: "email-confirmation.ftl",
+        label: "Magic link confirmed (Phase Two)",
+        category: "extensions",
+        stories: [
+            { id: "default", label: "Same browser" },
+            {
+                id: "other-browser",
+                label: "Other browser",
+                overrides: { magicLinkContinuation: { sameBrowser: false } },
+            },
+        ],
+    }),
+    simplePage("email-confirmation-error.ftl", "Magic link expired (Phase Two)", "extensions"),
 ];
 
 /** All page ids, in catalog order. */

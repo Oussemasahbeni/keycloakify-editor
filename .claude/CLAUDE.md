@@ -125,6 +125,8 @@ Valid values (defaults declared in `src/kc-env.ts`; the full list is `KC_ENV_DEF
 4. Optionally add `Page.stories.tsx`.
 5. To surface it in the editor preview, also add an entry to `apps/editor/src/features/editor/login/stories/pages.ts`.
 
+**Extension pages** (pages a Keycloak server extension renders, not base Keycloak — currently the Phase Two magic-link pages `otp-form`, `view-email`, `view-email-continuation`, `email-confirmation`, `email-confirmation-error`) also need: their extra context fields in `KcContextExtensionPerPage` (`KcContext.ts`), mock values in `mocks/getKcContextMock.ts`, any missing message keys in `i18n.ts`, and `category: "extensions"` in the editor catalog. Keycloakify emits the `.ftl` automatically from the page id.
+
 ### Adding a new env var
 
 1. Add it (with its default) to `KC_ENV_DEFAULTS` in `src/kc-env.ts` — the single source; `vite.config.ts` derives `kcEnvironmentVariables` from it.

@@ -25,6 +25,21 @@ const { I18nProvider, useI18n } = i18nBuilder
             passwordPlaceholder: "Enter your password",
             newPasswordPlaceholder: "Enter your new password",
             confirmPasswordPlaceholder: "Confirm your password",
+            // Extension pages (Phase Two magic link)
+            enterAccessCode: "Enter the access code we sent to your email.",
+            doResend: "Resend code",
+            loginPage: "Login page",
+            magicLinkCheckEmailTitle: "Check your email",
+            magicLinkConfirmation: "Check your email, and click on the link to log in!",
+            magicLinkContinuationConfirmation:
+                "Check your email, and click on the link to log in! Please do not close this tab.",
+            magicLinkConfirmedTitle: "Sign-in confirmed",
+            magicLinkSuccessfulLogin: "Authentication session confirmed. Please return to login page tab.",
+            magicLinkConfirmedOtherBrowser:
+                "Authentication session confirmed. You can close this tab and continue where you started signing in.",
+            magicLinkExpiredTitle: "Link expired",
+            magicLinkFailLogin: "Authentication session expired. Please close this tab and restart the login flow.",
+            multipleSessionsError: "Multiple login sessions opened on same browser. Please close it and restart login.",
         },
         ar: {
             welcomeMessage: "بوابتك الآمنة لتجربة سلسة.",
@@ -45,6 +60,21 @@ const { I18nProvider, useI18n } = i18nBuilder
             passwordPlaceholder: "أدخل كلمة المرور",
             newPasswordPlaceholder: "أدخل كلمة المرور الجديدة",
             confirmPasswordPlaceholder: "أكد كلمة المرور",
+            // Extension pages (Phase Two magic link)
+            enterAccessCode: "أدخل رمز الوصول الذي أرسلناه إلى بريدك الإلكتروني.",
+            doResend: "إعادة إرسال الرمز",
+            loginPage: "صفحة تسجيل الدخول",
+            magicLinkCheckEmailTitle: "تحقق من بريدك الإلكتروني",
+            magicLinkConfirmation: "تحقق من بريدك الإلكتروني وانقر على الرابط لتسجيل الدخول!",
+            magicLinkContinuationConfirmation:
+                "تحقق من بريدك الإلكتروني وانقر على الرابط لتسجيل الدخول! يرجى عدم إغلاق علامة التبويب هذه.",
+            magicLinkConfirmedTitle: "تم تأكيد تسجيل الدخول",
+            magicLinkSuccessfulLogin: "تم تأكيد جلسة المصادقة. يرجى العودة إلى علامة تبويب صفحة تسجيل الدخول.",
+            magicLinkConfirmedOtherBrowser:
+                "تم تأكيد جلسة المصادقة. يمكنك إغلاق علامة التبويب هذه والمتابعة حيث بدأت تسجيل الدخول.",
+            magicLinkExpiredTitle: "انتهت صلاحية الرابط",
+            magicLinkFailLogin: "انتهت صلاحية جلسة المصادقة. يرجى إغلاق علامة التبويب هذه وإعادة بدء عملية تسجيل الدخول.",
+            multipleSessionsError: "تم فتح عدة جلسات تسجيل دخول في نفس المتصفح. يرجى إغلاقها وإعادة تسجيل الدخول.",
         },
         ca: {
             welcomeMessage: "La vostra porta d'accés segura a una experiència fluida.",
@@ -65,6 +95,24 @@ const { I18nProvider, useI18n } = i18nBuilder
             passwordPlaceholder: "Introduïu la vostra contrasenya",
             newPasswordPlaceholder: "Introduïu la vostra nova contrasenya",
             confirmPasswordPlaceholder: "Confirmeu la vostra contrasenya",
+            // Extension pages (Phase Two magic link)
+            enterAccessCode: "Introduïu el codi d'accés que us hem enviat per correu electrònic.",
+            doResend: "Torna a enviar el codi",
+            loginPage: "Pàgina d'inici de sessió",
+            magicLinkCheckEmailTitle: "Reviseu el correu electrònic",
+            magicLinkConfirmation: "Reviseu el correu electrònic i feu clic a l'enllaç per iniciar sessió!",
+            magicLinkContinuationConfirmation:
+                "Reviseu el correu electrònic i feu clic a l'enllaç per iniciar sessió! No tanqueu aquesta pestanya.",
+            magicLinkConfirmedTitle: "Inici de sessió confirmat",
+            magicLinkSuccessfulLogin:
+                "Sessió d'autenticació confirmada. Torneu a la pestanya de la pàgina d'inici de sessió.",
+            magicLinkConfirmedOtherBrowser:
+                "Sessió d'autenticació confirmada. Podeu tancar aquesta pestanya i continuar on vau començar a iniciar sessió.",
+            magicLinkExpiredTitle: "Enllaç caducat",
+            magicLinkFailLogin:
+                "La sessió d'autenticació ha caducat. Tanqueu aquesta pestanya i reinicieu l'inici de sessió.",
+            multipleSessionsError:
+                "Hi ha diverses sessions d'inici de sessió obertes al mateix navegador. Tanqueu-les i torneu a iniciar sessió.",
         },
         cs: {
             welcomeMessage: "Vaše bezpečná brána k bezproblémovému zážitku.",
@@ -85,6 +133,24 @@ const { I18nProvider, useI18n } = i18nBuilder
             passwordPlaceholder: "Zadejte své heslo",
             newPasswordPlaceholder: "Zadejte své nové heslo",
             confirmPasswordPlaceholder: "Potvrďte své heslo",
+            // Extension pages (Phase Two magic link)
+            enterAccessCode: "Zadejte přístupový kód, který jsme vám poslali e-mailem.",
+            doResend: "Znovu odeslat kód",
+            loginPage: "Přihlašovací stránka",
+            magicLinkCheckEmailTitle: "Zkontrolujte svůj e-mail",
+            magicLinkConfirmation: "Zkontrolujte svůj e-mail a klikněte na odkaz pro přihlášení!",
+            magicLinkContinuationConfirmation:
+                "Zkontrolujte svůj e-mail a klikněte na odkaz pro přihlášení! Nezavírejte prosím tuto kartu.",
+            magicLinkConfirmedTitle: "Přihlášení potvrzeno",
+            magicLinkSuccessfulLogin:
+                "Ověřovací relace byla potvrzena. Vraťte se prosím na kartu s přihlašovací stránkou.",
+            magicLinkConfirmedOtherBrowser:
+                "Ověřovací relace byla potvrzena. Tuto kartu můžete zavřít a pokračovat tam, kde jste přihlašování zahájili.",
+            magicLinkExpiredTitle: "Platnost odkazu vypršela",
+            magicLinkFailLogin:
+                "Platnost ověřovací relace vypršela. Zavřete prosím tuto kartu a zahajte přihlášení znovu.",
+            multipleSessionsError:
+                "Ve stejném prohlížeči je otevřeno více přihlašovacích relací. Zavřete je prosím a přihlaste se znovu.",
         },
         da: {
             welcomeMessage: "Din sikre indgang til en problemfri oplevelse.",
@@ -105,6 +171,22 @@ const { I18nProvider, useI18n } = i18nBuilder
             passwordPlaceholder: "Indtast din adgangskode",
             newPasswordPlaceholder: "Indtast din nye adgangskode",
             confirmPasswordPlaceholder: "Bekræft din adgangskode",
+            // Extension pages (Phase Two magic link)
+            enterAccessCode: "Indtast den adgangskode, vi har sendt til din e-mail.",
+            doResend: "Send koden igen",
+            loginPage: "Login-side",
+            magicLinkCheckEmailTitle: "Tjek din e-mail",
+            magicLinkConfirmation: "Tjek din e-mail, og klik på linket for at logge ind!",
+            magicLinkContinuationConfirmation:
+                "Tjek din e-mail, og klik på linket for at logge ind! Luk venligst ikke denne fane.",
+            magicLinkConfirmedTitle: "Login bekræftet",
+            magicLinkSuccessfulLogin:
+                "Godkendelsessessionen er bekræftet. Gå venligst tilbage til fanen med login-siden.",
+            magicLinkConfirmedOtherBrowser:
+                "Godkendelsessessionen er bekræftet. Du kan lukke denne fane og fortsætte, hvor du startede login.",
+            magicLinkExpiredTitle: "Linket er udløbet",
+            magicLinkFailLogin: "Godkendelsessessionen er udløbet. Luk venligst denne fane, og start login forfra.",
+            multipleSessionsError: "Flere login-sessioner er åbne i samme browser. Luk dem venligst, og log ind igen.",
         },
         de: {
             welcomeMessage: "Ihr sicherer Zugang zu einem nahtlosen Erlebnis.",
@@ -125,6 +207,24 @@ const { I18nProvider, useI18n } = i18nBuilder
             passwordPlaceholder: "Passwort eingeben",
             newPasswordPlaceholder: "Neues Passwort eingeben",
             confirmPasswordPlaceholder: "Passwort bestätigen",
+            // Extension pages (Phase Two magic link)
+            enterAccessCode: "Geben Sie den Zugangscode ein, den wir Ihnen per E-Mail gesendet haben.",
+            doResend: "Code erneut senden",
+            loginPage: "Anmeldeseite",
+            magicLinkCheckEmailTitle: "Überprüfen Sie Ihre E-Mails",
+            magicLinkConfirmation: "Überprüfen Sie Ihre E-Mails und klicken Sie auf den Link, um sich anzumelden!",
+            magicLinkContinuationConfirmation:
+                "Überprüfen Sie Ihre E-Mails und klicken Sie auf den Link, um sich anzumelden! Bitte schließen Sie diesen Tab nicht.",
+            magicLinkConfirmedTitle: "Anmeldung bestätigt",
+            magicLinkSuccessfulLogin:
+                "Authentifizierungssitzung bestätigt. Bitte kehren Sie zum Tab mit der Anmeldeseite zurück.",
+            magicLinkConfirmedOtherBrowser:
+                "Authentifizierungssitzung bestätigt. Sie können diesen Tab schließen und dort fortfahren, wo Sie die Anmeldung begonnen haben.",
+            magicLinkExpiredTitle: "Link abgelaufen",
+            magicLinkFailLogin:
+                "Die Authentifizierungssitzung ist abgelaufen. Bitte schließen Sie diesen Tab und starten Sie die Anmeldung neu.",
+            multipleSessionsError:
+                "Im selben Browser sind mehrere Anmeldesitzungen geöffnet. Bitte schließen Sie diese und melden Sie sich erneut an.",
         },
         el: {
             welcomeMessage: "Η ασφαλής πύλη σας για μια απρόσκοπτη εμπειρία.",
@@ -145,6 +245,24 @@ const { I18nProvider, useI18n } = i18nBuilder
             passwordPlaceholder: "Εισαγάγετε τον κωδικό πρόσβασής σας",
             newPasswordPlaceholder: "Εισαγάγετε τον νέο κωδικό πρόσβασής σας",
             confirmPasswordPlaceholder: "Επιβεβαιώστε τον κωδικό πρόσβασής σας",
+            // Extension pages (Phase Two magic link)
+            enterAccessCode: "Εισαγάγετε τον κωδικό πρόσβασης που στείλαμε στο email σας.",
+            doResend: "Επαναποστολή κωδικού",
+            loginPage: "Σελίδα σύνδεσης",
+            magicLinkCheckEmailTitle: "Ελέγξτε το email σας",
+            magicLinkConfirmation: "Ελέγξτε το email σας και κάντε κλικ στον σύνδεσμο για να συνδεθείτε!",
+            magicLinkContinuationConfirmation:
+                "Ελέγξτε το email σας και κάντε κλικ στον σύνδεσμο για να συνδεθείτε! Μην κλείσετε αυτή την καρτέλα.",
+            magicLinkConfirmedTitle: "Η σύνδεση επιβεβαιώθηκε",
+            magicLinkSuccessfulLogin:
+                "Η συνεδρία ταυτοποίησης επιβεβαιώθηκε. Επιστρέψτε στην καρτέλα της σελίδας σύνδεσης.",
+            magicLinkConfirmedOtherBrowser:
+                "Η συνεδρία ταυτοποίησης επιβεβαιώθηκε. Μπορείτε να κλείσετε αυτή την καρτέλα και να συνεχίσετε από εκεί που ξεκινήσατε τη σύνδεση.",
+            magicLinkExpiredTitle: "Ο σύνδεσμος έληξε",
+            magicLinkFailLogin:
+                "Η συνεδρία ταυτοποίησης έληξε. Κλείστε αυτή την καρτέλα και ξεκινήστε ξανά τη σύνδεση.",
+            multipleSessionsError:
+                "Υπάρχουν πολλές ανοιχτές συνεδρίες σύνδεσης στον ίδιο φυλλομετρητή. Κλείστε τις και συνδεθείτε ξανά.",
         },
         es: {
             welcomeMessage: "Su puerta de acceso segura a una experiencia perfecta.",
@@ -165,6 +283,24 @@ const { I18nProvider, useI18n } = i18nBuilder
             passwordPlaceholder: "Ingrese su contraseña",
             newPasswordPlaceholder: "Ingrese su nueva contraseña",
             confirmPasswordPlaceholder: "Confirme su contraseña",
+            // Extension pages (Phase Two magic link)
+            enterAccessCode: "Introduce el código de acceso que te enviamos por correo electrónico.",
+            doResend: "Reenviar código",
+            loginPage: "Página de inicio de sesión",
+            magicLinkCheckEmailTitle: "Revisa tu correo electrónico",
+            magicLinkConfirmation: "¡Revisa tu correo electrónico y haz clic en el enlace para iniciar sesión!",
+            magicLinkContinuationConfirmation:
+                "¡Revisa tu correo electrónico y haz clic en el enlace para iniciar sesión! No cierres esta pestaña.",
+            magicLinkConfirmedTitle: "Inicio de sesión confirmado",
+            magicLinkSuccessfulLogin:
+                "Sesión de autenticación confirmada. Vuelve a la pestaña de la página de inicio de sesión.",
+            magicLinkConfirmedOtherBrowser:
+                "Sesión de autenticación confirmada. Puedes cerrar esta pestaña y continuar donde empezaste a iniciar sesión.",
+            magicLinkExpiredTitle: "Enlace caducado",
+            magicLinkFailLogin:
+                "La sesión de autenticación ha caducado. Cierra esta pestaña y vuelve a iniciar el proceso de inicio de sesión.",
+            multipleSessionsError:
+                "Hay varias sesiones de inicio de sesión abiertas en el mismo navegador. Ciérralas y vuelve a iniciar sesión.",
         },
         fa: {
             welcomeMessage: "دروازه امن شما برای تجربه‌ای بی‌نقص.",
@@ -185,6 +321,22 @@ const { I18nProvider, useI18n } = i18nBuilder
             passwordPlaceholder: "رمز عبور خود را وارد کنید",
             newPasswordPlaceholder: "رمز عبور جدید خود را وارد کنید",
             confirmPasswordPlaceholder: "رمز عبور خود را تأیید کنید",
+            // Extension pages (Phase Two magic link)
+            enterAccessCode: "کد دسترسی ارسال‌شده به ایمیل خود را وارد کنید.",
+            doResend: "ارسال مجدد کد",
+            loginPage: "صفحه ورود",
+            magicLinkCheckEmailTitle: "ایمیل خود را بررسی کنید",
+            magicLinkConfirmation: "ایمیل خود را بررسی کنید و برای ورود روی پیوند کلیک کنید!",
+            magicLinkContinuationConfirmation:
+                "ایمیل خود را بررسی کنید و برای ورود روی پیوند کلیک کنید! لطفاً این زبانه را نبندید.",
+            magicLinkConfirmedTitle: "ورود تأیید شد",
+            magicLinkSuccessfulLogin: "نشست احراز هویت تأیید شد. لطفاً به زبانه صفحه ورود بازگردید.",
+            magicLinkConfirmedOtherBrowser:
+                "نشست احراز هویت تأیید شد. می‌توانید این زبانه را ببندید و از جایی که ورود را شروع کردید ادامه دهید.",
+            magicLinkExpiredTitle: "پیوند منقضی شده است",
+            magicLinkFailLogin:
+                "نشست احراز هویت منقضی شده است. لطفاً این زبانه را ببندید و فرایند ورود را دوباره آغاز کنید.",
+            multipleSessionsError: "چند نشست ورود در یک مرورگر باز است. لطفاً آن‌ها را ببندید و دوباره وارد شوید.",
         },
         fi: {
             welcomeMessage: "Turvallinen porttisi saumattomaan kokemukseen.",
@@ -205,6 +357,23 @@ const { I18nProvider, useI18n } = i18nBuilder
             passwordPlaceholder: "Syötä salasanasi",
             newPasswordPlaceholder: "Syötä uusi salasanasi",
             confirmPasswordPlaceholder: "Vahvista salasanasi",
+            // Extension pages (Phase Two magic link)
+            enterAccessCode: "Syötä sähköpostiisi lähettämämme pääsykoodi.",
+            doResend: "Lähetä koodi uudelleen",
+            loginPage: "Kirjautumissivu",
+            magicLinkCheckEmailTitle: "Tarkista sähköpostisi",
+            magicLinkConfirmation: "Tarkista sähköpostisi ja kirjaudu sisään napsauttamalla linkkiä!",
+            magicLinkContinuationConfirmation:
+                "Tarkista sähköpostisi ja kirjaudu sisään napsauttamalla linkkiä! Älä sulje tätä välilehteä.",
+            magicLinkConfirmedTitle: "Kirjautuminen vahvistettu",
+            magicLinkSuccessfulLogin: "Tunnistautumisistunto vahvistettu. Palaa kirjautumissivun välilehdelle.",
+            magicLinkConfirmedOtherBrowser:
+                "Tunnistautumisistunto vahvistettu. Voit sulkea tämän välilehden ja jatkaa siellä, missä aloitit kirjautumisen.",
+            magicLinkExpiredTitle: "Linkki on vanhentunut",
+            magicLinkFailLogin:
+                "Tunnistautumisistunto on vanhentunut. Sulje tämä välilehti ja aloita kirjautuminen alusta.",
+            multipleSessionsError:
+                "Samassa selaimessa on avoinna useita kirjautumisistuntoja. Sulje ne ja kirjaudu uudelleen.",
         },
         fr: {
             welcomeMessage: "Votre passerelle sécurisée vers une expérience sans faille.",
@@ -225,6 +394,24 @@ const { I18nProvider, useI18n } = i18nBuilder
             passwordPlaceholder: "Entrez votre mot de passe",
             newPasswordPlaceholder: "Entrez votre nouveau mot de passe",
             confirmPasswordPlaceholder: "Confirmez votre mot de passe",
+            // Extension pages (Phase Two magic link)
+            enterAccessCode: "Saisissez le code d'accès que nous vous avons envoyé par e-mail.",
+            doResend: "Renvoyer le code",
+            loginPage: "Page de connexion",
+            magicLinkCheckEmailTitle: "Consultez vos e-mails",
+            magicLinkConfirmation: "Consultez vos e-mails et cliquez sur le lien pour vous connecter !",
+            magicLinkContinuationConfirmation:
+                "Consultez vos e-mails et cliquez sur le lien pour vous connecter ! Veuillez ne pas fermer cet onglet.",
+            magicLinkConfirmedTitle: "Connexion confirmée",
+            magicLinkSuccessfulLogin:
+                "Session d'authentification confirmée. Veuillez revenir à l'onglet de la page de connexion.",
+            magicLinkConfirmedOtherBrowser:
+                "Session d'authentification confirmée. Vous pouvez fermer cet onglet et continuer là où vous avez commencé à vous connecter.",
+            magicLinkExpiredTitle: "Lien expiré",
+            magicLinkFailLogin:
+                "La session d'authentification a expiré. Veuillez fermer cet onglet et recommencer la connexion.",
+            multipleSessionsError:
+                "Plusieurs sessions de connexion sont ouvertes dans le même navigateur. Veuillez les fermer et vous reconnecter.",
         },
         hu: {
             welcomeMessage: "Az Ön biztonságos kapuja a zökkenőmentes élményhez.",
@@ -245,6 +432,24 @@ const { I18nProvider, useI18n } = i18nBuilder
             passwordPlaceholder: "Adja meg a jelszavát",
             newPasswordPlaceholder: "Adja meg az új jelszavát",
             confirmPasswordPlaceholder: "Erősítse meg a jelszavát",
+            // Extension pages (Phase Two magic link)
+            enterAccessCode: "Adja meg az e-mailben elküldött hozzáférési kódot.",
+            doResend: "Kód újraküldése",
+            loginPage: "Bejelentkezési oldal",
+            magicLinkCheckEmailTitle: "Ellenőrizze az e-mailjeit",
+            magicLinkConfirmation: "Ellenőrizze az e-mailjeit, és a bejelentkezéshez kattintson a hivatkozásra!",
+            magicLinkContinuationConfirmation:
+                "Ellenőrizze az e-mailjeit, és a bejelentkezéshez kattintson a hivatkozásra! Kérjük, ne zárja be ezt a lapot.",
+            magicLinkConfirmedTitle: "Bejelentkezés megerősítve",
+            magicLinkSuccessfulLogin:
+                "A hitelesítési munkamenet megerősítve. Kérjük, térjen vissza a bejelentkezési oldal lapjára.",
+            magicLinkConfirmedOtherBrowser:
+                "A hitelesítési munkamenet megerősítve. Bezárhatja ezt a lapot, és folytathatja ott, ahol a bejelentkezést elkezdte.",
+            magicLinkExpiredTitle: "A hivatkozás lejárt",
+            magicLinkFailLogin:
+                "A hitelesítési munkamenet lejárt. Kérjük, zárja be ezt a lapot, és kezdje újra a bejelentkezést.",
+            multipleSessionsError:
+                "Ugyanabban a böngészőben több bejelentkezési munkamenet is nyitva van. Kérjük, zárja be őket, és jelentkezzen be újra.",
         },
         it: {
             welcomeMessage: "Il tuo accesso sicuro a un'esperienza senza interruzioni.",
@@ -265,6 +470,23 @@ const { I18nProvider, useI18n } = i18nBuilder
             passwordPlaceholder: "Inserisci la tua password",
             newPasswordPlaceholder: "Inserisci la tua nuova password",
             confirmPasswordPlaceholder: "Conferma la tua password",
+            // Extension pages (Phase Two magic link)
+            enterAccessCode: "Inserisci il codice di accesso che ti abbiamo inviato via email.",
+            doResend: "Invia di nuovo il codice",
+            loginPage: "Pagina di accesso",
+            magicLinkCheckEmailTitle: "Controlla la tua email",
+            magicLinkConfirmation: "Controlla la tua email e fai clic sul link per accedere!",
+            magicLinkContinuationConfirmation:
+                "Controlla la tua email e fai clic sul link per accedere! Non chiudere questa scheda.",
+            magicLinkConfirmedTitle: "Accesso confermato",
+            magicLinkSuccessfulLogin:
+                "Sessione di autenticazione confermata. Torna alla scheda della pagina di accesso.",
+            magicLinkConfirmedOtherBrowser:
+                "Sessione di autenticazione confermata. Puoi chiudere questa scheda e continuare da dove hai iniziato l'accesso.",
+            magicLinkExpiredTitle: "Link scaduto",
+            magicLinkFailLogin: "La sessione di autenticazione è scaduta. Chiudi questa scheda e riavvia l'accesso.",
+            multipleSessionsError:
+                "Sono aperte più sessioni di accesso nello stesso browser. Chiudile e accedi di nuovo.",
         },
         ja: {
             welcomeMessage: "シームレスな体験への安全なゲートウェイ。",
@@ -285,6 +507,23 @@ const { I18nProvider, useI18n } = i18nBuilder
             passwordPlaceholder: "パスワードを入力してください",
             newPasswordPlaceholder: "新しいパスワードを入力してください",
             confirmPasswordPlaceholder: "パスワードを確認してください",
+            // Extension pages (Phase Two magic link)
+            enterAccessCode: "メールでお送りしたアクセスコードを入力してください。",
+            doResend: "コードを再送信",
+            loginPage: "ログインページ",
+            magicLinkCheckEmailTitle: "メールを確認してください",
+            magicLinkConfirmation: "メールを確認し、リンクをクリックしてログインしてください！",
+            magicLinkContinuationConfirmation:
+                "メールを確認し、リンクをクリックしてログインしてください！このタブは閉じないでください。",
+            magicLinkConfirmedTitle: "サインインが確認されました",
+            magicLinkSuccessfulLogin: "認証セッションが確認されました。ログインページのタブに戻ってください。",
+            magicLinkConfirmedOtherBrowser:
+                "認証セッションが確認されました。このタブを閉じて、サインインを開始した画面で続行できます。",
+            magicLinkExpiredTitle: "リンクの有効期限が切れました",
+            magicLinkFailLogin:
+                "認証セッションの有効期限が切れました。このタブを閉じて、ログインをやり直してください。",
+            multipleSessionsError:
+                "同じブラウザで複数のログインセッションが開かれています。それらを閉じてから、もう一度ログインしてください。",
         },
         ka: {
             welcomeMessage: "თქვენი უსაფრთხო კარიბჭე უწყვეტი გამოცდილებისკენ.",
@@ -305,6 +544,23 @@ const { I18nProvider, useI18n } = i18nBuilder
             passwordPlaceholder: "შეიყვანეთ თქვენი პაროლი",
             newPasswordPlaceholder: "შეიყვანეთ თქვენი ახალი პაროლი",
             confirmPasswordPlaceholder: "დაადასტურეთ თქვენი პაროლი",
+            // Extension pages (Phase Two magic link)
+            enterAccessCode: "შეიყვანეთ წვდომის კოდი, რომელიც ელფოსტაზე გამოგიგზავნეთ.",
+            doResend: "კოდის ხელახლა გაგზავნა",
+            loginPage: "შესვლის გვერდი",
+            magicLinkCheckEmailTitle: "შეამოწმეთ ელფოსტა",
+            magicLinkConfirmation: "შეამოწმეთ ელფოსტა და შესასვლელად დააწკაპუნეთ ბმულზე!",
+            magicLinkContinuationConfirmation:
+                "შეამოწმეთ ელფოსტა და შესასვლელად დააწკაპუნეთ ბმულზე! გთხოვთ, არ დახუროთ ეს ჩანართი.",
+            magicLinkConfirmedTitle: "შესვლა დადასტურდა",
+            magicLinkSuccessfulLogin: "ავთენტიკაციის სესია დადასტურდა. გთხოვთ, დაბრუნდეთ შესვლის გვერდის ჩანართზე.",
+            magicLinkConfirmedOtherBrowser:
+                "ავთენტიკაციის სესია დადასტურდა. შეგიძლიათ დახუროთ ეს ჩანართი და გააგრძელოთ იქ, სადაც შესვლა დაიწყეთ.",
+            magicLinkExpiredTitle: "ბმულს ვადა გაუვიდა",
+            magicLinkFailLogin:
+                "ავთენტიკაციის სესიას ვადა გაუვიდა. გთხოვთ, დახუროთ ეს ჩანართი და თავიდან დაიწყოთ შესვლა.",
+            multipleSessionsError:
+                "ერთ ბრაუზერში რამდენიმე შესვლის სესიაა გახსნილი. გთხოვთ, დახუროთ ისინი და ხელახლა შეხვიდეთ.",
         },
         lt: {
             welcomeMessage: "Jūsų saugūs vartai į sklandžią patirtį.",
@@ -325,6 +581,23 @@ const { I18nProvider, useI18n } = i18nBuilder
             passwordPlaceholder: "Įveskite savo slaptažodį",
             newPasswordPlaceholder: "Įveskite naują slaptažodį",
             confirmPasswordPlaceholder: "Patvirtinkite savo slaptažodį",
+            // Extension pages (Phase Two magic link)
+            enterAccessCode: "Įveskite prieigos kodą, kurį išsiuntėme jūsų el. paštu.",
+            doResend: "Siųsti kodą iš naujo",
+            loginPage: "Prisijungimo puslapis",
+            magicLinkCheckEmailTitle: "Patikrinkite el. paštą",
+            magicLinkConfirmation: "Patikrinkite el. paštą ir spustelėkite nuorodą, kad prisijungtumėte!",
+            magicLinkContinuationConfirmation:
+                "Patikrinkite el. paštą ir spustelėkite nuorodą, kad prisijungtumėte! Neuždarykite šio skirtuko.",
+            magicLinkConfirmedTitle: "Prisijungimas patvirtintas",
+            magicLinkSuccessfulLogin: "Autentifikavimo sesija patvirtinta. Grįžkite į prisijungimo puslapio skirtuką.",
+            magicLinkConfirmedOtherBrowser:
+                "Autentifikavimo sesija patvirtinta. Galite uždaryti šį skirtuką ir tęsti ten, kur pradėjote jungtis.",
+            magicLinkExpiredTitle: "Nuorodos galiojimas baigėsi",
+            magicLinkFailLogin:
+                "Autentifikavimo sesijos galiojimas baigėsi. Uždarykite šį skirtuką ir pradėkite prisijungimą iš naujo.",
+            multipleSessionsError:
+                "Toje pačioje naršyklėje atidarytos kelios prisijungimo sesijos. Uždarykite jas ir prisijunkite iš naujo.",
         },
         lv: {
             welcomeMessage: "Jūsu drošā vārteja uz nevainojamu pieredzi.",
@@ -345,6 +618,24 @@ const { I18nProvider, useI18n } = i18nBuilder
             passwordPlaceholder: "Ievadiet savu paroli",
             newPasswordPlaceholder: "Ievadiet savu jauno paroli",
             confirmPasswordPlaceholder: "Apstipriniet savu paroli",
+            // Extension pages (Phase Two magic link)
+            enterAccessCode: "Ievadiet piekļuves kodu, ko nosūtījām uz jūsu e-pastu.",
+            doResend: "Sūtīt kodu vēlreiz",
+            loginPage: "Pieteikšanās lapa",
+            magicLinkCheckEmailTitle: "Pārbaudiet savu e-pastu",
+            magicLinkConfirmation: "Pārbaudiet savu e-pastu un noklikšķiniet uz saites, lai pieteiktos!",
+            magicLinkContinuationConfirmation:
+                "Pārbaudiet savu e-pastu un noklikšķiniet uz saites, lai pieteiktos! Lūdzu, neaizveriet šo cilni.",
+            magicLinkConfirmedTitle: "Pieteikšanās apstiprināta",
+            magicLinkSuccessfulLogin:
+                "Autentifikācijas sesija apstiprināta. Lūdzu, atgriezieties pieteikšanās lapas cilnē.",
+            magicLinkConfirmedOtherBrowser:
+                "Autentifikācijas sesija apstiprināta. Varat aizvērt šo cilni un turpināt tur, kur sākāt pieteikties.",
+            magicLinkExpiredTitle: "Saites derīguma termiņš beidzies",
+            magicLinkFailLogin:
+                "Autentifikācijas sesijas derīguma termiņš ir beidzies. Lūdzu, aizveriet šo cilni un sāciet pieteikšanos no jauna.",
+            multipleSessionsError:
+                "Vienā pārlūkā ir atvērtas vairākas pieteikšanās sesijas. Lūdzu, aizveriet tās un piesakieties vēlreiz.",
         },
         nl: {
             welcomeMessage: "Uw veilige toegangspoort tot een naadloze ervaring.",
@@ -365,6 +656,22 @@ const { I18nProvider, useI18n } = i18nBuilder
             passwordPlaceholder: "Voer uw wachtwoord in",
             newPasswordPlaceholder: "Voer uw nieuwe wachtwoord in",
             confirmPasswordPlaceholder: "Bevestig uw wachtwoord",
+            // Extension pages (Phase Two magic link)
+            enterAccessCode: "Voer de toegangscode in die we naar je e-mail hebben gestuurd.",
+            doResend: "Code opnieuw verzenden",
+            loginPage: "Inlogpagina",
+            magicLinkCheckEmailTitle: "Controleer je e-mail",
+            magicLinkConfirmation: "Controleer je e-mail en klik op de link om in te loggen!",
+            magicLinkContinuationConfirmation:
+                "Controleer je e-mail en klik op de link om in te loggen! Sluit dit tabblad niet.",
+            magicLinkConfirmedTitle: "Aanmelding bevestigd",
+            magicLinkSuccessfulLogin: "Authenticatiesessie bevestigd. Ga terug naar het tabblad met de inlogpagina.",
+            magicLinkConfirmedOtherBrowser:
+                "Authenticatiesessie bevestigd. Je kunt dit tabblad sluiten en verdergaan waar je met inloggen begon.",
+            magicLinkExpiredTitle: "Link verlopen",
+            magicLinkFailLogin: "De authenticatiesessie is verlopen. Sluit dit tabblad en start het inloggen opnieuw.",
+            multipleSessionsError:
+                "Er zijn meerdere inlogsessies geopend in dezelfde browser. Sluit deze en log opnieuw in.",
         },
         no: {
             welcomeMessage: "Din sikre inngangsport til en sømløs opplevelse.",
@@ -385,6 +692,21 @@ const { I18nProvider, useI18n } = i18nBuilder
             passwordPlaceholder: "Skriv inn passordet ditt",
             newPasswordPlaceholder: "Skriv inn det nye passordet ditt",
             confirmPasswordPlaceholder: "Bekreft passordet ditt",
+            // Extension pages (Phase Two magic link)
+            enterAccessCode: "Skriv inn tilgangskoden vi sendte til e-posten din.",
+            doResend: "Send koden på nytt",
+            loginPage: "Påloggingsside",
+            magicLinkCheckEmailTitle: "Sjekk e-posten din",
+            magicLinkConfirmation: "Sjekk e-posten din, og klikk på lenken for å logge inn!",
+            magicLinkContinuationConfirmation:
+                "Sjekk e-posten din, og klikk på lenken for å logge inn! Ikke lukk denne fanen.",
+            magicLinkConfirmedTitle: "Pålogging bekreftet",
+            magicLinkSuccessfulLogin: "Autentiseringsøkten er bekreftet. Gå tilbake til fanen med påloggingssiden.",
+            magicLinkConfirmedOtherBrowser:
+                "Autentiseringsøkten er bekreftet. Du kan lukke denne fanen og fortsette der du startet påloggingen.",
+            magicLinkExpiredTitle: "Lenken er utløpt",
+            magicLinkFailLogin: "Autentiseringsøkten er utløpt. Lukk denne fanen og start påloggingen på nytt.",
+            multipleSessionsError: "Flere påloggingsøkter er åpne i samme nettleser. Lukk dem og logg inn på nytt.",
         },
         pl: {
             welcomeMessage: "Twoja bezpieczna brama do bezproblemowego korzystania.",
@@ -405,6 +727,22 @@ const { I18nProvider, useI18n } = i18nBuilder
             passwordPlaceholder: "Wprowadź swoje hasło",
             newPasswordPlaceholder: "Wprowadź nowe hasło",
             confirmPasswordPlaceholder: "Potwierdź swoje hasło",
+            // Extension pages (Phase Two magic link)
+            enterAccessCode: "Wpisz kod dostępu, który wysłaliśmy na Twój adres e-mail.",
+            doResend: "Wyślij kod ponownie",
+            loginPage: "Strona logowania",
+            magicLinkCheckEmailTitle: "Sprawdź swoją skrzynkę e-mail",
+            magicLinkConfirmation: "Sprawdź swoją skrzynkę e-mail i kliknij link, aby się zalogować!",
+            magicLinkContinuationConfirmation:
+                "Sprawdź swoją skrzynkę e-mail i kliknij link, aby się zalogować! Nie zamykaj tej karty.",
+            magicLinkConfirmedTitle: "Logowanie potwierdzone",
+            magicLinkSuccessfulLogin: "Sesja uwierzytelniania została potwierdzona. Wróć do karty ze stroną logowania.",
+            magicLinkConfirmedOtherBrowser:
+                "Sesja uwierzytelniania została potwierdzona. Możesz zamknąć tę kartę i kontynuować tam, gdzie rozpoczęto logowanie.",
+            magicLinkExpiredTitle: "Link wygasł",
+            magicLinkFailLogin: "Sesja uwierzytelniania wygasła. Zamknij tę kartę i rozpocznij logowanie od nowa.",
+            multipleSessionsError:
+                "W tej samej przeglądarce otwarto wiele sesji logowania. Zamknij je i zaloguj się ponownie.",
         },
         pt: {
             welcomeMessage: "A sua porta de entrada segura para uma experiência perfeita.",
@@ -425,6 +763,23 @@ const { I18nProvider, useI18n } = i18nBuilder
             passwordPlaceholder: "Insira a sua palavra-passe",
             newPasswordPlaceholder: "Insira a sua nova palavra-passe",
             confirmPasswordPlaceholder: "Confirme a sua palavra-passe",
+            // Extension pages (Phase Two magic link)
+            enterAccessCode: "Introduza o código de acesso que enviámos para o seu e-mail.",
+            doResend: "Reenviar código",
+            loginPage: "Página de início de sessão",
+            magicLinkCheckEmailTitle: "Verifique o seu e-mail",
+            magicLinkConfirmation: "Verifique o seu e-mail e clique na ligação para iniciar sessão!",
+            magicLinkContinuationConfirmation:
+                "Verifique o seu e-mail e clique na ligação para iniciar sessão! Não feche este separador.",
+            magicLinkConfirmedTitle: "Início de sessão confirmado",
+            magicLinkSuccessfulLogin:
+                "Sessão de autenticação confirmada. Volte ao separador da página de início de sessão.",
+            magicLinkConfirmedOtherBrowser:
+                "Sessão de autenticação confirmada. Pode fechar este separador e continuar onde começou a iniciar sessão.",
+            magicLinkExpiredTitle: "Ligação expirada",
+            magicLinkFailLogin: "A sessão de autenticação expirou. Feche este separador e reinicie o início de sessão.",
+            multipleSessionsError:
+                "Existem várias sessões de início de sessão abertas no mesmo navegador. Feche-as e inicie sessão novamente.",
         },
         "pt-BR": {
             welcomeMessage: "Seu portal seguro para uma experiência perfeita.",
@@ -445,6 +800,21 @@ const { I18nProvider, useI18n } = i18nBuilder
             passwordPlaceholder: "Digite sua senha",
             newPasswordPlaceholder: "Digite sua nova senha",
             confirmPasswordPlaceholder: "Confirme sua senha",
+            // Extension pages (Phase Two magic link)
+            enterAccessCode: "Digite o código de acesso que enviamos para o seu e-mail.",
+            doResend: "Reenviar código",
+            loginPage: "Página de login",
+            magicLinkCheckEmailTitle: "Verifique seu e-mail",
+            magicLinkConfirmation: "Verifique seu e-mail e clique no link para entrar!",
+            magicLinkContinuationConfirmation: "Verifique seu e-mail e clique no link para entrar! Não feche esta aba.",
+            magicLinkConfirmedTitle: "Login confirmado",
+            magicLinkSuccessfulLogin: "Sessão de autenticação confirmada. Volte para a aba da página de login.",
+            magicLinkConfirmedOtherBrowser:
+                "Sessão de autenticação confirmada. Você pode fechar esta aba e continuar onde começou o login.",
+            magicLinkExpiredTitle: "Link expirado",
+            magicLinkFailLogin: "A sessão de autenticação expirou. Feche esta aba e reinicie o login.",
+            multipleSessionsError:
+                "Há várias sessões de login abertas no mesmo navegador. Feche-as e faça login novamente.",
         },
         ru: {
             welcomeMessage: "Ваш надёжный доступ к удобному сервису.",
@@ -465,6 +835,22 @@ const { I18nProvider, useI18n } = i18nBuilder
             passwordPlaceholder: "Введите пароль",
             newPasswordPlaceholder: "Введите новый пароль",
             confirmPasswordPlaceholder: "Подтвердите пароль",
+            // Extension pages (Phase Two magic link)
+            enterAccessCode: "Введите код доступа, который мы отправили на вашу электронную почту.",
+            doResend: "Отправить код повторно",
+            loginPage: "Страница входа",
+            magicLinkCheckEmailTitle: "Проверьте почту",
+            magicLinkConfirmation: "Проверьте почту и нажмите на ссылку, чтобы войти!",
+            magicLinkContinuationConfirmation:
+                "Проверьте почту и нажмите на ссылку, чтобы войти! Пожалуйста, не закрывайте эту вкладку.",
+            magicLinkConfirmedTitle: "Вход подтверждён",
+            magicLinkSuccessfulLogin: "Сеанс аутентификации подтверждён. Вернитесь на вкладку со страницей входа.",
+            magicLinkConfirmedOtherBrowser:
+                "Сеанс аутентификации подтверждён. Вы можете закрыть эту вкладку и продолжить там, где начали вход.",
+            magicLinkExpiredTitle: "Срок действия ссылки истёк",
+            magicLinkFailLogin:
+                "Срок действия сеанса аутентификации истёк. Закройте эту вкладку и начните вход заново.",
+            multipleSessionsError: "В одном браузере открыто несколько сеансов входа. Закройте их и войдите снова.",
         },
         sk: {
             welcomeMessage: "Vaša bezpečná brána k bezproblémovému zážitku.",
@@ -485,6 +871,24 @@ const { I18nProvider, useI18n } = i18nBuilder
             passwordPlaceholder: "Zadajte svoje heslo",
             newPasswordPlaceholder: "Zadajte nové heslo",
             confirmPasswordPlaceholder: "Potvrďte svoje heslo",
+            // Extension pages (Phase Two magic link)
+            enterAccessCode: "Zadajte prístupový kód, ktorý sme vám poslali e-mailom.",
+            doResend: "Znova odoslať kód",
+            loginPage: "Prihlasovacia stránka",
+            magicLinkCheckEmailTitle: "Skontrolujte svoj e-mail",
+            magicLinkConfirmation: "Skontrolujte svoj e-mail a kliknite na odkaz na prihlásenie!",
+            magicLinkContinuationConfirmation:
+                "Skontrolujte svoj e-mail a kliknite na odkaz na prihlásenie! Nezatvárajte, prosím, túto kartu.",
+            magicLinkConfirmedTitle: "Prihlásenie potvrdené",
+            magicLinkSuccessfulLogin:
+                "Overovacia relácia bola potvrdená. Vráťte sa, prosím, na kartu s prihlasovacou stránkou.",
+            magicLinkConfirmedOtherBrowser:
+                "Overovacia relácia bola potvrdená. Túto kartu môžete zatvoriť a pokračovať tam, kde ste prihlasovanie začali.",
+            magicLinkExpiredTitle: "Platnosť odkazu vypršala",
+            magicLinkFailLogin:
+                "Platnosť overovacej relácie vypršala. Zatvorte, prosím, túto kartu a začnite prihlásenie odznova.",
+            multipleSessionsError:
+                "V tom istom prehliadači je otvorených viac prihlasovacích relácií. Zatvorte ich, prosím, a prihláste sa znova.",
         },
         sv: {
             welcomeMessage: "Din säkra ingång till en sömlös upplevelse.",
@@ -505,6 +909,24 @@ const { I18nProvider, useI18n } = i18nBuilder
             passwordPlaceholder: "Ange ditt lösenord",
             newPasswordPlaceholder: "Ange ditt nya lösenord",
             confirmPasswordPlaceholder: "Bekräfta ditt lösenord",
+            // Extension pages (Phase Two magic link)
+            enterAccessCode: "Ange åtkomstkoden som vi skickade till din e-post.",
+            doResend: "Skicka koden igen",
+            loginPage: "Inloggningssida",
+            magicLinkCheckEmailTitle: "Kontrollera din e-post",
+            magicLinkConfirmation: "Kontrollera din e-post och klicka på länken för att logga in!",
+            magicLinkContinuationConfirmation:
+                "Kontrollera din e-post och klicka på länken för att logga in! Stäng inte den här fliken.",
+            magicLinkConfirmedTitle: "Inloggning bekräftad",
+            magicLinkSuccessfulLogin:
+                "Autentiseringssessionen är bekräftad. Gå tillbaka till fliken med inloggningssidan.",
+            magicLinkConfirmedOtherBrowser:
+                "Autentiseringssessionen är bekräftad. Du kan stänga den här fliken och fortsätta där du började logga in.",
+            magicLinkExpiredTitle: "Länken har gått ut",
+            magicLinkFailLogin:
+                "Autentiseringssessionen har gått ut. Stäng den här fliken och starta inloggningen igen.",
+            multipleSessionsError:
+                "Flera inloggningssessioner är öppna i samma webbläsare. Stäng dem och logga in igen.",
         },
         th: {
             welcomeMessage: "ประตูที่ปลอดภัยสู่ประสบการณ์ที่ราบรื่นของคุณ",
@@ -525,6 +947,19 @@ const { I18nProvider, useI18n } = i18nBuilder
             passwordPlaceholder: "กรอกรหัสผ่านของคุณ",
             newPasswordPlaceholder: "กรอกรหัสผ่านใหม่ของคุณ",
             confirmPasswordPlaceholder: "ยืนยันรหัสผ่านของคุณ",
+            // Extension pages (Phase Two magic link)
+            enterAccessCode: "ป้อนรหัสเข้าถึงที่เราส่งไปยังอีเมลของคุณ",
+            doResend: "ส่งรหัสอีกครั้ง",
+            loginPage: "หน้าเข้าสู่ระบบ",
+            magicLinkCheckEmailTitle: "ตรวจสอบอีเมลของคุณ",
+            magicLinkConfirmation: "ตรวจสอบอีเมลของคุณ แล้วคลิกลิงก์เพื่อเข้าสู่ระบบ!",
+            magicLinkContinuationConfirmation: "ตรวจสอบอีเมลของคุณ แล้วคลิกลิงก์เพื่อเข้าสู่ระบบ! โปรดอย่าปิดแท็บนี้",
+            magicLinkConfirmedTitle: "ยืนยันการเข้าสู่ระบบแล้ว",
+            magicLinkSuccessfulLogin: "ยืนยันเซสชันการยืนยันตัวตนแล้ว โปรดกลับไปที่แท็บหน้าเข้าสู่ระบบ",
+            magicLinkConfirmedOtherBrowser: "ยืนยันเซสชันการยืนยันตัวตนแล้ว คุณสามารถปิดแท็บนี้และดำเนินการต่อในที่ที่คุณเริ่มเข้าสู่ระบบ",
+            magicLinkExpiredTitle: "ลิงก์หมดอายุแล้ว",
+            magicLinkFailLogin: "เซสชันการยืนยันตัวตนหมดอายุแล้ว โปรดปิดแท็บนี้และเริ่มเข้าสู่ระบบใหม่",
+            multipleSessionsError: "มีเซสชันการเข้าสู่ระบบหลายรายการเปิดอยู่ในเบราว์เซอร์เดียวกัน โปรดปิดแล้วเข้าสู่ระบบใหม่",
         },
         tr: {
             welcomeMessage: "Kusursuz bir deneyime açılan güvenli kapınız.",
@@ -545,6 +980,23 @@ const { I18nProvider, useI18n } = i18nBuilder
             passwordPlaceholder: "Şifrenizi girin",
             newPasswordPlaceholder: "Yeni şifrenizi girin",
             confirmPasswordPlaceholder: "Şifrenizi onaylayın",
+            // Extension pages (Phase Two magic link)
+            enterAccessCode: "E-postanıza gönderdiğimiz erişim kodunu girin.",
+            doResend: "Kodu yeniden gönder",
+            loginPage: "Giriş sayfası",
+            magicLinkCheckEmailTitle: "E-postanızı kontrol edin",
+            magicLinkConfirmation: "E-postanızı kontrol edin ve giriş yapmak için bağlantıya tıklayın!",
+            magicLinkContinuationConfirmation:
+                "E-postanızı kontrol edin ve giriş yapmak için bağlantıya tıklayın! Lütfen bu sekmeyi kapatmayın.",
+            magicLinkConfirmedTitle: "Giriş onaylandı",
+            magicLinkSuccessfulLogin: "Kimlik doğrulama oturumu onaylandı. Lütfen giriş sayfası sekmesine dönün.",
+            magicLinkConfirmedOtherBrowser:
+                "Kimlik doğrulama oturumu onaylandı. Bu sekmeyi kapatıp girişe başladığınız yerden devam edebilirsiniz.",
+            magicLinkExpiredTitle: "Bağlantının süresi doldu",
+            magicLinkFailLogin:
+                "Kimlik doğrulama oturumunun süresi doldu. Lütfen bu sekmeyi kapatın ve girişi yeniden başlatın.",
+            multipleSessionsError:
+                "Aynı tarayıcıda birden fazla giriş oturumu açık. Lütfen bunları kapatın ve yeniden giriş yapın.",
         },
         uk: {
             welcomeMessage: "Ваш безпечний шлюз до бездоганного досвіду.",
@@ -565,6 +1017,21 @@ const { I18nProvider, useI18n } = i18nBuilder
             passwordPlaceholder: "Введіть пароль",
             newPasswordPlaceholder: "Введіть новий пароль",
             confirmPasswordPlaceholder: "Підтвердьте пароль",
+            // Extension pages (Phase Two magic link)
+            enterAccessCode: "Введіть код доступу, який ми надіслали на вашу електронну пошту.",
+            doResend: "Надіслати код повторно",
+            loginPage: "Сторінка входу",
+            magicLinkCheckEmailTitle: "Перевірте пошту",
+            magicLinkConfirmation: "Перевірте пошту та натисніть на посилання, щоб увійти!",
+            magicLinkContinuationConfirmation:
+                "Перевірте пошту та натисніть на посилання, щоб увійти! Будь ласка, не закривайте цю вкладку.",
+            magicLinkConfirmedTitle: "Вхід підтверджено",
+            magicLinkSuccessfulLogin: "Сеанс автентифікації підтверджено. Поверніться на вкладку зі сторінкою входу.",
+            magicLinkConfirmedOtherBrowser:
+                "Сеанс автентифікації підтверджено. Ви можете закрити цю вкладку й продовжити там, де почали вхід.",
+            magicLinkExpiredTitle: "Термін дії посилання минув",
+            magicLinkFailLogin: "Термін дії сеансу автентифікації минув. Закрийте цю вкладку та почніть вхід заново.",
+            multipleSessionsError: "В одному браузері відкрито кілька сеансів входу. Закрийте їх і увійдіть знову.",
         },
         "zh-CN": {
             welcomeMessage: "您通往无缝体验的安全门户。",
@@ -585,6 +1052,19 @@ const { I18nProvider, useI18n } = i18nBuilder
             passwordPlaceholder: "请输入密码",
             newPasswordPlaceholder: "请输入新密码",
             confirmPasswordPlaceholder: "请确认密码",
+            // Extension pages (Phase Two magic link)
+            enterAccessCode: "请输入我们发送到您邮箱的访问码。",
+            doResend: "重新发送验证码",
+            loginPage: "登录页面",
+            magicLinkCheckEmailTitle: "请查收邮件",
+            magicLinkConfirmation: "请查收邮件，并点击链接登录！",
+            magicLinkContinuationConfirmation: "请查收邮件，并点击链接登录！请不要关闭此标签页。",
+            magicLinkConfirmedTitle: "登录已确认",
+            magicLinkSuccessfulLogin: "身份验证会话已确认。请返回登录页面所在的标签页。",
+            magicLinkConfirmedOtherBrowser: "身份验证会话已确认。您可以关闭此标签页，并在开始登录的地方继续。",
+            magicLinkExpiredTitle: "链接已过期",
+            magicLinkFailLogin: "身份验证会话已过期。请关闭此标签页并重新开始登录。",
+            multipleSessionsError: "同一浏览器中打开了多个登录会话。请关闭它们并重新登录。",
         },
         "zh-TW": {
             welcomeMessage: "您通往無縫體驗的安全門戶。",
@@ -605,6 +1085,19 @@ const { I18nProvider, useI18n } = i18nBuilder
             passwordPlaceholder: "請輸入密碼",
             newPasswordPlaceholder: "請輸入新密碼",
             confirmPasswordPlaceholder: "請確認密碼",
+            // Extension pages (Phase Two magic link)
+            enterAccessCode: "請輸入我們寄送到您電子郵件的存取碼。",
+            doResend: "重新傳送驗證碼",
+            loginPage: "登入頁面",
+            magicLinkCheckEmailTitle: "請查看電子郵件",
+            magicLinkConfirmation: "請查看電子郵件，並點擊連結登入！",
+            magicLinkContinuationConfirmation: "請查看電子郵件，並點擊連結登入！請不要關閉此分頁。",
+            magicLinkConfirmedTitle: "登入已確認",
+            magicLinkSuccessfulLogin: "身分驗證工作階段已確認。請返回登入頁面所在的分頁。",
+            magicLinkConfirmedOtherBrowser: "身分驗證工作階段已確認。您可以關閉此分頁，並在開始登入的地方繼續。",
+            magicLinkExpiredTitle: "連結已過期",
+            magicLinkFailLogin: "身分驗證工作階段已過期。請關閉此分頁並重新開始登入。",
+            multipleSessionsError: "同一瀏覽器中開啟了多個登入工作階段。請關閉它們並重新登入。",
         },
     })
     .build();

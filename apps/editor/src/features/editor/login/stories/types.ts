@@ -13,6 +13,8 @@ export const pageCategories = [
     { id: "idp", label: "Identity providers" },
     { id: "sessions", label: "Consent & sessions" },
     { id: "status", label: "Status & errors" },
+    /** Pages rendered by server extensions (e.g. Phase Two magic link), not by base Keycloak. */
+    { id: "extensions", label: "Extension pages" },
 ] as const;
 
 export type PageCategory = (typeof pageCategories)[number]["id"];

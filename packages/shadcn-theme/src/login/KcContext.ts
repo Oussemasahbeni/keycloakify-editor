@@ -13,8 +13,40 @@ export type KcContextExtension = {
     darkMode?: boolean;
 };
 
-// eslint-disable-next-line @typescript-eslint/no-empty-object-type
-export type KcContextExtensionPerPage = {};
+/**
+ * Pages that base Keycloak doesn't ship, contributed by server extensions.
+ * See: https://docs.keycloakify.dev/features/styling-a-custom-page-not-included-in-base-keycloak
+ */
+export type KcContextExtensionPerPage = {
+    // Phase Two magic link / email OTP: https://github.com/p2-inc/keycloak-magic-link
+    "otp-form.ftl": {
+        auth: {
+            attemptedUsername: string;
+        };
+        url: {
+            loginRestartFlowUrl: string;
+            loginAction: string;
+        };
+    };
+    "email-confirmation.ftl": {
+        magicLinkContinuation: {
+            sameBrowser: boolean;
+            url: string;
+        };
+    };
+    // eslint-disable-next-line @typescript-eslint/no-empty-object-type
+    "email-confirmation-error.ftl": {};
+    "view-email.ftl": {
+        auth: {
+            attemptedUsername: string;
+        };
+    };
+    "view-email-continuation.ftl": {
+        auth: {
+            attemptedUsername: string;
+        };
+    };
+};
 
 export type KcContext = ExtendKcContext<KcContextExtension, KcContextExtensionPerPage>;
 
