@@ -3,6 +3,7 @@ import { Smartphone } from "lucide-react";
 import { assert } from "tsafe/assert";
 
 import { Button } from "#/components/ui/button";
+import { Field, FieldGroup } from "#/components/ui/field";
 import { Label } from "#/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "#/components/ui/radio-group";
 import { useI18n } from "#/login/i18n.ts";
@@ -23,7 +24,7 @@ export function Page() {
     return (
         <Template displayMessage={!messagesPerField.existsError("totp")} headerNode={msg("doLogIn")}>
             <form id="kc-otp-reset-form" className={kcClsx("kcFormClass")} action={url.loginAction} method="post">
-                <div className="flex w-full flex-col gap-4">
+                <FieldGroup>
                     <p id="kc-otp-reset-form-description">{msg("otp-reset-description")}</p>
 
                     <RadioGroup
@@ -45,14 +46,12 @@ export function Page() {
                         ))}
                     </RadioGroup>
 
-                    <div className={kcClsx("kcFormGroupClass")}>
-                        <div id="kc-form-buttons" className={kcClsx("kcFormButtonsClass")}>
-                            <Button id="kc-otp-reset-form-submit" className={"w-full"} type="submit">
-                                {msgStr("doSubmit")}
-                            </Button>
-                        </div>
-                    </div>
-                </div>
+                    <Field id="kc-form-buttons">
+                        <Button id="kc-otp-reset-form-submit" className={"w-full"} type="submit">
+                            {msgStr("doSubmit")}
+                        </Button>
+                    </Field>
+                </FieldGroup>
             </form>
         </Template>
     );

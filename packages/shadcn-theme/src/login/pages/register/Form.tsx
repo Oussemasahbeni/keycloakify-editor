@@ -1,9 +1,9 @@
-import { clsx } from "@keycloakify/login-ui/tools/clsx";
 import { useKcClsx } from "@keycloakify/login-ui/useKcClsx";
 import { useLayoutEffect, useState } from "react";
 import { assert } from "tsafe/assert";
 
 import { Button, buttonVariants } from "#/components/ui/button";
+import { Field, FieldGroup } from "#/components/ui/field";
 import { cn } from "#/lib/utils";
 import { useI18n } from "#/login/i18n.ts";
 import { useKcContext } from "#/login/KcContext.ts";
@@ -32,72 +32,62 @@ export function Form() {
     }, []);
 
     return (
-        <form
-            id="kc-register-form"
-            action={kcContext.url.registrationAction}
-            className="flex flex-col gap-4"
-            method="post"
-        >
-            <UserProfileFormFields onIsFormSubmittableValueChange={setIsFormSubmittable} />
-            {kcContext.termsAcceptanceRequired && (
-                <TermsAcceptance
-                    messagesPerField={kcContext.messagesPerField}
-                    areTermsAccepted={areTermsAccepted}
-                    onAreTermsAcceptedValueChange={setAreTermsAccepted}
-                />
-            )}
-            {kcContext.recaptchaRequired && (kcContext.recaptchaVisible || kcContext.recaptchaAction === undefined) && (
-                <div className="form-group">
-                    <div className={kcClsx("kcInputWrapperClass")}>
-                        <div
-                            className="g-recaptcha"
-                            data-size="compact"
-                            data-sitekey={kcContext.recaptchaSiteKey}
-                            data-action={kcContext.recaptchaAction}
-                        ></div>
-                    </div>
-                </div>
-            )}
-            <div className={kcClsx("kcFormGroupClass")}>
+        <form id="kc-register-form" action={kcContext.url.registrationAction} method="post">
+            <FieldGroup>
+                <UserProfileFormFields onIsFormSubmittableValueChange={setIsFormSubmittable} />
+                {kcContext.termsAcceptanceRequired && (
+                    <TermsAcceptance
+                        messagesPerField={kcContext.messagesPerField}
+                        areTermsAccepted={areTermsAccepted}
+                        onAreTermsAcceptedValueChange={setAreTermsAccepted}
+                    />
+                )}
                 {kcContext.recaptchaRequired &&
-                !kcContext.recaptchaVisible &&
-                kcContext.recaptchaAction !== undefined ? (
-                    <div id="kc-form-buttons" className={kcClsx("kcFormButtonsClass")}>
-                        <button
-                            className={clsx(
-                                kcClsx(
-                                    "kcButtonClass",
-                                    "kcButtonPrimaryClass",
-                                    "kcButtonBlockClass",
-                                    "kcButtonLargeClass",
-                                ),
-                                "g-recaptcha",
-                            )}
-                            data-sitekey={kcContext.recaptchaSiteKey}
-                            data-callback="onSubmitRecaptcha"
-                            data-action={kcContext.recaptchaAction}
+                    (kcContext.recaptchaVisible || kcContext.recaptchaAction === undefined) && (
+                        <div className="form-group">
+                            <div className={kcClsx("kcInputWrapperClass")}>
+                                <div
+                                    className="g-recaptcha"
+                                    data-size="compact"
+                                    data-sitekey={kcContext.recaptchaSiteKey}
+                                    data-action={kcContext.recaptchaAction}
+                                ></div>
+                            </div>
+                        </div>
+                    )}
+                <Field>
+                    {kcContext.recaptchaRequired &&
+                    !kcContext.recaptchaVisible &&
+                    kcContext.recaptchaAction !== undefined ? (
+                        <div id="kc-form-buttons" className={kcClsx("kcFormButtonsClass")}>
+                            <button
+                                className={cn(buttonVariants(), "g-recaptcha w-full")}
+                                data-sitekey={kcContext.recaptchaSiteKey}
+                                data-callback="onSubmitRecaptcha"
+                                data-action={kcContext.recaptchaAction}
+                                type="submit"
+                            >
+                                {msg("doRegister")}
+                            </button>
+                        </div>
+                    ) : (
+                        <Button
+                            disabled={!isFormSubmittable || (kcContext.termsAcceptanceRequired && !areTermsAccepted)}
+                            className="w-full"
+                            name="register"
                             type="submit"
                         >
-                            {msg("doRegister")}
-                        </button>
-                    </div>
-                ) : (
-                    <Button
-                        disabled={!isFormSubmittable || (kcContext.termsAcceptanceRequired && !areTermsAccepted)}
-                        className="mt-2 w-full"
-                        name="register"
-                        type="submit"
-                    >
-                        {msgStr("doRegister")}
-                    </Button>
-                )}
-            </div>
+                            {msgStr("doRegister")}
+                        </Button>
+                    )}
 
-            <div className="flex justify-end">
-                <a className={cn(buttonVariants({ variant: "link" }))} href={kcContext.url.loginUrl}>
-                    {msg("backToLogin")}
-                </a>
-            </div>
+                    <div className="flex justify-end">
+                        <a className={cn(buttonVariants({ variant: "link" }))} href={kcContext.url.loginUrl}>
+                            {msg("backToLogin")}
+                        </a>
+                    </div>
+                </Field>
+            </FieldGroup>
         </form>
     );
 }

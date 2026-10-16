@@ -10,7 +10,7 @@ export type SurfaceOption = {
 };
 
 export const SURFACES = [
-    { value: "login", to: "/login", label: "Login", icon: LogIn },
-    { value: "email", to: "/email", label: "Email", icon: Mail },
-    { value: "account", to: "/account", label: "Account", icon: User },
+    { value: "login", to: "/login", label: "Login theme", icon: LogIn },
+    { value: "email", to: "/email", label: "Email theme", icon: Mail },
+    { value: "account", to: "/account", label: "Account theme", icon: User },
 ] as const satisfies ReadonlyArray<SurfaceOption>;

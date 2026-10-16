@@ -1,6 +1,5 @@
 import { createServerFn } from "@tanstack/react-start";
 
-import { hasLifetimeAccess } from "#/features/billing/server/purchase-store.ts";
 import { assetDefinitions } from "#/features/editor/shared/model/assets.ts";
 import { oidcFnMiddleware } from "#/oidc.ts";
 
@@ -31,12 +30,7 @@ export const generateJar = createServerFn({ method: "POST" })
 
         return { ...options, favicon, assets, emailLogoFile };
     })
-    .handler(async ({ data, context }) => {
-        // The paywall itself: the editor's own check is only there to show the dialog.
-        if (!(await hasLifetimeAccess(context.oidc.accessTokenClaims.sub))) {
-            throw new Error("Exporting requires lifetime access.");
-        }
-
+    .handler(async ({ data }) => {
         const { email, themeName, favicon, assets, emailLogoFile } = data;
         let login = data.login;
 

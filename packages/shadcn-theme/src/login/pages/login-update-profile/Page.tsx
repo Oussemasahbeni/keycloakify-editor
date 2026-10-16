@@ -1,8 +1,8 @@
-import { useKcClsx } from "@keycloakify/login-ui/useKcClsx";
 import { useState } from "react";
 import { assert } from "tsafe/assert";
 
 import { Button } from "#/components/ui/button";
+import { Field, FieldGroup } from "#/components/ui/field";
 import { useI18n } from "#/login/i18n.ts";
 import { useKcContext } from "#/login/KcContext.ts";
 
@@ -12,8 +12,6 @@ import { UserProfileFormFields } from "../../components/UserProfileFormFields";
 export function Page() {
     const { kcContext } = useKcContext();
     assert(kcContext.pageId === "login-update-profile.ftl");
-
-    const { kcClsx } = useKcClsx();
 
     const { messagesPerField, url, isAppInitiatedAction } = kcContext;
 
@@ -27,14 +25,11 @@ export function Page() {
             headerNode={msg("loginProfileTitle")}
             displayMessage={messagesPerField.exists("global")}
         >
-            <form id="kc-update-profile-form" className="flex flex-col gap-4" action={url.loginAction} method="post">
-                <UserProfileFormFields onIsFormSubmittableValueChange={setIsFormSubmittable} />
+            <form id="kc-update-profile-form" action={url.loginAction} method="post">
+                <FieldGroup>
+                    <UserProfileFormFields onIsFormSubmittableValueChange={setIsFormSubmittable} />
 
-                <div className={kcClsx("kcFormGroupClass")}>
-                    <div id="kc-form-options" className={kcClsx("kcFormOptionsClass")}>
-                        <div className={kcClsx("kcFormOptionsWrapperClass")} />
-                    </div>
-                    <div id="kc-form-buttons" className={kcClsx("kcFormButtonsClass")}>
+                    <Field id="kc-form-buttons">
                         <Button
                             disabled={!isFormSubmittable}
                             className="w-full"
@@ -48,8 +43,8 @@ export function Page() {
                                 {msg("doCancel")}
                             </Button>
                         )}
-                    </div>
-                </div>
+                    </Field>
+                </FieldGroup>
             </form>
         </Template>
     );

@@ -97,7 +97,7 @@ export default defineConfig({
                 { name: "SHADCN_THEME_BASE", default: "neutral" },
                 { name: "SHADCN_THEME_RADIUS", default: "default" },
                 { name: "SHADCN_THEME_FONT", default: "geist" },
-                { name: "SHADCN_THEME_SHOW_PLACEHOLDER", default: "true" },
+                { name: "SHADCN_THEME_SHOW_PLACEHOLDER", default: "false" },
             ],
         }),
     ],
@@ -229,7 +229,7 @@ The login theme is primarily customized through Keycloakify environment variable
 | `SHADCN_THEME_BASE`                      | `"neutral"`    | See base palette list below                                 | Selects the neutral surface palette used for backgrounds, cards, borders, muted states, and ring.                              |
 | `SHADCN_THEME_RADIUS`                    | `"default"`    | `default`, `none`, `small`, `medium`, `large`               | Controls the global border radius token.                                                                                       |
 | `SHADCN_THEME_FONT`                      | `"geist"`      | See font preset list below                                  | Controls the main theme font family.                                                                                           |
-| `SHADCN_THEME_SHOW_PLACEHOLDER`          | `"true"`       | `true`, `false`                                             | Shows or hides placeholders on supported auth forms.                                                                           |
+| `SHADCN_THEME_SHOW_PLACEHOLDER`          | `"false"`      | `true`, `false`                                             | Shows or hides placeholders on supported auth forms.                                                                           |
 | `SHADCN_THEME_SHOW_REALM_NAME`           | `"true"`       | `true`, `false`                                             | Shows the realm name in the `two-column` side panel.                                                                           |
 | `SHADCN_THEME_WELCOME_MESSAGE`           | `""`           | Any text                                                    | Side panel welcome text. Empty uses the translated `welcomeMessage` message key.                                               |
 | `SHADCN_EMAIL_PRIMARY_COLOR`             | `"#171717"`    | Hex color                                                   | Email button/accent color.                                                                                                     |
@@ -317,7 +317,7 @@ environmentVariables: [
     { name: "SHADCN_THEME_BASE", default: "neutral" },
     { name: "SHADCN_THEME_RADIUS", default: "default" },
     { name: "SHADCN_THEME_FONT", default: "geist" },
-    { name: "SHADCN_THEME_SHOW_PLACEHOLDER", default: "true" },
+    { name: "SHADCN_THEME_SHOW_PLACEHOLDER", default: "false" },
 ];
 ```
 

@@ -139,7 +139,7 @@ export function TemplateContent(props: TemplateContentProps) {
             </CardHeader>
 
             <CardContent>
-                <div id="kc-content" className="flex flex-col gap-4">
+                <div id="kc-content" className="flex flex-col gap-6">
                     {displayMessage &&
                         message !== undefined &&
                         (message.type !== "warning" || !isAppInitiatedAction) && (

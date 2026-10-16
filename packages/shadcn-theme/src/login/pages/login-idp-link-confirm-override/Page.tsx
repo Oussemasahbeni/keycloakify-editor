@@ -17,7 +17,7 @@ export function Page() {
             <form
                 id="kc-register-form"
                 action={kcContext.url.loginAction}
-                className="flex flex-col gap-5"
+                className="flex flex-col gap-6"
                 method="post"
             >
                 <span>

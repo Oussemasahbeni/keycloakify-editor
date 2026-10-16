@@ -20,9 +20,6 @@ declare global {
             readonly AWS_ACCESS_KEY_ID: string;
             readonly AWS_SECRET_ACCESS_KEY: string;
             readonly THEME_ASSETS_BUCKET: string;
-            readonly STRIPE_SECRET_KEY: string;
-            readonly STRIPE_WEBHOOK_SECRET: string;
-            readonly STRIPE_PRICE_ID: string;
         }
     }
 }

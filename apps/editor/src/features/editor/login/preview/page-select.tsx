@@ -23,7 +23,8 @@ export function PageSelect({ pageId, storyId, onPageChange, onStoryChange }: Pag
     return (
         <>
             <Select value={pageId} onValueChange={value => onPageChange(value as PageId)}>
-                <SelectTrigger className="w-64">
+                <SelectTrigger className="w-64" aria-label="Page">
+                    <span className="text-muted-foreground">Page</span>
                     <SelectValue>{(value: PageId) => getPage(value)?.label ?? value}</SelectValue>
                 </SelectTrigger>
                 <SelectContent alignItemWithTrigger={false} className="max-h-100">
@@ -42,7 +43,8 @@ export function PageSelect({ pageId, storyId, onPageChange, onStoryChange }: Pag
 
             {stories.length > 1 && (
                 <Select value={storyId} onValueChange={value => onStoryChange(value ?? "default")}>
-                    <SelectTrigger className="w-56">
+                    <SelectTrigger className="w-64" aria-label="Scenario">
+                        <span className="text-muted-foreground">Scenario</span>
                         <SelectValue>
                             {(value: string) => stories.find(scenario => scenario.id === value)?.label ?? value}
                         </SelectValue>

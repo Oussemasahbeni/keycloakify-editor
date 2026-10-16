@@ -2,6 +2,7 @@ import { useState } from "react";
 import { assert } from "tsafe/assert";
 
 import { Button } from "#/components/ui/button";
+import { Field, FieldGroup } from "#/components/ui/field";
 import { LogoutOtherSessions } from "#/login/components/LogoutOtherSessions.tsx";
 import { useI18n } from "#/login/i18n.ts";
 import { useKcContext } from "#/login/KcContext.ts";
@@ -25,21 +26,23 @@ export function Page() {
             displayRequiredFields
             headerNode={msg("updateEmailTitle")}
         >
-            <form id="kc-update-email-form" className="flex flex-col gap-6" action={url.loginAction} method="post">
-                <UserProfileFormFields onIsFormSubmittableValueChange={setIsFormSubmittable} />
+            <form id="kc-update-email-form" action={url.loginAction} method="post">
+                <FieldGroup>
+                    <UserProfileFormFields onIsFormSubmittableValueChange={setIsFormSubmittable} />
 
-                <LogoutOtherSessions />
+                    <LogoutOtherSessions />
 
-                <div className="flex flex-col gap-3">
-                    <Button disabled={!isFormSubmittable} className="w-full" type="submit">
-                        {msgStr("doSubmit")}
-                    </Button>
-                    {isAppInitiatedAction && (
-                        <Button variant="outline" className="w-full" type="submit" name="cancel-aia" value="true">
-                            {msg("doCancel")}
+                    <Field>
+                        <Button disabled={!isFormSubmittable} className="w-full" type="submit">
+                            {msgStr("doSubmit")}
                         </Button>
-                    )}
-                </div>
+                        {isAppInitiatedAction && (
+                            <Button variant="outline" className="w-full" type="submit" name="cancel-aia" value="true">
+                                {msg("doCancel")}
+                            </Button>
+                        )}
+                    </Field>
+                </FieldGroup>
             </form>
         </Template>
     );

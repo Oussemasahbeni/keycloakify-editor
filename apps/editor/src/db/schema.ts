@@ -30,6 +30,11 @@ export const themes = pgTable(
     table => [index("themes_owner_updated_idx").on(table.ownerSub, table.updatedAt.desc())],
 );
 
+/**
+ * Lifetime-access purchases from when exporting was paid through Stripe. Payments are switched off for now and
+ * nothing reads or writes this table, but it is kept (here and in the database) so the purchase history survives:
+ * dropping it from this file would make the next `db:generate` emit a DROP TABLE.
+ */
 export const purchases = pgTable(
     "purchases",
     {

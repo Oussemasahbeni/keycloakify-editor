@@ -2,6 +2,7 @@ import { useState } from "react";
 import { assert } from "tsafe/assert";
 
 import { Button } from "#/components/ui/button";
+import { Field, FieldGroup } from "#/components/ui/field";
 import { useI18n } from "#/login/i18n.ts";
 import { useKcContext } from "#/login/KcContext.ts";
 
@@ -22,19 +23,16 @@ export function Page() {
             displayRequiredFields
             headerNode={msg("loginIdpReviewProfileTitle")}
         >
-            <form
-                id="kc-idp-review-profile-form"
-                action={kcContext.url.loginAction}
-                method="post"
-                className="flex flex-col gap-4"
-            >
-                <UserProfileFormFields onIsFormSubmittableValueChange={setIsFomSubmittable} />
+            <form id="kc-idp-review-profile-form" action={kcContext.url.loginAction} method="post">
+                <FieldGroup>
+                    <UserProfileFormFields onIsFormSubmittableValueChange={setIsFomSubmittable} />
 
-                <div id="kc-form-buttons">
-                    <Button className="w-full" disabled={!isFomSubmittable} type="submit">
-                        {msgStr("doSubmit")}
-                    </Button>
-                </div>
+                    <Field id="kc-form-buttons">
+                        <Button className="w-full" disabled={!isFomSubmittable} type="submit">
+                            {msgStr("doSubmit")}
+                        </Button>
+                    </Field>
+                </FieldGroup>
             </form>
         </Template>
     );

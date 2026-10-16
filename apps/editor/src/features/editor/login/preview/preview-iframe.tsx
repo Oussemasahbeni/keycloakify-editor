@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { getPage } from "#/features/editor/login/stories/pages.ts";
+import { getPage, initialPreview } from "#/features/editor/login/stories/pages.ts";
 import type { PageId } from "#/features/editor/login/stories/types.ts";
 import { getViewportWidth } from "#/features/editor/shared/model/viewport.ts";
 import { useEditor } from "#/features/editor/state/editor-context.tsx";
@@ -17,8 +17,8 @@ export function LoginPreviewIframe() {
 
     const width = getViewportWidth(viewport);
 
-    const [pageId, setPageId] = useState<PageId>("login.ftl");
-    const [storyId, setStoryId] = useState("default");
+    const [pageId, setPageId] = useState<PageId>(initialPreview.pageId);
+    const [storyId, setStoryId] = useState<string>(initialPreview.storyId);
 
     function handlePageChange(value: PageId) {
         setPageId(value);

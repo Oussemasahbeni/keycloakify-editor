@@ -5,7 +5,7 @@ import { Shield } from "lucide-react";
 import { Fragment } from "react";
 import { assert } from "tsafe/assert";
 
-import { Field, FieldError, FieldLabel } from "#/components/ui/field";
+import { Field, FieldError, FieldGroup, FieldLabel } from "#/components/ui/field";
 import { Input } from "#/components/ui/input";
 import { WebAuthnConditionalUI } from "#/login/components/WebAuthnConditionalUi/index.ts";
 import { useI18n } from "#/login/i18n.ts";
@@ -55,7 +55,7 @@ export function Page() {
             }
             headerNode={msg("passkey-login-title")}
         >
-            <div className="flex flex-col gap-4">
+            <div className="flex flex-col gap-6">
                 {authenticators && (
                     <>
                         <form id="authn_select" hidden>
@@ -143,31 +143,33 @@ export function Page() {
                 )}
 
                 {realm.password && !usernameHidden && (
-                    <form id="kc-form-login" action={url.loginAction} method="post" className="flex flex-col gap-4">
-                        <Field>
-                            <FieldLabel htmlFor="username">{msg("passkey-autofill-select")}</FieldLabel>
-                            <Input
-                                type="text"
-                                id="username"
-                                name="username"
-                                defaultValue={login.username ?? ""}
-                                autoFocus
-                                className="autofill:bg-background"
-                                autoComplete="username webauthn"
-                                aria-invalid={messagesPerField.existsError("username")}
-                            />
-                            {messagesPerField.existsError("username") && (
-                                <FieldError>
-                                    <span
-                                        id="input-error-username"
-                                        aria-live="polite"
-                                        dangerouslySetInnerHTML={{
-                                            __html: kcSanitize(messagesPerField.getFirstError("username")),
-                                        }}
-                                    />
-                                </FieldError>
-                            )}
-                        </Field>
+                    <form id="kc-form-login" action={url.loginAction} method="post">
+                        <FieldGroup>
+                            <Field>
+                                <FieldLabel htmlFor="username">{msg("passkey-autofill-select")}</FieldLabel>
+                                <Input
+                                    type="text"
+                                    id="username"
+                                    name="username"
+                                    defaultValue={login.username ?? ""}
+                                    autoFocus
+                                    className="autofill:bg-background"
+                                    autoComplete="username webauthn"
+                                    aria-invalid={messagesPerField.existsError("username")}
+                                />
+                                {messagesPerField.existsError("username") && (
+                                    <FieldError>
+                                        <span
+                                            id="input-error-username"
+                                            aria-live="polite"
+                                            dangerouslySetInnerHTML={{
+                                                __html: kcSanitize(messagesPerField.getFirstError("username")),
+                                            }}
+                                        />
+                                    </FieldError>
+                                )}
+                            </Field>
+                        </FieldGroup>
                     </form>
                 )}
 

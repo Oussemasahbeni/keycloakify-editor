@@ -17,7 +17,7 @@ export function Page() {
 
     return (
         <Template headerNode={msg("deleteAccountConfirm")}>
-            <form action={kcContext.url.loginAction} className="flex flex-col gap-4" method="post">
+            <form action={kcContext.url.loginAction} className="flex flex-col gap-6" method="post">
                 <Alert variant="warning">
                     <AlertTriangle />
                     <AlertDescription>

@@ -50,7 +50,7 @@ export function Page() {
             }
             headerNode={msg("webauthn-login-title")}
         >
-            <div className="flex flex-col gap-4">
+            <div className="flex flex-col gap-6">
                 {authenticators && (
                     <>
                         <form id="authn_select" hidden>

@@ -4,9 +4,8 @@ import { assert } from "tsafe/assert";
 
 import { Button } from "#/components/ui/button";
 import { Checkbox } from "#/components/ui/checkbox";
-import { Field, FieldError, FieldLabel } from "#/components/ui/field";
+import { Field, FieldError, FieldGroup, FieldLabel } from "#/components/ui/field";
 import { Input } from "#/components/ui/input";
-import { Label } from "#/components/ui/label";
 import { WebAuthnConditionalUI } from "#/login/components/WebAuthnConditionalUi/index.ts";
 import { useI18n } from "#/login/i18n.ts";
 import { useKcContext } from "#/login/KcContext.ts";
@@ -56,7 +55,6 @@ export function Page() {
                 {realm.password && (
                     <form
                         id="kc-form-login"
-                        className="flex flex-col gap-4"
                         onSubmit={() => {
                             setIsLoginButtonDisabled(true);
                             return true;
@@ -64,65 +62,71 @@ export function Page() {
                         action={url.loginAction}
                         method="post"
                     >
-                        {!usernameHidden && (
-                            <Field>
-                                <FieldLabel htmlFor="username">
-                                    {!realm.loginWithEmailAllowed
-                                        ? msg("email")
-                                        : !realm.registrationEmailAsUsername
-                                          ? msg("usernameOrEmail")
-                                          : msg("username")}
-                                </FieldLabel>
-                                <Input
-                                    type="text"
-                                    id="username"
-                                    defaultValue={login.username ?? ""}
-                                    name="username"
-                                    autoFocus
-                                    placeholder={
-                                        showPlaceholder
-                                            ? !realm.loginWithEmailAllowed
-                                                ? msgStr("usernamePlaceholder")
+                        <FieldGroup>
+                            {!usernameHidden && (
+                                <FieldGroup>
+                                    <Field>
+                                        <FieldLabel htmlFor="username">
+                                            {!realm.loginWithEmailAllowed
+                                                ? msg("email")
                                                 : !realm.registrationEmailAsUsername
-                                                  ? msgStr("usernameOrEmailPlaceholder")
-                                                  : msgStr("emailPlaceholder")
-                                            : undefined
-                                    }
-                                    className="autofill:bg-background"
-                                    autoComplete={enableWebAuthnConditionalUI ? "username webauthn" : "username"}
-                                    aria-invalid={messagesPerField.existsError("username")}
-                                />
-                                {messagesPerField.existsError("username") && (
-                                    <FieldError>
-                                        <span
-                                            id="input-error"
-                                            aria-live="polite"
-                                            dangerouslySetInnerHTML={{
-                                                __html: kcSanitize(messagesPerField.getFirstError("username")),
-                                            }}
+                                                  ? msg("usernameOrEmail")
+                                                  : msg("username")}
+                                        </FieldLabel>
+                                        <Input
+                                            type="text"
+                                            id="username"
+                                            defaultValue={login.username ?? ""}
+                                            name="username"
+                                            autoFocus
+                                            placeholder={
+                                                showPlaceholder
+                                                    ? !realm.loginWithEmailAllowed
+                                                        ? msgStr("usernamePlaceholder")
+                                                        : !realm.registrationEmailAsUsername
+                                                          ? msgStr("usernameOrEmailPlaceholder")
+                                                          : msgStr("emailPlaceholder")
+                                                    : undefined
+                                            }
+                                            className="autofill:bg-background"
+                                            autoComplete={
+                                                enableWebAuthnConditionalUI ? "username webauthn" : "username"
+                                            }
+                                            aria-invalid={messagesPerField.existsError("username")}
                                         />
-                                    </FieldError>
-                                )}
+                                        {messagesPerField.existsError("username") && (
+                                            <FieldError>
+                                                <span
+                                                    id="input-error"
+                                                    aria-live="polite"
+                                                    dangerouslySetInnerHTML={{
+                                                        __html: kcSanitize(messagesPerField.getFirstError("username")),
+                                                    }}
+                                                />
+                                            </FieldError>
+                                        )}
+                                    </Field>
+
+                                    {realm.rememberMe && (
+                                        <Field orientation="horizontal">
+                                            <Checkbox
+                                                id="rememberMe"
+                                                name="rememberMe"
+                                                value="on"
+                                                defaultChecked={!!login.rememberMe}
+                                            />
+                                            <FieldLabel htmlFor="rememberMe">{msg("rememberMe")}</FieldLabel>
+                                        </Field>
+                                    )}
+                                </FieldGroup>
+                            )}
+
+                            <Field>
+                                <Button disabled={isLoginButtonDisabled} className="w-full" name="login" type="submit">
+                                    {msgStr("doLogIn")}
+                                </Button>
                             </Field>
-                        )}
-
-                        {realm.rememberMe && !usernameHidden && (
-                            <div className="flex items-center gap-2">
-                                <Checkbox
-                                    id="rememberMe"
-                                    name="rememberMe"
-                                    value="on"
-                                    defaultChecked={!!login.rememberMe}
-                                />
-                                <Label htmlFor="rememberMe" className="cursor-pointer text-sm font-medium">
-                                    {msg("rememberMe")}
-                                </Label>
-                            </div>
-                        )}
-
-                        <Button disabled={isLoginButtonDisabled} className="w-full" name="login" type="submit">
-                            {msgStr("doLogIn")}
-                        </Button>
+                        </FieldGroup>
                     </form>
                 )}
 

@@ -15,7 +15,7 @@ export function Page() {
     return (
         <Template headerNode={msg("confirmLinkIdpTitle")}>
             <form id="kc-register-form" action={kcContext.url.loginAction} method="post">
-                <div className="flex flex-col gap-4">
+                <div className="flex flex-col gap-3">
                     <Button
                         type="submit"
                         className="w-full"

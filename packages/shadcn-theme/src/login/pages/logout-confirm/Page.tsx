@@ -16,7 +16,7 @@ export function Page() {
     const { msg, msgStr } = useI18n();
     return (
         <Template headerNode={msg("logoutConfirmTitle")}>
-            <div className="flex flex-col gap-4">
+            <div className="flex flex-col gap-6">
                 <p className="text-foreground">{msg("logoutConfirmHeader")}</p>
 
                 <form className="flex flex-col gap-6" action={url.logoutConfirmAction} method="POST">

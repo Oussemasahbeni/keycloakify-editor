@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { Spinner } from "#/components/ui/spinner";
 import type { PreviewAssets, PreviewState } from "#/features/editor/login/hooks/use-preview-channel.ts";
 import { useReceivePreview } from "#/features/editor/login/hooks/use-preview-channel.ts";
-import { getStory } from "#/features/editor/login/stories/pages.ts";
+import { getStory, initialPreview } from "#/features/editor/login/stories/pages.ts";
 import type { AssetKey } from "#/features/editor/shared/model/assets.ts";
 import { assetDefinitions } from "#/features/editor/shared/model/assets.ts";
 import {
@@ -31,8 +31,8 @@ export const Route = createFileRoute("/preview/login")({
 
 function PreviewRoute() {
     const [state, setState] = useState<PreviewState & { assets?: PreviewAssets }>({
-        pageId: "login.ftl",
-        storyId: "default",
+        pageId: initialPreview.pageId,
+        storyId: initialPreview.storyId,
         // What the root's blocking script resolved, so mounting doesn't flip the scheme.
         colorScheme: readPreviewColorScheme(),
         locale: DEFAULT_LOCALE,

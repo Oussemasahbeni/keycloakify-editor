@@ -15,7 +15,7 @@ export function LanguageSelect() {
 
     return (
         <Select value={locale} onValueChange={value => setLocale(value as Locale)}>
-            <SelectTrigger className="w-64">
+            <SelectTrigger className="w-56" aria-label="Language">
                 <Globe className="size-4 text-muted-foreground" />
                 <SelectValue>{(selected: Locale) => labelFor(selected)}</SelectValue>
             </SelectTrigger>

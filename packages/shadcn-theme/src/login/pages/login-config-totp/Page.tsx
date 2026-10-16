@@ -2,7 +2,7 @@ import { kcSanitize } from "@keycloakify/login-ui/kcSanitize";
 import { assert } from "tsafe/assert";
 
 import { Button, buttonVariants } from "#/components/ui/button";
-import { Field, FieldError, FieldLabel } from "#/components/ui/field";
+import { Field, FieldError, FieldGroup, FieldLabel } from "#/components/ui/field";
 import { Input } from "#/components/ui/input";
 import { cn } from "#/lib/utils";
 import { LogoutOtherSessions } from "#/login/components/LogoutOtherSessions.tsx";
@@ -130,13 +130,8 @@ export function Page() {
                 </li>
             </ol>
 
-            <form
-                action={kcContext.url.loginAction}
-                className="flex flex-col gap-4"
-                id="kc-totp-settings-form"
-                method="post"
-            >
-                <div>
+            <form action={kcContext.url.loginAction} id="kc-totp-settings-form" method="post">
+                <FieldGroup>
                     <Field>
                         <FieldLabel htmlFor="totp">
                             {msg("authenticatorCode")} <span className="required">*</span>
@@ -161,9 +156,7 @@ export function Page() {
                     </Field>
                     <input type="hidden" id="totpSecret" name="totpSecret" value={kcContext.totp.totpSecret} />
                     {kcContext.mode && <input type="hidden" id="mode" value={kcContext.mode} />}
-                </div>
 
-                <div>
                     <Field>
                         <FieldLabel htmlFor="userLabel">
                             {msg("loginTotpDeviceName")}{" "}
@@ -187,33 +180,33 @@ export function Page() {
                             </FieldError>
                         )}
                     </Field>
-                </div>
 
-                <LogoutOtherSessions />
+                    <LogoutOtherSessions />
 
-                {kcContext.isAppInitiatedAction ? (
-                    <>
-                        <div className="flex justify-between gap-3">
-                            <Button
-                                variant="secondary"
-                                value="true"
-                                id="cancelTOTPBtn"
-                                name="cancel-aia"
-                                type="submit"
-                                className="flex-1"
-                            >
-                                {msgStr("doCancel")}
-                            </Button>
-                            <Button id="saveTOTPBtn" type="submit" className="flex-1">
+                    <Field>
+                        {kcContext.isAppInitiatedAction ? (
+                            <div className="flex justify-between gap-3">
+                                <Button
+                                    variant="secondary"
+                                    value="true"
+                                    id="cancelTOTPBtn"
+                                    name="cancel-aia"
+                                    type="submit"
+                                    className="flex-1"
+                                >
+                                    {msgStr("doCancel")}
+                                </Button>
+                                <Button id="saveTOTPBtn" type="submit" className="flex-1">
+                                    {msgStr("doSubmit")}
+                                </Button>
+                            </div>
+                        ) : (
+                            <Button id="saveTOTPBtn" className="w-full" type="submit">
                                 {msgStr("doSubmit")}
                             </Button>
-                        </div>
-                    </>
-                ) : (
-                    <Button id="saveTOTPBtn" className="w-full" type="submit">
-                        {msgStr("doSubmit")}
-                    </Button>
-                )}
+                        )}
+                    </Field>
+                </FieldGroup>
             </form>
         </Template>
     );

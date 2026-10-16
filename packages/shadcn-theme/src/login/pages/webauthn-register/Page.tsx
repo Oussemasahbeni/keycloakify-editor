@@ -36,7 +36,7 @@ export function Page() {
 
                 <LogoutOtherSessions />
 
-                <div className="flex flex-col gap-6">
+                <div className="flex flex-col gap-3">
                     <Button type="button" className="w-full" id="authenticateWebAuthnButton" onClick={onRegisterClick}>
                         {msgStr("doRegisterSecurityKey")}
                     </Button>

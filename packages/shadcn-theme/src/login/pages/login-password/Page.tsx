@@ -3,9 +3,8 @@ import { useState } from "react";
 import { assert } from "tsafe/assert";
 
 import { Button } from "#/components/ui/button";
-import { Field, FieldError, FieldLabel } from "#/components/ui/field";
+import { Field, FieldError, FieldGroup, FieldLabel } from "#/components/ui/field";
 import { InputGroup, InputGroupAddon, InputGroupInput } from "#/components/ui/input-group";
-import { Label } from "#/components/ui/label";
 import { PasswordVisibilityButton } from "#/login/components/PasswordVisibilityButton.tsx";
 import { WebAuthnConditionalUI } from "#/login/components/WebAuthnConditionalUi/index.ts";
 import { useI18n } from "#/login/i18n.ts";
@@ -32,52 +31,53 @@ export function Page() {
                     return true;
                 }}
                 action={kcContext.url.loginAction}
-                className="flex flex-col gap-4"
                 method="post"
             >
-                <Field>
-                    <FieldLabel htmlFor="password">{msg("password")}</FieldLabel>
-                    <InputGroup>
-                        <InputGroupInput
-                            type="password"
-                            id="password"
-                            name="password"
-                            autoComplete="current-password"
-                            placeholder={showPlaceholder ? msgStr("passwordPlaceholder") : undefined}
-                            aria-invalid={kcContext.messagesPerField.existsError("password")}
-                        />
-                        <InputGroupAddon align="inline-end">
-                            <PasswordVisibilityButton passwordInputId="password" />
-                        </InputGroupAddon>
-                    </InputGroup>
-                    {kcContext.messagesPerField.existsError("password") && (
-                        <FieldError>
-                            <span
-                                id="input-error"
-                                aria-live="polite"
-                                dangerouslySetInnerHTML={{
-                                    __html: kcSanitize(kcContext.messagesPerField.getFirstError("password")),
-                                }}
+                <FieldGroup>
+                    <Field>
+                        <div className="flex items-center">
+                            <FieldLabel htmlFor="password">{msg("password")}</FieldLabel>
+                            {kcContext.realm.resetPasswordAllowed && (
+                                <a
+                                    href={kcContext.url.loginResetCredentialsUrl}
+                                    className="ms-auto inline-block text-sm underline-offset-4 hover:underline"
+                                >
+                                    {msg("doForgotPassword")}
+                                </a>
+                            )}
+                        </div>
+                        <InputGroup>
+                            <InputGroupInput
+                                type="password"
+                                id="password"
+                                name="password"
+                                autoComplete="current-password"
+                                placeholder={showPlaceholder ? msgStr("passwordPlaceholder") : undefined}
+                                aria-invalid={kcContext.messagesPerField.existsError("password")}
                             />
-                        </FieldError>
-                    )}
-                </Field>
+                            <InputGroupAddon align="inline-end">
+                                <PasswordVisibilityButton passwordInputId="password" />
+                            </InputGroupAddon>
+                        </InputGroup>
+                        {kcContext.messagesPerField.existsError("password") && (
+                            <FieldError>
+                                <span
+                                    id="input-error"
+                                    aria-live="polite"
+                                    dangerouslySetInnerHTML={{
+                                        __html: kcSanitize(kcContext.messagesPerField.getFirstError("password")),
+                                    }}
+                                />
+                            </FieldError>
+                        )}
+                    </Field>
 
-                <div className="flex justify-end">
-                    {kcContext.realm.resetPasswordAllowed && (
-                        <span className="underline-offset-4 hover:underline">
-                            <a href={kcContext.url.loginResetCredentialsUrl}>
-                                <Label className="cursor-pointer text-sm font-medium">{msg("doForgotPassword")}</Label>
-                            </a>
-                        </span>
-                    )}
-                </div>
-
-                <div className="flex justify-end">
-                    <Button disabled={isLoginButtonDisabled} className="w-full" name="login" type="submit">
-                        {msgStr("doLogIn")}
-                    </Button>
-                </div>
+                    <Field>
+                        <Button disabled={isLoginButtonDisabled} className="w-full" name="login" type="submit">
+                            {msgStr("doLogIn")}
+                        </Button>
+                    </Field>
+                </FieldGroup>
             </form>
             {kcContext.enableWebAuthnConditionalUI && (
                 <WebAuthnConditionalUI

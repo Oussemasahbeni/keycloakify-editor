@@ -1620,6 +1620,12 @@ export const pages: PagePreview[] = [
 ];
 
 /** All page ids, in catalog order. */
+/** The page and scenario the login preview opens on. */
+export const initialPreview = { pageId: "login.ftl", storyId: "two-social-providers" } as const satisfies {
+    pageId: PageId;
+    storyId: string;
+};
+
 export const pageIds: PageId[] = pages.map(page => page.pageId);
 
 /** Look up a page's catalog entry. */

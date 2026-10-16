@@ -14,9 +14,6 @@ const envSchema = z.object({
     AWS_ACCESS_KEY_ID: required,
     AWS_SECRET_ACCESS_KEY: required,
     THEME_ASSETS_BUCKET: required,
-    STRIPE_SECRET_KEY: required,
-    STRIPE_WEBHOOK_SECRET: required,
-    STRIPE_PRICE_ID: required,
 });
 
 const parsed = envSchema.safeParse(process.env);

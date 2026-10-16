@@ -11,9 +11,6 @@ import { EditorProvider, useEditor } from "#/features/editor/state/editor-contex
 const editorSearchSchema = z.object({
     themeId: z.uuid().optional().catch(undefined),
     share: z.string().optional().catch(undefined),
-    // Set by Stripe's redirect back from checkout; the export button reads and then removes them.
-    checkout: z.enum(["success", "cancelled"]).optional().catch(undefined),
-    session_id: z.string().optional().catch(undefined),
 });
 
 export const Route = createFileRoute("/_editor")({

@@ -270,9 +270,6 @@ importers:
       sharp:
         specifier: ^0.35.2
         version: 0.35.2
-      stripe:
-        specifier: ^23.0.0
-        version: 23.0.0(@types/node@22.19.19)
       tailwindcss:
         specifier: 'catalog:'
         version: 4.3.0
@@ -7660,15 +7657,6 @@ packages:
   strip-indent@4.1.1:
     resolution: {integrity: sha512-SlyRoSkdh1dYP0PzclLE7r0M9sgbFKKMFXpFRUMNuKhQSbC6VQIGzq3E0qsfvGJaUFJPGv6Ws1NZ/haTAjfbMA==}
     engines: {node: '>=12'}
-
-  stripe@23.0.0:
-    resolution: {integrity: sha512-MDE2A5ZVVluYURORaZEVghSmnLJc3w6aHAlZSxDQMsOjOb3V0O6ro/CiaeFlJS4N7uIVmsg98ocRsPmUK6YfyA==}
-    engines: {node: '>=20'}
-    peerDependencies:
-      '@types/node': '>=20'
-    peerDependenciesMeta:
-      '@types/node':
-        optional: true
 
   style-to-object@1.0.14:
     resolution: {integrity: sha512-LIN7rULI0jBscWQYaSswptyderlarFkjQ+t79nzty8tcIAceVomEVlLzH5VP4Cmsv6MtKhs7qaAiwlcp+Mgaxw==}
@@ -15241,10 +15229,6 @@ snapshots:
       min-indent: 1.0.1
 
   strip-indent@4.1.1: {}
-
-  stripe@23.0.0(@types/node@22.19.19):
-    optionalDependencies:
-      '@types/node': 22.19.19
 
   style-to-object@1.0.14:
     dependencies:

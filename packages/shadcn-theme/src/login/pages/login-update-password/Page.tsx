@@ -2,7 +2,7 @@ import { kcSanitize } from "@keycloakify/login-ui/kcSanitize";
 import { assert } from "tsafe/assert";
 
 import { Button } from "#/components/ui/button";
-import { Field, FieldError, FieldLabel } from "#/components/ui/field";
+import { Field, FieldError, FieldGroup, FieldLabel } from "#/components/ui/field";
 import { InputGroup, InputGroupAddon, InputGroupInput } from "#/components/ui/input-group";
 import { LogoutOtherSessions } from "#/login/components/LogoutOtherSessions.tsx";
 import { PasswordVisibilityButton } from "#/login/components/PasswordVisibilityButton.tsx";
@@ -26,76 +26,80 @@ export function Page() {
             displayMessage={!messagesPerField.existsError("password", "password-confirm")}
             headerNode={msg("updatePasswordTitle")}
         >
-            <form id="kc-passwd-update-form" className="flex flex-col gap-6" action={url.loginAction} method="post">
-                <Field>
-                    <FieldLabel htmlFor="password-new">{msg("passwordNew")}</FieldLabel>
-                    <InputGroup>
-                        <InputGroupInput
-                            type="password"
-                            id="password-new"
-                            name="password-new"
-                            autoFocus
-                            autoComplete="new-password"
-                            placeholder={showPlaceholder ? msgStr("newPasswordPlaceholder") : undefined}
-                            aria-invalid={messagesPerField.existsError("password")}
-                        />
-                        <InputGroupAddon align="inline-end">
-                            <PasswordVisibilityButton passwordInputId="password-new" />
-                        </InputGroupAddon>
-                    </InputGroup>
-                    {messagesPerField.existsError("password") && (
-                        <FieldError>
-                            <span
-                                id="input-error"
-                                aria-live="polite"
-                                dangerouslySetInnerHTML={{
-                                    __html: kcSanitize(messagesPerField.getFirstError("password")),
-                                }}
+            <form id="kc-passwd-update-form" action={url.loginAction} method="post">
+                <FieldGroup>
+                    <Field>
+                        <FieldLabel htmlFor="password-new">{msg("passwordNew")}</FieldLabel>
+                        <InputGroup>
+                            <InputGroupInput
+                                type="password"
+                                id="password-new"
+                                name="password-new"
+                                autoFocus
+                                autoComplete="new-password"
+                                placeholder={showPlaceholder ? msgStr("newPasswordPlaceholder") : undefined}
+                                aria-invalid={messagesPerField.existsError("password")}
                             />
-                        </FieldError>
-                    )}
-                </Field>
+                            <InputGroupAddon align="inline-end">
+                                <PasswordVisibilityButton passwordInputId="password-new" />
+                            </InputGroupAddon>
+                        </InputGroup>
+                        {messagesPerField.existsError("password") && (
+                            <FieldError>
+                                <span
+                                    id="input-error"
+                                    aria-live="polite"
+                                    dangerouslySetInnerHTML={{
+                                        __html: kcSanitize(messagesPerField.getFirstError("password")),
+                                    }}
+                                />
+                            </FieldError>
+                        )}
+                    </Field>
 
-                <Field>
-                    <FieldLabel htmlFor="password-confirm">{msg("passwordConfirm")}</FieldLabel>
-                    <InputGroup>
-                        <InputGroupInput
-                            type="password"
-                            id="password-confirm"
-                            name="password-confirm"
-                            autoComplete="new-password"
-                            placeholder={showPlaceholder ? msgStr("confirmPasswordPlaceholder") : undefined}
-                            aria-invalid={messagesPerField.existsError("password-confirm")}
-                        />
-                        <InputGroupAddon align="inline-end">
-                            <PasswordVisibilityButton passwordInputId="password-confirm" />
-                        </InputGroupAddon>
-                    </InputGroup>
-                    {messagesPerField.existsError("password-confirm") && (
-                        <FieldError>
-                            <span
-                                id="input-error"
-                                aria-live="polite"
-                                dangerouslySetInnerHTML={{
-                                    __html: kcSanitize(messagesPerField.getFirstError("password-confirm")),
-                                }}
-                            />
-                        </FieldError>
-                    )}
-                </Field>
+                    <FieldGroup>
+                        <Field>
+                            <FieldLabel htmlFor="password-confirm">{msg("passwordConfirm")}</FieldLabel>
+                            <InputGroup>
+                                <InputGroupInput
+                                    type="password"
+                                    id="password-confirm"
+                                    name="password-confirm"
+                                    autoComplete="new-password"
+                                    placeholder={showPlaceholder ? msgStr("confirmPasswordPlaceholder") : undefined}
+                                    aria-invalid={messagesPerField.existsError("password-confirm")}
+                                />
+                                <InputGroupAddon align="inline-end">
+                                    <PasswordVisibilityButton passwordInputId="password-confirm" />
+                                </InputGroupAddon>
+                            </InputGroup>
+                            {messagesPerField.existsError("password-confirm") && (
+                                <FieldError>
+                                    <span
+                                        id="input-error"
+                                        aria-live="polite"
+                                        dangerouslySetInnerHTML={{
+                                            __html: kcSanitize(messagesPerField.getFirstError("password-confirm")),
+                                        }}
+                                    />
+                                </FieldError>
+                            )}
+                        </Field>
 
-                <LogoutOtherSessions />
+                        <LogoutOtherSessions />
+                    </FieldGroup>
 
-                <div className="flex flex-col gap-3">
-                    <Button className="w-full" type="submit">
-                        {msgStr("doSubmit")}
-                    </Button>
-                    {isAppInitiatedAction && (
-                        <Button variant="outline" className="w-full" type="submit" name="cancel-aia" value="true">
-                            {msg("doCancel")}
+                    <Field>
+                        <Button className="w-full" type="submit">
+                            {msgStr("doSubmit")}
                         </Button>
-                    )}
-                </div>
+                        {isAppInitiatedAction && (
+                            <Button variant="outline" className="w-full" type="submit" name="cancel-aia" value="true">
+                                {msg("doCancel")}
+                            </Button>
+                        )}
+                    </Field>
+                </FieldGroup>
             </form>
         </Template>
     );

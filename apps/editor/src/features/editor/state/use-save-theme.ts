@@ -23,9 +23,8 @@ type SaveInput = {
 class ThemeConflictError extends Error {}
 
 /**
- * Saves the open document to the user's account: the Save button, and export
- * before it leaves for Stripe. Failures are reported here, so callers only
- * need to know whether it worked.
+ * Saves the open document to the user's account (the Save button). Failures
+ * are reported here, so callers only need to know whether it worked.
  */
 export function useSaveTheme() {
     const {

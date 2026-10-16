@@ -18,7 +18,7 @@ export function Page() {
 
     return (
         <Template displayMessage={false} headerNode={msg("errorTitle")}>
-            <div id="kc-error-message" className="flex flex-col gap-4">
+            <div id="kc-error-message" className="flex flex-col gap-6">
                 <Alert variant="error">
                     <XCircle />
                     <AlertDescription>

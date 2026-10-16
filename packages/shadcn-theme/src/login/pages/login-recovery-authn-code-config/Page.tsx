@@ -4,7 +4,7 @@ import { assert } from "tsafe/assert";
 import { Alert, AlertDescription } from "#/components/ui/alert";
 import { Button } from "#/components/ui/button";
 import { Checkbox } from "#/components/ui/checkbox";
-import { Label } from "#/components/ui/label";
+import { Field, FieldGroup, FieldLabel } from "#/components/ui/field";
 import { LogoutOtherSessions } from "#/login/components/LogoutOtherSessions.tsx";
 import { useI18n } from "#/login/i18n.ts";
 import { useKcContext } from "#/login/KcContext.ts";
@@ -83,7 +83,7 @@ export function Page() {
                     </Button>
                 </div>
 
-                <div className="flex items-center gap-2">
+                <Field orientation="horizontal">
                     <Checkbox
                         id="kcRecoveryCodesConfirmationCheck"
                         name="kcRecoveryCodesConfirmationCheck"
@@ -96,53 +96,52 @@ export function Page() {
                             }
                         }}
                     />
-                    <Label htmlFor="kcRecoveryCodesConfirmationCheck" className="cursor-pointer text-sm font-medium">
+                    <FieldLabel htmlFor="kcRecoveryCodesConfirmationCheck" className="cursor-pointer">
                         {msg("recovery-codes-confirmation-message")}
-                    </Label>
-                </div>
+                    </FieldLabel>
+                </Field>
 
-                <form
-                    action={kcContext.url.loginAction}
-                    className="flex flex-col gap-4"
-                    id="kc-recovery-codes-settings-form"
-                    method="post"
-                >
-                    <input
-                        type="hidden"
-                        name="generatedRecoveryAuthnCodes"
-                        value={recoveryAuthnCodesConfigBean.generatedRecoveryAuthnCodesAsString}
-                    />
-                    <input type="hidden" name="generatedAt" value={recoveryAuthnCodesConfigBean.generatedAt} />
-                    <input
-                        type="hidden"
-                        id="userLabel"
-                        name="userLabel"
-                        value={msgStr("recovery-codes-label-default")}
-                    />
+                <form action={kcContext.url.loginAction} id="kc-recovery-codes-settings-form" method="post">
+                    <FieldGroup>
+                        <input
+                            type="hidden"
+                            name="generatedRecoveryAuthnCodes"
+                            value={recoveryAuthnCodesConfigBean.generatedRecoveryAuthnCodesAsString}
+                        />
+                        <input type="hidden" name="generatedAt" value={recoveryAuthnCodesConfigBean.generatedAt} />
+                        <input
+                            type="hidden"
+                            id="userLabel"
+                            name="userLabel"
+                            value={msgStr("recovery-codes-label-default")}
+                        />
 
-                    <LogoutOtherSessions />
+                        <LogoutOtherSessions />
 
-                    {isAppInitiatedAction ? (
-                        <div className="flex flex-col gap-3 sm:flex-row">
-                            <Button type="submit" id="saveRecoveryAuthnCodesBtn" disabled className="sm:flex-1">
-                                {msgStr("recovery-codes-action-complete")}
-                            </Button>
-                            <Button
-                                type="submit"
-                                variant="outline"
-                                name="cancel-aia"
-                                value="true"
-                                id="cancelRecoveryAuthnCodesBtn"
-                                className="sm:flex-1"
-                            >
-                                {msg("recovery-codes-action-cancel")}
-                            </Button>
-                        </div>
-                    ) : (
-                        <Button type="submit" className="w-full" id="saveRecoveryAuthnCodesBtn" disabled>
-                            {msgStr("recovery-codes-action-complete")}
-                        </Button>
-                    )}
+                        <Field>
+                            {isAppInitiatedAction ? (
+                                <div className="flex flex-col gap-3 sm:flex-row">
+                                    <Button type="submit" id="saveRecoveryAuthnCodesBtn" disabled className="sm:flex-1">
+                                        {msgStr("recovery-codes-action-complete")}
+                                    </Button>
+                                    <Button
+                                        type="submit"
+                                        variant="outline"
+                                        name="cancel-aia"
+                                        value="true"
+                                        id="cancelRecoveryAuthnCodesBtn"
+                                        className="sm:flex-1"
+                                    >
+                                        {msg("recovery-codes-action-cancel")}
+                                    </Button>
+                                </div>
+                            ) : (
+                                <Button type="submit" className="w-full" id="saveRecoveryAuthnCodesBtn" disabled>
+                                    {msgStr("recovery-codes-action-complete")}
+                                </Button>
+                            )}
+                        </Field>
+                    </FieldGroup>
                 </form>
             </div>
         </Template>
