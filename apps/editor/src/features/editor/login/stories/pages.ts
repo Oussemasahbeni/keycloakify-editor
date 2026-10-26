@@ -323,6 +323,21 @@ export const pages: PagePreview[] = [
                     },
                 },
             },
+            {
+                id: "one-social-provider",
+                label: "One social provider",
+                overrides: { social: { displayInfo: true, providers: [socialProviders.google] } },
+            },
+            {
+                id: "two-social-providers",
+                label: "Two social providers",
+                overrides: {
+                    social: {
+                        displayInfo: true,
+                        providers: [socialProviders.google, socialProviders.microsoft],
+                    },
+                },
+            },
         ],
     }),
     definePage({

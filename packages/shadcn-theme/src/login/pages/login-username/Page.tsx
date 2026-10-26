@@ -6,13 +6,13 @@ import { Button } from "#/components/ui/button";
 import { Checkbox } from "#/components/ui/checkbox";
 import { Field, FieldError, FieldGroup, FieldLabel } from "#/components/ui/field";
 import { Input } from "#/components/ui/input";
+import { SocialProviders } from "#/login/components/socialProviders/SocialProviders.tsx";
 import { WebAuthnConditionalUI } from "#/login/components/WebAuthnConditionalUi/index.ts";
 import { useI18n } from "#/login/i18n.ts";
 import { useKcContext } from "#/login/KcContext.ts";
 import { useKcEnv } from "#/login/useKcEnv.ts";
 
 import { Template } from "../../components/Template";
-import { SocialProviders } from "../login/SocialProviders";
 
 export function Page() {
     const { kcContext } = useKcContext();
@@ -88,7 +88,6 @@ export function Page() {
                                                           : msgStr("emailPlaceholder")
                                                     : undefined
                                             }
-                                            className="autofill:bg-background"
                                             autoComplete={
                                                 enableWebAuthnConditionalUI ? "username webauthn" : "username"
                                             }

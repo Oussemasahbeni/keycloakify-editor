@@ -6,7 +6,7 @@ import { useKcContext } from "#/login/KcContext.ts";
 import { Template } from "../../components/Template";
 import { Form } from "./Form";
 import { Info } from "./Info";
-import { SocialProviders } from "./SocialProviders";
+import { SocialProviders } from '#/login/components/socialProviders/SocialProviders.tsx';
 
 export function Page() {
     const { kcContext } = useKcContext();

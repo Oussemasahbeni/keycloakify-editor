@@ -1,5 +1,6 @@
 import { assert } from "tsafe/assert";
 
+import { SocialProviders } from "#/login/components/socialProviders/SocialProviders.tsx";
 import { useI18n } from "#/login/i18n.ts";
 import { useKcContext } from "#/login/KcContext.ts";
 
@@ -19,6 +20,7 @@ export function Page() {
             }
             displayMessage={kcContext.messagesPerField.exists("global")}
             displayRequiredFields
+            socialProvidersNode={kcContext.social !== undefined && <SocialProviders />}
         >
             <Form />
         </Template>
