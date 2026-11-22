@@ -18,9 +18,15 @@ const DEPS_TO_EXCLUDE = [
 const DIRS_TO_COPY = [
     { src: "src/login", dest: "keycloak-theme/login" },
     { src: "src/components", dest: "keycloak-theme/components" },
+    // Keycloakify only injects the early color-scheme script for a theme type
+    // when it exists at public/keycloak-theme/<themeType>/early-color-scheme.js
+    // (getHasEarlyColorSchemeScript in keycloakify's buildContext.ts).
+    // sync-extensions copies an extension's keycloak-theme/public/<path> to
+    // the consumer's public/keycloak-theme/<path>, so it must be published
+    // under login/ to land where the login theme looks for it.
     {
         src: "public/early-color-scheme.js",
-        dest: "keycloak-theme/public/early-color-scheme.js"
+        dest: "keycloak-theme/public/login/early-color-scheme.js"
     },
     { src: "public/keycloak-theme", dest: "keycloak-theme/public/keycloak-theme" },
     { src: "README.md", dest: "README.md" }
